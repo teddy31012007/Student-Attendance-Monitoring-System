@@ -1,34 +1,43 @@
 {
-  "name": "attendance-client",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^1.4.0",
-    "chart.js": "^4.3.0",
-    "face-api.js": "^0.22.2",
-    "framer-motion": "^12.38.0",
-    "html5-qrcode": "^2.3.8",
-    "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.5.31",
-    "qrcode.react": "^3.1.0",
-    "react": "^18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.10.1",
-    "react-router-dom": "^6.14.1",
-    "xlsx": "^0.18.5"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.3",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  }
+	"name": "@alloc/quick-lru",
+	"version": "5.2.0",
+	"description": "Simple “Least Recently Used” (LRU) cache",
+	"license": "MIT",
+	"repository": "sindresorhus/quick-lru",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && nyc ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"lru",
+		"quick",
+		"cache",
+		"caching",
+		"least",
+		"recently",
+		"used",
+		"fast",
+		"map",
+		"hash",
+		"buffer"
+	],
+	"devDependencies": {
+		"ava": "^2.0.0",
+		"coveralls": "^3.0.3",
+		"nyc": "^15.0.0",
+		"tsd": "^0.11.0",
+		"xo": "^0.26.0"
+	}
 }

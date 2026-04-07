@@ -1,12732 +1,7771 @@
 import {
-  require_jsx_runtime
-} from "./chunk-UIAEJQAT.js";
-import {
-  require_react
-} from "./chunk-RA4EGHW6.js";
-import {
-  __export,
-  __require,
-  __toESM
+  __esm
 } from "./chunk-2LSFTFF7.js";
 
-// node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
-var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
-var import_react10 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
-var import_react = __toESM(require_react(), 1);
-var LayoutGroupContext = (0, import_react.createContext)({});
-
-// node_modules/framer-motion/dist/es/utils/use-constant.mjs
-var import_react2 = __toESM(require_react(), 1);
-function useConstant(init) {
-  const ref = (0, import_react2.useRef)(null);
-  if (ref.current === null) {
-    ref.current = init();
+// node_modules/html2canvas/dist/html2canvas.esm.js
+function __extends(d, b) {
+  if (typeof b !== "function" && b !== null)
+    throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+  extendStatics(d, b);
+  function __() {
+    this.constructor = d;
   }
-  return ref.current;
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
-
-// node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
-var import_react3 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/utils/is-browser.mjs
-var isBrowser = typeof window !== "undefined";
-
-// node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
-var useIsomorphicLayoutEffect = isBrowser ? import_react3.useLayoutEffect : import_react3.useEffect;
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-var React3 = __toESM(require_react(), 1);
-var import_react7 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/PresenceContext.mjs
-var import_react4 = __toESM(require_react(), 1);
-var PresenceContext = (0, import_react4.createContext)(null);
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
-
-// node_modules/motion-utils/dist/es/array.mjs
-function addUniqueItem(arr, item) {
-  if (arr.indexOf(item) === -1)
-    arr.push(item);
-}
-function removeItem(arr, item) {
-  const index = arr.indexOf(item);
-  if (index > -1)
-    arr.splice(index, 1);
-}
-function moveItem([...arr], fromIndex, toIndex) {
-  const startIndex = fromIndex < 0 ? arr.length + fromIndex : fromIndex;
-  if (startIndex >= 0 && startIndex < arr.length) {
-    const endIndex = toIndex < 0 ? arr.length + toIndex : toIndex;
-    const [item] = arr.splice(fromIndex, 1);
-    arr.splice(endIndex, 0, item);
-  }
-  return arr;
-}
-
-// node_modules/motion-utils/dist/es/clamp.mjs
-var clamp = (min, max, v) => {
-  if (v > max)
-    return max;
-  if (v < min)
-    return min;
-  return v;
-};
-
-// node_modules/motion-utils/dist/es/format-error-message.mjs
-function formatErrorMessage(message, errorCode) {
-  return errorCode ? `${message}. For more information and steps for solving, visit https://motion.dev/troubleshooting/${errorCode}` : message;
-}
-
-// node_modules/motion-utils/dist/es/errors.mjs
-var warning = () => {
-};
-var invariant = () => {
-};
-if (typeof process !== "undefined" && true) {
-  warning = (check, message, errorCode) => {
-    if (!check && typeof console !== "undefined") {
-      console.warn(formatErrorMessage(message, errorCode));
-    }
-  };
-  invariant = (check, message, errorCode) => {
-    if (!check) {
-      throw new Error(formatErrorMessage(message, errorCode));
-    }
-  };
-}
-
-// node_modules/motion-utils/dist/es/global-config.mjs
-var MotionGlobalConfig = {};
-
-// node_modules/motion-utils/dist/es/is-numerical-string.mjs
-var isNumericalString = (v) => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
-
-// node_modules/motion-utils/dist/es/is-object.mjs
-function isObject(value) {
-  return typeof value === "object" && value !== null;
-}
-
-// node_modules/motion-utils/dist/es/is-zero-value-string.mjs
-var isZeroValueString = (v) => /^0[^.\s]+$/u.test(v);
-
-// node_modules/motion-utils/dist/es/memo.mjs
-function memo(callback) {
-  let result;
-  return () => {
-    if (result === void 0)
-      result = callback();
-    return result;
-  };
-}
-
-// node_modules/motion-utils/dist/es/noop.mjs
-var noop = (any) => any;
-
-// node_modules/motion-utils/dist/es/pipe.mjs
-var combineFunctions = (a, b) => (v) => b(a(v));
-var pipe = (...transformers) => transformers.reduce(combineFunctions);
-
-// node_modules/motion-utils/dist/es/progress.mjs
-var progress = (from, to, value) => {
-  const toFromDifference = to - from;
-  return toFromDifference === 0 ? 1 : (value - from) / toFromDifference;
-};
-
-// node_modules/motion-utils/dist/es/subscription-manager.mjs
-var SubscriptionManager = class {
-  constructor() {
-    this.subscriptions = [];
-  }
-  add(handler) {
-    addUniqueItem(this.subscriptions, handler);
-    return () => removeItem(this.subscriptions, handler);
-  }
-  notify(a, b, c) {
-    const numSubscriptions = this.subscriptions.length;
-    if (!numSubscriptions)
-      return;
-    if (numSubscriptions === 1) {
-      this.subscriptions[0](a, b, c);
-    } else {
-      for (let i = 0; i < numSubscriptions; i++) {
-        const handler = this.subscriptions[i];
-        handler && handler(a, b, c);
-      }
-    }
-  }
-  getSize() {
-    return this.subscriptions.length;
-  }
-  clear() {
-    this.subscriptions.length = 0;
-  }
-};
-
-// node_modules/motion-utils/dist/es/time-conversion.mjs
-var secondsToMilliseconds = (seconds) => seconds * 1e3;
-var millisecondsToSeconds = (milliseconds) => milliseconds / 1e3;
-
-// node_modules/motion-utils/dist/es/velocity-per-second.mjs
-function velocityPerSecond(velocity, frameDuration) {
-  return frameDuration ? velocity * (1e3 / frameDuration) : 0;
-}
-
-// node_modules/motion-utils/dist/es/warn-once.mjs
-var warned = /* @__PURE__ */ new Set();
-function hasWarned(message) {
-  return warned.has(message);
-}
-function warnOnce(condition, message, errorCode) {
-  if (condition || warned.has(message))
-    return;
-  console.warn(formatErrorMessage(message, errorCode));
-  warned.add(message);
-}
-
-// node_modules/motion-utils/dist/es/wrap.mjs
-var wrap = (min, max, v) => {
-  const rangeSize = max - min;
-  return ((v - min) % rangeSize + rangeSize) % rangeSize + min;
-};
-
-// node_modules/motion-utils/dist/es/easing/cubic-bezier.mjs
-var calcBezier = (t, a1, a2) => (((1 - 3 * a2 + 3 * a1) * t + (3 * a2 - 6 * a1)) * t + 3 * a1) * t;
-var subdivisionPrecision = 1e-7;
-var subdivisionMaxIterations = 12;
-function binarySubdivide(x, lowerBound, upperBound, mX1, mX2) {
-  let currentX;
-  let currentT;
-  let i = 0;
-  do {
-    currentT = lowerBound + (upperBound - lowerBound) / 2;
-    currentX = calcBezier(currentT, mX1, mX2) - x;
-    if (currentX > 0) {
-      upperBound = currentT;
-    } else {
-      lowerBound = currentT;
-    }
-  } while (Math.abs(currentX) > subdivisionPrecision && ++i < subdivisionMaxIterations);
-  return currentT;
-}
-function cubicBezier(mX1, mY1, mX2, mY2) {
-  if (mX1 === mY1 && mX2 === mY2)
-    return noop;
-  const getTForX = (aX) => binarySubdivide(aX, 0, 1, mX1, mX2);
-  return (t) => t === 0 || t === 1 ? t : calcBezier(getTForX(t), mY1, mY2);
-}
-
-// node_modules/motion-utils/dist/es/easing/modifiers/mirror.mjs
-var mirrorEasing = (easing) => (p) => p <= 0.5 ? easing(2 * p) / 2 : (2 - easing(2 * (1 - p))) / 2;
-
-// node_modules/motion-utils/dist/es/easing/modifiers/reverse.mjs
-var reverseEasing = (easing) => (p) => 1 - easing(1 - p);
-
-// node_modules/motion-utils/dist/es/easing/back.mjs
-var backOut = cubicBezier(0.33, 1.53, 0.69, 0.99);
-var backIn = reverseEasing(backOut);
-var backInOut = mirrorEasing(backIn);
-
-// node_modules/motion-utils/dist/es/easing/anticipate.mjs
-var anticipate = (p) => p >= 1 ? 1 : (p *= 2) < 1 ? 0.5 * backIn(p) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
-
-// node_modules/motion-utils/dist/es/easing/circ.mjs
-var circIn = (p) => 1 - Math.sin(Math.acos(p));
-var circOut = reverseEasing(circIn);
-var circInOut = mirrorEasing(circIn);
-
-// node_modules/motion-utils/dist/es/easing/ease.mjs
-var easeIn = cubicBezier(0.42, 0, 1, 1);
-var easeOut = cubicBezier(0, 0, 0.58, 1);
-var easeInOut = cubicBezier(0.42, 0, 0.58, 1);
-
-// node_modules/motion-utils/dist/es/easing/steps.mjs
-function steps(numSteps, direction = "end") {
-  return (progress2) => {
-    progress2 = direction === "end" ? Math.min(progress2, 0.999) : Math.max(progress2, 1e-3);
-    const expanded = progress2 * numSteps;
-    const rounded = direction === "end" ? Math.floor(expanded) : Math.ceil(expanded);
-    return clamp(0, 1, rounded / numSteps);
-  };
-}
-
-// node_modules/motion-utils/dist/es/easing/utils/is-easing-array.mjs
-var isEasingArray = (ease2) => {
-  return Array.isArray(ease2) && typeof ease2[0] !== "number";
-};
-
-// node_modules/motion-utils/dist/es/easing/utils/get-easing-for-segment.mjs
-function getEasingForSegment(easing, i) {
-  return isEasingArray(easing) ? easing[wrap(0, easing.length, i)] : easing;
-}
-
-// node_modules/motion-utils/dist/es/easing/utils/is-bezier-definition.mjs
-var isBezierDefinition = (easing) => Array.isArray(easing) && typeof easing[0] === "number";
-
-// node_modules/motion-utils/dist/es/easing/utils/map.mjs
-var easingLookup = {
-  linear: noop,
-  easeIn,
-  easeInOut,
-  easeOut,
-  circIn,
-  circInOut,
-  circOut,
-  backIn,
-  backInOut,
-  backOut,
-  anticipate
-};
-var isValidEasing = (easing) => {
-  return typeof easing === "string";
-};
-var easingDefinitionToFunction = (definition) => {
-  if (isBezierDefinition(definition)) {
-    invariant(definition.length === 4, `Cubic bezier arrays must contain four numerical values.`, "cubic-bezier-length");
-    const [x1, y1, x2, y2] = definition;
-    return cubicBezier(x1, y1, x2, y2);
-  } else if (isValidEasing(definition)) {
-    invariant(easingLookup[definition] !== void 0, `Invalid easing type '${definition}'`, "invalid-easing-type");
-    return easingLookup[definition];
-  }
-  return definition;
-};
-
-// node_modules/motion-dom/dist/es/frameloop/order.mjs
-var stepsOrder = [
-  "setup",
-  // Compute
-  "read",
-  // Read
-  "resolveKeyframes",
-  // Write/Read/Write/Read
-  "preUpdate",
-  // Compute
-  "update",
-  // Compute
-  "preRender",
-  // Compute
-  "render",
-  // Write
-  "postRender"
-  // Compute
-];
-
-// node_modules/motion-dom/dist/es/stats/buffer.mjs
-var statsBuffer = {
-  value: null,
-  addProjectionMetrics: null
-};
-
-// node_modules/motion-dom/dist/es/frameloop/render-step.mjs
-function createRenderStep(runNextFrame, stepName) {
-  let thisFrame = /* @__PURE__ */ new Set();
-  let nextFrame = /* @__PURE__ */ new Set();
-  let isProcessing = false;
-  let flushNextFrame = false;
-  const toKeepAlive = /* @__PURE__ */ new WeakSet();
-  let latestFrameData = {
-    delta: 0,
-    timestamp: 0,
-    isProcessing: false
-  };
-  let numCalls = 0;
-  function triggerCallback(callback) {
-    if (toKeepAlive.has(callback)) {
-      step.schedule(callback);
-      runNextFrame();
-    }
-    numCalls++;
-    callback(latestFrameData);
-  }
-  const step = {
-    /**
-     * Schedule a process to run on the next frame.
-     */
-    schedule: (callback, keepAlive = false, immediate = false) => {
-      const addToCurrentFrame = immediate && isProcessing;
-      const queue = addToCurrentFrame ? thisFrame : nextFrame;
-      if (keepAlive)
-        toKeepAlive.add(callback);
-      queue.add(callback);
-      return callback;
-    },
-    /**
-     * Cancel the provided callback from running on the next frame.
-     */
-    cancel: (callback) => {
-      nextFrame.delete(callback);
-      toKeepAlive.delete(callback);
-    },
-    /**
-     * Execute all schedule callbacks.
-     */
-    process: (frameData2) => {
-      latestFrameData = frameData2;
-      if (isProcessing) {
-        flushNextFrame = true;
-        return;
-      }
-      isProcessing = true;
-      const prevFrame = thisFrame;
-      thisFrame = nextFrame;
-      nextFrame = prevFrame;
-      thisFrame.forEach(triggerCallback);
-      if (stepName && statsBuffer.value) {
-        statsBuffer.value.frameloop[stepName].push(numCalls);
-      }
-      numCalls = 0;
-      thisFrame.clear();
-      isProcessing = false;
-      if (flushNextFrame) {
-        flushNextFrame = false;
-        step.process(frameData2);
-      }
-    }
-  };
-  return step;
-}
-
-// node_modules/motion-dom/dist/es/frameloop/batcher.mjs
-var maxElapsed = 40;
-function createRenderBatcher(scheduleNextBatch, allowKeepAlive) {
-  let runNextFrame = false;
-  let useDefaultElapsed = true;
-  const state = {
-    delta: 0,
-    timestamp: 0,
-    isProcessing: false
-  };
-  const flagRunNextFrame = () => runNextFrame = true;
-  const steps2 = stepsOrder.reduce((acc, key) => {
-    acc[key] = createRenderStep(flagRunNextFrame, allowKeepAlive ? key : void 0);
-    return acc;
-  }, {});
-  const { setup, read, resolveKeyframes, preUpdate, update, preRender, render, postRender } = steps2;
-  const processBatch = () => {
-    const useManualTiming = MotionGlobalConfig.useManualTiming;
-    const timestamp = useManualTiming ? state.timestamp : performance.now();
-    runNextFrame = false;
-    if (!useManualTiming) {
-      state.delta = useDefaultElapsed ? 1e3 / 60 : Math.max(Math.min(timestamp - state.timestamp, maxElapsed), 1);
-    }
-    state.timestamp = timestamp;
-    state.isProcessing = true;
-    setup.process(state);
-    read.process(state);
-    resolveKeyframes.process(state);
-    preUpdate.process(state);
-    update.process(state);
-    preRender.process(state);
-    render.process(state);
-    postRender.process(state);
-    state.isProcessing = false;
-    if (runNextFrame && allowKeepAlive) {
-      useDefaultElapsed = false;
-      scheduleNextBatch(processBatch);
-    }
-  };
-  const wake = () => {
-    runNextFrame = true;
-    useDefaultElapsed = true;
-    if (!state.isProcessing) {
-      scheduleNextBatch(processBatch);
-    }
-  };
-  const schedule = stepsOrder.reduce((acc, key) => {
-    const step = steps2[key];
-    acc[key] = (process2, keepAlive = false, immediate = false) => {
-      if (!runNextFrame)
-        wake();
-      return step.schedule(process2, keepAlive, immediate);
-    };
-    return acc;
-  }, {});
-  const cancel = (process2) => {
-    for (let i = 0; i < stepsOrder.length; i++) {
-      steps2[stepsOrder[i]].cancel(process2);
-    }
-  };
-  return { schedule, cancel, state, steps: steps2 };
-}
-
-// node_modules/motion-dom/dist/es/frameloop/frame.mjs
-var { schedule: frame, cancel: cancelFrame, state: frameData, steps: frameSteps } = createRenderBatcher(typeof requestAnimationFrame !== "undefined" ? requestAnimationFrame : noop, true);
-
-// node_modules/motion-dom/dist/es/frameloop/sync-time.mjs
-var now;
-function clearTime() {
-  now = void 0;
-}
-var time = {
-  now: () => {
-    if (now === void 0) {
-      time.set(frameData.isProcessing || MotionGlobalConfig.useManualTiming ? frameData.timestamp : performance.now());
-    }
-    return now;
-  },
-  set: (newTime) => {
-    now = newTime;
-    queueMicrotask(clearTime);
-  }
-};
-
-// node_modules/motion-dom/dist/es/stats/animation-count.mjs
-var activeAnimations = {
-  layout: 0,
-  mainThread: 0,
-  waapi: 0
-};
-
-// node_modules/motion-dom/dist/es/animation/utils/is-css-variable.mjs
-var checkStringStartsWith = (token) => (key) => typeof key === "string" && key.startsWith(token);
-var isCSSVariableName = checkStringStartsWith("--");
-var startsAsVariableToken = checkStringStartsWith("var(--");
-var isCSSVariableToken = (value) => {
-  const startsWithToken = startsAsVariableToken(value);
-  if (!startsWithToken)
-    return false;
-  return singleCssVariableRegex.test(value.split("/*")[0].trim());
-};
-var singleCssVariableRegex = /var\(--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)$/iu;
-function containsCSSVariable(value) {
-  if (typeof value !== "string")
-    return false;
-  return value.split("/*")[0].includes("var(--");
-}
-
-// node_modules/motion-dom/dist/es/value/types/numbers/index.mjs
-var number = {
-  test: (v) => typeof v === "number",
-  parse: parseFloat,
-  transform: (v) => v
-};
-var alpha = {
-  ...number,
-  transform: (v) => clamp(0, 1, v)
-};
-var scale = {
-  ...number,
-  default: 1
-};
-
-// node_modules/motion-dom/dist/es/value/types/utils/sanitize.mjs
-var sanitize = (v) => Math.round(v * 1e5) / 1e5;
-
-// node_modules/motion-dom/dist/es/value/types/utils/float-regex.mjs
-var floatRegex = /-?(?:\d+(?:\.\d+)?|\.\d+)/gu;
-
-// node_modules/motion-dom/dist/es/value/types/utils/is-nullish.mjs
-function isNullish(v) {
-  return v == null;
-}
-
-// node_modules/motion-dom/dist/es/value/types/utils/single-color-regex.mjs
-var singleColorRegex = /^(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))$/iu;
-
-// node_modules/motion-dom/dist/es/value/types/color/utils.mjs
-var isColorString = (type, testProp) => (v) => {
-  return Boolean(typeof v === "string" && singleColorRegex.test(v) && v.startsWith(type) || testProp && !isNullish(v) && Object.prototype.hasOwnProperty.call(v, testProp));
-};
-var splitColor = (aName, bName, cName) => (v) => {
-  if (typeof v !== "string")
-    return v;
-  const [a, b, c, alpha2] = v.match(floatRegex);
-  return {
-    [aName]: parseFloat(a),
-    [bName]: parseFloat(b),
-    [cName]: parseFloat(c),
-    alpha: alpha2 !== void 0 ? parseFloat(alpha2) : 1
-  };
-};
-
-// node_modules/motion-dom/dist/es/value/types/color/rgba.mjs
-var clampRgbUnit = (v) => clamp(0, 255, v);
-var rgbUnit = {
-  ...number,
-  transform: (v) => Math.round(clampRgbUnit(v))
-};
-var rgba = {
-  test: isColorString("rgb", "red"),
-  parse: splitColor("red", "green", "blue"),
-  transform: ({ red, green, blue, alpha: alpha$1 = 1 }) => "rgba(" + rgbUnit.transform(red) + ", " + rgbUnit.transform(green) + ", " + rgbUnit.transform(blue) + ", " + sanitize(alpha.transform(alpha$1)) + ")"
-};
-
-// node_modules/motion-dom/dist/es/value/types/color/hex.mjs
-function parseHex(v) {
-  let r = "";
-  let g = "";
-  let b = "";
-  let a = "";
-  if (v.length > 5) {
-    r = v.substring(1, 3);
-    g = v.substring(3, 5);
-    b = v.substring(5, 7);
-    a = v.substring(7, 9);
-  } else {
-    r = v.substring(1, 2);
-    g = v.substring(2, 3);
-    b = v.substring(3, 4);
-    a = v.substring(4, 5);
-    r += r;
-    g += g;
-    b += b;
-    a += a;
-  }
-  return {
-    red: parseInt(r, 16),
-    green: parseInt(g, 16),
-    blue: parseInt(b, 16),
-    alpha: a ? parseInt(a, 16) / 255 : 1
-  };
-}
-var hex = {
-  test: isColorString("#"),
-  parse: parseHex,
-  transform: rgba.transform
-};
-
-// node_modules/motion-dom/dist/es/value/types/numbers/units.mjs
-var createUnitType = (unit) => ({
-  test: (v) => typeof v === "string" && v.endsWith(unit) && v.split(" ").length === 1,
-  parse: parseFloat,
-  transform: (v) => `${v}${unit}`
-});
-var degrees = createUnitType("deg");
-var percent = createUnitType("%");
-var px = createUnitType("px");
-var vh = createUnitType("vh");
-var vw = createUnitType("vw");
-var progressPercentage = (() => ({
-  ...percent,
-  parse: (v) => percent.parse(v) / 100,
-  transform: (v) => percent.transform(v * 100)
-}))();
-
-// node_modules/motion-dom/dist/es/value/types/color/hsla.mjs
-var hsla = {
-  test: isColorString("hsl", "hue"),
-  parse: splitColor("hue", "saturation", "lightness"),
-  transform: ({ hue, saturation, lightness, alpha: alpha$1 = 1 }) => {
-    return "hsla(" + Math.round(hue) + ", " + percent.transform(sanitize(saturation)) + ", " + percent.transform(sanitize(lightness)) + ", " + sanitize(alpha.transform(alpha$1)) + ")";
-  }
-};
-
-// node_modules/motion-dom/dist/es/value/types/color/index.mjs
-var color = {
-  test: (v) => rgba.test(v) || hex.test(v) || hsla.test(v),
-  parse: (v) => {
-    if (rgba.test(v)) {
-      return rgba.parse(v);
-    } else if (hsla.test(v)) {
-      return hsla.parse(v);
-    } else {
-      return hex.parse(v);
-    }
-  },
-  transform: (v) => {
-    return typeof v === "string" ? v : v.hasOwnProperty("red") ? rgba.transform(v) : hsla.transform(v);
-  },
-  getAnimatableNone: (v) => {
-    const parsed = color.parse(v);
-    parsed.alpha = 0;
-    return color.transform(parsed);
-  }
-};
-
-// node_modules/motion-dom/dist/es/value/types/utils/color-regex.mjs
-var colorRegex = /(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))/giu;
-
-// node_modules/motion-dom/dist/es/value/types/complex/index.mjs
-function test(v) {
-  var _a, _b;
-  return isNaN(v) && typeof v === "string" && (((_a = v.match(floatRegex)) == null ? void 0 : _a.length) || 0) + (((_b = v.match(colorRegex)) == null ? void 0 : _b.length) || 0) > 0;
-}
-var NUMBER_TOKEN = "number";
-var COLOR_TOKEN = "color";
-var VAR_TOKEN = "var";
-var VAR_FUNCTION_TOKEN = "var(";
-var SPLIT_TOKEN = "${}";
-var complexRegex = /var\s*\(\s*--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)|#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\)|-?(?:\d+(?:\.\d+)?|\.\d+)/giu;
-function analyseComplexValue(value) {
-  const originalValue = value.toString();
-  const values = [];
-  const indexes = {
-    color: [],
-    number: [],
-    var: []
-  };
-  const types = [];
-  let i = 0;
-  const tokenised = originalValue.replace(complexRegex, (parsedValue) => {
-    if (color.test(parsedValue)) {
-      indexes.color.push(i);
-      types.push(COLOR_TOKEN);
-      values.push(color.parse(parsedValue));
-    } else if (parsedValue.startsWith(VAR_FUNCTION_TOKEN)) {
-      indexes.var.push(i);
-      types.push(VAR_TOKEN);
-      values.push(parsedValue);
-    } else {
-      indexes.number.push(i);
-      types.push(NUMBER_TOKEN);
-      values.push(parseFloat(parsedValue));
-    }
-    ++i;
-    return SPLIT_TOKEN;
-  });
-  const split = tokenised.split(SPLIT_TOKEN);
-  return { values, split, indexes, types };
-}
-function parseComplexValue(v) {
-  return analyseComplexValue(v).values;
-}
-function buildTransformer({ split, types }) {
-  const numSections = split.length;
-  return (v) => {
-    let output = "";
-    for (let i = 0; i < numSections; i++) {
-      output += split[i];
-      if (v[i] !== void 0) {
-        const type = types[i];
-        if (type === NUMBER_TOKEN) {
-          output += sanitize(v[i]);
-        } else if (type === COLOR_TOKEN) {
-          output += color.transform(v[i]);
-        } else {
-          output += v[i];
-        }
-      }
-    }
-    return output;
-  };
-}
-function createTransformer(source) {
-  return buildTransformer(analyseComplexValue(source));
-}
-var convertNumbersToZero = (v) => typeof v === "number" ? 0 : color.test(v) ? color.getAnimatableNone(v) : v;
-var convertToZero = (value, splitBefore) => {
-  if (typeof value === "number") {
-    return (splitBefore == null ? void 0 : splitBefore.trim().endsWith("/")) ? value : 0;
-  }
-  return convertNumbersToZero(value);
-};
-function getAnimatableNone(v) {
-  const info = analyseComplexValue(v);
-  const transformer = buildTransformer(info);
-  return transformer(info.values.map((value, i) => convertToZero(value, info.split[i])));
-}
-var complex = {
-  test,
-  parse: parseComplexValue,
-  createTransformer,
-  getAnimatableNone
-};
-
-// node_modules/motion-dom/dist/es/value/types/color/hsla-to-rgba.mjs
-function hueToRgb(p, q, t) {
-  if (t < 0)
-    t += 1;
-  if (t > 1)
-    t -= 1;
-  if (t < 1 / 6)
-    return p + (q - p) * 6 * t;
-  if (t < 1 / 2)
-    return q;
-  if (t < 2 / 3)
-    return p + (q - p) * (2 / 3 - t) * 6;
-  return p;
-}
-function hslaToRgba({ hue, saturation, lightness, alpha: alpha2 }) {
-  hue /= 360;
-  saturation /= 100;
-  lightness /= 100;
-  let red = 0;
-  let green = 0;
-  let blue = 0;
-  if (!saturation) {
-    red = green = blue = lightness;
-  } else {
-    const q = lightness < 0.5 ? lightness * (1 + saturation) : lightness + saturation - lightness * saturation;
-    const p = 2 * lightness - q;
-    red = hueToRgb(p, q, hue + 1 / 3);
-    green = hueToRgb(p, q, hue);
-    blue = hueToRgb(p, q, hue - 1 / 3);
-  }
-  return {
-    red: Math.round(red * 255),
-    green: Math.round(green * 255),
-    blue: Math.round(blue * 255),
-    alpha: alpha2
-  };
-}
-
-// node_modules/motion-dom/dist/es/utils/mix/immediate.mjs
-function mixImmediate(a, b) {
-  return (p) => p > 0 ? b : a;
-}
-
-// node_modules/motion-dom/dist/es/utils/mix/number.mjs
-var mixNumber = (from, to, progress2) => {
-  return from + (to - from) * progress2;
-};
-
-// node_modules/motion-dom/dist/es/utils/mix/color.mjs
-var mixLinearColor = (from, to, v) => {
-  const fromExpo = from * from;
-  const expo = v * (to * to - fromExpo) + fromExpo;
-  return expo < 0 ? 0 : Math.sqrt(expo);
-};
-var colorTypes = [hex, rgba, hsla];
-var getColorType = (v) => colorTypes.find((type) => type.test(v));
-function asRGBA(color2) {
-  const type = getColorType(color2);
-  warning(Boolean(type), `'${color2}' is not an animatable color. Use the equivalent color code instead.`, "color-not-animatable");
-  if (!Boolean(type))
-    return false;
-  let model = type.parse(color2);
-  if (type === hsla) {
-    model = hslaToRgba(model);
-  }
-  return model;
-}
-var mixColor = (from, to) => {
-  const fromRGBA = asRGBA(from);
-  const toRGBA = asRGBA(to);
-  if (!fromRGBA || !toRGBA) {
-    return mixImmediate(from, to);
-  }
-  const blended = { ...fromRGBA };
-  return (v) => {
-    blended.red = mixLinearColor(fromRGBA.red, toRGBA.red, v);
-    blended.green = mixLinearColor(fromRGBA.green, toRGBA.green, v);
-    blended.blue = mixLinearColor(fromRGBA.blue, toRGBA.blue, v);
-    blended.alpha = mixNumber(fromRGBA.alpha, toRGBA.alpha, v);
-    return rgba.transform(blended);
-  };
-};
-
-// node_modules/motion-dom/dist/es/utils/mix/visibility.mjs
-var invisibleValues = /* @__PURE__ */ new Set(["none", "hidden"]);
-function mixVisibility(origin, target) {
-  if (invisibleValues.has(origin)) {
-    return (p) => p <= 0 ? origin : target;
-  } else {
-    return (p) => p >= 1 ? target : origin;
-  }
-}
-
-// node_modules/motion-dom/dist/es/utils/mix/complex.mjs
-function mixNumber2(a, b) {
-  return (p) => mixNumber(a, b, p);
-}
-function getMixer(a) {
-  if (typeof a === "number") {
-    return mixNumber2;
-  } else if (typeof a === "string") {
-    return isCSSVariableToken(a) ? mixImmediate : color.test(a) ? mixColor : mixComplex;
-  } else if (Array.isArray(a)) {
-    return mixArray;
-  } else if (typeof a === "object") {
-    return color.test(a) ? mixColor : mixObject;
-  }
-  return mixImmediate;
-}
-function mixArray(a, b) {
-  const output = [...a];
-  const numValues = output.length;
-  const blendValue = a.map((v, i) => getMixer(v)(v, b[i]));
-  return (p) => {
-    for (let i = 0; i < numValues; i++) {
-      output[i] = blendValue[i](p);
-    }
-    return output;
-  };
-}
-function mixObject(a, b) {
-  const output = { ...a, ...b };
-  const blendValue = {};
-  for (const key in output) {
-    if (a[key] !== void 0 && b[key] !== void 0) {
-      blendValue[key] = getMixer(a[key])(a[key], b[key]);
-    }
-  }
-  return (v) => {
-    for (const key in blendValue) {
-      output[key] = blendValue[key](v);
-    }
-    return output;
-  };
-}
-function matchOrder(origin, target) {
-  const orderedOrigin = [];
-  const pointers = { color: 0, var: 0, number: 0 };
-  for (let i = 0; i < target.values.length; i++) {
-    const type = target.types[i];
-    const originIndex = origin.indexes[type][pointers[type]];
-    const originValue = origin.values[originIndex] ?? 0;
-    orderedOrigin[i] = originValue;
-    pointers[type]++;
-  }
-  return orderedOrigin;
-}
-var mixComplex = (origin, target) => {
-  const template = complex.createTransformer(target);
-  const originStats = analyseComplexValue(origin);
-  const targetStats = analyseComplexValue(target);
-  const canInterpolate = originStats.indexes.var.length === targetStats.indexes.var.length && originStats.indexes.color.length === targetStats.indexes.color.length && originStats.indexes.number.length >= targetStats.indexes.number.length;
-  if (canInterpolate) {
-    if (invisibleValues.has(origin) && !targetStats.values.length || invisibleValues.has(target) && !originStats.values.length) {
-      return mixVisibility(origin, target);
-    }
-    return pipe(mixArray(matchOrder(originStats, targetStats), targetStats.values), template);
-  } else {
-    warning(true, `Complex values '${origin}' and '${target}' too different to mix. Ensure all colors are of the same type, and that each contains the same quantity of number and color values. Falling back to instant transition.`, "complex-values-different");
-    return mixImmediate(origin, target);
-  }
-};
-
-// node_modules/motion-dom/dist/es/utils/mix/index.mjs
-function mix(from, to, p) {
-  if (typeof from === "number" && typeof to === "number" && typeof p === "number") {
-    return mixNumber(from, to, p);
-  }
-  const mixer = getMixer(from);
-  return mixer(from, to);
-}
-
-// node_modules/motion-dom/dist/es/animation/drivers/frame.mjs
-var frameloopDriver = (update) => {
-  const passTimestamp = ({ timestamp }) => update(timestamp);
-  return {
-    start: (keepAlive = true) => frame.update(passTimestamp, keepAlive),
-    stop: () => cancelFrame(passTimestamp),
-    /**
-     * If we're processing this frame we can use the
-     * framelocked timestamp to keep things in sync.
-     */
-    now: () => frameData.isProcessing ? frameData.timestamp : time.now()
-  };
-};
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/linear.mjs
-var generateLinearEasing = (easing, duration, resolution = 10) => {
-  let points = "";
-  const numPoints = Math.max(Math.round(duration / resolution), 2);
-  for (let i = 0; i < numPoints; i++) {
-    points += Math.round(easing(i / (numPoints - 1)) * 1e4) / 1e4 + ", ";
-  }
-  return `linear(${points.substring(0, points.length - 2)})`;
-};
-
-// node_modules/motion-dom/dist/es/animation/generators/utils/calc-duration.mjs
-var maxGeneratorDuration = 2e4;
-function calcGeneratorDuration(generator) {
-  let duration = 0;
-  const timeStep = 50;
-  let state = generator.next(duration);
-  while (!state.done && duration < maxGeneratorDuration) {
-    duration += timeStep;
-    state = generator.next(duration);
-  }
-  return duration >= maxGeneratorDuration ? Infinity : duration;
-}
-
-// node_modules/motion-dom/dist/es/animation/generators/utils/create-generator-easing.mjs
-function createGeneratorEasing(options, scale2 = 100, createGenerator) {
-  const generator = createGenerator({ ...options, keyframes: [0, scale2] });
-  const duration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);
-  return {
-    type: "keyframes",
-    ease: (progress2) => {
-      return generator.next(duration * progress2).value / scale2;
-    },
-    duration: millisecondsToSeconds(duration)
-  };
-}
-
-// node_modules/motion-dom/dist/es/animation/generators/spring.mjs
-var springDefaults = {
-  // Default spring physics
-  stiffness: 100,
-  damping: 10,
-  mass: 1,
-  velocity: 0,
-  // Default duration/bounce-based options
-  duration: 800,
-  // in ms
-  bounce: 0.3,
-  visualDuration: 0.3,
-  // in seconds
-  // Rest thresholds
-  restSpeed: {
-    granular: 0.01,
-    default: 2
-  },
-  restDelta: {
-    granular: 5e-3,
-    default: 0.5
-  },
-  // Limits
-  minDuration: 0.01,
-  // in seconds
-  maxDuration: 10,
-  // in seconds
-  minDamping: 0.05,
-  maxDamping: 1
-};
-function calcAngularFreq(undampedFreq, dampingRatio) {
-  return undampedFreq * Math.sqrt(1 - dampingRatio * dampingRatio);
-}
-var rootIterations = 12;
-function approximateRoot(envelope, derivative, initialGuess) {
-  let result = initialGuess;
-  for (let i = 1; i < rootIterations; i++) {
-    result = result - envelope(result) / derivative(result);
-  }
-  return result;
-}
-var safeMin = 1e-3;
-function findSpring({ duration = springDefaults.duration, bounce = springDefaults.bounce, velocity = springDefaults.velocity, mass = springDefaults.mass }) {
-  let envelope;
-  let derivative;
-  warning(duration <= secondsToMilliseconds(springDefaults.maxDuration), "Spring duration must be 10 seconds or less", "spring-duration-limit");
-  let dampingRatio = 1 - bounce;
-  dampingRatio = clamp(springDefaults.minDamping, springDefaults.maxDamping, dampingRatio);
-  duration = clamp(springDefaults.minDuration, springDefaults.maxDuration, millisecondsToSeconds(duration));
-  if (dampingRatio < 1) {
-    envelope = (undampedFreq2) => {
-      const exponentialDecay = undampedFreq2 * dampingRatio;
-      const delta = exponentialDecay * duration;
-      const a = exponentialDecay - velocity;
-      const b = calcAngularFreq(undampedFreq2, dampingRatio);
-      const c = Math.exp(-delta);
-      return safeMin - a / b * c;
-    };
-    derivative = (undampedFreq2) => {
-      const exponentialDecay = undampedFreq2 * dampingRatio;
-      const delta = exponentialDecay * duration;
-      const d = delta * velocity + velocity;
-      const e = Math.pow(dampingRatio, 2) * Math.pow(undampedFreq2, 2) * duration;
-      const f = Math.exp(-delta);
-      const g = calcAngularFreq(Math.pow(undampedFreq2, 2), dampingRatio);
-      const factor = -envelope(undampedFreq2) + safeMin > 0 ? -1 : 1;
-      return factor * ((d - e) * f) / g;
-    };
-  } else {
-    envelope = (undampedFreq2) => {
-      const a = Math.exp(-undampedFreq2 * duration);
-      const b = (undampedFreq2 - velocity) * duration + 1;
-      return -safeMin + a * b;
-    };
-    derivative = (undampedFreq2) => {
-      const a = Math.exp(-undampedFreq2 * duration);
-      const b = (velocity - undampedFreq2) * (duration * duration);
-      return a * b;
-    };
-  }
-  const initialGuess = 5 / duration;
-  const undampedFreq = approximateRoot(envelope, derivative, initialGuess);
-  duration = secondsToMilliseconds(duration);
-  if (isNaN(undampedFreq)) {
-    return {
-      stiffness: springDefaults.stiffness,
-      damping: springDefaults.damping,
-      duration
-    };
-  } else {
-    const stiffness = Math.pow(undampedFreq, 2) * mass;
-    return {
-      stiffness,
-      damping: dampingRatio * 2 * Math.sqrt(mass * stiffness),
-      duration
-    };
-  }
-}
-var durationKeys = ["duration", "bounce"];
-var physicsKeys = ["stiffness", "damping", "mass"];
-function isSpringType(options, keys2) {
-  return keys2.some((key) => options[key] !== void 0);
-}
-function getSpringOptions(options) {
-  let springOptions = {
-    velocity: springDefaults.velocity,
-    stiffness: springDefaults.stiffness,
-    damping: springDefaults.damping,
-    mass: springDefaults.mass,
-    isResolvedFromDuration: false,
-    ...options
-  };
-  if (!isSpringType(options, physicsKeys) && isSpringType(options, durationKeys)) {
-    springOptions.velocity = 0;
-    if (options.visualDuration) {
-      const visualDuration = options.visualDuration;
-      const root = 2 * Math.PI / (visualDuration * 1.2);
-      const stiffness = root * root;
-      const damping = 2 * clamp(0.05, 1, 1 - (options.bounce || 0)) * Math.sqrt(stiffness);
-      springOptions = {
-        ...springOptions,
-        mass: springDefaults.mass,
-        stiffness,
-        damping
-      };
-    } else {
-      const derived = findSpring({ ...options, velocity: 0 });
-      springOptions = {
-        ...springOptions,
-        ...derived,
-        mass: springDefaults.mass
-      };
-      springOptions.isResolvedFromDuration = true;
-    }
-  }
-  return springOptions;
-}
-function spring(optionsOrVisualDuration = springDefaults.visualDuration, bounce = springDefaults.bounce) {
-  const options = typeof optionsOrVisualDuration !== "object" ? {
-    visualDuration: optionsOrVisualDuration,
-    keyframes: [0, 1],
-    bounce
-  } : optionsOrVisualDuration;
-  let { restSpeed, restDelta } = options;
-  const origin = options.keyframes[0];
-  const target = options.keyframes[options.keyframes.length - 1];
-  const state = { done: false, value: origin };
-  const { stiffness, damping, mass, duration, velocity, isResolvedFromDuration } = getSpringOptions({
-    ...options,
-    velocity: -millisecondsToSeconds(options.velocity || 0)
-  });
-  const initialVelocity = velocity || 0;
-  const dampingRatio = damping / (2 * Math.sqrt(stiffness * mass));
-  const initialDelta = target - origin;
-  const undampedAngularFreq = millisecondsToSeconds(Math.sqrt(stiffness / mass));
-  const isGranularScale = Math.abs(initialDelta) < 5;
-  restSpeed || (restSpeed = isGranularScale ? springDefaults.restSpeed.granular : springDefaults.restSpeed.default);
-  restDelta || (restDelta = isGranularScale ? springDefaults.restDelta.granular : springDefaults.restDelta.default);
-  let resolveSpring;
-  let resolveVelocity;
-  let angularFreq;
-  let A;
-  let sinCoeff;
-  let cosCoeff;
-  if (dampingRatio < 1) {
-    angularFreq = calcAngularFreq(undampedAngularFreq, dampingRatio);
-    A = (initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) / angularFreq;
-    resolveSpring = (t) => {
-      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-      return target - envelope * (A * Math.sin(angularFreq * t) + initialDelta * Math.cos(angularFreq * t));
-    };
-    sinCoeff = dampingRatio * undampedAngularFreq * A + initialDelta * angularFreq;
-    cosCoeff = dampingRatio * undampedAngularFreq * initialDelta - A * angularFreq;
-    resolveVelocity = (t) => {
-      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-      return envelope * (sinCoeff * Math.sin(angularFreq * t) + cosCoeff * Math.cos(angularFreq * t));
-    };
-  } else if (dampingRatio === 1) {
-    resolveSpring = (t) => target - Math.exp(-undampedAngularFreq * t) * (initialDelta + (initialVelocity + undampedAngularFreq * initialDelta) * t);
-    const C = initialVelocity + undampedAngularFreq * initialDelta;
-    resolveVelocity = (t) => Math.exp(-undampedAngularFreq * t) * (undampedAngularFreq * C * t - initialVelocity);
-  } else {
-    const dampedAngularFreq = undampedAngularFreq * Math.sqrt(dampingRatio * dampingRatio - 1);
-    resolveSpring = (t) => {
-      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-      const freqForT = Math.min(dampedAngularFreq * t, 300);
-      return target - envelope * ((initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) * Math.sinh(freqForT) + dampedAngularFreq * initialDelta * Math.cosh(freqForT)) / dampedAngularFreq;
-    };
-    const P = (initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) / dampedAngularFreq;
-    const sinhCoeff = dampingRatio * undampedAngularFreq * P - initialDelta * dampedAngularFreq;
-    const coshCoeff = dampingRatio * undampedAngularFreq * initialDelta - P * dampedAngularFreq;
-    resolveVelocity = (t) => {
-      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-      const freqForT = Math.min(dampedAngularFreq * t, 300);
-      return envelope * (sinhCoeff * Math.sinh(freqForT) + coshCoeff * Math.cosh(freqForT));
-    };
-  }
-  const generator = {
-    calculatedDuration: isResolvedFromDuration ? duration || null : null,
-    velocity: (t) => secondsToMilliseconds(resolveVelocity(t)),
-    next: (t) => {
-      if (!isResolvedFromDuration && dampingRatio < 1) {
-        const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-        const sin = Math.sin(angularFreq * t);
-        const cos = Math.cos(angularFreq * t);
-        const current3 = target - envelope * (A * sin + initialDelta * cos);
-        const currentVelocity = secondsToMilliseconds(envelope * (sinCoeff * sin + cosCoeff * cos));
-        state.done = Math.abs(currentVelocity) <= restSpeed && Math.abs(target - current3) <= restDelta;
-        state.value = state.done ? target : current3;
-        return state;
-      }
-      const current2 = resolveSpring(t);
-      if (!isResolvedFromDuration) {
-        const currentVelocity = secondsToMilliseconds(resolveVelocity(t));
-        state.done = Math.abs(currentVelocity) <= restSpeed && Math.abs(target - current2) <= restDelta;
-      } else {
-        state.done = t >= duration;
-      }
-      state.value = state.done ? target : current2;
-      return state;
-    },
-    toString: () => {
-      const calculatedDuration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);
-      const easing = generateLinearEasing((progress2) => generator.next(calculatedDuration * progress2).value, calculatedDuration, 30);
-      return calculatedDuration + "ms " + easing;
-    },
-    toTransition: () => {
-    }
-  };
-  return generator;
-}
-spring.applyToOptions = (options) => {
-  const generatorOptions = createGeneratorEasing(options, 100, spring);
-  options.ease = generatorOptions.ease;
-  options.duration = secondsToMilliseconds(generatorOptions.duration);
-  options.type = "keyframes";
-  return options;
-};
-
-// node_modules/motion-dom/dist/es/animation/generators/utils/velocity.mjs
-var velocitySampleDuration = 5;
-function getGeneratorVelocity(resolveValue, t, current2) {
-  const prevT = Math.max(t - velocitySampleDuration, 0);
-  return velocityPerSecond(current2 - resolveValue(prevT), t - prevT);
-}
-
-// node_modules/motion-dom/dist/es/animation/generators/inertia.mjs
-function inertia({ keyframes: keyframes2, velocity = 0, power = 0.8, timeConstant = 325, bounceDamping = 10, bounceStiffness = 500, modifyTarget, min, max, restDelta = 0.5, restSpeed }) {
-  const origin = keyframes2[0];
-  const state = {
-    done: false,
-    value: origin
-  };
-  const isOutOfBounds = (v) => min !== void 0 && v < min || max !== void 0 && v > max;
-  const nearestBoundary = (v) => {
-    if (min === void 0)
-      return max;
-    if (max === void 0)
-      return min;
-    return Math.abs(min - v) < Math.abs(max - v) ? min : max;
-  };
-  let amplitude = power * velocity;
-  const ideal = origin + amplitude;
-  const target = modifyTarget === void 0 ? ideal : modifyTarget(ideal);
-  if (target !== ideal)
-    amplitude = target - origin;
-  const calcDelta = (t) => -amplitude * Math.exp(-t / timeConstant);
-  const calcLatest = (t) => target + calcDelta(t);
-  const applyFriction = (t) => {
-    const delta = calcDelta(t);
-    const latest = calcLatest(t);
-    state.done = Math.abs(delta) <= restDelta;
-    state.value = state.done ? target : latest;
-  };
-  let timeReachedBoundary;
-  let spring$1;
-  const checkCatchBoundary = (t) => {
-    if (!isOutOfBounds(state.value))
-      return;
-    timeReachedBoundary = t;
-    spring$1 = spring({
-      keyframes: [state.value, nearestBoundary(state.value)],
-      velocity: getGeneratorVelocity(calcLatest, t, state.value),
-      // TODO: This should be passing * 1000
-      damping: bounceDamping,
-      stiffness: bounceStiffness,
-      restDelta,
-      restSpeed
-    });
-  };
-  checkCatchBoundary(0);
-  return {
-    calculatedDuration: null,
-    next: (t) => {
-      let hasUpdatedFrame = false;
-      if (!spring$1 && timeReachedBoundary === void 0) {
-        hasUpdatedFrame = true;
-        applyFriction(t);
-        checkCatchBoundary(t);
-      }
-      if (timeReachedBoundary !== void 0 && t >= timeReachedBoundary) {
-        return spring$1.next(t - timeReachedBoundary);
-      } else {
-        !hasUpdatedFrame && applyFriction(t);
-        return state;
-      }
-    }
-  };
-}
-
-// node_modules/motion-dom/dist/es/utils/interpolate.mjs
-function createMixers(output, ease2, customMixer) {
-  const mixers = [];
-  const mixerFactory = customMixer || MotionGlobalConfig.mix || mix;
-  const numMixers = output.length - 1;
-  for (let i = 0; i < numMixers; i++) {
-    let mixer = mixerFactory(output[i], output[i + 1]);
-    if (ease2) {
-      const easingFunction = Array.isArray(ease2) ? ease2[i] || noop : ease2;
-      mixer = pipe(easingFunction, mixer);
-    }
-    mixers.push(mixer);
-  }
-  return mixers;
-}
-function interpolate(input, output, { clamp: isClamp = true, ease: ease2, mixer } = {}) {
-  const inputLength = input.length;
-  invariant(inputLength === output.length, "Both input and output ranges must be the same length", "range-length");
-  if (inputLength === 1)
-    return () => output[0];
-  if (inputLength === 2 && output[0] === output[1])
-    return () => output[1];
-  const isZeroDeltaRange = input[0] === input[1];
-  if (input[0] > input[inputLength - 1]) {
-    input = [...input].reverse();
-    output = [...output].reverse();
-  }
-  const mixers = createMixers(output, ease2, mixer);
-  const numMixers = mixers.length;
-  const interpolator = (v) => {
-    if (isZeroDeltaRange && v < input[0])
-      return output[0];
-    let i = 0;
-    if (numMixers > 1) {
-      for (; i < input.length - 2; i++) {
-        if (v < input[i + 1])
-          break;
-      }
-    }
-    const progressInRange = progress(input[i], input[i + 1], v);
-    return mixers[i](progressInRange);
-  };
-  return isClamp ? (v) => interpolator(clamp(input[0], input[inputLength - 1], v)) : interpolator;
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/offsets/fill.mjs
-function fillOffset(offset, remaining) {
-  const min = offset[offset.length - 1];
-  for (let i = 1; i <= remaining; i++) {
-    const offsetProgress = progress(0, remaining, i);
-    offset.push(mixNumber(min, 1, offsetProgress));
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/offsets/default.mjs
-function defaultOffset(arr) {
-  const offset = [0];
-  fillOffset(offset, arr.length - 1);
-  return offset;
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/offsets/time.mjs
-function convertOffsetToTimes(offset, duration) {
-  return offset.map((o) => o * duration);
-}
-
-// node_modules/motion-dom/dist/es/animation/generators/keyframes.mjs
-function defaultEasing(values, easing) {
-  return values.map(() => easing || easeInOut).splice(0, values.length - 1);
-}
-function keyframes({ duration = 300, keyframes: keyframeValues, times, ease: ease2 = "easeInOut" }) {
-  const easingFunctions = isEasingArray(ease2) ? ease2.map(easingDefinitionToFunction) : easingDefinitionToFunction(ease2);
-  const state = {
-    done: false,
-    value: keyframeValues[0]
-  };
-  const absoluteTimes = convertOffsetToTimes(
-    // Only use the provided offsets if they're the correct length
-    // TODO Maybe we should warn here if there's a length mismatch
-    times && times.length === keyframeValues.length ? times : defaultOffset(keyframeValues),
-    duration
-  );
-  const mapTimeToKeyframe = interpolate(absoluteTimes, keyframeValues, {
-    ease: Array.isArray(easingFunctions) ? easingFunctions : defaultEasing(keyframeValues, easingFunctions)
-  });
-  return {
-    calculatedDuration: duration,
-    next: (t) => {
-      state.value = mapTimeToKeyframe(t);
-      state.done = t >= duration;
-      return state;
-    }
-  };
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/get-final.mjs
-var isNotNull = (value) => value !== null;
-function getFinalKeyframe(keyframes2, { repeat, repeatType = "loop" }, finalKeyframe, speed = 1) {
-  const resolvedKeyframes = keyframes2.filter(isNotNull);
-  const useFirstKeyframe = speed < 0 || repeat && repeatType !== "loop" && repeat % 2 === 1;
-  const index = useFirstKeyframe ? 0 : resolvedKeyframes.length - 1;
-  return !index || finalKeyframe === void 0 ? resolvedKeyframes[index] : finalKeyframe;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/replace-transition-type.mjs
-var transitionTypeMap = {
-  decay: inertia,
-  inertia,
-  tween: keyframes,
-  keyframes,
-  spring
-};
-function replaceTransitionType(transition) {
-  if (typeof transition.type === "string") {
-    transition.type = transitionTypeMap[transition.type];
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/WithPromise.mjs
-var WithPromise = class {
-  constructor() {
-    this.updateFinished();
-  }
-  get finished() {
-    return this._finished;
-  }
-  updateFinished() {
-    this._finished = new Promise((resolve) => {
-      this.resolve = resolve;
+function __awaiter(thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function(resolve) {
+      resolve(value);
     });
   }
-  notifyFinished() {
-    this.resolve();
-  }
-  /**
-   * Allows the animation to be awaited.
-   *
-   * @deprecated Use `finished` instead.
-   */
-  then(onResolve, onReject) {
-    return this.finished.then(onResolve, onReject);
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/JSAnimation.mjs
-var percentToProgress = (percent2) => percent2 / 100;
-var JSAnimation = class extends WithPromise {
-  constructor(options) {
-    super();
-    this.state = "idle";
-    this.startTime = null;
-    this.isStopped = false;
-    this.currentTime = 0;
-    this.holdTime = null;
-    this.playbackSpeed = 1;
-    this.delayState = {
-      done: false,
-      value: void 0
-    };
-    this.stop = () => {
-      var _a, _b;
-      const { motionValue: motionValue2 } = this.options;
-      if (motionValue2 && motionValue2.updatedAt !== time.now()) {
-        this.tick(time.now());
-      }
-      this.isStopped = true;
-      if (this.state === "idle")
-        return;
-      this.teardown();
-      (_b = (_a = this.options).onStop) == null ? void 0 : _b.call(_a);
-    };
-    activeAnimations.mainThread++;
-    this.options = options;
-    this.initAnimation();
-    this.play();
-    if (options.autoplay === false)
-      this.pause();
-  }
-  initAnimation() {
-    const { options } = this;
-    replaceTransitionType(options);
-    const { type = keyframes, repeat = 0, repeatDelay = 0, repeatType, velocity = 0 } = options;
-    let { keyframes: keyframes$1 } = options;
-    const generatorFactory = type || keyframes;
-    if (generatorFactory !== keyframes) {
-      invariant(keyframes$1.length <= 2, `Only two keyframes currently supported with spring and inertia animations. Trying to animate ${keyframes$1}`, "spring-two-frames");
-    }
-    if (generatorFactory !== keyframes && typeof keyframes$1[0] !== "number") {
-      this.mixKeyframes = pipe(percentToProgress, mix(keyframes$1[0], keyframes$1[1]));
-      keyframes$1 = [0, 100];
-    }
-    const generator = generatorFactory({ ...options, keyframes: keyframes$1 });
-    if (repeatType === "mirror") {
-      this.mirroredGenerator = generatorFactory({
-        ...options,
-        keyframes: [...keyframes$1].reverse(),
-        velocity: -velocity
-      });
-    }
-    if (generator.calculatedDuration === null) {
-      generator.calculatedDuration = calcGeneratorDuration(generator);
-    }
-    const { calculatedDuration } = generator;
-    this.calculatedDuration = calculatedDuration;
-    this.resolvedDuration = calculatedDuration + repeatDelay;
-    this.totalDuration = this.resolvedDuration * (repeat + 1) - repeatDelay;
-    this.generator = generator;
-  }
-  updateTime(timestamp) {
-    const animationTime = Math.round(timestamp - this.startTime) * this.playbackSpeed;
-    if (this.holdTime !== null) {
-      this.currentTime = this.holdTime;
-    } else {
-      this.currentTime = animationTime;
-    }
-  }
-  tick(timestamp, sample = false) {
-    const { generator, totalDuration, mixKeyframes, mirroredGenerator, resolvedDuration, calculatedDuration } = this;
-    if (this.startTime === null)
-      return generator.next(0);
-    const { delay: delay2 = 0, keyframes: keyframes2, repeat, repeatType, repeatDelay, type, onUpdate, finalKeyframe } = this.options;
-    if (this.speed > 0) {
-      this.startTime = Math.min(this.startTime, timestamp);
-    } else if (this.speed < 0) {
-      this.startTime = Math.min(timestamp - totalDuration / this.speed, this.startTime);
-    }
-    if (sample) {
-      this.currentTime = timestamp;
-    } else {
-      this.updateTime(timestamp);
-    }
-    const timeWithoutDelay = this.currentTime - delay2 * (this.playbackSpeed >= 0 ? 1 : -1);
-    const isInDelayPhase = this.playbackSpeed >= 0 ? timeWithoutDelay < 0 : timeWithoutDelay > totalDuration;
-    this.currentTime = Math.max(timeWithoutDelay, 0);
-    if (this.state === "finished" && this.holdTime === null) {
-      this.currentTime = totalDuration;
-    }
-    let elapsed = this.currentTime;
-    let frameGenerator = generator;
-    if (repeat) {
-      const progress2 = Math.min(this.currentTime, totalDuration) / resolvedDuration;
-      let currentIteration = Math.floor(progress2);
-      let iterationProgress = progress2 % 1;
-      if (!iterationProgress && progress2 >= 1) {
-        iterationProgress = 1;
-      }
-      iterationProgress === 1 && currentIteration--;
-      currentIteration = Math.min(currentIteration, repeat + 1);
-      const isOddIteration = Boolean(currentIteration % 2);
-      if (isOddIteration) {
-        if (repeatType === "reverse") {
-          iterationProgress = 1 - iterationProgress;
-          if (repeatDelay) {
-            iterationProgress -= repeatDelay / resolvedDuration;
-          }
-        } else if (repeatType === "mirror") {
-          frameGenerator = mirroredGenerator;
-        }
-      }
-      elapsed = clamp(0, 1, iterationProgress) * resolvedDuration;
-    }
-    let state;
-    if (isInDelayPhase) {
-      this.delayState.value = keyframes2[0];
-      state = this.delayState;
-    } else {
-      state = frameGenerator.next(elapsed);
-    }
-    if (mixKeyframes && !isInDelayPhase) {
-      state.value = mixKeyframes(state.value);
-    }
-    let { done } = state;
-    if (!isInDelayPhase && calculatedDuration !== null) {
-      done = this.playbackSpeed >= 0 ? this.currentTime >= totalDuration : this.currentTime <= 0;
-    }
-    const isAnimationFinished = this.holdTime === null && (this.state === "finished" || this.state === "running" && done);
-    if (isAnimationFinished && type !== inertia) {
-      state.value = getFinalKeyframe(keyframes2, this.options, finalKeyframe, this.speed);
-    }
-    if (onUpdate) {
-      onUpdate(state.value);
-    }
-    if (isAnimationFinished) {
-      this.finish();
-    }
-    return state;
-  }
-  /**
-   * Allows the returned animation to be awaited or promise-chained. Currently
-   * resolves when the animation finishes at all but in a future update could/should
-   * reject if its cancels.
-   */
-  then(resolve, reject) {
-    return this.finished.then(resolve, reject);
-  }
-  get duration() {
-    return millisecondsToSeconds(this.calculatedDuration);
-  }
-  get iterationDuration() {
-    const { delay: delay2 = 0 } = this.options || {};
-    return this.duration + millisecondsToSeconds(delay2);
-  }
-  get time() {
-    return millisecondsToSeconds(this.currentTime);
-  }
-  set time(newTime) {
-    newTime = secondsToMilliseconds(newTime);
-    this.currentTime = newTime;
-    if (this.startTime === null || this.holdTime !== null || this.playbackSpeed === 0) {
-      this.holdTime = newTime;
-    } else if (this.driver) {
-      this.startTime = this.driver.now() - newTime / this.playbackSpeed;
-    }
-    if (this.driver) {
-      this.driver.start(false);
-    } else {
-      this.startTime = 0;
-      this.state = "paused";
-      this.holdTime = newTime;
-      this.tick(newTime);
-    }
-  }
-  /**
-   * Returns the generator's velocity at the current time in units/second.
-   * Uses the analytical derivative when available (springs), avoiding
-   * the MotionValue's frame-dependent velocity estimation.
-   */
-  getGeneratorVelocity() {
-    const t = this.currentTime;
-    if (t <= 0)
-      return this.options.velocity || 0;
-    if (this.generator.velocity) {
-      return this.generator.velocity(t);
-    }
-    const current2 = this.generator.next(t).value;
-    return getGeneratorVelocity((s) => this.generator.next(s).value, t, current2);
-  }
-  get speed() {
-    return this.playbackSpeed;
-  }
-  set speed(newSpeed) {
-    const hasChanged = this.playbackSpeed !== newSpeed;
-    if (hasChanged && this.driver) {
-      this.updateTime(time.now());
-    }
-    this.playbackSpeed = newSpeed;
-    if (hasChanged && this.driver) {
-      this.time = millisecondsToSeconds(this.currentTime);
-    }
-  }
-  play() {
-    var _a, _b;
-    if (this.isStopped)
-      return;
-    const { driver = frameloopDriver, startTime } = this.options;
-    if (!this.driver) {
-      this.driver = driver((timestamp) => this.tick(timestamp));
-    }
-    (_b = (_a = this.options).onPlay) == null ? void 0 : _b.call(_a);
-    const now2 = this.driver.now();
-    if (this.state === "finished") {
-      this.updateFinished();
-      this.startTime = now2;
-    } else if (this.holdTime !== null) {
-      this.startTime = now2 - this.holdTime;
-    } else if (!this.startTime) {
-      this.startTime = startTime ?? now2;
-    }
-    if (this.state === "finished" && this.speed < 0) {
-      this.startTime += this.calculatedDuration;
-    }
-    this.holdTime = null;
-    this.state = "running";
-    this.driver.start();
-  }
-  pause() {
-    this.state = "paused";
-    this.updateTime(time.now());
-    this.holdTime = this.currentTime;
-  }
-  complete() {
-    if (this.state !== "running") {
-      this.play();
-    }
-    this.state = "finished";
-    this.holdTime = null;
-  }
-  finish() {
-    var _a, _b;
-    this.notifyFinished();
-    this.teardown();
-    this.state = "finished";
-    (_b = (_a = this.options).onComplete) == null ? void 0 : _b.call(_a);
-  }
-  cancel() {
-    var _a, _b;
-    this.holdTime = null;
-    this.startTime = 0;
-    this.tick(0);
-    this.teardown();
-    (_b = (_a = this.options).onCancel) == null ? void 0 : _b.call(_a);
-  }
-  teardown() {
-    this.state = "idle";
-    this.stopDriver();
-    this.startTime = this.holdTime = null;
-    activeAnimations.mainThread--;
-  }
-  stopDriver() {
-    if (!this.driver)
-      return;
-    this.driver.stop();
-    this.driver = void 0;
-  }
-  sample(sampleTime) {
-    this.startTime = 0;
-    return this.tick(sampleTime, true);
-  }
-  attachTimeline(timeline) {
-    var _a;
-    if (this.options.allowFlatten) {
-      this.options.type = "keyframes";
-      this.options.ease = "linear";
-      this.initAnimation();
-    }
-    (_a = this.driver) == null ? void 0 : _a.stop();
-    return timeline.observe(this);
-  }
-};
-function animateValue(options) {
-  return new JSAnimation(options);
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/utils/fill-wildcards.mjs
-function fillWildcards(keyframes2) {
-  for (let i = 1; i < keyframes2.length; i++) {
-    keyframes2[i] ?? (keyframes2[i] = keyframes2[i - 1]);
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/dom/parse-transform.mjs
-var radToDeg = (rad) => rad * 180 / Math.PI;
-var rotate = (v) => {
-  const angle = radToDeg(Math.atan2(v[1], v[0]));
-  return rebaseAngle(angle);
-};
-var matrix2dParsers = {
-  x: 4,
-  y: 5,
-  translateX: 4,
-  translateY: 5,
-  scaleX: 0,
-  scaleY: 3,
-  scale: (v) => (Math.abs(v[0]) + Math.abs(v[3])) / 2,
-  rotate,
-  rotateZ: rotate,
-  skewX: (v) => radToDeg(Math.atan(v[1])),
-  skewY: (v) => radToDeg(Math.atan(v[2])),
-  skew: (v) => (Math.abs(v[1]) + Math.abs(v[2])) / 2
-};
-var rebaseAngle = (angle) => {
-  angle = angle % 360;
-  if (angle < 0)
-    angle += 360;
-  return angle;
-};
-var rotateZ = rotate;
-var scaleX = (v) => Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-var scaleY = (v) => Math.sqrt(v[4] * v[4] + v[5] * v[5]);
-var matrix3dParsers = {
-  x: 12,
-  y: 13,
-  z: 14,
-  translateX: 12,
-  translateY: 13,
-  translateZ: 14,
-  scaleX,
-  scaleY,
-  scale: (v) => (scaleX(v) + scaleY(v)) / 2,
-  rotateX: (v) => rebaseAngle(radToDeg(Math.atan2(v[6], v[5]))),
-  rotateY: (v) => rebaseAngle(radToDeg(Math.atan2(-v[2], v[0]))),
-  rotateZ,
-  rotate: rotateZ,
-  skewX: (v) => radToDeg(Math.atan(v[4])),
-  skewY: (v) => radToDeg(Math.atan(v[1])),
-  skew: (v) => (Math.abs(v[1]) + Math.abs(v[4])) / 2
-};
-function defaultTransformValue(name) {
-  return name.includes("scale") ? 1 : 0;
-}
-function parseValueFromTransform(transform2, name) {
-  if (!transform2 || transform2 === "none") {
-    return defaultTransformValue(name);
-  }
-  const matrix3dMatch = transform2.match(/^matrix3d\(([-\d.e\s,]+)\)$/u);
-  let parsers;
-  let match;
-  if (matrix3dMatch) {
-    parsers = matrix3dParsers;
-    match = matrix3dMatch;
-  } else {
-    const matrix2dMatch = transform2.match(/^matrix\(([-\d.e\s,]+)\)$/u);
-    parsers = matrix2dParsers;
-    match = matrix2dMatch;
-  }
-  if (!match) {
-    return defaultTransformValue(name);
-  }
-  const valueParser = parsers[name];
-  const values = match[1].split(",").map(convertTransformToNumber);
-  return typeof valueParser === "function" ? valueParser(values) : values[valueParser];
-}
-var readTransformValue = (instance, name) => {
-  const { transform: transform2 = "none" } = getComputedStyle(instance);
-  return parseValueFromTransform(transform2, name);
-};
-function convertTransformToNumber(value) {
-  return parseFloat(value.trim());
-}
-
-// node_modules/motion-dom/dist/es/render/utils/keys-transform.mjs
-var transformPropOrder = [
-  "transformPerspective",
-  "x",
-  "y",
-  "z",
-  "translateX",
-  "translateY",
-  "translateZ",
-  "scale",
-  "scaleX",
-  "scaleY",
-  "rotate",
-  "rotateX",
-  "rotateY",
-  "rotateZ",
-  "skew",
-  "skewX",
-  "skewY"
-];
-var transformProps = (() => new Set(transformPropOrder))();
-
-// node_modules/motion-dom/dist/es/animation/keyframes/utils/unit-conversion.mjs
-var isNumOrPxType = (v) => v === number || v === px;
-var transformKeys = /* @__PURE__ */ new Set(["x", "y", "z"]);
-var nonTranslationalTransformKeys = transformPropOrder.filter((key) => !transformKeys.has(key));
-function removeNonTranslationalTransform(visualElement) {
-  const removedTransforms = [];
-  nonTranslationalTransformKeys.forEach((key) => {
-    const value = visualElement.getValue(key);
-    if (value !== void 0) {
-      removedTransforms.push([key, value.get()]);
-      value.set(key.startsWith("scale") ? 1 : 0);
-    }
-  });
-  return removedTransforms;
-}
-var positionalValues = {
-  // Dimensions
-  width: ({ x }, { paddingLeft = "0", paddingRight = "0", boxSizing }) => {
-    const width = x.max - x.min;
-    return boxSizing === "border-box" ? width : width - parseFloat(paddingLeft) - parseFloat(paddingRight);
-  },
-  height: ({ y }, { paddingTop = "0", paddingBottom = "0", boxSizing }) => {
-    const height = y.max - y.min;
-    return boxSizing === "border-box" ? height : height - parseFloat(paddingTop) - parseFloat(paddingBottom);
-  },
-  top: (_bbox, { top }) => parseFloat(top),
-  left: (_bbox, { left }) => parseFloat(left),
-  bottom: ({ y }, { top }) => parseFloat(top) + (y.max - y.min),
-  right: ({ x }, { left }) => parseFloat(left) + (x.max - x.min),
-  // Transform
-  x: (_bbox, { transform: transform2 }) => parseValueFromTransform(transform2, "x"),
-  y: (_bbox, { transform: transform2 }) => parseValueFromTransform(transform2, "y")
-};
-positionalValues.translateX = positionalValues.x;
-positionalValues.translateY = positionalValues.y;
-
-// node_modules/motion-dom/dist/es/animation/keyframes/KeyframesResolver.mjs
-var toResolve = /* @__PURE__ */ new Set();
-var isScheduled = false;
-var anyNeedsMeasurement = false;
-var isForced = false;
-function measureAllKeyframes() {
-  if (anyNeedsMeasurement) {
-    const resolversToMeasure = Array.from(toResolve).filter((resolver) => resolver.needsMeasurement);
-    const elementsToMeasure = new Set(resolversToMeasure.map((resolver) => resolver.element));
-    const transformsToRestore = /* @__PURE__ */ new Map();
-    elementsToMeasure.forEach((element) => {
-      const removedTransforms = removeNonTranslationalTransform(element);
-      if (!removedTransforms.length)
-        return;
-      transformsToRestore.set(element, removedTransforms);
-      element.render();
-    });
-    resolversToMeasure.forEach((resolver) => resolver.measureInitialState());
-    elementsToMeasure.forEach((element) => {
-      element.render();
-      const restore = transformsToRestore.get(element);
-      if (restore) {
-        restore.forEach(([key, value]) => {
-          var _a;
-          (_a = element.getValue(key)) == null ? void 0 : _a.set(value);
-        });
-      }
-    });
-    resolversToMeasure.forEach((resolver) => resolver.measureEndState());
-    resolversToMeasure.forEach((resolver) => {
-      if (resolver.suspendedScrollY !== void 0) {
-        window.scrollTo(0, resolver.suspendedScrollY);
-      }
-    });
-  }
-  anyNeedsMeasurement = false;
-  isScheduled = false;
-  toResolve.forEach((resolver) => resolver.complete(isForced));
-  toResolve.clear();
-}
-function readAllKeyframes() {
-  toResolve.forEach((resolver) => {
-    resolver.readKeyframes();
-    if (resolver.needsMeasurement) {
-      anyNeedsMeasurement = true;
-    }
-  });
-}
-function flushKeyframeResolvers() {
-  isForced = true;
-  readAllKeyframes();
-  measureAllKeyframes();
-  isForced = false;
-}
-var KeyframeResolver = class {
-  constructor(unresolvedKeyframes, onComplete, name, motionValue2, element, isAsync = false) {
-    this.state = "pending";
-    this.isAsync = false;
-    this.needsMeasurement = false;
-    this.unresolvedKeyframes = [...unresolvedKeyframes];
-    this.onComplete = onComplete;
-    this.name = name;
-    this.motionValue = motionValue2;
-    this.element = element;
-    this.isAsync = isAsync;
-  }
-  scheduleResolve() {
-    this.state = "scheduled";
-    if (this.isAsync) {
-      toResolve.add(this);
-      if (!isScheduled) {
-        isScheduled = true;
-        frame.read(readAllKeyframes);
-        frame.resolveKeyframes(measureAllKeyframes);
-      }
-    } else {
-      this.readKeyframes();
-      this.complete();
-    }
-  }
-  readKeyframes() {
-    const { unresolvedKeyframes, name, element, motionValue: motionValue2 } = this;
-    if (unresolvedKeyframes[0] === null) {
-      const currentValue = motionValue2 == null ? void 0 : motionValue2.get();
-      const finalKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
-      if (currentValue !== void 0) {
-        unresolvedKeyframes[0] = currentValue;
-      } else if (element && name) {
-        const valueAsRead = element.readValue(name, finalKeyframe);
-        if (valueAsRead !== void 0 && valueAsRead !== null) {
-          unresolvedKeyframes[0] = valueAsRead;
-        }
-      }
-      if (unresolvedKeyframes[0] === void 0) {
-        unresolvedKeyframes[0] = finalKeyframe;
-      }
-      if (motionValue2 && currentValue === void 0) {
-        motionValue2.set(unresolvedKeyframes[0]);
-      }
-    }
-    fillWildcards(unresolvedKeyframes);
-  }
-  setFinalKeyframe() {
-  }
-  measureInitialState() {
-  }
-  renderEndStyles() {
-  }
-  measureEndState() {
-  }
-  complete(isForcedComplete = false) {
-    this.state = "complete";
-    this.onComplete(this.unresolvedKeyframes, this.finalKeyframe, isForcedComplete);
-    toResolve.delete(this);
-  }
-  cancel() {
-    if (this.state === "scheduled") {
-      toResolve.delete(this);
-      this.state = "pending";
-    }
-  }
-  resume() {
-    if (this.state === "pending")
-      this.scheduleResolve();
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/dom/is-css-var.mjs
-var isCSSVar = (name) => name.startsWith("--");
-
-// node_modules/motion-dom/dist/es/render/dom/style-set.mjs
-function setStyle(element, name, value) {
-  isCSSVar(name) ? element.style.setProperty(name, value) : element.style[name] = value;
-}
-
-// node_modules/motion-dom/dist/es/utils/supports/flags.mjs
-var supportsFlags = {};
-
-// node_modules/motion-dom/dist/es/utils/supports/memo.mjs
-function memoSupports(callback, supportsFlag) {
-  const memoized = memo(callback);
-  return () => supportsFlags[supportsFlag] ?? memoized();
-}
-
-// node_modules/motion-dom/dist/es/utils/supports/scroll-timeline.mjs
-var supportsScrollTimeline = memoSupports(() => window.ScrollTimeline !== void 0, "scrollTimeline");
-var supportsViewTimeline = memoSupports(() => window.ViewTimeline !== void 0, "viewTimeline");
-
-// node_modules/motion-dom/dist/es/utils/supports/linear-easing.mjs
-var supportsLinearEasing = memoSupports(() => {
-  try {
-    document.createElement("div").animate({ opacity: 0 }, { easing: "linear(0, 1)" });
-  } catch (e) {
-    return false;
-  }
-  return true;
-}, "linearEasing");
-
-// node_modules/motion-dom/dist/es/animation/waapi/easing/cubic-bezier.mjs
-var cubicBezierAsString = ([a, b, c, d]) => `cubic-bezier(${a}, ${b}, ${c}, ${d})`;
-
-// node_modules/motion-dom/dist/es/animation/waapi/easing/supported.mjs
-var supportedWaapiEasing = {
-  linear: "linear",
-  ease: "ease",
-  easeIn: "ease-in",
-  easeOut: "ease-out",
-  easeInOut: "ease-in-out",
-  circIn: cubicBezierAsString([0, 0.65, 0.55, 1]),
-  circOut: cubicBezierAsString([0.55, 0, 1, 0.45]),
-  backIn: cubicBezierAsString([0.31, 0.01, 0.66, -0.59]),
-  backOut: cubicBezierAsString([0.33, 1.53, 0.69, 0.99])
-};
-
-// node_modules/motion-dom/dist/es/animation/waapi/easing/map-easing.mjs
-function mapEasingToNativeEasing(easing, duration) {
-  if (!easing) {
-    return void 0;
-  } else if (typeof easing === "function") {
-    return supportsLinearEasing() ? generateLinearEasing(easing, duration) : "ease-out";
-  } else if (isBezierDefinition(easing)) {
-    return cubicBezierAsString(easing);
-  } else if (Array.isArray(easing)) {
-    return easing.map((segmentEasing) => mapEasingToNativeEasing(segmentEasing, duration) || supportedWaapiEasing.easeOut);
-  } else {
-    return supportedWaapiEasing[easing];
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/start-waapi-animation.mjs
-function startWaapiAnimation(element, valueName, keyframes2, { delay: delay2 = 0, duration = 300, repeat = 0, repeatType = "loop", ease: ease2 = "easeOut", times } = {}, pseudoElement = void 0) {
-  const keyframeOptions = {
-    [valueName]: keyframes2
-  };
-  if (times)
-    keyframeOptions.offset = times;
-  const easing = mapEasingToNativeEasing(ease2, duration);
-  if (Array.isArray(easing))
-    keyframeOptions.easing = easing;
-  if (statsBuffer.value) {
-    activeAnimations.waapi++;
-  }
-  const options = {
-    delay: delay2,
-    duration,
-    easing: !Array.isArray(easing) ? easing : "linear",
-    fill: "both",
-    iterations: repeat + 1,
-    direction: repeatType === "reverse" ? "alternate" : "normal"
-  };
-  if (pseudoElement)
-    options.pseudoElement = pseudoElement;
-  const animation = element.animate(keyframeOptions, options);
-  if (statsBuffer.value) {
-    animation.finished.finally(() => {
-      activeAnimations.waapi--;
-    });
-  }
-  return animation;
-}
-
-// node_modules/motion-dom/dist/es/animation/generators/utils/is-generator.mjs
-function isGenerator(type) {
-  return typeof type === "function" && "applyToOptions" in type;
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/apply-generator.mjs
-function applyGeneratorOptions({ type, ...options }) {
-  if (isGenerator(type) && supportsLinearEasing()) {
-    return type.applyToOptions(options);
-  } else {
-    options.duration ?? (options.duration = 300);
-    options.ease ?? (options.ease = "easeOut");
-  }
-  return options;
-}
-
-// node_modules/motion-dom/dist/es/animation/NativeAnimation.mjs
-var NativeAnimation = class extends WithPromise {
-  constructor(options) {
-    super();
-    this.finishedTime = null;
-    this.isStopped = false;
-    this.manualStartTime = null;
-    if (!options)
-      return;
-    const { element, name, keyframes: keyframes2, pseudoElement, allowFlatten = false, finalKeyframe, onComplete } = options;
-    this.isPseudoElement = Boolean(pseudoElement);
-    this.allowFlatten = allowFlatten;
-    this.options = options;
-    invariant(typeof options.type !== "string", `Mini animate() doesn't support "type" as a string.`, "mini-spring");
-    const transition = applyGeneratorOptions(options);
-    this.animation = startWaapiAnimation(element, name, keyframes2, transition, pseudoElement);
-    if (transition.autoplay === false) {
-      this.animation.pause();
-    }
-    this.animation.onfinish = () => {
-      this.finishedTime = this.time;
-      if (!pseudoElement) {
-        const keyframe = getFinalKeyframe(keyframes2, this.options, finalKeyframe, this.speed);
-        if (this.updateMotionValue) {
-          this.updateMotionValue(keyframe);
-        }
-        setStyle(element, name, keyframe);
-        this.animation.cancel();
-      }
-      onComplete == null ? void 0 : onComplete();
-      this.notifyFinished();
-    };
-  }
-  play() {
-    if (this.isStopped)
-      return;
-    this.manualStartTime = null;
-    this.animation.play();
-    if (this.state === "finished") {
-      this.updateFinished();
-    }
-  }
-  pause() {
-    this.animation.pause();
-  }
-  complete() {
-    var _a, _b;
-    (_b = (_a = this.animation).finish) == null ? void 0 : _b.call(_a);
-  }
-  cancel() {
-    try {
-      this.animation.cancel();
-    } catch (e) {
-    }
-  }
-  stop() {
-    if (this.isStopped)
-      return;
-    this.isStopped = true;
-    const { state } = this;
-    if (state === "idle" || state === "finished") {
-      return;
-    }
-    if (this.updateMotionValue) {
-      this.updateMotionValue();
-    } else {
-      this.commitStyles();
-    }
-    if (!this.isPseudoElement)
-      this.cancel();
-  }
-  /**
-   * WAAPI doesn't natively have any interruption capabilities.
-   *
-   * In this method, we commit styles back to the DOM before cancelling
-   * the animation.
-   *
-   * This is designed to be overridden by NativeAnimationExtended, which
-   * will create a renderless JS animation and sample it twice to calculate
-   * its current value, "previous" value, and therefore allow
-   * Motion to also correctly calculate velocity for any subsequent animation
-   * while deferring the commit until the next animation frame.
-   */
-  commitStyles() {
-    var _a, _b, _c;
-    const element = (_a = this.options) == null ? void 0 : _a.element;
-    if (!this.isPseudoElement && (element == null ? void 0 : element.isConnected)) {
-      (_c = (_b = this.animation).commitStyles) == null ? void 0 : _c.call(_b);
-    }
-  }
-  get duration() {
-    var _a, _b;
-    const duration = ((_b = (_a = this.animation.effect) == null ? void 0 : _a.getComputedTiming) == null ? void 0 : _b.call(_a).duration) || 0;
-    return millisecondsToSeconds(Number(duration));
-  }
-  get iterationDuration() {
-    const { delay: delay2 = 0 } = this.options || {};
-    return this.duration + millisecondsToSeconds(delay2);
-  }
-  get time() {
-    return millisecondsToSeconds(Number(this.animation.currentTime) || 0);
-  }
-  set time(newTime) {
-    const wasFinished = this.finishedTime !== null;
-    this.manualStartTime = null;
-    this.finishedTime = null;
-    this.animation.currentTime = secondsToMilliseconds(newTime);
-    if (wasFinished) {
-      this.animation.pause();
-    }
-  }
-  /**
-   * The playback speed of the animation.
-   * 1 = normal speed, 2 = double speed, 0.5 = half speed.
-   */
-  get speed() {
-    return this.animation.playbackRate;
-  }
-  set speed(newSpeed) {
-    if (newSpeed < 0)
-      this.finishedTime = null;
-    this.animation.playbackRate = newSpeed;
-  }
-  get state() {
-    return this.finishedTime !== null ? "finished" : this.animation.playState;
-  }
-  get startTime() {
-    return this.manualStartTime ?? Number(this.animation.startTime);
-  }
-  set startTime(newStartTime) {
-    this.manualStartTime = this.animation.startTime = newStartTime;
-  }
-  /**
-   * Attaches a timeline to the animation, for instance the `ScrollTimeline`.
-   */
-  attachTimeline({ timeline, rangeStart, rangeEnd, observe }) {
-    var _a;
-    if (this.allowFlatten) {
-      (_a = this.animation.effect) == null ? void 0 : _a.updateTiming({ easing: "linear" });
-    }
-    this.animation.onfinish = null;
-    if (timeline && supportsScrollTimeline()) {
-      this.animation.timeline = timeline;
-      if (rangeStart)
-        this.animation.rangeStart = rangeStart;
-      if (rangeEnd)
-        this.animation.rangeEnd = rangeEnd;
-      return noop;
-    } else {
-      return observe(this);
-    }
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/unsupported-easing.mjs
-var unsupportedEasingFunctions = {
-  anticipate,
-  backInOut,
-  circInOut
-};
-function isUnsupportedEase(key) {
-  return key in unsupportedEasingFunctions;
-}
-function replaceStringEasing(transition) {
-  if (typeof transition.ease === "string" && isUnsupportedEase(transition.ease)) {
-    transition.ease = unsupportedEasingFunctions[transition.ease];
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/NativeAnimationExtended.mjs
-var sampleDelta = 10;
-var NativeAnimationExtended = class extends NativeAnimation {
-  constructor(options) {
-    replaceStringEasing(options);
-    replaceTransitionType(options);
-    super(options);
-    if (options.startTime !== void 0 && options.autoplay !== false) {
-      this.startTime = options.startTime;
-    }
-    this.options = options;
-  }
-  /**
-   * WAAPI doesn't natively have any interruption capabilities.
-   *
-   * Rather than read committed styles back out of the DOM, we can
-   * create a renderless JS animation and sample it twice to calculate
-   * its current value, "previous" value, and therefore allow
-   * Motion to calculate velocity for any subsequent animation.
-   */
-  updateMotionValue(value) {
-    const { motionValue: motionValue2, onUpdate, onComplete, element, ...options } = this.options;
-    if (!motionValue2)
-      return;
-    if (value !== void 0) {
-      motionValue2.set(value);
-      return;
-    }
-    const sampleAnimation = new JSAnimation({
-      ...options,
-      autoplay: false
-    });
-    const sampleTime = Math.max(sampleDelta, time.now() - this.startTime);
-    const delta = clamp(0, sampleDelta, sampleTime - sampleDelta);
-    const current2 = sampleAnimation.sample(sampleTime).value;
-    const { name } = this.options;
-    if (element && name)
-      setStyle(element, name, current2);
-    motionValue2.setWithVelocity(sampleAnimation.sample(Math.max(0, sampleTime - delta)).value, current2, delta);
-    sampleAnimation.stop();
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/utils/is-animatable.mjs
-var isAnimatable = (value, name) => {
-  if (name === "zIndex")
-    return false;
-  if (typeof value === "number" || Array.isArray(value))
-    return true;
-  if (typeof value === "string" && // It's animatable if we have a string
-  (complex.test(value) || value === "0") && // And it contains numbers and/or colors
-  !value.startsWith("url(")) {
-    return true;
-  }
-  return false;
-};
-
-// node_modules/motion-dom/dist/es/animation/utils/can-animate.mjs
-function hasKeyframesChanged(keyframes2) {
-  const current2 = keyframes2[0];
-  if (keyframes2.length === 1)
-    return true;
-  for (let i = 0; i < keyframes2.length; i++) {
-    if (keyframes2[i] !== current2)
-      return true;
-  }
-}
-function canAnimate(keyframes2, name, type, velocity) {
-  const originKeyframe = keyframes2[0];
-  if (originKeyframe === null) {
-    return false;
-  }
-  if (name === "display" || name === "visibility")
-    return true;
-  const targetKeyframe = keyframes2[keyframes2.length - 1];
-  const isOriginAnimatable = isAnimatable(originKeyframe, name);
-  const isTargetAnimatable = isAnimatable(targetKeyframe, name);
-  warning(isOriginAnimatable === isTargetAnimatable, `You are trying to animate ${name} from "${originKeyframe}" to "${targetKeyframe}". "${isOriginAnimatable ? targetKeyframe : originKeyframe}" is not an animatable value.`, "value-not-animatable");
-  if (!isOriginAnimatable || !isTargetAnimatable) {
-    return false;
-  }
-  return hasKeyframesChanged(keyframes2) || (type === "spring" || isGenerator(type)) && velocity;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/make-animation-instant.mjs
-function makeAnimationInstant(options) {
-  options.duration = 0;
-  options.type = "keyframes";
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/accelerated-values.mjs
-var acceleratedValues = /* @__PURE__ */ new Set([
-  "opacity",
-  "clipPath",
-  "filter",
-  "transform"
-  // TODO: Can be accelerated but currently disabled until https://issues.chromium.org/issues/41491098 is resolved
-  // or until we implement support for linear() easing.
-  // "background-color"
-]);
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/is-browser-color.mjs
-var browserColorFunctions = /^(?:oklch|oklab|lab|lch|color|color-mix|light-dark)\(/;
-function hasBrowserOnlyColors(keyframes2) {
-  for (let i = 0; i < keyframes2.length; i++) {
-    if (typeof keyframes2[i] === "string" && browserColorFunctions.test(keyframes2[i])) {
-      return true;
-    }
-  }
-  return false;
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/supports/waapi.mjs
-var colorProperties = /* @__PURE__ */ new Set([
-  "color",
-  "backgroundColor",
-  "outlineColor",
-  "fill",
-  "stroke",
-  "borderColor",
-  "borderTopColor",
-  "borderRightColor",
-  "borderBottomColor",
-  "borderLeftColor"
-]);
-var supportsWaapi = memo(() => Object.hasOwnProperty.call(Element.prototype, "animate"));
-function supportsBrowserAnimation(options) {
-  var _a;
-  const { motionValue: motionValue2, name, repeatDelay, repeatType, damping, type, keyframes: keyframes2 } = options;
-  const subject = (_a = motionValue2 == null ? void 0 : motionValue2.owner) == null ? void 0 : _a.current;
-  if (!(subject instanceof HTMLElement)) {
-    return false;
-  }
-  const { onUpdate, transformTemplate } = motionValue2.owner.getProps();
-  return supportsWaapi() && name && /**
-   * Force WAAPI for color properties with browser-only color formats
-   * (oklch, oklab, lab, lch, etc.) that the JS animation path can't parse.
-   */
-  (acceleratedValues.has(name) || colorProperties.has(name) && hasBrowserOnlyColors(keyframes2)) && (name !== "transform" || !transformTemplate) && /**
-   * If we're outputting values to onUpdate then we can't use WAAPI as there's
-   * no way to read the value from WAAPI every frame.
-   */
-  !onUpdate && !repeatDelay && repeatType !== "mirror" && damping !== 0 && type !== "inertia";
-}
-
-// node_modules/motion-dom/dist/es/animation/AsyncMotionValueAnimation.mjs
-var MAX_RESOLVE_DELAY = 40;
-var AsyncMotionValueAnimation = class extends WithPromise {
-  constructor({ autoplay = true, delay: delay2 = 0, type = "keyframes", repeat = 0, repeatDelay = 0, repeatType = "loop", keyframes: keyframes2, name, motionValue: motionValue2, element, ...options }) {
-    var _a;
-    super();
-    this.stop = () => {
-      var _a2, _b;
-      if (this._animation) {
-        this._animation.stop();
-        (_a2 = this.stopTimeline) == null ? void 0 : _a2.call(this);
-      }
-      (_b = this.keyframeResolver) == null ? void 0 : _b.cancel();
-    };
-    this.createdAt = time.now();
-    const optionsWithDefaults = {
-      autoplay,
-      delay: delay2,
-      type,
-      repeat,
-      repeatDelay,
-      repeatType,
-      name,
-      motionValue: motionValue2,
-      element,
-      ...options
-    };
-    const KeyframeResolver$1 = (element == null ? void 0 : element.KeyframeResolver) || KeyframeResolver;
-    this.keyframeResolver = new KeyframeResolver$1(keyframes2, (resolvedKeyframes, finalKeyframe, forced) => this.onKeyframesResolved(resolvedKeyframes, finalKeyframe, optionsWithDefaults, !forced), name, motionValue2, element);
-    (_a = this.keyframeResolver) == null ? void 0 : _a.scheduleResolve();
-  }
-  onKeyframesResolved(keyframes2, finalKeyframe, options, sync2) {
-    var _a, _b;
-    this.keyframeResolver = void 0;
-    const { name, type, velocity, delay: delay2, isHandoff, onUpdate } = options;
-    this.resolvedAt = time.now();
-    let canAnimateValue = true;
-    if (!canAnimate(keyframes2, name, type, velocity)) {
-      canAnimateValue = false;
-      if (MotionGlobalConfig.instantAnimations || !delay2) {
-        onUpdate == null ? void 0 : onUpdate(getFinalKeyframe(keyframes2, options, finalKeyframe));
-      }
-      keyframes2[0] = keyframes2[keyframes2.length - 1];
-      makeAnimationInstant(options);
-      options.repeat = 0;
-    }
-    const startTime = sync2 ? !this.resolvedAt ? this.createdAt : this.resolvedAt - this.createdAt > MAX_RESOLVE_DELAY ? this.resolvedAt : this.createdAt : void 0;
-    const resolvedOptions = {
-      startTime,
-      finalKeyframe,
-      ...options,
-      keyframes: keyframes2
-    };
-    const useWaapi = canAnimateValue && !isHandoff && supportsBrowserAnimation(resolvedOptions);
-    const element = (_b = (_a = resolvedOptions.motionValue) == null ? void 0 : _a.owner) == null ? void 0 : _b.current;
-    let animation;
-    if (useWaapi) {
+  return new (P || (P = Promise))(function(resolve, reject) {
+    function fulfilled(value) {
       try {
-        animation = new NativeAnimationExtended({
-          ...resolvedOptions,
-          element
-        });
-      } catch {
-        animation = new JSAnimation(resolvedOptions);
-      }
-    } else {
-      animation = new JSAnimation(resolvedOptions);
-    }
-    animation.finished.then(() => {
-      this.notifyFinished();
-    }).catch(noop);
-    if (this.pendingTimeline) {
-      this.stopTimeline = animation.attachTimeline(this.pendingTimeline);
-      this.pendingTimeline = void 0;
-    }
-    this._animation = animation;
-  }
-  get finished() {
-    if (!this._animation) {
-      return this._finished;
-    } else {
-      return this.animation.finished;
-    }
-  }
-  then(onResolve, _onReject) {
-    return this.finished.finally(onResolve).then(() => {
-    });
-  }
-  get animation() {
-    var _a;
-    if (!this._animation) {
-      (_a = this.keyframeResolver) == null ? void 0 : _a.resume();
-      flushKeyframeResolvers();
-    }
-    return this._animation;
-  }
-  get duration() {
-    return this.animation.duration;
-  }
-  get iterationDuration() {
-    return this.animation.iterationDuration;
-  }
-  get time() {
-    return this.animation.time;
-  }
-  set time(newTime) {
-    this.animation.time = newTime;
-  }
-  get speed() {
-    return this.animation.speed;
-  }
-  get state() {
-    return this.animation.state;
-  }
-  set speed(newSpeed) {
-    this.animation.speed = newSpeed;
-  }
-  get startTime() {
-    return this.animation.startTime;
-  }
-  attachTimeline(timeline) {
-    if (this._animation) {
-      this.stopTimeline = this.animation.attachTimeline(timeline);
-    } else {
-      this.pendingTimeline = timeline;
-    }
-    return () => this.stop();
-  }
-  play() {
-    this.animation.play();
-  }
-  pause() {
-    this.animation.pause();
-  }
-  complete() {
-    this.animation.complete();
-  }
-  cancel() {
-    var _a;
-    if (this._animation) {
-      this.animation.cancel();
-    }
-    (_a = this.keyframeResolver) == null ? void 0 : _a.cancel();
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/GroupAnimation.mjs
-var GroupAnimation = class {
-  constructor(animations2) {
-    this.stop = () => this.runAll("stop");
-    this.animations = animations2.filter(Boolean);
-  }
-  get finished() {
-    return Promise.all(this.animations.map((animation) => animation.finished));
-  }
-  /**
-   * TODO: Filter out cancelled or stopped animations before returning
-   */
-  getAll(propName) {
-    return this.animations[0][propName];
-  }
-  setAll(propName, newValue) {
-    for (let i = 0; i < this.animations.length; i++) {
-      this.animations[i][propName] = newValue;
-    }
-  }
-  attachTimeline(timeline) {
-    const subscriptions = this.animations.map((animation) => animation.attachTimeline(timeline));
-    return () => {
-      subscriptions.forEach((cancel, i) => {
-        cancel && cancel();
-        this.animations[i].stop();
-      });
-    };
-  }
-  get time() {
-    return this.getAll("time");
-  }
-  set time(time2) {
-    this.setAll("time", time2);
-  }
-  get speed() {
-    return this.getAll("speed");
-  }
-  set speed(speed) {
-    this.setAll("speed", speed);
-  }
-  get state() {
-    return this.getAll("state");
-  }
-  get startTime() {
-    return this.getAll("startTime");
-  }
-  get duration() {
-    return getMax(this.animations, "duration");
-  }
-  get iterationDuration() {
-    return getMax(this.animations, "iterationDuration");
-  }
-  runAll(methodName) {
-    this.animations.forEach((controls) => controls[methodName]());
-  }
-  play() {
-    this.runAll("play");
-  }
-  pause() {
-    this.runAll("pause");
-  }
-  cancel() {
-    this.runAll("cancel");
-  }
-  complete() {
-    this.runAll("complete");
-  }
-};
-function getMax(animations2, propName) {
-  let max = 0;
-  for (let i = 0; i < animations2.length; i++) {
-    const value = animations2[i][propName];
-    if (value !== null && value > max) {
-      max = value;
-    }
-  }
-  return max;
-}
-
-// node_modules/motion-dom/dist/es/animation/GroupAnimationWithThen.mjs
-var GroupAnimationWithThen = class extends GroupAnimation {
-  then(onResolve, _onReject) {
-    return this.finished.finally(onResolve).then(() => {
-    });
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/NativeAnimationWrapper.mjs
-var NativeAnimationWrapper = class extends NativeAnimation {
-  constructor(animation) {
-    super();
-    this.animation = animation;
-    animation.onfinish = () => {
-      this.finishedTime = this.time;
-      this.notifyFinished();
-    };
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/utils/active-animations.mjs
-var animationMaps = /* @__PURE__ */ new WeakMap();
-var animationMapKey = (name, pseudoElement = "") => `${name}:${pseudoElement}`;
-function getAnimationMap(element) {
-  let map = animationMaps.get(element);
-  if (!map) {
-    map = /* @__PURE__ */ new Map();
-    animationMaps.set(element, map);
-  }
-  return map;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/calc-child-stagger.mjs
-function calcChildStagger(children, child, delayChildren, staggerChildren = 0, staggerDirection = 1) {
-  const index = Array.from(children).sort((a, b) => a.sortNodePosition(b)).indexOf(child);
-  const numChildren = children.size;
-  const maxStaggerDuration = (numChildren - 1) * staggerChildren;
-  const delayIsFunction = typeof delayChildren === "function";
-  return delayIsFunction ? delayChildren(index, numChildren) : staggerDirection === 1 ? index * staggerChildren : maxStaggerDuration - index * staggerChildren;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/css-variables-conversion.mjs
-var splitCSSVariableRegex = (
-  // eslint-disable-next-line redos-detector/no-unsafe-regex -- false positive, as it can match a lot of words
-  /^var\(--(?:([\w-]+)|([\w-]+), ?([a-zA-Z\d ()%#.,-]+))\)/u
-);
-function parseCSSVariable(current2) {
-  const match = splitCSSVariableRegex.exec(current2);
-  if (!match)
-    return [,];
-  const [, token1, token2, fallback] = match;
-  return [`--${token1 ?? token2}`, fallback];
-}
-var maxDepth = 4;
-function getVariableValue(current2, element, depth = 1) {
-  invariant(depth <= maxDepth, `Max CSS variable fallback depth detected in property "${current2}". This may indicate a circular fallback dependency.`, "max-css-var-depth");
-  const [token, fallback] = parseCSSVariable(current2);
-  if (!token)
-    return;
-  const resolved = window.getComputedStyle(element).getPropertyValue(token);
-  if (resolved) {
-    const trimmed = resolved.trim();
-    return isNumericalString(trimmed) ? parseFloat(trimmed) : trimmed;
-  }
-  return isCSSVariableToken(fallback) ? getVariableValue(fallback, element, depth + 1) : fallback;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/default-transitions.mjs
-var underDampedSpring = {
-  type: "spring",
-  stiffness: 500,
-  damping: 25,
-  restSpeed: 10
-};
-var criticallyDampedSpring = (target) => ({
-  type: "spring",
-  stiffness: 550,
-  damping: target === 0 ? 2 * Math.sqrt(550) : 30,
-  restSpeed: 10
-});
-var keyframesTransition = {
-  type: "keyframes",
-  duration: 0.8
-};
-var ease = {
-  type: "keyframes",
-  ease: [0.25, 0.1, 0.35, 1],
-  duration: 0.3
-};
-var getDefaultTransition = (valueKey, { keyframes: keyframes2 }) => {
-  if (keyframes2.length > 2) {
-    return keyframesTransition;
-  } else if (transformProps.has(valueKey)) {
-    return valueKey.startsWith("scale") ? criticallyDampedSpring(keyframes2[1]) : underDampedSpring;
-  }
-  return ease;
-};
-
-// node_modules/motion-dom/dist/es/animation/utils/resolve-transition.mjs
-function resolveTransition(transition, parentTransition) {
-  if ((transition == null ? void 0 : transition.inherit) && parentTransition) {
-    const { inherit: _, ...rest } = transition;
-    return { ...parentTransition, ...rest };
-  }
-  return transition;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/get-value-transition.mjs
-function getValueTransition(transition, key) {
-  const valueTransition = (transition == null ? void 0 : transition[key]) ?? (transition == null ? void 0 : transition["default"]) ?? transition;
-  if (valueTransition !== transition) {
-    return resolveTransition(valueTransition, transition);
-  }
-  return valueTransition;
-}
-
-// node_modules/motion-dom/dist/es/animation/utils/is-transition-defined.mjs
-var orchestrationKeys = /* @__PURE__ */ new Set([
-  "when",
-  "delay",
-  "delayChildren",
-  "staggerChildren",
-  "staggerDirection",
-  "repeat",
-  "repeatType",
-  "repeatDelay",
-  "from",
-  "elapsed"
-]);
-function isTransitionDefined(transition) {
-  for (const key in transition) {
-    if (!orchestrationKeys.has(key))
-      return true;
-  }
-  return false;
-}
-
-// node_modules/motion-dom/dist/es/animation/interfaces/motion-value.mjs
-var animateMotionValue = (name, value, target, transition = {}, element, isHandoff) => (onComplete) => {
-  const valueTransition = getValueTransition(transition, name) || {};
-  const delay2 = valueTransition.delay || transition.delay || 0;
-  let { elapsed = 0 } = transition;
-  elapsed = elapsed - secondsToMilliseconds(delay2);
-  const options = {
-    keyframes: Array.isArray(target) ? target : [null, target],
-    ease: "easeOut",
-    velocity: value.getVelocity(),
-    ...valueTransition,
-    delay: -elapsed,
-    onUpdate: (v) => {
-      value.set(v);
-      valueTransition.onUpdate && valueTransition.onUpdate(v);
-    },
-    onComplete: () => {
-      onComplete();
-      valueTransition.onComplete && valueTransition.onComplete();
-    },
-    name,
-    motionValue: value,
-    element: isHandoff ? void 0 : element
-  };
-  if (!isTransitionDefined(valueTransition)) {
-    Object.assign(options, getDefaultTransition(name, options));
-  }
-  options.duration && (options.duration = secondsToMilliseconds(options.duration));
-  options.repeatDelay && (options.repeatDelay = secondsToMilliseconds(options.repeatDelay));
-  if (options.from !== void 0) {
-    options.keyframes[0] = options.from;
-  }
-  let shouldSkip = false;
-  if (options.type === false || options.duration === 0 && !options.repeatDelay) {
-    makeAnimationInstant(options);
-    if (options.delay === 0) {
-      shouldSkip = true;
-    }
-  }
-  if (MotionGlobalConfig.instantAnimations || MotionGlobalConfig.skipAnimations || (element == null ? void 0 : element.shouldSkipAnimations)) {
-    shouldSkip = true;
-    makeAnimationInstant(options);
-    options.delay = 0;
-  }
-  options.allowFlatten = !valueTransition.type && !valueTransition.ease;
-  if (shouldSkip && !isHandoff && value.get() !== void 0) {
-    const finalKeyframe = getFinalKeyframe(options.keyframes, valueTransition);
-    if (finalKeyframe !== void 0) {
-      frame.update(() => {
-        options.onUpdate(finalKeyframe);
-        options.onComplete();
-      });
-      return;
-    }
-  }
-  return valueTransition.isSync ? new JSAnimation(options) : new AsyncMotionValueAnimation(options);
-};
-
-// node_modules/motion-dom/dist/es/render/utils/resolve-variants.mjs
-function getValueState(visualElement) {
-  const state = [{}, {}];
-  visualElement == null ? void 0 : visualElement.values.forEach((value, key) => {
-    state[0][key] = value.get();
-    state[1][key] = value.getVelocity();
-  });
-  return state;
-}
-function resolveVariantFromProps(props, definition, custom, visualElement) {
-  if (typeof definition === "function") {
-    const [current2, velocity] = getValueState(visualElement);
-    definition = definition(custom !== void 0 ? custom : props.custom, current2, velocity);
-  }
-  if (typeof definition === "string") {
-    definition = props.variants && props.variants[definition];
-  }
-  if (typeof definition === "function") {
-    const [current2, velocity] = getValueState(visualElement);
-    definition = definition(custom !== void 0 ? custom : props.custom, current2, velocity);
-  }
-  return definition;
-}
-
-// node_modules/motion-dom/dist/es/render/utils/resolve-dynamic-variants.mjs
-function resolveVariant(visualElement, definition, custom) {
-  const props = visualElement.getProps();
-  return resolveVariantFromProps(props, definition, custom !== void 0 ? custom : props.custom, visualElement);
-}
-
-// node_modules/motion-dom/dist/es/render/utils/keys-position.mjs
-var positionalKeys = /* @__PURE__ */ new Set([
-  "width",
-  "height",
-  "top",
-  "left",
-  "right",
-  "bottom",
-  ...transformPropOrder
-]);
-
-// node_modules/motion-dom/dist/es/value/index.mjs
-var MAX_VELOCITY_DELTA = 30;
-var isFloat = (value) => {
-  return !isNaN(parseFloat(value));
-};
-var collectMotionValues = {
-  current: void 0
-};
-var MotionValue = class {
-  /**
-   * @param init - The initiating value
-   * @param config - Optional configuration options
-   *
-   * -  `transformer`: A function to transform incoming values with.
-   */
-  constructor(init, options = {}) {
-    this.canTrackVelocity = null;
-    this.events = {};
-    this.updateAndNotify = (v) => {
-      var _a;
-      const currentTime = time.now();
-      if (this.updatedAt !== currentTime) {
-        this.setPrevFrameValue();
-      }
-      this.prev = this.current;
-      this.setCurrent(v);
-      if (this.current !== this.prev) {
-        (_a = this.events.change) == null ? void 0 : _a.notify(this.current);
-        if (this.dependents) {
-          for (const dependent of this.dependents) {
-            dependent.dirty();
-          }
-        }
-      }
-    };
-    this.hasAnimated = false;
-    this.setCurrent(init);
-    this.owner = options.owner;
-  }
-  setCurrent(current2) {
-    this.current = current2;
-    this.updatedAt = time.now();
-    if (this.canTrackVelocity === null && current2 !== void 0) {
-      this.canTrackVelocity = isFloat(this.current);
-    }
-  }
-  setPrevFrameValue(prevFrameValue = this.current) {
-    this.prevFrameValue = prevFrameValue;
-    this.prevUpdatedAt = this.updatedAt;
-  }
-  /**
-   * Adds a function that will be notified when the `MotionValue` is updated.
-   *
-   * It returns a function that, when called, will cancel the subscription.
-   *
-   * When calling `onChange` inside a React component, it should be wrapped with the
-   * `useEffect` hook. As it returns an unsubscribe function, this should be returned
-   * from the `useEffect` function to ensure you don't add duplicate subscribers..
-   *
-   * ```jsx
-   * export const MyComponent = () => {
-   *   const x = useMotionValue(0)
-   *   const y = useMotionValue(0)
-   *   const opacity = useMotionValue(1)
-   *
-   *   useEffect(() => {
-   *     function updateOpacity() {
-   *       const maxXY = Math.max(x.get(), y.get())
-   *       const newOpacity = transform(maxXY, [0, 100], [1, 0])
-   *       opacity.set(newOpacity)
-   *     }
-   *
-   *     const unsubscribeX = x.on("change", updateOpacity)
-   *     const unsubscribeY = y.on("change", updateOpacity)
-   *
-   *     return () => {
-   *       unsubscribeX()
-   *       unsubscribeY()
-   *     }
-   *   }, [])
-   *
-   *   return <motion.div style={{ x }} />
-   * }
-   * ```
-   *
-   * @param subscriber - A function that receives the latest value.
-   * @returns A function that, when called, will cancel this subscription.
-   *
-   * @deprecated
-   */
-  onChange(subscription) {
-    if (true) {
-      warnOnce(false, `value.onChange(callback) is deprecated. Switch to value.on("change", callback).`);
-    }
-    return this.on("change", subscription);
-  }
-  on(eventName, callback) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = new SubscriptionManager();
-    }
-    const unsubscribe = this.events[eventName].add(callback);
-    if (eventName === "change") {
-      return () => {
-        unsubscribe();
-        frame.read(() => {
-          if (!this.events.change.getSize()) {
-            this.stop();
-          }
-        });
-      };
-    }
-    return unsubscribe;
-  }
-  clearListeners() {
-    for (const eventManagers in this.events) {
-      this.events[eventManagers].clear();
-    }
-  }
-  /**
-   * Attaches a passive effect to the `MotionValue`.
-   */
-  attach(passiveEffect, stopPassiveEffect) {
-    this.passiveEffect = passiveEffect;
-    this.stopPassiveEffect = stopPassiveEffect;
-  }
-  /**
-   * Sets the state of the `MotionValue`.
-   *
-   * @remarks
-   *
-   * ```jsx
-   * const x = useMotionValue(0)
-   * x.set(10)
-   * ```
-   *
-   * @param latest - Latest value to set.
-   * @param render - Whether to notify render subscribers. Defaults to `true`
-   *
-   * @public
-   */
-  set(v) {
-    if (!this.passiveEffect) {
-      this.updateAndNotify(v);
-    } else {
-      this.passiveEffect(v, this.updateAndNotify);
-    }
-  }
-  setWithVelocity(prev, current2, delta) {
-    this.set(current2);
-    this.prev = void 0;
-    this.prevFrameValue = prev;
-    this.prevUpdatedAt = this.updatedAt - delta;
-  }
-  /**
-   * Set the state of the `MotionValue`, stopping any active animations,
-   * effects, and resets velocity to `0`.
-   */
-  jump(v, endAnimation = true) {
-    this.updateAndNotify(v);
-    this.prev = v;
-    this.prevUpdatedAt = this.prevFrameValue = void 0;
-    endAnimation && this.stop();
-    if (this.stopPassiveEffect)
-      this.stopPassiveEffect();
-  }
-  dirty() {
-    var _a;
-    (_a = this.events.change) == null ? void 0 : _a.notify(this.current);
-  }
-  addDependent(dependent) {
-    if (!this.dependents) {
-      this.dependents = /* @__PURE__ */ new Set();
-    }
-    this.dependents.add(dependent);
-  }
-  removeDependent(dependent) {
-    if (this.dependents) {
-      this.dependents.delete(dependent);
-    }
-  }
-  /**
-   * Returns the latest state of `MotionValue`
-   *
-   * @returns - The latest state of `MotionValue`
-   *
-   * @public
-   */
-  get() {
-    if (collectMotionValues.current) {
-      collectMotionValues.current.push(this);
-    }
-    return this.current;
-  }
-  /**
-   * @public
-   */
-  getPrevious() {
-    return this.prev;
-  }
-  /**
-   * Returns the latest velocity of `MotionValue`
-   *
-   * @returns - The latest velocity of `MotionValue`. Returns `0` if the state is non-numerical.
-   *
-   * @public
-   */
-  getVelocity() {
-    const currentTime = time.now();
-    if (!this.canTrackVelocity || this.prevFrameValue === void 0 || currentTime - this.updatedAt > MAX_VELOCITY_DELTA) {
-      return 0;
-    }
-    const delta = Math.min(this.updatedAt - this.prevUpdatedAt, MAX_VELOCITY_DELTA);
-    return velocityPerSecond(parseFloat(this.current) - parseFloat(this.prevFrameValue), delta);
-  }
-  /**
-   * Registers a new animation to control this `MotionValue`. Only one
-   * animation can drive a `MotionValue` at one time.
-   *
-   * ```jsx
-   * value.start()
-   * ```
-   *
-   * @param animation - A function that starts the provided animation
-   */
-  start(startAnimation) {
-    this.stop();
-    return new Promise((resolve) => {
-      this.hasAnimated = true;
-      this.animation = startAnimation(resolve);
-      if (this.events.animationStart) {
-        this.events.animationStart.notify();
-      }
-    }).then(() => {
-      if (this.events.animationComplete) {
-        this.events.animationComplete.notify();
-      }
-      this.clearAnimation();
-    });
-  }
-  /**
-   * Stop the currently active animation.
-   *
-   * @public
-   */
-  stop() {
-    if (this.animation) {
-      this.animation.stop();
-      if (this.events.animationCancel) {
-        this.events.animationCancel.notify();
+        step(generator.next(value));
+      } catch (e2) {
+        reject(e2);
       }
     }
-    this.clearAnimation();
-  }
-  /**
-   * Returns `true` if this value is currently animating.
-   *
-   * @public
-   */
-  isAnimating() {
-    return !!this.animation;
-  }
-  clearAnimation() {
-    delete this.animation;
-  }
-  /**
-   * Destroy and clean up subscribers to this `MotionValue`.
-   *
-   * The `MotionValue` hooks like `useMotionValue` and `useTransform` automatically
-   * handle the lifecycle of the returned `MotionValue`, so this method is only necessary if you've manually
-   * created a `MotionValue` via the `motionValue` function.
-   *
-   * @public
-   */
-  destroy() {
-    var _a, _b;
-    (_a = this.dependents) == null ? void 0 : _a.clear();
-    (_b = this.events.destroy) == null ? void 0 : _b.notify();
-    this.clearListeners();
-    this.stop();
-    if (this.stopPassiveEffect) {
-      this.stopPassiveEffect();
-    }
-  }
-};
-function motionValue(init, options) {
-  return new MotionValue(init, options);
-}
-
-// node_modules/motion-dom/dist/es/render/utils/is-keyframes-target.mjs
-var isKeyframesTarget = (v) => {
-  return Array.isArray(v);
-};
-
-// node_modules/motion-dom/dist/es/render/utils/setters.mjs
-function setMotionValue(visualElement, key, value) {
-  if (visualElement.hasValue(key)) {
-    visualElement.getValue(key).set(value);
-  } else {
-    visualElement.addValue(key, motionValue(value));
-  }
-}
-function resolveFinalValueInKeyframes(v) {
-  return isKeyframesTarget(v) ? v[v.length - 1] || 0 : v;
-}
-function setTarget(visualElement, definition) {
-  const resolved = resolveVariant(visualElement, definition);
-  let { transitionEnd = {}, transition = {}, ...target } = resolved || {};
-  target = { ...target, ...transitionEnd };
-  for (const key in target) {
-    const value = resolveFinalValueInKeyframes(target[key]);
-    setMotionValue(visualElement, key, value);
-  }
-}
-
-// node_modules/motion-dom/dist/es/value/utils/is-motion-value.mjs
-var isMotionValue = (value) => Boolean(value && value.getVelocity);
-
-// node_modules/motion-dom/dist/es/value/will-change/is.mjs
-function isWillChangeMotionValue(value) {
-  return Boolean(isMotionValue(value) && value.add);
-}
-
-// node_modules/motion-dom/dist/es/value/will-change/add-will-change.mjs
-function addValueToWillChange(visualElement, key) {
-  const willChange = visualElement.getValue("willChange");
-  if (isWillChangeMotionValue(willChange)) {
-    return willChange.add(key);
-  } else if (!willChange && MotionGlobalConfig.WillChange) {
-    const newWillChange = new MotionGlobalConfig.WillChange("auto");
-    visualElement.addValue("willChange", newWillChange);
-    newWillChange.add(key);
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/dom/utils/camel-to-dash.mjs
-function camelToDash(str) {
-  return str.replace(/([A-Z])/g, (match) => `-${match.toLowerCase()}`);
-}
-
-// node_modules/motion-dom/dist/es/animation/optimized-appear/data-id.mjs
-var optimizedAppearDataId = "framerAppearId";
-var optimizedAppearDataAttribute = "data-" + camelToDash(optimizedAppearDataId);
-
-// node_modules/motion-dom/dist/es/animation/optimized-appear/get-appear-id.mjs
-function getOptimisedAppearId(visualElement) {
-  return visualElement.props[optimizedAppearDataAttribute];
-}
-
-// node_modules/motion-dom/dist/es/animation/interfaces/visual-element-target.mjs
-function shouldBlockAnimation({ protectedKeys, needsAnimating }, key) {
-  const shouldBlock = protectedKeys.hasOwnProperty(key) && needsAnimating[key] !== true;
-  needsAnimating[key] = false;
-  return shouldBlock;
-}
-function animateTarget(visualElement, targetAndTransition, { delay: delay2 = 0, transitionOverride, type } = {}) {
-  let { transition, transitionEnd, ...target } = targetAndTransition;
-  const defaultTransition = visualElement.getDefaultTransition();
-  transition = transition ? resolveTransition(transition, defaultTransition) : defaultTransition;
-  const reduceMotion = transition == null ? void 0 : transition.reduceMotion;
-  if (transitionOverride)
-    transition = transitionOverride;
-  const animations2 = [];
-  const animationTypeState = type && visualElement.animationState && visualElement.animationState.getState()[type];
-  for (const key in target) {
-    const value = visualElement.getValue(key, visualElement.latestValues[key] ?? null);
-    const valueTarget = target[key];
-    if (valueTarget === void 0 || animationTypeState && shouldBlockAnimation(animationTypeState, key)) {
-      continue;
-    }
-    const valueTransition = {
-      delay: delay2,
-      ...getValueTransition(transition || {}, key)
-    };
-    const currentValue = value.get();
-    if (currentValue !== void 0 && !value.isAnimating() && !Array.isArray(valueTarget) && valueTarget === currentValue && !valueTransition.velocity) {
-      frame.update(() => value.set(valueTarget));
-      continue;
-    }
-    let isHandoff = false;
-    if (window.MotionHandoffAnimation) {
-      const appearId = getOptimisedAppearId(visualElement);
-      if (appearId) {
-        const startTime = window.MotionHandoffAnimation(appearId, key, frame);
-        if (startTime !== null) {
-          valueTransition.startTime = startTime;
-          isHandoff = true;
-        }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e2) {
+        reject(e2);
       }
     }
-    addValueToWillChange(visualElement, key);
-    const shouldReduceMotion = reduceMotion ?? visualElement.shouldReduceMotion;
-    value.start(animateMotionValue(key, value, valueTarget, shouldReduceMotion && positionalKeys.has(key) ? { type: false } : valueTransition, visualElement, isHandoff));
-    const animation = value.animation;
-    if (animation) {
-      animations2.push(animation);
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
     }
-  }
-  if (transitionEnd) {
-    const applyTransitionEnd = () => frame.update(() => {
-      transitionEnd && setTarget(visualElement, transitionEnd);
-    });
-    if (animations2.length) {
-      Promise.all(animations2).then(applyTransitionEnd);
-    } else {
-      applyTransitionEnd();
-    }
-  }
-  return animations2;
-}
-
-// node_modules/motion-dom/dist/es/animation/interfaces/visual-element-variant.mjs
-function animateVariant(visualElement, variant, options = {}) {
-  var _a;
-  const resolved = resolveVariant(visualElement, variant, options.type === "exit" ? (_a = visualElement.presenceContext) == null ? void 0 : _a.custom : void 0);
-  let { transition = visualElement.getDefaultTransition() || {} } = resolved || {};
-  if (options.transitionOverride) {
-    transition = options.transitionOverride;
-  }
-  const getAnimation = resolved ? () => Promise.all(animateTarget(visualElement, resolved, options)) : () => Promise.resolve();
-  const getChildAnimations = visualElement.variantChildren && visualElement.variantChildren.size ? (forwardDelay = 0) => {
-    const { delayChildren = 0, staggerChildren, staggerDirection } = transition;
-    return animateChildren(visualElement, variant, forwardDelay, delayChildren, staggerChildren, staggerDirection, options);
-  } : () => Promise.resolve();
-  const { when } = transition;
-  if (when) {
-    const [first, last] = when === "beforeChildren" ? [getAnimation, getChildAnimations] : [getChildAnimations, getAnimation];
-    return first().then(() => last());
-  } else {
-    return Promise.all([getAnimation(), getChildAnimations(options.delay)]);
-  }
-}
-function animateChildren(visualElement, variant, delay2 = 0, delayChildren = 0, staggerChildren = 0, staggerDirection = 1, options) {
-  const animations2 = [];
-  for (const child of visualElement.variantChildren) {
-    child.notify("AnimationStart", variant);
-    animations2.push(animateVariant(child, variant, {
-      ...options,
-      delay: delay2 + (typeof delayChildren === "function" ? 0 : delayChildren) + calcChildStagger(visualElement.variantChildren, child, delayChildren, staggerChildren, staggerDirection)
-    }).then(() => child.notify("AnimationComplete", variant)));
-  }
-  return Promise.all(animations2);
-}
-
-// node_modules/motion-dom/dist/es/animation/interfaces/visual-element.mjs
-function animateVisualElement(visualElement, definition, options = {}) {
-  visualElement.notify("AnimationStart", definition);
-  let animation;
-  if (Array.isArray(definition)) {
-    const animations2 = definition.map((variant) => animateVariant(visualElement, variant, options));
-    animation = Promise.all(animations2);
-  } else if (typeof definition === "string") {
-    animation = animateVariant(visualElement, definition, options);
-  } else {
-    const resolvedDefinition = typeof definition === "function" ? resolveVariant(visualElement, definition, options.custom) : definition;
-    animation = Promise.all(animateTarget(visualElement, resolvedDefinition, options));
-  }
-  return animation.then(() => {
-    visualElement.notify("AnimationComplete", definition);
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
   });
 }
-
-// node_modules/motion-dom/dist/es/value/types/auto.mjs
-var auto = {
-  test: (v) => v === "auto",
-  parse: (v) => v
-};
-
-// node_modules/motion-dom/dist/es/value/types/test.mjs
-var testValueType = (v) => (type) => type.test(v);
-
-// node_modules/motion-dom/dist/es/value/types/dimensions.mjs
-var dimensionValueTypes = [number, px, percent, degrees, vw, vh, auto];
-var findDimensionValueType = (v) => dimensionValueTypes.find(testValueType(v));
-
-// node_modules/motion-dom/dist/es/animation/keyframes/utils/is-none.mjs
-function isNone(value) {
-  if (typeof value === "number") {
-    return value === 0;
-  } else if (value !== null) {
-    return value === "none" || value === "0" || isZeroValueString(value);
-  } else {
-    return true;
-  }
-}
-
-// node_modules/motion-dom/dist/es/value/types/complex/filter.mjs
-var maxDefaults = /* @__PURE__ */ new Set(["brightness", "contrast", "saturate", "opacity"]);
-function applyDefaultFilter(v) {
-  const [name, value] = v.slice(0, -1).split("(");
-  if (name === "drop-shadow")
-    return v;
-  const [number2] = value.match(floatRegex) || [];
-  if (!number2)
-    return v;
-  const unit = value.replace(number2, "");
-  let defaultValue = maxDefaults.has(name) ? 1 : 0;
-  if (number2 !== value)
-    defaultValue *= 100;
-  return name + "(" + defaultValue + unit + ")";
-}
-var functionRegex = /\b([a-z-]*)\(.*?\)/gu;
-var filter = {
-  ...complex,
-  getAnimatableNone: (v) => {
-    const functions = v.match(functionRegex);
-    return functions ? functions.map(applyDefaultFilter).join(" ") : v;
-  }
-};
-
-// node_modules/motion-dom/dist/es/value/types/complex/mask.mjs
-var mask = {
-  ...complex,
-  getAnimatableNone: (v) => {
-    const parsed = complex.parse(v);
-    const transformer = complex.createTransformer(v);
-    return transformer(parsed.map((v2) => typeof v2 === "number" ? 0 : typeof v2 === "object" ? { ...v2, alpha: 1 } : v2));
-  }
-};
-
-// node_modules/motion-dom/dist/es/value/types/int.mjs
-var int = {
-  ...number,
-  transform: Math.round
-};
-
-// node_modules/motion-dom/dist/es/value/types/maps/transform.mjs
-var transformValueTypes = {
-  rotate: degrees,
-  rotateX: degrees,
-  rotateY: degrees,
-  rotateZ: degrees,
-  scale,
-  scaleX: scale,
-  scaleY: scale,
-  scaleZ: scale,
-  skew: degrees,
-  skewX: degrees,
-  skewY: degrees,
-  distance: px,
-  translateX: px,
-  translateY: px,
-  translateZ: px,
-  x: px,
-  y: px,
-  z: px,
-  perspective: px,
-  transformPerspective: px,
-  opacity: alpha,
-  originX: progressPercentage,
-  originY: progressPercentage,
-  originZ: px
-};
-
-// node_modules/motion-dom/dist/es/value/types/maps/number.mjs
-var numberValueTypes = {
-  // Border props
-  borderWidth: px,
-  borderTopWidth: px,
-  borderRightWidth: px,
-  borderBottomWidth: px,
-  borderLeftWidth: px,
-  borderRadius: px,
-  borderTopLeftRadius: px,
-  borderTopRightRadius: px,
-  borderBottomRightRadius: px,
-  borderBottomLeftRadius: px,
-  // Positioning props
-  width: px,
-  maxWidth: px,
-  height: px,
-  maxHeight: px,
-  top: px,
-  right: px,
-  bottom: px,
-  left: px,
-  inset: px,
-  insetBlock: px,
-  insetBlockStart: px,
-  insetBlockEnd: px,
-  insetInline: px,
-  insetInlineStart: px,
-  insetInlineEnd: px,
-  // Spacing props
-  padding: px,
-  paddingTop: px,
-  paddingRight: px,
-  paddingBottom: px,
-  paddingLeft: px,
-  paddingBlock: px,
-  paddingBlockStart: px,
-  paddingBlockEnd: px,
-  paddingInline: px,
-  paddingInlineStart: px,
-  paddingInlineEnd: px,
-  margin: px,
-  marginTop: px,
-  marginRight: px,
-  marginBottom: px,
-  marginLeft: px,
-  marginBlock: px,
-  marginBlockStart: px,
-  marginBlockEnd: px,
-  marginInline: px,
-  marginInlineStart: px,
-  marginInlineEnd: px,
-  // Typography
-  fontSize: px,
-  // Misc
-  backgroundPositionX: px,
-  backgroundPositionY: px,
-  ...transformValueTypes,
-  zIndex: int,
-  // SVG
-  fillOpacity: alpha,
-  strokeOpacity: alpha,
-  numOctaves: int
-};
-
-// node_modules/motion-dom/dist/es/value/types/maps/defaults.mjs
-var defaultValueTypes = {
-  ...numberValueTypes,
-  // Color props
-  color,
-  backgroundColor: color,
-  outlineColor: color,
-  fill: color,
-  stroke: color,
-  // Border props
-  borderColor: color,
-  borderTopColor: color,
-  borderRightColor: color,
-  borderBottomColor: color,
-  borderLeftColor: color,
-  filter,
-  WebkitFilter: filter,
-  mask,
-  WebkitMask: mask
-};
-var getDefaultValueType = (key) => defaultValueTypes[key];
-
-// node_modules/motion-dom/dist/es/value/types/utils/animatable-none.mjs
-var customTypes = /* @__PURE__ */ new Set([filter, mask]);
-function getAnimatableNone2(key, value) {
-  let defaultValueType = getDefaultValueType(key);
-  if (!customTypes.has(defaultValueType))
-    defaultValueType = complex;
-  return defaultValueType.getAnimatableNone ? defaultValueType.getAnimatableNone(value) : void 0;
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/utils/make-none-animatable.mjs
-var invalidTemplates = /* @__PURE__ */ new Set(["auto", "none", "0"]);
-function makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name) {
-  let i = 0;
-  let animatableTemplate = void 0;
-  while (i < unresolvedKeyframes.length && !animatableTemplate) {
-    const keyframe = unresolvedKeyframes[i];
-    if (typeof keyframe === "string" && !invalidTemplates.has(keyframe) && analyseComplexValue(keyframe).values.length) {
-      animatableTemplate = unresolvedKeyframes[i];
-    }
-    i++;
-  }
-  if (animatableTemplate && name) {
-    for (const noneIndex of noneKeyframeIndexes) {
-      unresolvedKeyframes[noneIndex] = getAnimatableNone2(name, animatableTemplate);
-    }
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/keyframes/DOMKeyframesResolver.mjs
-var DOMKeyframesResolver = class extends KeyframeResolver {
-  constructor(unresolvedKeyframes, onComplete, name, motionValue2, element) {
-    super(unresolvedKeyframes, onComplete, name, motionValue2, element, true);
-  }
-  readKeyframes() {
-    const { unresolvedKeyframes, element, name } = this;
-    if (!element || !element.current)
-      return;
-    super.readKeyframes();
-    for (let i = 0; i < unresolvedKeyframes.length; i++) {
-      let keyframe = unresolvedKeyframes[i];
-      if (typeof keyframe === "string") {
-        keyframe = keyframe.trim();
-        if (isCSSVariableToken(keyframe)) {
-          const resolved = getVariableValue(keyframe, element.current);
-          if (resolved !== void 0) {
-            unresolvedKeyframes[i] = resolved;
-          }
-          if (i === unresolvedKeyframes.length - 1) {
-            this.finalKeyframe = keyframe;
-          }
-        }
-      }
-    }
-    this.resolveNoneKeyframes();
-    if (!positionalKeys.has(name) || unresolvedKeyframes.length !== 2) {
-      return;
-    }
-    const [origin, target] = unresolvedKeyframes;
-    const originType = findDimensionValueType(origin);
-    const targetType = findDimensionValueType(target);
-    const originHasVar = containsCSSVariable(origin);
-    const targetHasVar = containsCSSVariable(target);
-    if (originHasVar !== targetHasVar && positionalValues[name]) {
-      this.needsMeasurement = true;
-      return;
-    }
-    if (originType === targetType)
-      return;
-    if (isNumOrPxType(originType) && isNumOrPxType(targetType)) {
-      for (let i = 0; i < unresolvedKeyframes.length; i++) {
-        const value = unresolvedKeyframes[i];
-        if (typeof value === "string") {
-          unresolvedKeyframes[i] = parseFloat(value);
-        }
-      }
-    } else if (positionalValues[name]) {
-      this.needsMeasurement = true;
-    }
-  }
-  resolveNoneKeyframes() {
-    const { unresolvedKeyframes, name } = this;
-    const noneKeyframeIndexes = [];
-    for (let i = 0; i < unresolvedKeyframes.length; i++) {
-      if (unresolvedKeyframes[i] === null || isNone(unresolvedKeyframes[i])) {
-        noneKeyframeIndexes.push(i);
-      }
-    }
-    if (noneKeyframeIndexes.length) {
-      makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name);
-    }
-  }
-  measureInitialState() {
-    const { element, unresolvedKeyframes, name } = this;
-    if (!element || !element.current)
-      return;
-    if (name === "height") {
-      this.suspendedScrollY = window.pageYOffset;
-    }
-    this.measuredOrigin = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
-    unresolvedKeyframes[0] = this.measuredOrigin;
-    const measureKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
-    if (measureKeyframe !== void 0) {
-      element.getValue(name, measureKeyframe).jump(measureKeyframe, false);
-    }
-  }
-  measureEndState() {
-    var _a;
-    const { element, name, unresolvedKeyframes } = this;
-    if (!element || !element.current)
-      return;
-    const value = element.getValue(name);
-    value && value.jump(this.measuredOrigin, false);
-    const finalKeyframeIndex = unresolvedKeyframes.length - 1;
-    const finalKeyframe = unresolvedKeyframes[finalKeyframeIndex];
-    unresolvedKeyframes[finalKeyframeIndex] = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
-    if (finalKeyframe !== null && this.finalKeyframe === void 0) {
-      this.finalKeyframe = finalKeyframe;
-    }
-    if ((_a = this.removedTransforms) == null ? void 0 : _a.length) {
-      this.removedTransforms.forEach(([unsetTransformName, unsetTransformValue]) => {
-        element.getValue(unsetTransformName).set(unsetTransformValue);
-      });
-    }
-    this.resolveNoneKeyframes();
-  }
-};
-
-// node_modules/motion-dom/dist/es/animation/waapi/utils/px-values.mjs
-var pxValues = /* @__PURE__ */ new Set([
-  // Border props
-  "borderWidth",
-  "borderTopWidth",
-  "borderRightWidth",
-  "borderBottomWidth",
-  "borderLeftWidth",
-  "borderRadius",
-  "borderTopLeftRadius",
-  "borderTopRightRadius",
-  "borderBottomRightRadius",
-  "borderBottomLeftRadius",
-  // Positioning props
-  "width",
-  "maxWidth",
-  "height",
-  "maxHeight",
-  "top",
-  "right",
-  "bottom",
-  "left",
-  "inset",
-  "insetBlock",
-  "insetBlockStart",
-  "insetBlockEnd",
-  "insetInline",
-  "insetInlineStart",
-  "insetInlineEnd",
-  // Spacing props
-  "padding",
-  "paddingTop",
-  "paddingRight",
-  "paddingBottom",
-  "paddingLeft",
-  "paddingBlock",
-  "paddingBlockStart",
-  "paddingBlockEnd",
-  "paddingInline",
-  "paddingInlineStart",
-  "paddingInlineEnd",
-  "margin",
-  "marginTop",
-  "marginRight",
-  "marginBottom",
-  "marginLeft",
-  "marginBlock",
-  "marginBlockStart",
-  "marginBlockEnd",
-  "marginInline",
-  "marginInlineStart",
-  "marginInlineEnd",
-  // Typography
-  "fontSize",
-  // Misc
-  "backgroundPositionX",
-  "backgroundPositionY"
-]);
-
-// node_modules/motion-dom/dist/es/animation/keyframes/utils/apply-px-defaults.mjs
-function applyPxDefaults(keyframes2, name) {
-  for (let i = 0; i < keyframes2.length; i++) {
-    if (typeof keyframes2[i] === "number" && pxValues.has(name)) {
-      keyframes2[i] = keyframes2[i] + "px";
-    }
-  }
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/easing/is-supported.mjs
-function isWaapiSupportedEasing(easing) {
-  return Boolean(typeof easing === "function" && supportsLinearEasing() || !easing || typeof easing === "string" && (easing in supportedWaapiEasing || supportsLinearEasing()) || isBezierDefinition(easing) || Array.isArray(easing) && easing.every(isWaapiSupportedEasing));
-}
-
-// node_modules/motion-dom/dist/es/animation/waapi/supports/partial-keyframes.mjs
-var supportsPartialKeyframes = memo(() => {
-  try {
-    document.createElement("div").animate({ opacity: [1] });
-  } catch (e) {
-    return false;
-  }
-  return true;
-});
-
-// node_modules/motion-dom/dist/es/utils/resolve-elements.mjs
-function resolveElements(elementOrSelector, scope, selectorCache) {
-  if (elementOrSelector == null) {
-    return [];
-  }
-  if (elementOrSelector instanceof EventTarget) {
-    return [elementOrSelector];
-  } else if (typeof elementOrSelector === "string") {
-    let root = document;
-    if (scope) {
-      root = scope.current;
-    }
-    const elements = (selectorCache == null ? void 0 : selectorCache[elementOrSelector]) ?? root.querySelectorAll(elementOrSelector);
-    return elements ? Array.from(elements) : [];
-  }
-  return Array.from(elementOrSelector).filter((element) => element != null);
-}
-
-// node_modules/motion-dom/dist/es/effects/utils/create-dom-effect.mjs
-function createSelectorEffect(subjectEffect) {
-  return (subject, values) => {
-    const elements = resolveElements(subject);
-    const subscriptions = [];
-    for (const element of elements) {
-      const remove = subjectEffect(element, values);
-      subscriptions.push(remove);
-    }
-    return () => {
-      for (const remove of subscriptions)
-        remove();
-    };
-  };
-}
-
-// node_modules/motion-dom/dist/es/value/types/utils/get-as-type.mjs
-var getValueAsType = (value, type) => {
-  return type && typeof value === "number" ? type.transform(value) : value;
-};
-
-// node_modules/motion-dom/dist/es/effects/MotionValueState.mjs
-var MotionValueState = class {
-  constructor() {
-    this.latest = {};
-    this.values = /* @__PURE__ */ new Map();
-  }
-  set(name, value, render, computed, useDefaultValueType = true) {
-    const existingValue = this.values.get(name);
-    if (existingValue) {
-      existingValue.onRemove();
-    }
-    const onChange = () => {
-      const v = value.get();
-      if (useDefaultValueType) {
-        this.latest[name] = getValueAsType(v, numberValueTypes[name]);
-      } else {
-        this.latest[name] = v;
-      }
-      render && frame.render(render);
-    };
-    onChange();
-    const cancelOnChange = value.on("change", onChange);
-    computed && value.addDependent(computed);
-    const remove = () => {
-      cancelOnChange();
-      render && cancelFrame(render);
-      this.values.delete(name);
-      computed && value.removeDependent(computed);
-    };
-    this.values.set(name, { value, onRemove: remove });
-    return remove;
-  }
-  get(name) {
-    var _a;
-    return (_a = this.values.get(name)) == null ? void 0 : _a.value;
-  }
-};
-
-// node_modules/motion-dom/dist/es/effects/utils/create-effect.mjs
-function createEffect(addValue) {
-  const stateCache = /* @__PURE__ */ new WeakMap();
-  return (subject, values) => {
-    const state = stateCache.get(subject) ?? new MotionValueState();
-    stateCache.set(subject, state);
-    const subscriptions = [];
-    for (const key in values) {
-      const value = values[key];
-      const remove = addValue(subject, state, key, value);
-      subscriptions.push(remove);
-    }
-    return () => {
-      for (const cancel of subscriptions)
-        cancel();
-    };
-  };
-}
-
-// node_modules/motion-dom/dist/es/effects/attr/index.mjs
-function canSetAsProperty(element, name) {
-  if (!(name in element))
-    return false;
-  const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), name) || Object.getOwnPropertyDescriptor(element, name);
-  return descriptor && typeof descriptor.set === "function";
-}
-var addAttrValue = (element, state, key, value) => {
-  const isProp = canSetAsProperty(element, key);
-  const name = isProp ? key : key.startsWith("data") || key.startsWith("aria") ? camelToDash(key) : key;
-  const render = isProp ? () => {
-    element[name] = state.latest[key];
-  } : () => {
-    const v = state.latest[key];
-    if (v === null || v === void 0) {
-      element.removeAttribute(name);
-    } else {
-      element.setAttribute(name, String(v));
-    }
-  };
-  return state.set(key, value, render);
-};
-var attrEffect = createSelectorEffect(
-  createEffect(addAttrValue)
-);
-
-// node_modules/motion-dom/dist/es/effects/prop/index.mjs
-var propEffect = createEffect((subject, state, key, value) => {
-  return state.set(key, value, () => {
-    subject[key] = state.latest[key];
-  }, void 0, false);
-});
-
-// node_modules/motion-dom/dist/es/utils/is-html-element.mjs
-function isHTMLElement(element) {
-  return isObject(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
-}
-
-// node_modules/motion-dom/dist/es/effects/style/transform.mjs
-var translateAlias = {
-  x: "translateX",
-  y: "translateY",
-  z: "translateZ",
-  transformPerspective: "perspective"
-};
-function buildTransform(state) {
-  let transform2 = "";
-  let transformIsDefault = true;
-  for (let i = 0; i < transformPropOrder.length; i++) {
-    const key = transformPropOrder[i];
-    const value = state.latest[key];
-    if (value === void 0)
-      continue;
-    let valueIsDefault = true;
-    if (typeof value === "number") {
-      valueIsDefault = value === (key.startsWith("scale") ? 1 : 0);
-    } else {
-      const parsed = parseFloat(value);
-      valueIsDefault = key.startsWith("scale") ? parsed === 1 : parsed === 0;
-    }
-    if (!valueIsDefault) {
-      transformIsDefault = false;
-      const transformName = translateAlias[key] || key;
-      transform2 += `${transformName}(${value}) `;
-    }
-  }
-  return transformIsDefault ? "none" : transform2.trim();
-}
-
-// node_modules/motion-dom/dist/es/effects/style/index.mjs
-var originProps = /* @__PURE__ */ new Set(["originX", "originY", "originZ"]);
-var addStyleValue = (element, state, key, value) => {
-  let render = void 0;
-  let computed = void 0;
-  if (transformProps.has(key)) {
-    if (!state.get("transform")) {
-      if (!isHTMLElement(element) && !state.get("transformBox")) {
-        addStyleValue(element, state, "transformBox", new MotionValue("fill-box"));
-      }
-      state.set("transform", new MotionValue("none"), () => {
-        element.style.transform = buildTransform(state);
-      });
-    }
-    computed = state.get("transform");
-  } else if (originProps.has(key)) {
-    if (!state.get("transformOrigin")) {
-      state.set("transformOrigin", new MotionValue(""), () => {
-        const originX = state.latest.originX ?? "50%";
-        const originY = state.latest.originY ?? "50%";
-        const originZ = state.latest.originZ ?? 0;
-        element.style.transformOrigin = `${originX} ${originY} ${originZ}`;
-      });
-    }
-    computed = state.get("transformOrigin");
-  } else if (isCSSVar(key)) {
-    render = () => {
-      element.style.setProperty(key, state.latest[key]);
-    };
-  } else {
-    render = () => {
-      element.style[key] = state.latest[key];
+function __generator(thisArg, body) {
+  var _ = { label: 0, sent: function() {
+    if (t[0] & 1)
+      throw t[1];
+    return t[1];
+  }, trys: [], ops: [] }, f2, y, t, g;
+  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+    return this;
+  }), g;
+  function verb(n) {
+    return function(v) {
+      return step([n, v]);
     };
   }
-  return state.set(key, value, render, computed);
-};
-var styleEffect = createSelectorEffect(
-  createEffect(addStyleValue)
-);
-
-// node_modules/motion-dom/dist/es/effects/svg/index.mjs
-function addSVGPathValue(element, state, key, value) {
-  frame.render(() => element.setAttribute("pathLength", "1"));
-  if (key === "pathOffset") {
-    return state.set(key, value, () => {
-      const offset = state.latest[key];
-      element.setAttribute("stroke-dashoffset", `${-offset}`);
-    });
-  } else {
-    if (!state.get("stroke-dasharray")) {
-      state.set("stroke-dasharray", new MotionValue("1 1"), () => {
-        const { pathLength = 1, pathSpacing } = state.latest;
-        element.setAttribute("stroke-dasharray", `${pathLength} ${pathSpacing ?? 1 - Number(pathLength)}`);
-      });
-    }
-    return state.set(key, value, void 0, state.get("stroke-dasharray"));
-  }
-}
-var addSVGValue = (element, state, key, value) => {
-  if (key.startsWith("path")) {
-    return addSVGPathValue(element, state, key, value);
-  } else if (key.startsWith("attr")) {
-    return addAttrValue(element, state, convertAttrKey(key), value);
-  }
-  const handler = key in element.style ? addStyleValue : addAttrValue;
-  return handler(element, state, key, value);
-};
-var svgEffect = createSelectorEffect(
-  createEffect(addSVGValue)
-);
-function convertAttrKey(key) {
-  return key.replace(/^attr([A-Z])/, (_, firstChar) => firstChar.toLowerCase());
-}
-
-// node_modules/motion-dom/dist/es/frameloop/microtask.mjs
-var { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(queueMicrotask, false);
-
-// node_modules/motion-dom/dist/es/gestures/drag/state/is-active.mjs
-var isDragging = {
-  x: false,
-  y: false
-};
-function isDragActive() {
-  return isDragging.x || isDragging.y;
-}
-
-// node_modules/motion-dom/dist/es/gestures/drag/state/set-active.mjs
-function setDragLock(axis) {
-  if (axis === "x" || axis === "y") {
-    if (isDragging[axis]) {
-      return null;
-    } else {
-      isDragging[axis] = true;
-      return () => {
-        isDragging[axis] = false;
-      };
-    }
-  } else {
-    if (isDragging.x || isDragging.y) {
-      return null;
-    } else {
-      isDragging.x = isDragging.y = true;
-      return () => {
-        isDragging.x = isDragging.y = false;
-      };
-    }
-  }
-}
-
-// node_modules/motion-dom/dist/es/gestures/utils/setup.mjs
-function setupGesture(elementOrSelector, options) {
-  const elements = resolveElements(elementOrSelector);
-  const gestureAbortController = new AbortController();
-  const eventOptions = {
-    passive: true,
-    ...options,
-    signal: gestureAbortController.signal
-  };
-  const cancel = () => gestureAbortController.abort();
-  return [elements, eventOptions, cancel];
-}
-
-// node_modules/motion-dom/dist/es/gestures/hover.mjs
-function isValidHover(event) {
-  return !(event.pointerType === "touch" || isDragActive());
-}
-function hover(elementOrSelector, onHoverStart, options = {}) {
-  const [elements, eventOptions, cancel] = setupGesture(elementOrSelector, options);
-  elements.forEach((element) => {
-    let isPressed = false;
-    let deferredHoverEnd = false;
-    let hoverEndCallback;
-    const removePointerLeave = () => {
-      element.removeEventListener("pointerleave", onPointerLeave);
-    };
-    const endHover = (event) => {
-      if (hoverEndCallback) {
-        hoverEndCallback(event);
-        hoverEndCallback = void 0;
-      }
-      removePointerLeave();
-    };
-    const onPointerUp = (event) => {
-      isPressed = false;
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("pointercancel", onPointerUp);
-      if (deferredHoverEnd) {
-        deferredHoverEnd = false;
-        endHover(event);
-      }
-    };
-    const onPointerDown = () => {
-      isPressed = true;
-      window.addEventListener("pointerup", onPointerUp, eventOptions);
-      window.addEventListener("pointercancel", onPointerUp, eventOptions);
-    };
-    const onPointerLeave = (leaveEvent) => {
-      if (leaveEvent.pointerType === "touch")
-        return;
-      if (isPressed) {
-        deferredHoverEnd = true;
-        return;
-      }
-      endHover(leaveEvent);
-    };
-    const onPointerEnter = (enterEvent) => {
-      if (!isValidHover(enterEvent))
-        return;
-      deferredHoverEnd = false;
-      const onHoverEnd = onHoverStart(element, enterEvent);
-      if (typeof onHoverEnd !== "function")
-        return;
-      hoverEndCallback = onHoverEnd;
-      element.addEventListener("pointerleave", onPointerLeave, eventOptions);
-    };
-    element.addEventListener("pointerenter", onPointerEnter, eventOptions);
-    element.addEventListener("pointerdown", onPointerDown, eventOptions);
-  });
-  return cancel;
-}
-
-// node_modules/motion-dom/dist/es/gestures/utils/is-node-or-child.mjs
-var isNodeOrChild = (parent, child) => {
-  if (!child) {
-    return false;
-  } else if (parent === child) {
-    return true;
-  } else {
-    return isNodeOrChild(parent, child.parentElement);
-  }
-};
-
-// node_modules/motion-dom/dist/es/gestures/utils/is-primary-pointer.mjs
-var isPrimaryPointer = (event) => {
-  if (event.pointerType === "mouse") {
-    return typeof event.button !== "number" || event.button <= 0;
-  } else {
-    return event.isPrimary !== false;
-  }
-};
-
-// node_modules/motion-dom/dist/es/gestures/press/utils/is-keyboard-accessible.mjs
-var keyboardAccessibleElements = /* @__PURE__ */ new Set([
-  "BUTTON",
-  "INPUT",
-  "SELECT",
-  "TEXTAREA",
-  "A"
-]);
-function isElementKeyboardAccessible(element) {
-  return keyboardAccessibleElements.has(element.tagName) || element.isContentEditable === true;
-}
-var textInputElements = /* @__PURE__ */ new Set(["INPUT", "SELECT", "TEXTAREA"]);
-function isElementTextInput(element) {
-  return textInputElements.has(element.tagName) || element.isContentEditable === true;
-}
-
-// node_modules/motion-dom/dist/es/gestures/press/utils/state.mjs
-var isPressing = /* @__PURE__ */ new WeakSet();
-
-// node_modules/motion-dom/dist/es/gestures/press/utils/keyboard.mjs
-function filterEvents(callback) {
-  return (event) => {
-    if (event.key !== "Enter")
-      return;
-    callback(event);
-  };
-}
-function firePointerEvent(target, type) {
-  target.dispatchEvent(new PointerEvent("pointer" + type, { isPrimary: true, bubbles: true }));
-}
-var enableKeyboardPress = (focusEvent, eventOptions) => {
-  const element = focusEvent.currentTarget;
-  if (!element)
-    return;
-  const handleKeydown = filterEvents(() => {
-    if (isPressing.has(element))
-      return;
-    firePointerEvent(element, "down");
-    const handleKeyup = filterEvents(() => {
-      firePointerEvent(element, "up");
-    });
-    const handleBlur = () => firePointerEvent(element, "cancel");
-    element.addEventListener("keyup", handleKeyup, eventOptions);
-    element.addEventListener("blur", handleBlur, eventOptions);
-  });
-  element.addEventListener("keydown", handleKeydown, eventOptions);
-  element.addEventListener("blur", () => element.removeEventListener("keydown", handleKeydown), eventOptions);
-};
-
-// node_modules/motion-dom/dist/es/gestures/press/index.mjs
-function isValidPressEvent(event) {
-  return isPrimaryPointer(event) && !isDragActive();
-}
-var claimedPointerDownEvents = /* @__PURE__ */ new WeakSet();
-function press(targetOrSelector, onPressStart, options = {}) {
-  const [targets, eventOptions, cancelEvents] = setupGesture(targetOrSelector, options);
-  const startPress = (startEvent) => {
-    const target = startEvent.currentTarget;
-    if (!isValidPressEvent(startEvent))
-      return;
-    if (claimedPointerDownEvents.has(startEvent))
-      return;
-    isPressing.add(target);
-    if (options.stopPropagation) {
-      claimedPointerDownEvents.add(startEvent);
-    }
-    const onPressEnd = onPressStart(target, startEvent);
-    const onPointerEnd = (endEvent, success) => {
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("pointercancel", onPointerCancel);
-      if (isPressing.has(target)) {
-        isPressing.delete(target);
-      }
-      if (!isValidPressEvent(endEvent)) {
-        return;
-      }
-      if (typeof onPressEnd === "function") {
-        onPressEnd(endEvent, { success });
-      }
-    };
-    const onPointerUp = (upEvent) => {
-      onPointerEnd(upEvent, target === window || target === document || options.useGlobalTarget || isNodeOrChild(target, upEvent.target));
-    };
-    const onPointerCancel = (cancelEvent) => {
-      onPointerEnd(cancelEvent, false);
-    };
-    window.addEventListener("pointerup", onPointerUp, eventOptions);
-    window.addEventListener("pointercancel", onPointerCancel, eventOptions);
-  };
-  targets.forEach((target) => {
-    const pointerDownTarget = options.useGlobalTarget ? window : target;
-    pointerDownTarget.addEventListener("pointerdown", startPress, eventOptions);
-    if (isHTMLElement(target)) {
-      target.addEventListener("focus", (event) => enableKeyboardPress(event, eventOptions));
-      if (!isElementKeyboardAccessible(target) && !target.hasAttribute("tabindex")) {
-        target.tabIndex = 0;
-      }
-    }
-  });
-  return cancelEvents;
-}
-
-// node_modules/motion-dom/dist/es/render/dom/style-computed.mjs
-function getComputedStyle2(element, name) {
-  const computedStyle = window.getComputedStyle(element);
-  return isCSSVar(name) ? computedStyle.getPropertyValue(name) : computedStyle[name];
-}
-
-// node_modules/motion-dom/dist/es/utils/is-svg-element.mjs
-function isSVGElement(element) {
-  return isObject(element) && "ownerSVGElement" in element;
-}
-
-// node_modules/motion-dom/dist/es/resize/handle-element.mjs
-var resizeHandlers = /* @__PURE__ */ new WeakMap();
-var observer;
-var getSize = (borderBoxAxis, svgAxis, htmlAxis) => (target, borderBoxSize) => {
-  if (borderBoxSize && borderBoxSize[0]) {
-    return borderBoxSize[0][borderBoxAxis + "Size"];
-  } else if (isSVGElement(target) && "getBBox" in target) {
-    return target.getBBox()[svgAxis];
-  } else {
-    return target[htmlAxis];
-  }
-};
-var getWidth = getSize("inline", "width", "offsetWidth");
-var getHeight = getSize("block", "height", "offsetHeight");
-function notifyTarget({ target, borderBoxSize }) {
-  var _a;
-  (_a = resizeHandlers.get(target)) == null ? void 0 : _a.forEach((handler) => {
-    handler(target, {
-      get width() {
-        return getWidth(target, borderBoxSize);
-      },
-      get height() {
-        return getHeight(target, borderBoxSize);
-      }
-    });
-  });
-}
-function notifyAll(entries) {
-  entries.forEach(notifyTarget);
-}
-function createResizeObserver() {
-  if (typeof ResizeObserver === "undefined")
-    return;
-  observer = new ResizeObserver(notifyAll);
-}
-function resizeElement(target, handler) {
-  if (!observer)
-    createResizeObserver();
-  const elements = resolveElements(target);
-  elements.forEach((element) => {
-    let elementHandlers = resizeHandlers.get(element);
-    if (!elementHandlers) {
-      elementHandlers = /* @__PURE__ */ new Set();
-      resizeHandlers.set(element, elementHandlers);
-    }
-    elementHandlers.add(handler);
-    observer == null ? void 0 : observer.observe(element);
-  });
-  return () => {
-    elements.forEach((element) => {
-      const elementHandlers = resizeHandlers.get(element);
-      elementHandlers == null ? void 0 : elementHandlers.delete(handler);
-      if (!(elementHandlers == null ? void 0 : elementHandlers.size)) {
-        observer == null ? void 0 : observer.unobserve(element);
-      }
-    });
-  };
-}
-
-// node_modules/motion-dom/dist/es/resize/handle-window.mjs
-var windowCallbacks = /* @__PURE__ */ new Set();
-var windowResizeHandler;
-function createWindowResizeHandler() {
-  windowResizeHandler = () => {
-    const info = {
-      get width() {
-        return window.innerWidth;
-      },
-      get height() {
-        return window.innerHeight;
-      }
-    };
-    windowCallbacks.forEach((callback) => callback(info));
-  };
-  window.addEventListener("resize", windowResizeHandler);
-}
-function resizeWindow(callback) {
-  windowCallbacks.add(callback);
-  if (!windowResizeHandler)
-    createWindowResizeHandler();
-  return () => {
-    windowCallbacks.delete(callback);
-    if (!windowCallbacks.size && typeof windowResizeHandler === "function") {
-      window.removeEventListener("resize", windowResizeHandler);
-      windowResizeHandler = void 0;
-    }
-  };
-}
-
-// node_modules/motion-dom/dist/es/resize/index.mjs
-function resize(a, b) {
-  return typeof a === "function" ? resizeWindow(a) : resizeElement(a, b);
-}
-
-// node_modules/motion-dom/dist/es/scroll/observe.mjs
-function observeTimeline(update, timeline) {
-  let prevProgress;
-  const onFrame = () => {
-    const { currentTime } = timeline;
-    const percentage = currentTime === null ? 0 : currentTime.value;
-    const progress2 = percentage / 100;
-    if (prevProgress !== progress2) {
-      update(progress2);
-    }
-    prevProgress = progress2;
-  };
-  frame.preUpdate(onFrame, true);
-  return () => cancelFrame(onFrame);
-}
-
-// node_modules/motion-dom/dist/es/stats/index.mjs
-function record() {
-  const { value } = statsBuffer;
-  if (value === null) {
-    cancelFrame(record);
-    return;
-  }
-  value.frameloop.rate.push(frameData.delta);
-  value.animations.mainThread.push(activeAnimations.mainThread);
-  value.animations.waapi.push(activeAnimations.waapi);
-  value.animations.layout.push(activeAnimations.layout);
-}
-function mean(values) {
-  return values.reduce((acc, value) => acc + value, 0) / values.length;
-}
-function summarise(values, calcAverage = mean) {
-  if (values.length === 0) {
-    return {
-      min: 0,
-      max: 0,
-      avg: 0
-    };
-  }
-  return {
-    min: Math.min(...values),
-    max: Math.max(...values),
-    avg: calcAverage(values)
-  };
-}
-var msToFps = (ms) => Math.round(1e3 / ms);
-function clearStatsBuffer() {
-  statsBuffer.value = null;
-  statsBuffer.addProjectionMetrics = null;
-}
-function reportStats() {
-  const { value } = statsBuffer;
-  if (!value) {
-    throw new Error("Stats are not being measured");
-  }
-  clearStatsBuffer();
-  cancelFrame(record);
-  const summary = {
-    frameloop: {
-      setup: summarise(value.frameloop.setup),
-      rate: summarise(value.frameloop.rate),
-      read: summarise(value.frameloop.read),
-      resolveKeyframes: summarise(value.frameloop.resolveKeyframes),
-      preUpdate: summarise(value.frameloop.preUpdate),
-      update: summarise(value.frameloop.update),
-      preRender: summarise(value.frameloop.preRender),
-      render: summarise(value.frameloop.render),
-      postRender: summarise(value.frameloop.postRender)
-    },
-    animations: {
-      mainThread: summarise(value.animations.mainThread),
-      waapi: summarise(value.animations.waapi),
-      layout: summarise(value.animations.layout)
-    },
-    layoutProjection: {
-      nodes: summarise(value.layoutProjection.nodes),
-      calculatedTargetDeltas: summarise(value.layoutProjection.calculatedTargetDeltas),
-      calculatedProjections: summarise(value.layoutProjection.calculatedProjections)
-    }
-  };
-  const { rate } = summary.frameloop;
-  rate.min = msToFps(rate.min);
-  rate.max = msToFps(rate.max);
-  rate.avg = msToFps(rate.avg);
-  [rate.min, rate.max] = [rate.max, rate.min];
-  return summary;
-}
-function recordStats() {
-  if (statsBuffer.value) {
-    clearStatsBuffer();
-    throw new Error("Stats are already being measured");
-  }
-  const newStatsBuffer = statsBuffer;
-  newStatsBuffer.value = {
-    frameloop: {
-      setup: [],
-      rate: [],
-      read: [],
-      resolveKeyframes: [],
-      preUpdate: [],
-      update: [],
-      preRender: [],
-      render: [],
-      postRender: []
-    },
-    animations: {
-      mainThread: [],
-      waapi: [],
-      layout: []
-    },
-    layoutProjection: {
-      nodes: [],
-      calculatedTargetDeltas: [],
-      calculatedProjections: []
-    }
-  };
-  newStatsBuffer.addProjectionMetrics = (metrics2) => {
-    const { layoutProjection } = newStatsBuffer.value;
-    layoutProjection.nodes.push(metrics2.nodes);
-    layoutProjection.calculatedTargetDeltas.push(metrics2.calculatedTargetDeltas);
-    layoutProjection.calculatedProjections.push(metrics2.calculatedProjections);
-  };
-  frame.postRender(record, true);
-  return reportStats;
-}
-
-// node_modules/motion-dom/dist/es/utils/is-svg-svg-element.mjs
-function isSVGSVGElement(element) {
-  return isSVGElement(element) && element.tagName === "svg";
-}
-
-// node_modules/motion-dom/dist/es/utils/stagger.mjs
-function getOriginIndex(from, total) {
-  if (from === "first") {
-    return 0;
-  } else {
-    const lastIndex = total - 1;
-    return from === "last" ? lastIndex : lastIndex / 2;
-  }
-}
-function stagger(duration = 0.1, { startDelay = 0, from = 0, ease: ease2 } = {}) {
-  return (i, total) => {
-    const fromIndex = typeof from === "number" ? from : getOriginIndex(from, total);
-    const distance2 = Math.abs(fromIndex - i);
-    let delay2 = duration * distance2;
-    if (ease2) {
-      const maxDelay = total * duration;
-      const easingFunction = easingDefinitionToFunction(ease2);
-      delay2 = easingFunction(delay2 / maxDelay) * maxDelay;
-    }
-    return startDelay + delay2;
-  };
-}
-
-// node_modules/motion-dom/dist/es/utils/transform.mjs
-function transform(...args) {
-  const useImmediate = !Array.isArray(args[0]);
-  const argOffset = useImmediate ? 0 : -1;
-  const inputValue = args[0 + argOffset];
-  const inputRange = args[1 + argOffset];
-  const outputRange = args[2 + argOffset];
-  const options = args[3 + argOffset];
-  const interpolator = interpolate(inputRange, outputRange, options);
-  return useImmediate ? interpolator(inputValue) : interpolator;
-}
-
-// node_modules/motion-dom/dist/es/value/follow-value.mjs
-function followValue(source, options) {
-  const initialValue = isMotionValue(source) ? source.get() : source;
-  const value = motionValue(initialValue);
-  attachFollow(value, source, options);
-  return value;
-}
-function attachFollow(value, source, options = {}) {
-  const initialValue = value.get();
-  let activeAnimation = null;
-  let latestValue = initialValue;
-  let latestSetter;
-  const unit = typeof initialValue === "string" ? initialValue.replace(/[\d.-]/g, "") : void 0;
-  const stopAnimation2 = () => {
-    if (activeAnimation) {
-      activeAnimation.stop();
-      activeAnimation = null;
-    }
-    value.animation = void 0;
-  };
-  const startAnimation = () => {
-    const currentValue = asNumber(value.get());
-    const targetValue = asNumber(latestValue);
-    if (currentValue === targetValue) {
-      stopAnimation2();
-      return;
-    }
-    const velocity = activeAnimation ? activeAnimation.getGeneratorVelocity() : value.getVelocity();
-    stopAnimation2();
-    activeAnimation = new JSAnimation({
-      keyframes: [currentValue, targetValue],
-      velocity,
-      // Default to spring if no type specified (matches useSpring behavior)
-      type: "spring",
-      restDelta: 1e-3,
-      restSpeed: 0.01,
-      ...options,
-      onUpdate: latestSetter
-    });
-  };
-  const scheduleAnimation = () => {
-    var _a;
-    startAnimation();
-    value.animation = activeAnimation ?? void 0;
-    (_a = value["events"].animationStart) == null ? void 0 : _a.notify();
-    activeAnimation == null ? void 0 : activeAnimation.then(() => {
-      var _a2;
-      value.animation = void 0;
-      (_a2 = value["events"].animationComplete) == null ? void 0 : _a2.notify();
-    });
-  };
-  value.attach((v, set) => {
-    latestValue = v;
-    latestSetter = (latest) => set(parseValue(latest, unit));
-    frame.postRender(scheduleAnimation);
-  }, stopAnimation2);
-  if (isMotionValue(source)) {
-    let skipNextAnimation = options.skipInitialAnimation === true;
-    const removeSourceOnChange = source.on("change", (v) => {
-      if (skipNextAnimation) {
-        skipNextAnimation = false;
-        value.jump(parseValue(v, unit), false);
-      } else {
-        value.set(parseValue(v, unit));
-      }
-    });
-    const removeValueOnDestroy = value.on("destroy", removeSourceOnChange);
-    return () => {
-      removeSourceOnChange();
-      removeValueOnDestroy();
-    };
-  }
-  return stopAnimation2;
-}
-function parseValue(v, unit) {
-  return unit ? v + unit : v;
-}
-function asNumber(v) {
-  return typeof v === "number" ? v : parseFloat(v);
-}
-
-// node_modules/motion-dom/dist/es/value/subscribe-value.mjs
-function subscribeValue(inputValues, outputValue, getLatest) {
-  const update = () => outputValue.set(getLatest());
-  const scheduleUpdate = () => frame.preRender(update, false, true);
-  const subscriptions = inputValues.map((v) => v.on("change", scheduleUpdate));
-  outputValue.on("destroy", () => {
-    subscriptions.forEach((unsubscribe) => unsubscribe());
-    cancelFrame(update);
-  });
-}
-
-// node_modules/motion-dom/dist/es/value/transform-value.mjs
-function transformValue(transform2) {
-  const collectedValues = [];
-  collectMotionValues.current = collectedValues;
-  const initialValue = transform2();
-  collectMotionValues.current = void 0;
-  const value = motionValue(initialValue);
-  subscribeValue(collectedValues, value, transform2);
-  return value;
-}
-
-// node_modules/motion-dom/dist/es/value/map-value.mjs
-function mapValue(inputValue, inputRange, outputRange, options) {
-  const map = transform(inputRange, outputRange, options);
-  return transformValue(() => map(inputValue.get()));
-}
-
-// node_modules/motion-dom/dist/es/value/spring-value.mjs
-function springValue(source, options) {
-  return followValue(source, { type: "spring", ...options });
-}
-function attachSpring(value, source, options) {
-  return attachFollow(value, source, { type: "spring", ...options });
-}
-
-// node_modules/motion-dom/dist/es/value/types/utils/find.mjs
-var valueTypes = [...dimensionValueTypes, color, complex];
-var findValueType = (v) => valueTypes.find(testValueType(v));
-
-// node_modules/motion-dom/dist/es/view/utils/choose-layer-type.mjs
-function chooseLayerType(valueName) {
-  if (valueName === "layout")
-    return "group";
-  if (valueName === "enter" || valueName === "new")
-    return "new";
-  if (valueName === "exit" || valueName === "old")
-    return "old";
-  return "group";
-}
-
-// node_modules/motion-dom/dist/es/view/utils/css.mjs
-var pendingRules = {};
-var style = null;
-var css = {
-  set: (selector, values) => {
-    pendingRules[selector] = values;
-  },
-  commit: () => {
-    if (!style) {
-      style = document.createElement("style");
-      style.id = "motion-view";
-    }
-    let cssText = "";
-    for (const selector in pendingRules) {
-      const rule = pendingRules[selector];
-      cssText += `${selector} {
-`;
-      for (const [property, value] of Object.entries(rule)) {
-        cssText += `  ${property}: ${value};
-`;
-      }
-      cssText += "}\n";
-    }
-    style.textContent = cssText;
-    document.head.appendChild(style);
-    pendingRules = {};
-  },
-  remove: () => {
-    if (style && style.parentElement) {
-      style.parentElement.removeChild(style);
-    }
-  }
-};
-
-// node_modules/motion-dom/dist/es/view/utils/get-layer-info.mjs
-function getViewAnimationLayerInfo(pseudoElement) {
-  const match = pseudoElement.match(/::view-transition-(old|new|group|image-pair)\((.*?)\)/);
-  if (!match)
-    return null;
-  return { layer: match[2], type: match[1] };
-}
-
-// node_modules/motion-dom/dist/es/view/utils/get-view-animations.mjs
-function filterViewAnimations(animation) {
-  var _a;
-  const { effect } = animation;
-  if (!effect)
-    return false;
-  return effect.target === document.documentElement && ((_a = effect.pseudoElement) == null ? void 0 : _a.startsWith("::view-transition"));
-}
-function getViewAnimations() {
-  return document.getAnimations().filter(filterViewAnimations);
-}
-
-// node_modules/motion-dom/dist/es/view/utils/has-target.mjs
-function hasTarget(target, targets) {
-  return targets.has(target) && Object.keys(targets.get(target)).length > 0;
-}
-
-// node_modules/motion-dom/dist/es/view/start.mjs
-var definitionNames = ["layout", "enter", "exit", "new", "old"];
-function startViewAnimation(builder) {
-  const { update, targets, options: defaultOptions } = builder;
-  if (!document.startViewTransition) {
-    return new Promise(async (resolve) => {
-      await update();
-      resolve(new GroupAnimation([]));
-    });
-  }
-  if (!hasTarget("root", targets)) {
-    css.set(":root", {
-      "view-transition-name": "none"
-    });
-  }
-  css.set("::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*)", { "animation-timing-function": "linear !important" });
-  css.commit();
-  const transition = document.startViewTransition(async () => {
-    await update();
-  });
-  transition.finished.finally(() => {
-    css.remove();
-  });
-  return new Promise((resolve) => {
-    transition.ready.then(() => {
-      const generatedViewAnimations = getViewAnimations();
-      const animations2 = [];
-      targets.forEach((definition, target) => {
-        for (const key of definitionNames) {
-          if (!definition[key])
+  function step(op) {
+    if (f2)
+      throw new TypeError("Generator is already executing.");
+    while (_)
+      try {
+        if (f2 = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+          return t;
+        if (y = 0, t)
+          op = [op[0] & 2, t.value];
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+          case 4:
+            _.label++;
+            return { value: op[1], done: false };
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
             continue;
-          const { keyframes: keyframes2, options } = definition[key];
-          for (let [valueName, valueKeyframes] of Object.entries(keyframes2)) {
-            if (!valueKeyframes)
+          case 7:
+            op = _.ops.pop();
+            _.trys.pop();
+            continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
               continue;
-            const valueOptions = {
-              ...getValueTransition(defaultOptions, valueName),
-              ...getValueTransition(options, valueName)
-            };
-            const type = chooseLayerType(key);
-            if (valueName === "opacity" && !Array.isArray(valueKeyframes)) {
-              const initialValue = type === "new" ? 0 : 1;
-              valueKeyframes = [initialValue, valueKeyframes];
             }
-            if (typeof valueOptions.delay === "function") {
-              valueOptions.delay = valueOptions.delay(0, 1);
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
             }
-            valueOptions.duration && (valueOptions.duration = secondsToMilliseconds(valueOptions.duration));
-            valueOptions.delay && (valueOptions.delay = secondsToMilliseconds(valueOptions.delay));
-            const animation = new NativeAnimation({
-              ...valueOptions,
-              element: document.documentElement,
-              name: valueName,
-              pseudoElement: `::view-transition-${type}(${target})`,
-              keyframes: valueKeyframes
-            });
-            animations2.push(animation);
-          }
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+              _.ops.push(op);
+              break;
+            }
+            if (t[2])
+              _.ops.pop();
+            _.trys.pop();
+            continue;
         }
-      });
-      for (const animation of generatedViewAnimations) {
-        if (animation.playState === "finished")
-          continue;
-        const { effect } = animation;
-        if (!effect || !(effect instanceof KeyframeEffect))
-          continue;
-        const { pseudoElement } = effect;
-        if (!pseudoElement)
-          continue;
-        const name = getViewAnimationLayerInfo(pseudoElement);
-        if (!name)
-          continue;
-        const targetDefinition = targets.get(name.layer);
-        if (!targetDefinition) {
-          const transitionName = name.type === "group" ? "layout" : "";
-          let animationTransition = {
-            ...getValueTransition(defaultOptions, transitionName)
-          };
-          animationTransition.duration && (animationTransition.duration = secondsToMilliseconds(animationTransition.duration));
-          animationTransition = applyGeneratorOptions(animationTransition);
-          const easing = mapEasingToNativeEasing(animationTransition.ease, animationTransition.duration);
-          effect.updateTiming({
-            delay: secondsToMilliseconds(animationTransition.delay ?? 0),
-            duration: animationTransition.duration,
-            easing
-          });
-          animations2.push(new NativeAnimationWrapper(animation));
-        } else if (hasOpacity(targetDefinition, "enter") && hasOpacity(targetDefinition, "exit") && effect.getKeyframes().some((keyframe) => keyframe.mixBlendMode)) {
-          animations2.push(new NativeAnimationWrapper(animation));
-        } else {
-          animation.cancel();
-        }
+        op = body.call(thisArg, _);
+      } catch (e2) {
+        op = [6, e2];
+        y = 0;
+      } finally {
+        f2 = t = 0;
       }
-      resolve(new GroupAnimation(animations2));
-    });
-  });
-}
-function hasOpacity(target, key) {
-  var _a;
-  return (_a = target == null ? void 0 : target[key]) == null ? void 0 : _a.keyframes.opacity;
-}
-
-// node_modules/motion-dom/dist/es/view/queue.mjs
-var builders = [];
-var current = null;
-function next() {
-  current = null;
-  const [nextBuilder] = builders;
-  if (nextBuilder)
-    start(nextBuilder);
-}
-function start(builder) {
-  removeItem(builders, builder);
-  current = builder;
-  startViewAnimation(builder).then((animation) => {
-    builder.notifyReady(animation);
-    animation.finished.finally(next);
-  });
-}
-function processQueue() {
-  var _a;
-  for (let i = builders.length - 1; i >= 0; i--) {
-    const builder = builders[i];
-    const { interrupt } = builder.options;
-    if (interrupt === "immediate") {
-      const batchedUpdates = builders.slice(0, i + 1).map((b) => b.update);
-      const remaining = builders.slice(i + 1);
-      builder.update = () => {
-        batchedUpdates.forEach((update) => update());
-      };
-      builders = [builder, ...remaining];
-      break;
-    }
-  }
-  if (!current || ((_a = builders[0]) == null ? void 0 : _a.options.interrupt) === "immediate") {
-    next();
+    if (op[0] & 5)
+      throw op[1];
+    return { value: op[0] ? op[1] : void 0, done: true };
   }
 }
-function addToQueue(builder) {
-  builders.push(builder);
-  microtask.render(processQueue);
-}
-
-// node_modules/motion-dom/dist/es/view/index.mjs
-var ViewTransitionBuilder = class {
-  constructor(update, options = {}) {
-    this.currentSubject = "root";
-    this.targets = /* @__PURE__ */ new Map();
-    this.notifyReady = noop;
-    this.readyPromise = new Promise((resolve) => {
-      this.notifyReady = resolve;
-    });
-    this.update = update;
-    this.options = {
-      interrupt: "wait",
-      ...options
-    };
-    addToQueue(this);
-  }
-  get(subject) {
-    this.currentSubject = subject;
-    return this;
-  }
-  layout(keyframes2, options) {
-    this.updateTarget("layout", keyframes2, options);
-    return this;
-  }
-  new(keyframes2, options) {
-    this.updateTarget("new", keyframes2, options);
-    return this;
-  }
-  old(keyframes2, options) {
-    this.updateTarget("old", keyframes2, options);
-    return this;
-  }
-  enter(keyframes2, options) {
-    this.updateTarget("enter", keyframes2, options);
-    return this;
-  }
-  exit(keyframes2, options) {
-    this.updateTarget("exit", keyframes2, options);
-    return this;
-  }
-  crossfade(options) {
-    this.updateTarget("enter", { opacity: 1 }, options);
-    this.updateTarget("exit", { opacity: 0 }, options);
-    return this;
-  }
-  updateTarget(target, keyframes2, options = {}) {
-    const { currentSubject, targets } = this;
-    if (!targets.has(currentSubject)) {
-      targets.set(currentSubject, {});
-    }
-    const targetData = targets.get(currentSubject);
-    targetData[target] = { keyframes: keyframes2, options };
-  }
-  then(resolve, reject) {
-    return this.readyPromise.then(resolve, reject);
-  }
-};
-function animateView(update, defaultOptions = {}) {
-  return new ViewTransitionBuilder(update, defaultOptions);
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/models.mjs
-var createAxisDelta = () => ({
-  translate: 0,
-  scale: 1,
-  origin: 0,
-  originPoint: 0
-});
-var createDelta = () => ({
-  x: createAxisDelta(),
-  y: createAxisDelta()
-});
-var createAxis = () => ({ min: 0, max: 0 });
-var createBox = () => ({
-  x: createAxis(),
-  y: createAxis()
-});
-
-// node_modules/motion-dom/dist/es/render/store.mjs
-var visualElementStore = /* @__PURE__ */ new WeakMap();
-
-// node_modules/motion-dom/dist/es/render/utils/is-animation-controls.mjs
-function isAnimationControls(v) {
-  return v !== null && typeof v === "object" && typeof v.start === "function";
-}
-
-// node_modules/motion-dom/dist/es/render/utils/is-variant-label.mjs
-function isVariantLabel(v) {
-  return typeof v === "string" || Array.isArray(v);
-}
-
-// node_modules/motion-dom/dist/es/render/utils/variant-props.mjs
-var variantPriorityOrder = [
-  "animate",
-  "whileInView",
-  "whileFocus",
-  "whileHover",
-  "whileTap",
-  "whileDrag",
-  "exit"
-];
-var variantProps = ["initial", ...variantPriorityOrder];
-
-// node_modules/motion-dom/dist/es/render/utils/is-controlling-variants.mjs
-function isControllingVariants(props) {
-  return isAnimationControls(props.animate) || variantProps.some((name) => isVariantLabel(props[name]));
-}
-function isVariantNode(props) {
-  return Boolean(isControllingVariants(props) || props.variants);
-}
-
-// node_modules/motion-dom/dist/es/render/utils/motion-values.mjs
-function updateMotionValuesFromProps(element, next2, prev) {
-  for (const key in next2) {
-    const nextValue = next2[key];
-    const prevValue = prev[key];
-    if (isMotionValue(nextValue)) {
-      element.addValue(key, nextValue);
-    } else if (isMotionValue(prevValue)) {
-      element.addValue(key, motionValue(nextValue, { owner: element }));
-    } else if (prevValue !== nextValue) {
-      if (element.hasValue(key)) {
-        const existingValue = element.getValue(key);
-        if (existingValue.liveStyle === true) {
-          existingValue.jump(nextValue);
-        } else if (!existingValue.hasAnimated) {
-          existingValue.set(nextValue);
-        }
-      } else {
-        const latestValue = element.getStaticValue(key);
-        element.addValue(key, motionValue(latestValue !== void 0 ? latestValue : nextValue, { owner: element }));
+function __spreadArray(to, from, pack2) {
+  if (pack2 || arguments.length === 2)
+    for (var i = 0, l = from.length, ar; i < l; i++) {
+      if (ar || !(i in from)) {
+        if (!ar)
+          ar = Array.prototype.slice.call(from, 0, i);
+        ar[i] = from[i];
       }
     }
-  }
-  for (const key in prev) {
-    if (next2[key] === void 0)
-      element.removeValue(key);
-  }
-  return next2;
+  return to.concat(ar || from);
 }
-
-// node_modules/motion-dom/dist/es/render/utils/reduced-motion/state.mjs
-var prefersReducedMotion = { current: null };
-var hasReducedMotionListener = { current: false };
-
-// node_modules/motion-dom/dist/es/render/utils/reduced-motion/index.mjs
-var isBrowser2 = typeof window !== "undefined";
-function initPrefersReducedMotion() {
-  hasReducedMotionListener.current = true;
-  if (!isBrowser2)
-    return;
-  if (window.matchMedia) {
-    const motionMediaQuery = window.matchMedia("(prefers-reduced-motion)");
-    const setReducedMotionPreferences = () => prefersReducedMotion.current = motionMediaQuery.matches;
-    motionMediaQuery.addEventListener("change", setReducedMotionPreferences);
-    setReducedMotionPreferences();
+function hue2rgb(t1, t2, hue) {
+  if (hue < 0) {
+    hue += 1;
+  }
+  if (hue >= 1) {
+    hue -= 1;
+  }
+  if (hue < 1 / 6) {
+    return (t2 - t1) * hue * 6 + t1;
+  } else if (hue < 1 / 2) {
+    return t2;
+  } else if (hue < 2 / 3) {
+    return (t2 - t1) * 6 * (2 / 3 - hue) + t1;
   } else {
-    prefersReducedMotion.current = false;
+    return t1;
   }
 }
-
-// node_modules/motion-dom/dist/es/render/VisualElement.mjs
-var propEventHandlers = [
-  "AnimationStart",
-  "AnimationComplete",
-  "Update",
-  "BeforeLayoutMeasure",
-  "LayoutMeasure",
-  "LayoutAnimationStart",
-  "LayoutAnimationComplete"
-];
-var featureDefinitions = {};
-function setFeatureDefinitions(definitions) {
-  featureDefinitions = definitions;
+function isSupportedImage(value) {
+  return !(value.type === 20 && value.value === "none") && (value.type !== 18 || !!SUPPORTED_IMAGE_FUNCTIONS[value.name]);
 }
-function getFeatureDefinitions() {
-  return featureDefinitions;
-}
-var VisualElement = class {
-  /**
-   * This method takes React props and returns found MotionValues. For example, HTML
-   * MotionValues will be found within the style prop, whereas for Three.js within attribute arrays.
-   *
-   * This isn't an abstract method as it needs calling in the constructor, but it is
-   * intended to be one.
-   */
-  scrapeMotionValuesFromProps(_props, _prevProps, _visualElement) {
-    return {};
-  }
-  constructor({ parent, props, presenceContext, reducedMotionConfig, skipAnimations, blockInitialAnimation, visualState }, options = {}) {
-    this.current = null;
-    this.children = /* @__PURE__ */ new Set();
-    this.isVariantNode = false;
-    this.isControllingVariants = false;
-    this.shouldReduceMotion = null;
-    this.shouldSkipAnimations = false;
-    this.values = /* @__PURE__ */ new Map();
-    this.KeyframeResolver = KeyframeResolver;
-    this.features = {};
-    this.valueSubscriptions = /* @__PURE__ */ new Map();
-    this.prevMotionValues = {};
-    this.hasBeenMounted = false;
-    this.events = {};
-    this.propEventSubscriptions = {};
-    this.notifyUpdate = () => this.notify("Update", this.latestValues);
-    this.render = () => {
-      if (!this.current)
-        return;
-      this.triggerBuild();
-      this.renderInstance(this.current, this.renderState, this.props.style, this.projection);
-    };
-    this.renderScheduledAt = 0;
-    this.scheduleRender = () => {
-      const now2 = time.now();
-      if (this.renderScheduledAt < now2) {
-        this.renderScheduledAt = now2;
-        frame.render(this.render, false, true);
-      }
-    };
-    const { latestValues, renderState } = visualState;
-    this.latestValues = latestValues;
-    this.baseTarget = { ...latestValues };
-    this.initialValues = props.initial ? { ...latestValues } : {};
-    this.renderState = renderState;
-    this.parent = parent;
-    this.props = props;
-    this.presenceContext = presenceContext;
-    this.depth = parent ? parent.depth + 1 : 0;
-    this.reducedMotionConfig = reducedMotionConfig;
-    this.skipAnimationsConfig = skipAnimations;
-    this.options = options;
-    this.blockInitialAnimation = Boolean(blockInitialAnimation);
-    this.isControllingVariants = isControllingVariants(props);
-    this.isVariantNode = isVariantNode(props);
-    if (this.isVariantNode) {
-      this.variantChildren = /* @__PURE__ */ new Set();
-    }
-    this.manuallyAnimateOnMount = Boolean(parent && parent.current);
-    const { willChange, ...initialMotionValues } = this.scrapeMotionValuesFromProps(props, {}, this);
-    for (const key in initialMotionValues) {
-      const value = initialMotionValues[key];
-      if (latestValues[key] !== void 0 && isMotionValue(value)) {
-        value.set(latestValues[key]);
-      }
-    }
-  }
-  mount(instance) {
-    var _a, _b;
-    if (this.hasBeenMounted) {
-      for (const key in this.initialValues) {
-        (_a = this.values.get(key)) == null ? void 0 : _a.jump(this.initialValues[key]);
-        this.latestValues[key] = this.initialValues[key];
-      }
-    }
-    this.current = instance;
-    visualElementStore.set(instance, this);
-    if (this.projection && !this.projection.instance) {
-      this.projection.mount(instance);
-    }
-    if (this.parent && this.isVariantNode && !this.isControllingVariants) {
-      this.removeFromVariantTree = this.parent.addVariantChild(this);
-    }
-    this.values.forEach((value, key) => this.bindToMotionValue(key, value));
-    if (this.reducedMotionConfig === "never") {
-      this.shouldReduceMotion = false;
-    } else if (this.reducedMotionConfig === "always") {
-      this.shouldReduceMotion = true;
-    } else {
-      if (!hasReducedMotionListener.current) {
-        initPrefersReducedMotion();
-      }
-      this.shouldReduceMotion = prefersReducedMotion.current;
-    }
-    if (true) {
-      warnOnce(this.shouldReduceMotion !== true, "You have Reduced Motion enabled on your device. Animations may not appear as expected.", "reduced-motion-disabled");
-    }
-    this.shouldSkipAnimations = this.skipAnimationsConfig ?? false;
-    (_b = this.parent) == null ? void 0 : _b.addChild(this);
-    this.update(this.props, this.presenceContext);
-    this.hasBeenMounted = true;
-  }
-  unmount() {
-    var _a;
-    this.projection && this.projection.unmount();
-    cancelFrame(this.notifyUpdate);
-    cancelFrame(this.render);
-    this.valueSubscriptions.forEach((remove) => remove());
-    this.valueSubscriptions.clear();
-    this.removeFromVariantTree && this.removeFromVariantTree();
-    (_a = this.parent) == null ? void 0 : _a.removeChild(this);
-    for (const key in this.events) {
-      this.events[key].clear();
-    }
-    for (const key in this.features) {
-      const feature = this.features[key];
-      if (feature) {
-        feature.unmount();
-        feature.isMounted = false;
-      }
-    }
-    this.current = null;
-  }
-  addChild(child) {
-    this.children.add(child);
-    this.enteringChildren ?? (this.enteringChildren = /* @__PURE__ */ new Set());
-    this.enteringChildren.add(child);
-  }
-  removeChild(child) {
-    this.children.delete(child);
-    this.enteringChildren && this.enteringChildren.delete(child);
-  }
-  bindToMotionValue(key, value) {
-    if (this.valueSubscriptions.has(key)) {
-      this.valueSubscriptions.get(key)();
-    }
-    if (value.accelerate && acceleratedValues.has(key) && this.current instanceof HTMLElement) {
-      const { factory, keyframes: keyframes2, times, ease: ease2, duration } = value.accelerate;
-      const animation = new NativeAnimation({
-        element: this.current,
-        name: key,
-        keyframes: keyframes2,
-        times,
-        ease: ease2,
-        duration: secondsToMilliseconds(duration)
-      });
-      const cleanup = factory(animation);
-      this.valueSubscriptions.set(key, () => {
-        cleanup();
-        animation.cancel();
-      });
-      return;
-    }
-    const valueIsTransform = transformProps.has(key);
-    if (valueIsTransform && this.onBindTransform) {
-      this.onBindTransform();
-    }
-    const removeOnChange = value.on("change", (latestValue) => {
-      this.latestValues[key] = latestValue;
-      this.props.onUpdate && frame.preRender(this.notifyUpdate);
-      if (valueIsTransform && this.projection) {
-        this.projection.isTransformDirty = true;
-      }
-      this.scheduleRender();
-    });
-    let removeSyncCheck;
-    if (typeof window !== "undefined" && window.MotionCheckAppearSync) {
-      removeSyncCheck = window.MotionCheckAppearSync(this, key, value);
-    }
-    this.valueSubscriptions.set(key, () => {
-      removeOnChange();
-      if (removeSyncCheck)
-        removeSyncCheck();
-      if (value.owner)
-        value.stop();
-    });
-  }
-  sortNodePosition(other) {
-    if (!this.current || !this.sortInstanceNodePosition || this.type !== other.type) {
-      return 0;
-    }
-    return this.sortInstanceNodePosition(this.current, other.current);
-  }
-  updateFeatures() {
-    let key = "animation";
-    for (key in featureDefinitions) {
-      const featureDefinition = featureDefinitions[key];
-      if (!featureDefinition)
-        continue;
-      const { isEnabled, Feature: FeatureConstructor } = featureDefinition;
-      if (!this.features[key] && FeatureConstructor && isEnabled(this.props)) {
-        this.features[key] = new FeatureConstructor(this);
-      }
-      if (this.features[key]) {
-        const feature = this.features[key];
-        if (feature.isMounted) {
-          feature.update();
-        } else {
-          feature.mount();
-          feature.isMounted = true;
-        }
-      }
-    }
-  }
-  triggerBuild() {
-    this.build(this.renderState, this.latestValues, this.props);
-  }
-  /**
-   * Measure the current viewport box with or without transforms.
-   * Only measures axis-aligned boxes, rotate and skew must be manually
-   * removed with a re-render to work.
-   */
-  measureViewportBox() {
-    return this.current ? this.measureInstanceViewportBox(this.current, this.props) : createBox();
-  }
-  getStaticValue(key) {
-    return this.latestValues[key];
-  }
-  setStaticValue(key, value) {
-    this.latestValues[key] = value;
-  }
-  /**
-   * Update the provided props. Ensure any newly-added motion values are
-   * added to our map, old ones removed, and listeners updated.
-   */
-  update(props, presenceContext) {
-    if (props.transformTemplate || this.props.transformTemplate) {
-      this.scheduleRender();
-    }
-    this.prevProps = this.props;
-    this.props = props;
-    this.prevPresenceContext = this.presenceContext;
-    this.presenceContext = presenceContext;
-    for (let i = 0; i < propEventHandlers.length; i++) {
-      const key = propEventHandlers[i];
-      if (this.propEventSubscriptions[key]) {
-        this.propEventSubscriptions[key]();
-        delete this.propEventSubscriptions[key];
-      }
-      const listenerName = "on" + key;
-      const listener = props[listenerName];
-      if (listener) {
-        this.propEventSubscriptions[key] = this.on(key, listener);
-      }
-    }
-    this.prevMotionValues = updateMotionValuesFromProps(this, this.scrapeMotionValuesFromProps(props, this.prevProps || {}, this), this.prevMotionValues);
-    if (this.handleChildMotionValue) {
-      this.handleChildMotionValue();
-    }
-  }
-  getProps() {
-    return this.props;
-  }
-  /**
-   * Returns the variant definition with a given name.
-   */
-  getVariant(name) {
-    return this.props.variants ? this.props.variants[name] : void 0;
-  }
-  /**
-   * Returns the defined default transition on this component.
-   */
-  getDefaultTransition() {
-    return this.props.transition;
-  }
-  getTransformPagePoint() {
-    return this.props.transformPagePoint;
-  }
-  getClosestVariantNode() {
-    return this.isVariantNode ? this : this.parent ? this.parent.getClosestVariantNode() : void 0;
-  }
-  /**
-   * Add a child visual element to our set of children.
-   */
-  addVariantChild(child) {
-    const closestVariantNode = this.getClosestVariantNode();
-    if (closestVariantNode) {
-      closestVariantNode.variantChildren && closestVariantNode.variantChildren.add(child);
-      return () => closestVariantNode.variantChildren.delete(child);
-    }
-  }
-  /**
-   * Add a motion value and bind it to this visual element.
-   */
-  addValue(key, value) {
-    const existingValue = this.values.get(key);
-    if (value !== existingValue) {
-      if (existingValue)
-        this.removeValue(key);
-      this.bindToMotionValue(key, value);
-      this.values.set(key, value);
-      this.latestValues[key] = value.get();
-    }
-  }
-  /**
-   * Remove a motion value and unbind any active subscriptions.
-   */
-  removeValue(key) {
-    this.values.delete(key);
-    const unsubscribe = this.valueSubscriptions.get(key);
-    if (unsubscribe) {
-      unsubscribe();
-      this.valueSubscriptions.delete(key);
-    }
-    delete this.latestValues[key];
-    this.removeValueFromRenderState(key, this.renderState);
-  }
-  /**
-   * Check whether we have a motion value for this key
-   */
-  hasValue(key) {
-    return this.values.has(key);
-  }
-  getValue(key, defaultValue) {
-    if (this.props.values && this.props.values[key]) {
-      return this.props.values[key];
-    }
-    let value = this.values.get(key);
-    if (value === void 0 && defaultValue !== void 0) {
-      value = motionValue(defaultValue === null ? void 0 : defaultValue, { owner: this });
-      this.addValue(key, value);
-    }
-    return value;
-  }
-  /**
-   * If we're trying to animate to a previously unencountered value,
-   * we need to check for it in our state and as a last resort read it
-   * directly from the instance (which might have performance implications).
-   */
-  readValue(key, target) {
-    let value = this.latestValues[key] !== void 0 || !this.current ? this.latestValues[key] : this.getBaseTargetFromProps(this.props, key) ?? this.readValueFromInstance(this.current, key, this.options);
-    if (value !== void 0 && value !== null) {
-      if (typeof value === "string" && (isNumericalString(value) || isZeroValueString(value))) {
-        value = parseFloat(value);
-      } else if (!findValueType(value) && complex.test(target)) {
-        value = getAnimatableNone2(key, target);
-      }
-      this.setBaseTarget(key, isMotionValue(value) ? value.get() : value);
-    }
-    return isMotionValue(value) ? value.get() : value;
-  }
-  /**
-   * Set the base target to later animate back to. This is currently
-   * only hydrated on creation and when we first read a value.
-   */
-  setBaseTarget(key, value) {
-    this.baseTarget[key] = value;
-  }
-  /**
-   * Find the base target for a value thats been removed from all animation
-   * props.
-   */
-  getBaseTarget(key) {
-    var _a;
-    const { initial } = this.props;
-    let valueFromInitial;
-    if (typeof initial === "string" || typeof initial === "object") {
-      const variant = resolveVariantFromProps(this.props, initial, (_a = this.presenceContext) == null ? void 0 : _a.custom);
-      if (variant) {
-        valueFromInitial = variant[key];
-      }
-    }
-    if (initial && valueFromInitial !== void 0) {
-      return valueFromInitial;
-    }
-    const target = this.getBaseTargetFromProps(this.props, key);
-    if (target !== void 0 && !isMotionValue(target))
-      return target;
-    return this.initialValues[key] !== void 0 && valueFromInitial === void 0 ? void 0 : this.baseTarget[key];
-  }
-  on(eventName, callback) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = new SubscriptionManager();
-    }
-    return this.events[eventName].add(callback);
-  }
-  notify(eventName, ...args) {
-    if (this.events[eventName]) {
-      this.events[eventName].notify(...args);
-    }
-  }
-  scheduleRenderMicrotask() {
-    microtask.render(this.render);
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/dom/DOMVisualElement.mjs
-var DOMVisualElement = class extends VisualElement {
-  constructor() {
-    super(...arguments);
-    this.KeyframeResolver = DOMKeyframesResolver;
-  }
-  sortInstanceNodePosition(a, b) {
-    return a.compareDocumentPosition(b) & 2 ? 1 : -1;
-  }
-  getBaseTargetFromProps(props, key) {
-    const style2 = props.style;
-    return style2 ? style2[key] : void 0;
-  }
-  removeValueFromRenderState(key, { vars, style: style2 }) {
-    delete vars[key];
-    delete style2[key];
-  }
-  handleChildMotionValue() {
-    if (this.childSubscription) {
-      this.childSubscription();
-      delete this.childSubscription;
-    }
-    const { children } = this.props;
-    if (isMotionValue(children)) {
-      this.childSubscription = children.on("change", (latest) => {
-        if (this.current) {
-          this.current.textContent = `${latest}`;
-        }
-      });
-    }
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/Feature.mjs
-var Feature = class {
-  constructor(node) {
-    this.isMounted = false;
-    this.node = node;
-  }
-  update() {
-  }
-};
-
-// node_modules/motion-dom/dist/es/projection/geometry/conversion.mjs
-function convertBoundingBoxToBox({ top, left, right, bottom }) {
-  return {
-    x: { min: left, max: right },
-    y: { min: top, max: bottom }
-  };
-}
-function convertBoxToBoundingBox({ x, y }) {
-  return { top: y.min, right: x.max, bottom: y.max, left: x.min };
-}
-function transformBoxPoints(point2, transformPoint2) {
-  if (!transformPoint2)
-    return point2;
-  const topLeft = transformPoint2({ x: point2.left, y: point2.top });
-  const bottomRight = transformPoint2({ x: point2.right, y: point2.bottom });
-  return {
-    top: topLeft.y,
-    left: topLeft.x,
-    bottom: bottomRight.y,
-    right: bottomRight.x
-  };
-}
-
-// node_modules/motion-dom/dist/es/projection/utils/has-transform.mjs
-function isIdentityScale(scale2) {
-  return scale2 === void 0 || scale2 === 1;
-}
-function hasScale({ scale: scale2, scaleX: scaleX2, scaleY: scaleY2 }) {
-  return !isIdentityScale(scale2) || !isIdentityScale(scaleX2) || !isIdentityScale(scaleY2);
-}
-function hasTransform(values) {
-  return hasScale(values) || has2DTranslate(values) || values.z || values.rotate || values.rotateX || values.rotateY || values.skewX || values.skewY;
-}
-function has2DTranslate(values) {
-  return is2DTranslate(values.x) || is2DTranslate(values.y);
-}
-function is2DTranslate(value) {
-  return value && value !== "0%";
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/delta-apply.mjs
-function scalePoint(point2, scale2, originPoint) {
-  const distanceFromOrigin = point2 - originPoint;
-  const scaled = scale2 * distanceFromOrigin;
-  return originPoint + scaled;
-}
-function applyPointDelta(point2, translate, scale2, originPoint, boxScale) {
-  if (boxScale !== void 0) {
-    point2 = scalePoint(point2, boxScale, originPoint);
-  }
-  return scalePoint(point2, scale2, originPoint) + translate;
-}
-function applyAxisDelta(axis, translate = 0, scale2 = 1, originPoint, boxScale) {
-  axis.min = applyPointDelta(axis.min, translate, scale2, originPoint, boxScale);
-  axis.max = applyPointDelta(axis.max, translate, scale2, originPoint, boxScale);
-}
-function applyBoxDelta(box, { x, y }) {
-  applyAxisDelta(box.x, x.translate, x.scale, x.originPoint);
-  applyAxisDelta(box.y, y.translate, y.scale, y.originPoint);
-}
-var TREE_SCALE_SNAP_MIN = 0.999999999999;
-var TREE_SCALE_SNAP_MAX = 1.0000000000001;
-function applyTreeDeltas(box, treeScale, treePath, isSharedTransition = false) {
-  var _a;
-  const treeLength = treePath.length;
-  if (!treeLength)
-    return;
-  treeScale.x = treeScale.y = 1;
-  let node;
-  let delta;
-  for (let i = 0; i < treeLength; i++) {
-    node = treePath[i];
-    delta = node.projectionDelta;
-    const { visualElement } = node.options;
-    if (visualElement && visualElement.props.style && visualElement.props.style.display === "contents") {
-      continue;
-    }
-    if (isSharedTransition && node.options.layoutScroll && node.scroll && node !== node.root) {
-      translateAxis(box.x, -node.scroll.offset.x);
-      translateAxis(box.y, -node.scroll.offset.y);
-    }
-    if (delta) {
-      treeScale.x *= delta.x.scale;
-      treeScale.y *= delta.y.scale;
-      applyBoxDelta(box, delta);
-    }
-    if (isSharedTransition && hasTransform(node.latestValues)) {
-      transformBox(box, node.latestValues, (_a = node.layout) == null ? void 0 : _a.layoutBox);
-    }
-  }
-  if (treeScale.x < TREE_SCALE_SNAP_MAX && treeScale.x > TREE_SCALE_SNAP_MIN) {
-    treeScale.x = 1;
-  }
-  if (treeScale.y < TREE_SCALE_SNAP_MAX && treeScale.y > TREE_SCALE_SNAP_MIN) {
-    treeScale.y = 1;
-  }
-}
-function translateAxis(axis, distance2) {
-  axis.min += distance2;
-  axis.max += distance2;
-}
-function transformAxis(axis, axisTranslate, axisScale, boxScale, axisOrigin = 0.5) {
-  const originPoint = mixNumber(axis.min, axis.max, axisOrigin);
-  applyAxisDelta(axis, axisTranslate, axisScale, originPoint, boxScale);
-}
-function resolveAxisTranslate(value, axis) {
-  if (typeof value === "string") {
-    return parseFloat(value) / 100 * (axis.max - axis.min);
-  }
-  return value;
-}
-function transformBox(box, transform2, sourceBox) {
-  const resolveBox = sourceBox ?? box;
-  transformAxis(box.x, resolveAxisTranslate(transform2.x, resolveBox.x), transform2.scaleX, transform2.scale, transform2.originX);
-  transformAxis(box.y, resolveAxisTranslate(transform2.y, resolveBox.y), transform2.scaleY, transform2.scale, transform2.originY);
-}
-
-// node_modules/motion-dom/dist/es/projection/utils/measure.mjs
-function measureViewportBox(instance, transformPoint2) {
-  return convertBoundingBoxToBox(transformBoxPoints(instance.getBoundingClientRect(), transformPoint2));
-}
-function measurePageBox(element, rootProjectionNode2, transformPagePoint) {
-  const viewportBox = measureViewportBox(element, transformPagePoint);
-  const { scroll: scroll2 } = rootProjectionNode2;
-  if (scroll2) {
-    translateAxis(viewportBox.x, scroll2.offset.x);
-    translateAxis(viewportBox.y, scroll2.offset.y);
-  }
-  return viewportBox;
-}
-
-// node_modules/motion-dom/dist/es/render/html/utils/build-transform.mjs
-var translateAlias2 = {
-  x: "translateX",
-  y: "translateY",
-  z: "translateZ",
-  transformPerspective: "perspective"
-};
-var numTransforms = transformPropOrder.length;
-function buildTransform2(latestValues, transform2, transformTemplate) {
-  let transformString = "";
-  let transformIsDefault = true;
-  for (let i = 0; i < numTransforms; i++) {
-    const key = transformPropOrder[i];
-    const value = latestValues[key];
-    if (value === void 0)
-      continue;
-    let valueIsDefault = true;
-    if (typeof value === "number") {
-      valueIsDefault = value === (key.startsWith("scale") ? 1 : 0);
-    } else {
-      const parsed = parseFloat(value);
-      valueIsDefault = key.startsWith("scale") ? parsed === 1 : parsed === 0;
-    }
-    if (!valueIsDefault || transformTemplate) {
-      const valueAsType = getValueAsType(value, numberValueTypes[key]);
-      if (!valueIsDefault) {
-        transformIsDefault = false;
-        const transformName = translateAlias2[key] || key;
-        transformString += `${transformName}(${valueAsType}) `;
-      }
-      if (transformTemplate) {
-        transform2[key] = valueAsType;
-      }
-    }
-  }
-  transformString = transformString.trim();
-  if (transformTemplate) {
-    transformString = transformTemplate(transform2, transformIsDefault ? "" : transformString);
-  } else if (transformIsDefault) {
-    transformString = "none";
-  }
-  return transformString;
-}
-
-// node_modules/motion-dom/dist/es/render/html/utils/build-styles.mjs
-function buildHTMLStyles(state, latestValues, transformTemplate) {
-  const { style: style2, vars, transformOrigin } = state;
-  let hasTransform2 = false;
-  let hasTransformOrigin = false;
-  for (const key in latestValues) {
-    const value = latestValues[key];
-    if (transformProps.has(key)) {
-      hasTransform2 = true;
-      continue;
-    } else if (isCSSVariableName(key)) {
-      vars[key] = value;
-      continue;
-    } else {
-      const valueAsType = getValueAsType(value, numberValueTypes[key]);
-      if (key.startsWith("origin")) {
-        hasTransformOrigin = true;
-        transformOrigin[key] = valueAsType;
-      } else {
-        style2[key] = valueAsType;
-      }
-    }
-  }
-  if (!latestValues.transform) {
-    if (hasTransform2 || transformTemplate) {
-      style2.transform = buildTransform2(latestValues, state.transform, transformTemplate);
-    } else if (style2.transform) {
-      style2.transform = "none";
-    }
-  }
-  if (hasTransformOrigin) {
-    const { originX = "50%", originY = "50%", originZ = 0 } = transformOrigin;
-    style2.transformOrigin = `${originX} ${originY} ${originZ}`;
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/html/utils/render.mjs
-function renderHTML(element, { style: style2, vars }, styleProp, projection) {
-  const elementStyle = element.style;
-  let key;
-  for (key in style2) {
-    elementStyle[key] = style2[key];
-  }
-  projection == null ? void 0 : projection.applyProjectionStyles(elementStyle, styleProp);
-  for (key in vars) {
-    elementStyle.setProperty(key, vars[key]);
-  }
-}
-
-// node_modules/motion-dom/dist/es/projection/styles/scale-border-radius.mjs
-function pixelsToPercent(pixels, axis) {
-  if (axis.max === axis.min)
-    return 0;
-  return pixels / (axis.max - axis.min) * 100;
-}
-var correctBorderRadius = {
-  correct: (latest, node) => {
-    if (!node.target)
-      return latest;
-    if (typeof latest === "string") {
-      if (px.test(latest)) {
-        latest = parseFloat(latest);
-      } else {
-        return latest;
-      }
-    }
-    const x = pixelsToPercent(latest, node.target.x);
-    const y = pixelsToPercent(latest, node.target.y);
-    return `${x}% ${y}%`;
-  }
-};
-
-// node_modules/motion-dom/dist/es/projection/styles/scale-box-shadow.mjs
-var correctBoxShadow = {
-  correct: (latest, { treeScale, projectionDelta }) => {
-    const original = latest;
-    const shadow = complex.parse(latest);
-    if (shadow.length > 5)
-      return original;
-    const template = complex.createTransformer(latest);
-    const offset = typeof shadow[0] !== "number" ? 1 : 0;
-    const xScale = projectionDelta.x.scale * treeScale.x;
-    const yScale = projectionDelta.y.scale * treeScale.y;
-    shadow[0 + offset] /= xScale;
-    shadow[1 + offset] /= yScale;
-    const averageScale = mixNumber(xScale, yScale, 0.5);
-    if (typeof shadow[2 + offset] === "number")
-      shadow[2 + offset] /= averageScale;
-    if (typeof shadow[3 + offset] === "number")
-      shadow[3 + offset] /= averageScale;
-    return template(shadow);
-  }
-};
-
-// node_modules/motion-dom/dist/es/projection/styles/scale-correction.mjs
-var scaleCorrectors = {
-  borderRadius: {
-    ...correctBorderRadius,
-    applyTo: [
-      "borderTopLeftRadius",
-      "borderTopRightRadius",
-      "borderBottomLeftRadius",
-      "borderBottomRightRadius"
-    ]
-  },
-  borderTopLeftRadius: correctBorderRadius,
-  borderTopRightRadius: correctBorderRadius,
-  borderBottomLeftRadius: correctBorderRadius,
-  borderBottomRightRadius: correctBorderRadius,
-  boxShadow: correctBoxShadow
-};
-function addScaleCorrector(correctors) {
-  for (const key in correctors) {
-    scaleCorrectors[key] = correctors[key];
-    if (isCSSVariableName(key)) {
-      scaleCorrectors[key].isCSSVariable = true;
-    }
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/utils/is-forced-motion-value.mjs
-function isForcedMotionValue(key, { layout: layout2, layoutId }) {
-  return transformProps.has(key) || key.startsWith("origin") || (layout2 || layoutId !== void 0) && (!!scaleCorrectors[key] || key === "opacity");
-}
-
-// node_modules/motion-dom/dist/es/render/html/utils/scrape-motion-values.mjs
-function scrapeMotionValuesFromProps(props, prevProps, visualElement) {
-  var _a;
-  const style2 = props.style;
-  const prevStyle = prevProps == null ? void 0 : prevProps.style;
-  const newValues = {};
-  if (!style2)
-    return newValues;
-  for (const key in style2) {
-    if (isMotionValue(style2[key]) || prevStyle && isMotionValue(prevStyle[key]) || isForcedMotionValue(key, props) || ((_a = visualElement == null ? void 0 : visualElement.getValue(key)) == null ? void 0 : _a.liveStyle) !== void 0) {
-      newValues[key] = style2[key];
-    }
-  }
-  return newValues;
-}
-
-// node_modules/motion-dom/dist/es/render/html/HTMLVisualElement.mjs
-function getComputedStyle3(element) {
-  return window.getComputedStyle(element);
-}
-var HTMLVisualElement = class extends DOMVisualElement {
-  constructor() {
-    super(...arguments);
-    this.type = "html";
-    this.renderInstance = renderHTML;
-  }
-  readValueFromInstance(instance, key) {
-    var _a;
-    if (transformProps.has(key)) {
-      return ((_a = this.projection) == null ? void 0 : _a.isProjecting) ? defaultTransformValue(key) : readTransformValue(instance, key);
-    } else {
-      const computedStyle = getComputedStyle3(instance);
-      const value = (isCSSVariableName(key) ? computedStyle.getPropertyValue(key) : computedStyle[key]) || 0;
-      return typeof value === "string" ? value.trim() : value;
-    }
-  }
-  measureInstanceViewportBox(instance, { transformPagePoint }) {
-    return measureViewportBox(instance, transformPagePoint);
-  }
-  build(renderState, latestValues, props) {
-    buildHTMLStyles(renderState, latestValues, props.transformTemplate);
-  }
-  scrapeMotionValuesFromProps(props, prevProps, visualElement) {
-    return scrapeMotionValuesFromProps(props, prevProps, visualElement);
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/object/ObjectVisualElement.mjs
-function isObjectKey(key, object) {
-  return key in object;
-}
-var ObjectVisualElement = class extends VisualElement {
-  constructor() {
-    super(...arguments);
-    this.type = "object";
-  }
-  readValueFromInstance(instance, key) {
-    if (isObjectKey(key, instance)) {
-      const value = instance[key];
-      if (typeof value === "string" || typeof value === "number") {
-        return value;
-      }
-    }
-    return void 0;
-  }
-  getBaseTargetFromProps() {
-    return void 0;
-  }
-  removeValueFromRenderState(key, renderState) {
-    delete renderState.output[key];
-  }
-  measureInstanceViewportBox() {
-    return createBox();
-  }
-  build(renderState, latestValues) {
-    Object.assign(renderState.output, latestValues);
-  }
-  renderInstance(instance, { output }) {
-    Object.assign(instance, output);
-  }
-  sortInstanceNodePosition() {
-    return 0;
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/svg/utils/path.mjs
-var dashKeys = {
-  offset: "stroke-dashoffset",
-  array: "stroke-dasharray"
-};
-var camelKeys = {
-  offset: "strokeDashoffset",
-  array: "strokeDasharray"
-};
-function buildSVGPath(attrs, length, spacing = 1, offset = 0, useDashCase = true) {
-  attrs.pathLength = 1;
-  const keys2 = useDashCase ? dashKeys : camelKeys;
-  attrs[keys2.offset] = `${-offset}`;
-  attrs[keys2.array] = `${length} ${spacing}`;
-}
-
-// node_modules/motion-dom/dist/es/render/svg/utils/build-attrs.mjs
-var cssMotionPathProperties = [
-  "offsetDistance",
-  "offsetPath",
-  "offsetRotate",
-  "offsetAnchor"
-];
-function buildSVGAttrs(state, {
-  attrX,
-  attrY,
-  attrScale,
-  pathLength,
-  pathSpacing = 1,
-  pathOffset = 0,
-  // This is object creation, which we try to avoid per-frame.
-  ...latest
-}, isSVGTag2, transformTemplate, styleProp) {
-  buildHTMLStyles(state, latest, transformTemplate);
-  if (isSVGTag2) {
-    if (state.style.viewBox) {
-      state.attrs.viewBox = state.style.viewBox;
-    }
-    return;
-  }
-  state.attrs = state.style;
-  state.style = {};
-  const { attrs, style: style2 } = state;
-  if (attrs.transform) {
-    style2.transform = attrs.transform;
-    delete attrs.transform;
-  }
-  if (style2.transform || attrs.transformOrigin) {
-    style2.transformOrigin = attrs.transformOrigin ?? "50% 50%";
-    delete attrs.transformOrigin;
-  }
-  if (style2.transform) {
-    style2.transformBox = (styleProp == null ? void 0 : styleProp.transformBox) ?? "fill-box";
-    delete attrs.transformBox;
-  }
-  for (const key of cssMotionPathProperties) {
-    if (attrs[key] !== void 0) {
-      style2[key] = attrs[key];
-      delete attrs[key];
-    }
-  }
-  if (attrX !== void 0)
-    attrs.x = attrX;
-  if (attrY !== void 0)
-    attrs.y = attrY;
-  if (attrScale !== void 0)
-    attrs.scale = attrScale;
-  if (pathLength !== void 0) {
-    buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/svg/utils/camel-case-attrs.mjs
-var camelCaseAttributes = /* @__PURE__ */ new Set([
-  "baseFrequency",
-  "diffuseConstant",
-  "kernelMatrix",
-  "kernelUnitLength",
-  "keySplines",
-  "keyTimes",
-  "limitingConeAngle",
-  "markerHeight",
-  "markerWidth",
-  "numOctaves",
-  "targetX",
-  "targetY",
-  "surfaceScale",
-  "specularConstant",
-  "specularExponent",
-  "stdDeviation",
-  "tableValues",
-  "viewBox",
-  "gradientTransform",
-  "pathLength",
-  "startOffset",
-  "textLength",
-  "lengthAdjust"
-]);
-
-// node_modules/motion-dom/dist/es/render/svg/utils/is-svg-tag.mjs
-var isSVGTag = (tag) => typeof tag === "string" && tag.toLowerCase() === "svg";
-
-// node_modules/motion-dom/dist/es/render/svg/utils/render.mjs
-function renderSVG(element, renderState, _styleProp, projection) {
-  renderHTML(element, renderState, void 0, projection);
-  for (const key in renderState.attrs) {
-    element.setAttribute(!camelCaseAttributes.has(key) ? camelToDash(key) : key, renderState.attrs[key]);
-  }
-}
-
-// node_modules/motion-dom/dist/es/render/svg/utils/scrape-motion-values.mjs
-function scrapeMotionValuesFromProps2(props, prevProps, visualElement) {
-  const newValues = scrapeMotionValuesFromProps(props, prevProps, visualElement);
-  for (const key in props) {
-    if (isMotionValue(props[key]) || isMotionValue(prevProps[key])) {
-      const targetKey = transformPropOrder.indexOf(key) !== -1 ? "attr" + key.charAt(0).toUpperCase() + key.substring(1) : key;
-      newValues[targetKey] = props[key];
-    }
-  }
-  return newValues;
-}
-
-// node_modules/motion-dom/dist/es/render/svg/SVGVisualElement.mjs
-var SVGVisualElement = class extends DOMVisualElement {
-  constructor() {
-    super(...arguments);
-    this.type = "svg";
-    this.isSVGTag = false;
-    this.measureInstanceViewportBox = createBox;
-  }
-  getBaseTargetFromProps(props, key) {
-    return props[key];
-  }
-  readValueFromInstance(instance, key) {
-    if (transformProps.has(key)) {
-      const defaultType = getDefaultValueType(key);
-      return defaultType ? defaultType.default || 0 : 0;
-    }
-    key = !camelCaseAttributes.has(key) ? camelToDash(key) : key;
-    return instance.getAttribute(key);
-  }
-  scrapeMotionValuesFromProps(props, prevProps, visualElement) {
-    return scrapeMotionValuesFromProps2(props, prevProps, visualElement);
-  }
-  build(renderState, latestValues, props) {
-    buildSVGAttrs(renderState, latestValues, this.isSVGTag, props.transformTemplate, props.style);
-  }
-  renderInstance(instance, renderState, styleProp, projection) {
-    renderSVG(instance, renderState, styleProp, projection);
-  }
-  mount(instance) {
-    this.isSVGTag = isSVGTag(instance.tagName);
-    super.mount(instance);
-  }
-};
-
-// node_modules/motion-dom/dist/es/render/utils/get-variant-context.mjs
-var numVariantProps = variantProps.length;
-function getVariantContext(visualElement) {
-  if (!visualElement)
-    return void 0;
-  if (!visualElement.isControllingVariants) {
-    const context2 = visualElement.parent ? getVariantContext(visualElement.parent) || {} : {};
-    if (visualElement.props.initial !== void 0) {
-      context2.initial = visualElement.props.initial;
-    }
-    return context2;
-  }
-  const context = {};
-  for (let i = 0; i < numVariantProps; i++) {
-    const name = variantProps[i];
-    const prop = visualElement.props[name];
-    if (isVariantLabel(prop) || prop === false) {
-      context[name] = prop;
-    }
-  }
-  return context;
-}
-
-// node_modules/motion-dom/dist/es/render/utils/shallow-compare.mjs
-function shallowCompare(next2, prev) {
-  if (!Array.isArray(prev))
-    return false;
-  const prevLength = prev.length;
-  if (prevLength !== next2.length)
-    return false;
-  for (let i = 0; i < prevLength; i++) {
-    if (prev[i] !== next2[i])
-      return false;
-  }
-  return true;
-}
-
-// node_modules/motion-dom/dist/es/render/utils/animation-state.mjs
-var reversePriorityOrder = [...variantPriorityOrder].reverse();
-var numAnimationTypes = variantPriorityOrder.length;
-function createAnimateFunction(visualElement) {
-  return (animations2) => {
-    return Promise.all(animations2.map(({ animation, options }) => animateVisualElement(visualElement, animation, options)));
-  };
-}
-function createAnimationState(visualElement) {
-  let animate2 = createAnimateFunction(visualElement);
-  let state = createState();
-  let isInitialRender = true;
-  let wasReset = false;
-  const buildResolvedTypeValues = (type) => (acc, definition) => {
-    var _a;
-    const resolved = resolveVariant(visualElement, definition, type === "exit" ? (_a = visualElement.presenceContext) == null ? void 0 : _a.custom : void 0);
-    if (resolved) {
-      const { transition, transitionEnd, ...target } = resolved;
-      acc = { ...acc, ...target, ...transitionEnd };
-    }
-    return acc;
-  };
-  function setAnimateFunction(makeAnimator) {
-    animate2 = makeAnimator(visualElement);
-  }
-  function animateChanges(changedActiveType) {
-    const { props } = visualElement;
-    const context = getVariantContext(visualElement.parent) || {};
-    const animations2 = [];
-    const removedKeys = /* @__PURE__ */ new Set();
-    let encounteredKeys = {};
-    let removedVariantIndex = Infinity;
-    for (let i = 0; i < numAnimationTypes; i++) {
-      const type = reversePriorityOrder[i];
-      const typeState = state[type];
-      const prop = props[type] !== void 0 ? props[type] : context[type];
-      const propIsVariant = isVariantLabel(prop);
-      const activeDelta = type === changedActiveType ? typeState.isActive : null;
-      if (activeDelta === false)
-        removedVariantIndex = i;
-      let isInherited = prop === context[type] && prop !== props[type] && propIsVariant;
-      if (isInherited && (isInitialRender || wasReset) && visualElement.manuallyAnimateOnMount) {
-        isInherited = false;
-      }
-      typeState.protectedKeys = { ...encounteredKeys };
-      if (
-        // If it isn't active and hasn't *just* been set as inactive
-        !typeState.isActive && activeDelta === null || // If we didn't and don't have any defined prop for this animation type
-        !prop && !typeState.prevProp || // Or if the prop doesn't define an animation
-        isAnimationControls(prop) || typeof prop === "boolean"
-      ) {
-        continue;
-      }
-      if (type === "exit" && typeState.isActive && activeDelta !== true) {
-        if (typeState.prevResolvedValues) {
-          encounteredKeys = {
-            ...encounteredKeys,
-            ...typeState.prevResolvedValues
-          };
-        }
-        continue;
-      }
-      const variantDidChange = checkVariantsDidChange(typeState.prevProp, prop);
-      let shouldAnimateType = variantDidChange || // If we're making this variant active, we want to always make it active
-      type === changedActiveType && typeState.isActive && !isInherited && propIsVariant || // If we removed a higher-priority variant (i is in reverse order)
-      i > removedVariantIndex && propIsVariant;
-      let handledRemovedValues = false;
-      const definitionList = Array.isArray(prop) ? prop : [prop];
-      let resolvedValues = definitionList.reduce(buildResolvedTypeValues(type), {});
-      if (activeDelta === false)
-        resolvedValues = {};
-      const { prevResolvedValues = {} } = typeState;
-      const allKeys = {
-        ...prevResolvedValues,
-        ...resolvedValues
+var extendStatics, __assign, Bounds, parseBounds, parseDocumentSize, toCodePoints$1, fromCodePoint$1, chars$2, lookup$2, i$2, chars$1$1, lookup$1$1, i$1$1, decode$1, polyUint16Array$1, polyUint32Array$1, UTRIE2_SHIFT_2$1, UTRIE2_SHIFT_1$1, UTRIE2_INDEX_SHIFT$1, UTRIE2_SHIFT_1_2$1, UTRIE2_LSCP_INDEX_2_OFFSET$1, UTRIE2_DATA_BLOCK_LENGTH$1, UTRIE2_DATA_MASK$1, UTRIE2_LSCP_INDEX_2_LENGTH$1, UTRIE2_INDEX_2_BMP_LENGTH$1, UTRIE2_UTF8_2B_INDEX_2_OFFSET$1, UTRIE2_UTF8_2B_INDEX_2_LENGTH$1, UTRIE2_INDEX_1_OFFSET$1, UTRIE2_OMITTED_BMP_INDEX_1_LENGTH$1, UTRIE2_INDEX_2_BLOCK_LENGTH$1, UTRIE2_INDEX_2_MASK$1, slice16$1, slice32$1, createTrieFromBase64$1, Trie$1, chars$3, lookup$3, i$3, base64$1, LETTER_NUMBER_MODIFIER, BK, CR$1, LF$1, CM, NL, WJ, ZW, GL, SP, ZWJ$1, B2, BA, BB, HY, CB, CL, CP, EX, IN, NS, OP, QU, IS, NU, PO, PR, SY, AI, AL, CJ, EB, EM, H2, H3, HL, ID, JL, JV, JT, RI$1, SA, XX, ea_OP, BREAK_MANDATORY, BREAK_NOT_ALLOWED$1, BREAK_ALLOWED$1, UnicodeTrie$1, ALPHABETICS, HARD_LINE_BREAKS, SPACE$1, PREFIX_POSTFIX, LINE_BREAKS, KOREAN_SYLLABLE_BLOCK, HYPHEN, codePointsToCharacterClasses, isAdjacentWithSpaceIgnored, previousNonSpaceClassType, _lineBreakAtIndex, cssFormattedClasses, Break, LineBreaker, FLAG_UNRESTRICTED, FLAG_ID, FLAG_INTEGER, FLAG_NUMBER, LINE_FEED, SOLIDUS, REVERSE_SOLIDUS, CHARACTER_TABULATION, SPACE, QUOTATION_MARK, EQUALS_SIGN, NUMBER_SIGN, DOLLAR_SIGN, PERCENTAGE_SIGN, APOSTROPHE, LEFT_PARENTHESIS, RIGHT_PARENTHESIS, LOW_LINE, HYPHEN_MINUS, EXCLAMATION_MARK, LESS_THAN_SIGN, GREATER_THAN_SIGN, COMMERCIAL_AT, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET, CIRCUMFLEX_ACCENT, LEFT_CURLY_BRACKET, QUESTION_MARK, RIGHT_CURLY_BRACKET, VERTICAL_LINE, TILDE, CONTROL, REPLACEMENT_CHARACTER, ASTERISK, PLUS_SIGN, COMMA, COLON, SEMICOLON, FULL_STOP, NULL, BACKSPACE, LINE_TABULATION, SHIFT_OUT, INFORMATION_SEPARATOR_ONE, DELETE, EOF, ZERO, a, e, f, u, z, A, E, F, U, Z, isDigit, isSurrogateCodePoint, isHex, isLowerCaseLetter, isUpperCaseLetter, isLetter, isNonASCIICodePoint, isWhiteSpace, isNameStartCodePoint, isNameCodePoint, isNonPrintableCodePoint, isValidEscape, isIdentifierStart, isNumberStart, stringToNumber, LEFT_PARENTHESIS_TOKEN, RIGHT_PARENTHESIS_TOKEN, COMMA_TOKEN, SUFFIX_MATCH_TOKEN, PREFIX_MATCH_TOKEN, COLUMN_TOKEN, DASH_MATCH_TOKEN, INCLUDE_MATCH_TOKEN, LEFT_CURLY_BRACKET_TOKEN, RIGHT_CURLY_BRACKET_TOKEN, SUBSTRING_MATCH_TOKEN, BAD_URL_TOKEN, BAD_STRING_TOKEN, CDO_TOKEN, CDC_TOKEN, COLON_TOKEN, SEMICOLON_TOKEN, LEFT_SQUARE_BRACKET_TOKEN, RIGHT_SQUARE_BRACKET_TOKEN, WHITESPACE_TOKEN, EOF_TOKEN, Tokenizer, Parser, isDimensionToken, isNumberToken, isIdentToken, isStringToken, isIdentWithValue, nonWhiteSpace, nonFunctionArgSeparator, parseFunctionArgs, isEndingTokenFor, isLength, isLengthPercentage, parseLengthPercentageTuple, ZERO_LENGTH, FIFTY_PERCENT, HUNDRED_PERCENT, getAbsoluteValueForTuple, getAbsoluteValue, DEG, GRAD, RAD, TURN, angle, isAngle, parseNamedSide, deg, color$1, isTransparent, asString, pack, getTokenColorValue, rgb, hsl, SUPPORTED_COLOR_FUNCTIONS, parseColor, COLORS, backgroundClip, backgroundColor, parseColorStop, processColorStops, getAngleFromCorner, calculateGradientDirection, distance, findCorner, calculateRadius, linearGradient, prefixLinearGradient, webkitGradient, CLOSEST_SIDE, FARTHEST_SIDE, CLOSEST_CORNER, FARTHEST_CORNER, CIRCLE, ELLIPSE, COVER, CONTAIN, radialGradient, prefixRadialGradient, isLinearGradient, isRadialGradient, image, SUPPORTED_IMAGE_FUNCTIONS, backgroundImage, backgroundOrigin, backgroundPosition, backgroundRepeat, parseBackgroundRepeat, BACKGROUND_SIZE, backgroundSize, isBackgroundSizeInfoToken, borderColorForSide, borderTopColor, borderRightColor, borderBottomColor, borderLeftColor, borderRadiusForSide, borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius, borderStyleForSide, borderTopStyle, borderRightStyle, borderBottomStyle, borderLeftStyle, borderWidthForSide, borderTopWidth, borderRightWidth, borderBottomWidth, borderLeftWidth, color, direction, display, parseDisplayValue, float, letterSpacing, LINE_BREAK, lineBreak, lineHeight, computeLineHeight, listStyleImage, listStylePosition, listStyleType, marginForSide, marginTop, marginRight, marginBottom, marginLeft, overflow, overflowWrap, paddingForSide, paddingTop, paddingRight, paddingBottom, paddingLeft, textAlign, position, textShadow, textTransform, transform$1, matrix, matrix3d, SUPPORTED_TRANSFORM_FUNCTIONS, DEFAULT_VALUE, DEFAULT, transformOrigin, visibility, WORD_BREAK, wordBreak, zIndex, time, opacity, textDecorationColor, textDecorationLine, fontFamily, fontSize, fontWeight, fontVariant, fontStyle, contains, content, counterIncrement, counterReset, duration, quotes, getQuote, boxShadow, paintOrder, webkitTextStrokeColor, webkitTextStrokeWidth, CSSParsedDeclaration, CSSParsedPseudoDeclaration, CSSParsedCounterDeclaration, parse, elementDebuggerAttribute, getElementDebugType, isDebugging, ElementContainer, base64, chars$1, lookup$1, i$1, decode, polyUint16Array, polyUint32Array, UTRIE2_SHIFT_2, UTRIE2_SHIFT_1, UTRIE2_INDEX_SHIFT, UTRIE2_SHIFT_1_2, UTRIE2_LSCP_INDEX_2_OFFSET, UTRIE2_DATA_BLOCK_LENGTH, UTRIE2_DATA_MASK, UTRIE2_LSCP_INDEX_2_LENGTH, UTRIE2_INDEX_2_BMP_LENGTH, UTRIE2_UTF8_2B_INDEX_2_OFFSET, UTRIE2_UTF8_2B_INDEX_2_LENGTH, UTRIE2_INDEX_1_OFFSET, UTRIE2_OMITTED_BMP_INDEX_1_LENGTH, UTRIE2_INDEX_2_BLOCK_LENGTH, UTRIE2_INDEX_2_MASK, slice16, slice32, createTrieFromBase64, Trie, chars, lookup, i, Prepend, CR, LF, Control, Extend, SpacingMark, L, V, T, LV, LVT, ZWJ, Extended_Pictographic, RI, toCodePoints, fromCodePoint, UnicodeTrie, BREAK_NOT_ALLOWED, BREAK_ALLOWED, codePointToClass, _graphemeBreakAtIndex, GraphemeBreaker, splitGraphemes, testRangeBounds, testIOSLineBreak, testCORS, testResponseType, testSVG, isGreenPixel, testForeignObject, createForeignObjectSVG, loadSerializedSVG$1, FEATURES, TextBounds, parseTextBounds, getWrapperBounds, createRange, segmentGraphemes, segmentWords, breakText, wordSeparators, breakWords, TextContainer, transform, CAPITALIZE, capitalize, ImageElementContainer, CanvasElementContainer, SVGElementContainer, LIElementContainer, OLElementContainer, CHECKBOX_BORDER_RADIUS, RADIO_BORDER_RADIUS, reformatInputBounds, getInputValue, CHECKBOX, RADIO, PASSWORD, INPUT_COLOR, InputElementContainer, SelectElementContainer, TextareaElementContainer, IFrameElementContainer, LIST_OWNERS, parseNodeTree, createContainer, parseTree, createsRealStackingContext, createsStackingContext, isTextNode, isElementNode, isHTMLElementNode, isSVGElementNode, isLIElement, isOLElement, isInputElement, isHTMLElement, isSVGElement, isBodyElement, isCanvasElement, isVideoElement, isImageElement, isIFrameElement, isStyleElement, isScriptElement, isTextareaElement, isSelectElement, isSlotElement, isCustomElement, CounterState, ROMAN_UPPER, ARMENIAN, HEBREW, GEORGIAN, createAdditiveCounter, createCounterStyleWithSymbolResolver, createCounterStyleFromRange, createCounterStyleFromSymbols, CJK_ZEROS, CJK_TEN_COEFFICIENTS, CJK_TEN_HIGH_COEFFICIENTS, CJK_HUNDRED_COEFFICIENTS, createCJKCounter, CHINESE_INFORMAL_MULTIPLIERS, CHINESE_FORMAL_MULTIPLIERS, JAPANESE_NEGATIVE, KOREAN_NEGATIVE, createCounterText, IGNORE_ATTRIBUTE, DocumentCloner, PseudoElementType, createIFrameContainer, imageReady, imagesReady, iframeLoader, ignoredStyleProperties, copyCSSStyles, serializeDoctype, restoreOwnerScroll, restoreNodeScroll, PSEUDO_BEFORE, PSEUDO_AFTER, PSEUDO_HIDE_ELEMENT_CLASS_BEFORE, PSEUDO_HIDE_ELEMENT_CLASS_AFTER, PSEUDO_HIDE_ELEMENT_STYLE, createPseudoHideStyles, createStyles, CacheStorage, Cache, INLINE_SVG, INLINE_BASE64, INLINE_IMG, isRenderable, isInlineImage, isInlineBase64Image, isBlobImage, isSVG, Vector, lerp, BezierCurve, isBezierCurve, BoundCurves, CORNER, getCurvePoints, calculateBorderBoxPath, calculateContentBoxPath, calculatePaddingBoxPath, TransformEffect, ClipEffect, OpacityEffect, isTransformEffect, isClipEffect, isOpacityEffect, equalPath, transformPath, StackingContext, ElementPaint, parseStackTree, processListItems, parseStackingContexts, parsePathForBorder, parsePathForBorderDoubleOuter, parsePathForBorderDoubleInner, parsePathForBorderStroke, createStrokePathFromCurves, createPathFromCurves, paddingBox, contentBox, calculateBackgroundPositioningArea, calculateBackgroundPaintingArea, calculateBackgroundRendering, isAuto, hasIntrinsicValue, calculateBackgroundSize, getBackgroundValueForIndex, calculateBackgroundRepeatPath, SMALL_IMAGE, SAMPLE_TEXT, FontMetrics, Renderer, MASK_OFFSET, CanvasRenderer, isTextInputElement, calculateBackgroundCurvedPaintingArea, canvasTextAlign, iOSBrokenFonts, fixIOSSystemFonts, ForeignObjectRenderer, loadSerializedSVG, Logger, Context, html2canvas, renderElement, parseBackgroundColor, html2canvas_esm_default;
+var init_html2canvas_esm = __esm({
+  "node_modules/html2canvas/dist/html2canvas.esm.js"() {
+    extendStatics = function(d, b) {
+      extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
+        d2.__proto__ = b2;
+      } || function(d2, b2) {
+        for (var p in b2)
+          if (Object.prototype.hasOwnProperty.call(b2, p))
+            d2[p] = b2[p];
       };
-      const markToAnimate = (key) => {
-        shouldAnimateType = true;
-        if (removedKeys.has(key)) {
-          handledRemovedValues = true;
-          removedKeys.delete(key);
+      return extendStatics(d, b);
+    };
+    __assign = function() {
+      __assign = Object.assign || function __assign2(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+          s = arguments[i];
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p))
+              t[p] = s[p];
         }
-        typeState.needsAnimating[key] = true;
-        const motionValue2 = visualElement.getValue(key);
-        if (motionValue2)
-          motionValue2.liveStyle = false;
+        return t;
       };
-      for (const key in allKeys) {
-        const next2 = resolvedValues[key];
-        const prev = prevResolvedValues[key];
-        if (encounteredKeys.hasOwnProperty(key))
-          continue;
-        let valueHasChanged = false;
-        if (isKeyframesTarget(next2) && isKeyframesTarget(prev)) {
-          valueHasChanged = !shallowCompare(next2, prev);
-        } else {
-          valueHasChanged = next2 !== prev;
-        }
-        if (valueHasChanged) {
-          if (next2 !== void 0 && next2 !== null) {
-            markToAnimate(key);
+      return __assign.apply(this, arguments);
+    };
+    Bounds = /** @class */
+    function() {
+      function Bounds2(left, top, width, height) {
+        this.left = left;
+        this.top = top;
+        this.width = width;
+        this.height = height;
+      }
+      Bounds2.prototype.add = function(x, y, w, h) {
+        return new Bounds2(this.left + x, this.top + y, this.width + w, this.height + h);
+      };
+      Bounds2.fromClientRect = function(context, clientRect) {
+        return new Bounds2(clientRect.left + context.windowBounds.left, clientRect.top + context.windowBounds.top, clientRect.width, clientRect.height);
+      };
+      Bounds2.fromDOMRectList = function(context, domRectList) {
+        var domRect = Array.from(domRectList).find(function(rect) {
+          return rect.width !== 0;
+        });
+        return domRect ? new Bounds2(domRect.left + context.windowBounds.left, domRect.top + context.windowBounds.top, domRect.width, domRect.height) : Bounds2.EMPTY;
+      };
+      Bounds2.EMPTY = new Bounds2(0, 0, 0, 0);
+      return Bounds2;
+    }();
+    parseBounds = function(context, node) {
+      return Bounds.fromClientRect(context, node.getBoundingClientRect());
+    };
+    parseDocumentSize = function(document2) {
+      var body = document2.body;
+      var documentElement = document2.documentElement;
+      if (!body || !documentElement) {
+        throw new Error("Unable to get document size");
+      }
+      var width = Math.max(Math.max(body.scrollWidth, documentElement.scrollWidth), Math.max(body.offsetWidth, documentElement.offsetWidth), Math.max(body.clientWidth, documentElement.clientWidth));
+      var height = Math.max(Math.max(body.scrollHeight, documentElement.scrollHeight), Math.max(body.offsetHeight, documentElement.offsetHeight), Math.max(body.clientHeight, documentElement.clientHeight));
+      return new Bounds(0, 0, width, height);
+    };
+    toCodePoints$1 = function(str) {
+      var codePoints = [];
+      var i = 0;
+      var length = str.length;
+      while (i < length) {
+        var value = str.charCodeAt(i++);
+        if (value >= 55296 && value <= 56319 && i < length) {
+          var extra = str.charCodeAt(i++);
+          if ((extra & 64512) === 56320) {
+            codePoints.push(((value & 1023) << 10) + (extra & 1023) + 65536);
           } else {
-            removedKeys.add(key);
+            codePoints.push(value);
+            i--;
           }
-        } else if (next2 !== void 0 && removedKeys.has(key)) {
-          markToAnimate(key);
         } else {
-          typeState.protectedKeys[key] = true;
+          codePoints.push(value);
         }
       }
-      typeState.prevProp = prop;
-      typeState.prevResolvedValues = resolvedValues;
-      if (typeState.isActive) {
-        encounteredKeys = { ...encounteredKeys, ...resolvedValues };
+      return codePoints;
+    };
+    fromCodePoint$1 = function() {
+      var codePoints = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        codePoints[_i] = arguments[_i];
       }
-      if ((isInitialRender || wasReset) && visualElement.blockInitialAnimation) {
-        shouldAnimateType = false;
+      if (String.fromCodePoint) {
+        return String.fromCodePoint.apply(String, codePoints);
       }
-      const willAnimateViaParent = isInherited && variantDidChange;
-      const needsAnimating = !willAnimateViaParent || handledRemovedValues;
-      if (shouldAnimateType && needsAnimating) {
-        animations2.push(...definitionList.map((animation) => {
-          const options = { type };
-          if (typeof animation === "string" && (isInitialRender || wasReset) && !willAnimateViaParent && visualElement.manuallyAnimateOnMount && visualElement.parent) {
-            const { parent } = visualElement;
-            const parentVariant = resolveVariant(parent, animation);
-            if (parent.enteringChildren && parentVariant) {
-              const { delayChildren } = parentVariant.transition || {};
-              options.delay = calcChildStagger(parent.enteringChildren, visualElement, delayChildren);
-            }
+      var length = codePoints.length;
+      if (!length) {
+        return "";
+      }
+      var codeUnits = [];
+      var index = -1;
+      var result = "";
+      while (++index < length) {
+        var codePoint = codePoints[index];
+        if (codePoint <= 65535) {
+          codeUnits.push(codePoint);
+        } else {
+          codePoint -= 65536;
+          codeUnits.push((codePoint >> 10) + 55296, codePoint % 1024 + 56320);
+        }
+        if (index + 1 === length || codeUnits.length > 16384) {
+          result += String.fromCharCode.apply(String, codeUnits);
+          codeUnits.length = 0;
+        }
+      }
+      return result;
+    };
+    chars$2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    lookup$2 = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+    for (i$2 = 0; i$2 < chars$2.length; i$2++) {
+      lookup$2[chars$2.charCodeAt(i$2)] = i$2;
+    }
+    chars$1$1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    lookup$1$1 = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+    for (i$1$1 = 0; i$1$1 < chars$1$1.length; i$1$1++) {
+      lookup$1$1[chars$1$1.charCodeAt(i$1$1)] = i$1$1;
+    }
+    decode$1 = function(base642) {
+      var bufferLength = base642.length * 0.75, len = base642.length, i, p = 0, encoded1, encoded2, encoded3, encoded4;
+      if (base642[base642.length - 1] === "=") {
+        bufferLength--;
+        if (base642[base642.length - 2] === "=") {
+          bufferLength--;
+        }
+      }
+      var buffer = typeof ArrayBuffer !== "undefined" && typeof Uint8Array !== "undefined" && typeof Uint8Array.prototype.slice !== "undefined" ? new ArrayBuffer(bufferLength) : new Array(bufferLength);
+      var bytes = Array.isArray(buffer) ? buffer : new Uint8Array(buffer);
+      for (i = 0; i < len; i += 4) {
+        encoded1 = lookup$1$1[base642.charCodeAt(i)];
+        encoded2 = lookup$1$1[base642.charCodeAt(i + 1)];
+        encoded3 = lookup$1$1[base642.charCodeAt(i + 2)];
+        encoded4 = lookup$1$1[base642.charCodeAt(i + 3)];
+        bytes[p++] = encoded1 << 2 | encoded2 >> 4;
+        bytes[p++] = (encoded2 & 15) << 4 | encoded3 >> 2;
+        bytes[p++] = (encoded3 & 3) << 6 | encoded4 & 63;
+      }
+      return buffer;
+    };
+    polyUint16Array$1 = function(buffer) {
+      var length = buffer.length;
+      var bytes = [];
+      for (var i = 0; i < length; i += 2) {
+        bytes.push(buffer[i + 1] << 8 | buffer[i]);
+      }
+      return bytes;
+    };
+    polyUint32Array$1 = function(buffer) {
+      var length = buffer.length;
+      var bytes = [];
+      for (var i = 0; i < length; i += 4) {
+        bytes.push(buffer[i + 3] << 24 | buffer[i + 2] << 16 | buffer[i + 1] << 8 | buffer[i]);
+      }
+      return bytes;
+    };
+    UTRIE2_SHIFT_2$1 = 5;
+    UTRIE2_SHIFT_1$1 = 6 + 5;
+    UTRIE2_INDEX_SHIFT$1 = 2;
+    UTRIE2_SHIFT_1_2$1 = UTRIE2_SHIFT_1$1 - UTRIE2_SHIFT_2$1;
+    UTRIE2_LSCP_INDEX_2_OFFSET$1 = 65536 >> UTRIE2_SHIFT_2$1;
+    UTRIE2_DATA_BLOCK_LENGTH$1 = 1 << UTRIE2_SHIFT_2$1;
+    UTRIE2_DATA_MASK$1 = UTRIE2_DATA_BLOCK_LENGTH$1 - 1;
+    UTRIE2_LSCP_INDEX_2_LENGTH$1 = 1024 >> UTRIE2_SHIFT_2$1;
+    UTRIE2_INDEX_2_BMP_LENGTH$1 = UTRIE2_LSCP_INDEX_2_OFFSET$1 + UTRIE2_LSCP_INDEX_2_LENGTH$1;
+    UTRIE2_UTF8_2B_INDEX_2_OFFSET$1 = UTRIE2_INDEX_2_BMP_LENGTH$1;
+    UTRIE2_UTF8_2B_INDEX_2_LENGTH$1 = 2048 >> 6;
+    UTRIE2_INDEX_1_OFFSET$1 = UTRIE2_UTF8_2B_INDEX_2_OFFSET$1 + UTRIE2_UTF8_2B_INDEX_2_LENGTH$1;
+    UTRIE2_OMITTED_BMP_INDEX_1_LENGTH$1 = 65536 >> UTRIE2_SHIFT_1$1;
+    UTRIE2_INDEX_2_BLOCK_LENGTH$1 = 1 << UTRIE2_SHIFT_1_2$1;
+    UTRIE2_INDEX_2_MASK$1 = UTRIE2_INDEX_2_BLOCK_LENGTH$1 - 1;
+    slice16$1 = function(view, start, end) {
+      if (view.slice) {
+        return view.slice(start, end);
+      }
+      return new Uint16Array(Array.prototype.slice.call(view, start, end));
+    };
+    slice32$1 = function(view, start, end) {
+      if (view.slice) {
+        return view.slice(start, end);
+      }
+      return new Uint32Array(Array.prototype.slice.call(view, start, end));
+    };
+    createTrieFromBase64$1 = function(base642, _byteLength) {
+      var buffer = decode$1(base642);
+      var view32 = Array.isArray(buffer) ? polyUint32Array$1(buffer) : new Uint32Array(buffer);
+      var view16 = Array.isArray(buffer) ? polyUint16Array$1(buffer) : new Uint16Array(buffer);
+      var headerLength = 24;
+      var index = slice16$1(view16, headerLength / 2, view32[4] / 2);
+      var data = view32[5] === 2 ? slice16$1(view16, (headerLength + view32[4]) / 2) : slice32$1(view32, Math.ceil((headerLength + view32[4]) / 4));
+      return new Trie$1(view32[0], view32[1], view32[2], view32[3], index, data);
+    };
+    Trie$1 = /** @class */
+    function() {
+      function Trie2(initialValue, errorValue, highStart, highValueIndex, index, data) {
+        this.initialValue = initialValue;
+        this.errorValue = errorValue;
+        this.highStart = highStart;
+        this.highValueIndex = highValueIndex;
+        this.index = index;
+        this.data = data;
+      }
+      Trie2.prototype.get = function(codePoint) {
+        var ix;
+        if (codePoint >= 0) {
+          if (codePoint < 55296 || codePoint > 56319 && codePoint <= 65535) {
+            ix = this.index[codePoint >> UTRIE2_SHIFT_2$1];
+            ix = (ix << UTRIE2_INDEX_SHIFT$1) + (codePoint & UTRIE2_DATA_MASK$1);
+            return this.data[ix];
           }
-          return {
-            animation,
-            options
-          };
-        }));
-      }
-    }
-    if (removedKeys.size) {
-      const fallbackAnimation = {};
-      if (typeof props.initial !== "boolean") {
-        const initialTransition = resolveVariant(visualElement, Array.isArray(props.initial) ? props.initial[0] : props.initial);
-        if (initialTransition && initialTransition.transition) {
-          fallbackAnimation.transition = initialTransition.transition;
+          if (codePoint <= 65535) {
+            ix = this.index[UTRIE2_LSCP_INDEX_2_OFFSET$1 + (codePoint - 55296 >> UTRIE2_SHIFT_2$1)];
+            ix = (ix << UTRIE2_INDEX_SHIFT$1) + (codePoint & UTRIE2_DATA_MASK$1);
+            return this.data[ix];
+          }
+          if (codePoint < this.highStart) {
+            ix = UTRIE2_INDEX_1_OFFSET$1 - UTRIE2_OMITTED_BMP_INDEX_1_LENGTH$1 + (codePoint >> UTRIE2_SHIFT_1$1);
+            ix = this.index[ix];
+            ix += codePoint >> UTRIE2_SHIFT_2$1 & UTRIE2_INDEX_2_MASK$1;
+            ix = this.index[ix];
+            ix = (ix << UTRIE2_INDEX_SHIFT$1) + (codePoint & UTRIE2_DATA_MASK$1);
+            return this.data[ix];
+          }
+          if (codePoint <= 1114111) {
+            return this.data[this.highValueIndex];
+          }
         }
-      }
-      removedKeys.forEach((key) => {
-        const fallbackTarget = visualElement.getBaseTarget(key);
-        const motionValue2 = visualElement.getValue(key);
-        if (motionValue2)
-          motionValue2.liveStyle = true;
-        fallbackAnimation[key] = fallbackTarget ?? null;
-      });
-      animations2.push({ animation: fallbackAnimation });
-    }
-    let shouldAnimate = Boolean(animations2.length);
-    if (isInitialRender && (props.initial === false || props.initial === props.animate) && !visualElement.manuallyAnimateOnMount) {
-      shouldAnimate = false;
-    }
-    isInitialRender = false;
-    wasReset = false;
-    return shouldAnimate ? animate2(animations2) : Promise.resolve();
-  }
-  function setActive(type, isActive) {
-    var _a;
-    if (state[type].isActive === isActive)
-      return Promise.resolve();
-    (_a = visualElement.variantChildren) == null ? void 0 : _a.forEach((child) => {
-      var _a2;
-      return (_a2 = child.animationState) == null ? void 0 : _a2.setActive(type, isActive);
-    });
-    state[type].isActive = isActive;
-    const animations2 = animateChanges(type);
-    for (const key in state) {
-      state[key].protectedKeys = {};
-    }
-    return animations2;
-  }
-  return {
-    animateChanges,
-    setActive,
-    setAnimateFunction,
-    getState: () => state,
-    reset: () => {
-      state = createState();
-      wasReset = true;
-    }
-  };
-}
-function checkVariantsDidChange(prev, next2) {
-  if (typeof next2 === "string") {
-    return next2 !== prev;
-  } else if (Array.isArray(next2)) {
-    return !shallowCompare(next2, prev);
-  }
-  return false;
-}
-function createTypeState(isActive = false) {
-  return {
-    isActive,
-    protectedKeys: {},
-    needsAnimating: {},
-    prevResolvedValues: {}
-  };
-}
-function createState() {
-  return {
-    animate: createTypeState(true),
-    whileInView: createTypeState(),
-    whileHover: createTypeState(),
-    whileTap: createTypeState(),
-    whileDrag: createTypeState(),
-    whileFocus: createTypeState(),
-    exit: createTypeState()
-  };
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/copy.mjs
-function copyAxisInto(axis, originAxis) {
-  axis.min = originAxis.min;
-  axis.max = originAxis.max;
-}
-function copyBoxInto(box, originBox) {
-  copyAxisInto(box.x, originBox.x);
-  copyAxisInto(box.y, originBox.y);
-}
-function copyAxisDeltaInto(delta, originDelta) {
-  delta.translate = originDelta.translate;
-  delta.scale = originDelta.scale;
-  delta.originPoint = originDelta.originPoint;
-  delta.origin = originDelta.origin;
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/delta-calc.mjs
-var SCALE_PRECISION = 1e-4;
-var SCALE_MIN = 1 - SCALE_PRECISION;
-var SCALE_MAX = 1 + SCALE_PRECISION;
-var TRANSLATE_PRECISION = 0.01;
-var TRANSLATE_MIN = 0 - TRANSLATE_PRECISION;
-var TRANSLATE_MAX = 0 + TRANSLATE_PRECISION;
-function calcLength(axis) {
-  return axis.max - axis.min;
-}
-function isNear(value, target, maxDistance) {
-  return Math.abs(value - target) <= maxDistance;
-}
-function calcAxisDelta(delta, source, target, origin = 0.5) {
-  delta.origin = origin;
-  delta.originPoint = mixNumber(source.min, source.max, delta.origin);
-  delta.scale = calcLength(target) / calcLength(source);
-  delta.translate = mixNumber(target.min, target.max, delta.origin) - delta.originPoint;
-  if (delta.scale >= SCALE_MIN && delta.scale <= SCALE_MAX || isNaN(delta.scale)) {
-    delta.scale = 1;
-  }
-  if (delta.translate >= TRANSLATE_MIN && delta.translate <= TRANSLATE_MAX || isNaN(delta.translate)) {
-    delta.translate = 0;
-  }
-}
-function calcBoxDelta(delta, source, target, origin) {
-  calcAxisDelta(delta.x, source.x, target.x, origin ? origin.originX : void 0);
-  calcAxisDelta(delta.y, source.y, target.y, origin ? origin.originY : void 0);
-}
-function calcRelativeAxis(target, relative, parent, anchor = 0) {
-  const anchorPoint = anchor ? mixNumber(parent.min, parent.max, anchor) : parent.min;
-  target.min = anchorPoint + relative.min;
-  target.max = target.min + calcLength(relative);
-}
-function calcRelativeBox(target, relative, parent, anchor) {
-  calcRelativeAxis(target.x, relative.x, parent.x, anchor == null ? void 0 : anchor.x);
-  calcRelativeAxis(target.y, relative.y, parent.y, anchor == null ? void 0 : anchor.y);
-}
-function calcRelativeAxisPosition(target, layout2, parent, anchor = 0) {
-  const anchorPoint = anchor ? mixNumber(parent.min, parent.max, anchor) : parent.min;
-  target.min = layout2.min - anchorPoint;
-  target.max = target.min + calcLength(layout2);
-}
-function calcRelativePosition(target, layout2, parent, anchor) {
-  calcRelativeAxisPosition(target.x, layout2.x, parent.x, anchor == null ? void 0 : anchor.x);
-  calcRelativeAxisPosition(target.y, layout2.y, parent.y, anchor == null ? void 0 : anchor.y);
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/delta-remove.mjs
-function removePointDelta(point2, translate, scale2, originPoint, boxScale) {
-  point2 -= translate;
-  point2 = scalePoint(point2, 1 / scale2, originPoint);
-  if (boxScale !== void 0) {
-    point2 = scalePoint(point2, 1 / boxScale, originPoint);
-  }
-  return point2;
-}
-function removeAxisDelta(axis, translate = 0, scale2 = 1, origin = 0.5, boxScale, originAxis = axis, sourceAxis = axis) {
-  if (percent.test(translate)) {
-    translate = parseFloat(translate);
-    const relativeProgress = mixNumber(sourceAxis.min, sourceAxis.max, translate / 100);
-    translate = relativeProgress - sourceAxis.min;
-  }
-  if (typeof translate !== "number")
-    return;
-  let originPoint = mixNumber(originAxis.min, originAxis.max, origin);
-  if (axis === originAxis)
-    originPoint -= translate;
-  axis.min = removePointDelta(axis.min, translate, scale2, originPoint, boxScale);
-  axis.max = removePointDelta(axis.max, translate, scale2, originPoint, boxScale);
-}
-function removeAxisTransforms(axis, transforms, [key, scaleKey, originKey], origin, sourceAxis) {
-  removeAxisDelta(axis, transforms[key], transforms[scaleKey], transforms[originKey], transforms.scale, origin, sourceAxis);
-}
-var xKeys = ["x", "scaleX", "originX"];
-var yKeys = ["y", "scaleY", "originY"];
-function removeBoxTransforms(box, transforms, originBox, sourceBox) {
-  removeAxisTransforms(box.x, transforms, xKeys, originBox ? originBox.x : void 0, sourceBox ? sourceBox.x : void 0);
-  removeAxisTransforms(box.y, transforms, yKeys, originBox ? originBox.y : void 0, sourceBox ? sourceBox.y : void 0);
-}
-
-// node_modules/motion-dom/dist/es/projection/geometry/utils.mjs
-function isAxisDeltaZero(delta) {
-  return delta.translate === 0 && delta.scale === 1;
-}
-function isDeltaZero(delta) {
-  return isAxisDeltaZero(delta.x) && isAxisDeltaZero(delta.y);
-}
-function axisEquals(a, b) {
-  return a.min === b.min && a.max === b.max;
-}
-function boxEquals(a, b) {
-  return axisEquals(a.x, b.x) && axisEquals(a.y, b.y);
-}
-function axisEqualsRounded(a, b) {
-  return Math.round(a.min) === Math.round(b.min) && Math.round(a.max) === Math.round(b.max);
-}
-function boxEqualsRounded(a, b) {
-  return axisEqualsRounded(a.x, b.x) && axisEqualsRounded(a.y, b.y);
-}
-function aspectRatio(box) {
-  return calcLength(box.x) / calcLength(box.y);
-}
-function axisDeltaEquals(a, b) {
-  return a.translate === b.translate && a.scale === b.scale && a.originPoint === b.originPoint;
-}
-
-// node_modules/motion-dom/dist/es/projection/utils/each-axis.mjs
-function eachAxis(callback) {
-  return [callback("x"), callback("y")];
-}
-
-// node_modules/motion-dom/dist/es/projection/styles/transform.mjs
-function buildProjectionTransform(delta, treeScale, latestTransform) {
-  let transform2 = "";
-  const xTranslate = delta.x.translate / treeScale.x;
-  const yTranslate = delta.y.translate / treeScale.y;
-  const zTranslate = (latestTransform == null ? void 0 : latestTransform.z) || 0;
-  if (xTranslate || yTranslate || zTranslate) {
-    transform2 = `translate3d(${xTranslate}px, ${yTranslate}px, ${zTranslate}px) `;
-  }
-  if (treeScale.x !== 1 || treeScale.y !== 1) {
-    transform2 += `scale(${1 / treeScale.x}, ${1 / treeScale.y}) `;
-  }
-  if (latestTransform) {
-    const { transformPerspective, rotate: rotate2, rotateX, rotateY, skewX, skewY } = latestTransform;
-    if (transformPerspective)
-      transform2 = `perspective(${transformPerspective}px) ${transform2}`;
-    if (rotate2)
-      transform2 += `rotate(${rotate2}deg) `;
-    if (rotateX)
-      transform2 += `rotateX(${rotateX}deg) `;
-    if (rotateY)
-      transform2 += `rotateY(${rotateY}deg) `;
-    if (skewX)
-      transform2 += `skewX(${skewX}deg) `;
-    if (skewY)
-      transform2 += `skewY(${skewY}deg) `;
-  }
-  const elementScaleX = delta.x.scale * treeScale.x;
-  const elementScaleY = delta.y.scale * treeScale.y;
-  if (elementScaleX !== 1 || elementScaleY !== 1) {
-    transform2 += `scale(${elementScaleX}, ${elementScaleY})`;
-  }
-  return transform2 || "none";
-}
-
-// node_modules/motion-dom/dist/es/projection/animation/mix-values.mjs
-var borderLabels = [
-  "borderTopLeftRadius",
-  "borderTopRightRadius",
-  "borderBottomLeftRadius",
-  "borderBottomRightRadius"
-];
-var numBorders = borderLabels.length;
-var asNumber2 = (value) => typeof value === "string" ? parseFloat(value) : value;
-var isPx = (value) => typeof value === "number" || px.test(value);
-function mixValues(target, follow, lead, progress2, shouldCrossfadeOpacity, isOnlyMember) {
-  if (shouldCrossfadeOpacity) {
-    target.opacity = mixNumber(0, lead.opacity ?? 1, easeCrossfadeIn(progress2));
-    target.opacityExit = mixNumber(follow.opacity ?? 1, 0, easeCrossfadeOut(progress2));
-  } else if (isOnlyMember) {
-    target.opacity = mixNumber(follow.opacity ?? 1, lead.opacity ?? 1, progress2);
-  }
-  for (let i = 0; i < numBorders; i++) {
-    const borderLabel = borderLabels[i];
-    let followRadius = getRadius(follow, borderLabel);
-    let leadRadius = getRadius(lead, borderLabel);
-    if (followRadius === void 0 && leadRadius === void 0)
-      continue;
-    followRadius || (followRadius = 0);
-    leadRadius || (leadRadius = 0);
-    const canMix = followRadius === 0 || leadRadius === 0 || isPx(followRadius) === isPx(leadRadius);
-    if (canMix) {
-      target[borderLabel] = Math.max(mixNumber(asNumber2(followRadius), asNumber2(leadRadius), progress2), 0);
-      if (percent.test(leadRadius) || percent.test(followRadius)) {
-        target[borderLabel] += "%";
-      }
-    } else {
-      target[borderLabel] = leadRadius;
-    }
-  }
-  if (follow.rotate || lead.rotate) {
-    target.rotate = mixNumber(follow.rotate || 0, lead.rotate || 0, progress2);
-  }
-}
-function getRadius(values, radiusName) {
-  return values[radiusName] !== void 0 ? values[radiusName] : values.borderRadius;
-}
-var easeCrossfadeIn = compress(0, 0.5, circOut);
-var easeCrossfadeOut = compress(0.5, 0.95, noop);
-function compress(min, max, easing) {
-  return (p) => {
-    if (p < min)
-      return 0;
-    if (p > max)
-      return 1;
-    return easing(progress(min, max, p));
-  };
-}
-
-// node_modules/motion-dom/dist/es/animation/animate/single-value.mjs
-function animateSingleValue(value, keyframes2, options) {
-  const motionValue$1 = isMotionValue(value) ? value : motionValue(value);
-  motionValue$1.start(animateMotionValue("", motionValue$1, keyframes2, options));
-  return motionValue$1.animation;
-}
-
-// node_modules/motion-dom/dist/es/events/add-dom-event.mjs
-function addDomEvent(target, eventName, handler, options = { passive: true }) {
-  target.addEventListener(eventName, handler, options);
-  return () => target.removeEventListener(eventName, handler);
-}
-
-// node_modules/motion-dom/dist/es/projection/utils/compare-by-depth.mjs
-var compareByDepth = (a, b) => a.depth - b.depth;
-
-// node_modules/motion-dom/dist/es/projection/utils/flat-tree.mjs
-var FlatTree = class {
-  constructor() {
-    this.children = [];
-    this.isDirty = false;
-  }
-  add(child) {
-    addUniqueItem(this.children, child);
-    this.isDirty = true;
-  }
-  remove(child) {
-    removeItem(this.children, child);
-    this.isDirty = true;
-  }
-  forEach(callback) {
-    this.isDirty && this.children.sort(compareByDepth);
-    this.isDirty = false;
-    this.children.forEach(callback);
-  }
-};
-
-// node_modules/motion-dom/dist/es/utils/delay.mjs
-function delay(callback, timeout) {
-  const start2 = time.now();
-  const checkElapsed = ({ timestamp }) => {
-    const elapsed = timestamp - start2;
-    if (elapsed >= timeout) {
-      cancelFrame(checkElapsed);
-      callback(elapsed - timeout);
-    }
-  };
-  frame.setup(checkElapsed, true);
-  return () => cancelFrame(checkElapsed);
-}
-function delayInSeconds(callback, timeout) {
-  return delay(callback, secondsToMilliseconds(timeout));
-}
-
-// node_modules/motion-dom/dist/es/value/utils/resolve-motion-value.mjs
-function resolveMotionValue(value) {
-  return isMotionValue(value) ? value.get() : value;
-}
-
-// node_modules/motion-dom/dist/es/projection/shared/stack.mjs
-var NodeStack = class {
-  constructor() {
-    this.members = [];
-  }
-  add(node) {
-    addUniqueItem(this.members, node);
-    for (let i = this.members.length - 1; i >= 0; i--) {
-      const member = this.members[i];
-      if (member === node || member === this.lead || member === this.prevLead)
-        continue;
-      const inst = member.instance;
-      if ((!inst || inst.isConnected === false) && !member.snapshot) {
-        removeItem(this.members, member);
-        member.unmount();
-      }
-    }
-    node.scheduleRender();
-  }
-  remove(node) {
-    removeItem(this.members, node);
-    if (node === this.prevLead)
-      this.prevLead = void 0;
-    if (node === this.lead) {
-      const prevLead = this.members[this.members.length - 1];
-      if (prevLead)
-        this.promote(prevLead);
-    }
-  }
-  relegate(node) {
-    var _a;
-    for (let i = this.members.indexOf(node) - 1; i >= 0; i--) {
-      const member = this.members[i];
-      if (member.isPresent !== false && ((_a = member.instance) == null ? void 0 : _a.isConnected) !== false) {
-        this.promote(member);
-        return true;
-      }
-    }
-    return false;
-  }
-  promote(node, preserveFollowOpacity) {
-    var _a;
-    const prevLead = this.lead;
-    if (node === prevLead)
-      return;
-    this.prevLead = prevLead;
-    this.lead = node;
-    node.show();
-    if (prevLead) {
-      prevLead.updateSnapshot();
-      node.scheduleRender();
-      const { layoutDependency: prevDep } = prevLead.options;
-      const { layoutDependency: nextDep } = node.options;
-      if (prevDep === void 0 || prevDep !== nextDep) {
-        node.resumeFrom = prevLead;
-        if (preserveFollowOpacity)
-          prevLead.preserveOpacity = true;
-        if (prevLead.snapshot) {
-          node.snapshot = prevLead.snapshot;
-          node.snapshot.latestValues = prevLead.animationValues || prevLead.latestValues;
-        }
-        if ((_a = node.root) == null ? void 0 : _a.isUpdating)
-          node.isLayoutDirty = true;
-      }
-      if (node.options.crossfade === false)
-        prevLead.hide();
-    }
-  }
-  exitAnimationComplete() {
-    this.members.forEach((member) => {
-      var _a, _b, _c, _d, _e;
-      (_b = (_a = member.options).onExitComplete) == null ? void 0 : _b.call(_a);
-      (_e = (_c = member.resumingFrom) == null ? void 0 : (_d = _c.options).onExitComplete) == null ? void 0 : _e.call(_d);
-    });
-  }
-  scheduleRender() {
-    this.members.forEach((member) => member.instance && member.scheduleRender(false));
-  }
-  removeLeadSnapshot() {
-    var _a;
-    if ((_a = this.lead) == null ? void 0 : _a.snapshot)
-      this.lead.snapshot = void 0;
-  }
-};
-
-// node_modules/motion-dom/dist/es/projection/node/state.mjs
-var globalProjectionState = {
-  /**
-   * Global flag as to whether the tree has animated since the last time
-   * we resized the window
-   */
-  hasAnimatedSinceResize: true,
-  /**
-   * We set this to true once, on the first update. Any nodes added to the tree beyond that
-   * update will be given a `data-projection-id` attribute.
-   */
-  hasEverUpdated: false
-};
-
-// node_modules/motion-dom/dist/es/projection/node/create-projection-node.mjs
-var metrics = {
-  nodes: 0,
-  calculatedTargetDeltas: 0,
-  calculatedProjections: 0
-};
-var transformAxes = ["", "X", "Y", "Z"];
-var animationTarget = 1e3;
-var id = 0;
-function resetDistortingTransform(key, visualElement, values, sharedAnimationValues) {
-  const { latestValues } = visualElement;
-  if (latestValues[key]) {
-    values[key] = latestValues[key];
-    visualElement.setStaticValue(key, 0);
-    if (sharedAnimationValues) {
-      sharedAnimationValues[key] = 0;
-    }
-  }
-}
-function cancelTreeOptimisedTransformAnimations(projectionNode) {
-  projectionNode.hasCheckedOptimisedAppear = true;
-  if (projectionNode.root === projectionNode)
-    return;
-  const { visualElement } = projectionNode.options;
-  if (!visualElement)
-    return;
-  const appearId = getOptimisedAppearId(visualElement);
-  if (window.MotionHasOptimisedAnimation(appearId, "transform")) {
-    const { layout: layout2, layoutId } = projectionNode.options;
-    window.MotionCancelOptimisedAnimation(appearId, "transform", frame, !(layout2 || layoutId));
-  }
-  const { parent } = projectionNode;
-  if (parent && !parent.hasCheckedOptimisedAppear) {
-    cancelTreeOptimisedTransformAnimations(parent);
-  }
-}
-function createProjectionNode({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform }) {
-  return class ProjectionNode {
-    constructor(latestValues = {}, parent = defaultParent == null ? void 0 : defaultParent()) {
-      this.id = id++;
-      this.animationId = 0;
-      this.animationCommitId = 0;
-      this.children = /* @__PURE__ */ new Set();
-      this.options = {};
-      this.isTreeAnimating = false;
-      this.isAnimationBlocked = false;
-      this.isLayoutDirty = false;
-      this.isProjectionDirty = false;
-      this.isSharedProjectionDirty = false;
-      this.isTransformDirty = false;
-      this.updateManuallyBlocked = false;
-      this.updateBlockedByResize = false;
-      this.isUpdating = false;
-      this.isSVG = false;
-      this.needsReset = false;
-      this.shouldResetTransform = false;
-      this.hasCheckedOptimisedAppear = false;
-      this.treeScale = { x: 1, y: 1 };
-      this.eventHandlers = /* @__PURE__ */ new Map();
-      this.hasTreeAnimated = false;
-      this.layoutVersion = 0;
-      this.updateScheduled = false;
-      this.scheduleUpdate = () => this.update();
-      this.projectionUpdateScheduled = false;
-      this.checkUpdateFailed = () => {
-        if (this.isUpdating) {
-          this.isUpdating = false;
-          this.clearAllSnapshots();
-        }
+        return this.errorValue;
       };
-      this.updateProjection = () => {
-        this.projectionUpdateScheduled = false;
-        if (statsBuffer.value) {
-          metrics.nodes = metrics.calculatedTargetDeltas = metrics.calculatedProjections = 0;
+      return Trie2;
+    }();
+    chars$3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    lookup$3 = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+    for (i$3 = 0; i$3 < chars$3.length; i$3++) {
+      lookup$3[chars$3.charCodeAt(i$3)] = i$3;
+    }
+    base64$1 = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF8AZwBgAGgAcQB5AHUAfQCFAI0AlQCdAKIAqgCyALoAYABoAGAAaABgAGgAwgDKAGAAaADGAM4A0wDbAOEA6QDxAPkAAQEJAQ8BFwF1AH0AHAEkASwBNAE6AUIBQQFJAVEBWQFhAWgBcAF4ATAAgAGGAY4BlQGXAZ8BpwGvAbUBvQHFAc0B0wHbAeMB6wHxAfkBAQIJAvEBEQIZAiECKQIxAjgCQAJGAk4CVgJeAmQCbAJ0AnwCgQKJApECmQKgAqgCsAK4ArwCxAIwAMwC0wLbAjAA4wLrAvMC+AIAAwcDDwMwABcDHQMlAy0DNQN1AD0DQQNJA0kDSQNRA1EDVwNZA1kDdQB1AGEDdQBpA20DdQN1AHsDdQCBA4kDkQN1AHUAmQOhA3UAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AKYDrgN1AHUAtgO+A8YDzgPWAxcD3gPjA+sD8wN1AHUA+wMDBAkEdQANBBUEHQQlBCoEFwMyBDgEYABABBcDSARQBFgEYARoBDAAcAQzAXgEgASIBJAEdQCXBHUAnwSnBK4EtgS6BMIEyAR1AHUAdQB1AHUAdQCVANAEYABgAGAAYABgAGAAYABgANgEYADcBOQEYADsBPQE/AQEBQwFFAUcBSQFLAU0BWQEPAVEBUsFUwVbBWAAYgVgAGoFcgV6BYIFigWRBWAAmQWfBaYFYABgAGAAYABgAKoFYACxBbAFuQW6BcEFwQXHBcEFwQXPBdMF2wXjBeoF8gX6BQIGCgYSBhoGIgYqBjIGOgZgAD4GRgZMBmAAUwZaBmAAYABgAGAAYABgAGAAYABgAGAAYABgAGIGYABpBnAGYABgAGAAYABgAGAAYABgAGAAYAB4Bn8GhQZgAGAAYAB1AHcDFQSLBmAAYABgAJMGdQA9A3UAmwajBqsGqwaVALMGuwbDBjAAywbSBtIG1QbSBtIG0gbSBtIG0gbdBuMG6wbzBvsGAwcLBxMHAwcbByMHJwcsBywHMQcsB9IGOAdAB0gHTgfSBkgHVgfSBtIG0gbSBtIG0gbSBtIG0gbSBiwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdgAGAALAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdbB2MHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB2kH0gZwB64EdQB1AHUAdQB1AHUAdQB1AHUHfQdgAIUHjQd1AHUAlQedB2AAYAClB6sHYACzB7YHvgfGB3UAzgfWBzMB3gfmB1EB7gf1B/0HlQENAQUIDQh1ABUIHQglCBcDLQg1CD0IRQhNCEEDUwh1AHUAdQBbCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIcAh3CHoIMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIgggwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAALAcsBywHLAcsBywHLAcsBywHLAcsB4oILAcsB44I0gaWCJ4Ipgh1AHUAqgiyCHUAdQB1AHUAdQB1AHUAdQB1AHUAtwh8AXUAvwh1AMUIyQjRCNkI4AjoCHUAdQB1AO4I9gj+CAYJDgkTCS0HGwkjCYIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiAAIAAAAFAAYABgAGIAXwBgAHEAdQBFAJUAogCyAKAAYABgAEIA4ABGANMA4QDxAMEBDwE1AFwBLAE6AQEBUQF4QkhCmEKoQrhCgAHIQsAB0MLAAcABwAHAAeDC6ABoAHDCwMMAAcABwAHAAdDDGMMAAcAB6MM4wwjDWMNow3jDaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAEjDqABWw6bDqABpg6gAaABoAHcDvwOPA+gAaABfA/8DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DpcPAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcAB9cPKwkyCToJMAB1AHUAdQBCCUoJTQl1AFUJXAljCWcJawkwADAAMAAwAHMJdQB2CX4JdQCECYoJjgmWCXUAngkwAGAAYABxAHUApgn3A64JtAl1ALkJdQDACTAAMAAwADAAdQB1AHUAdQB1AHUAdQB1AHUAowYNBMUIMAAwADAAMADICcsJ0wnZCRUE4QkwAOkJ8An4CTAAMAB1AAAKvwh1AAgKDwoXCh8KdQAwACcKLgp1ADYKqAmICT4KRgowADAAdQB1AE4KMAB1AFYKdQBeCnUAZQowADAAMAAwADAAMAAwADAAMAAVBHUAbQowADAAdQC5CXUKMAAwAHwBxAijBogEMgF9CoQKiASMCpQKmgqIBKIKqgquCogEDQG2Cr4KxgrLCjAAMADTCtsKCgHjCusK8Qr5CgELMAAwADAAMAB1AIsECQsRC3UANAEZCzAAMAAwADAAMAB1ACELKQswAHUANAExCzkLdQBBC0kLMABRC1kLMAAwADAAMAAwADAAdQBhCzAAMAAwAGAAYABpC3ELdwt/CzAAMACHC4sLkwubC58Lpwt1AK4Ltgt1APsDMAAwADAAMAAwADAAMAAwAL4LwwvLC9IL1wvdCzAAMADlC+kL8Qv5C/8LSQswADAAMAAwADAAMAAwADAAMAAHDDAAMAAwADAAMAAODBYMHgx1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1ACYMMAAwADAAdQB1AHUALgx1AHUAdQB1AHUAdQA2DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AD4MdQBGDHUAdQB1AHUAdQB1AEkMdQB1AHUAdQB1AFAMMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQBYDHUAdQB1AF8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUA+wMVBGcMMAAwAHwBbwx1AHcMfwyHDI8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAYABgAJcMMAAwADAAdQB1AJ8MlQClDDAAMACtDCwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB7UMLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AA0EMAC9DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAsBywHLAcsBywHLAcsBywHLQcwAMEMyAwsBywHLAcsBywHLAcsBywHLAcsBywHzAwwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1ANQM2QzhDDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMABgAGAAYABgAGAAYABgAOkMYADxDGAA+AwADQYNYABhCWAAYAAODTAAMAAwADAAFg1gAGAAHg37AzAAMAAwADAAYABgACYNYAAsDTQNPA1gAEMNPg1LDWAAYABgAGAAYABgAGAAYABgAGAAUg1aDYsGVglhDV0NcQBnDW0NdQ15DWAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAlQCBDZUAiA2PDZcNMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAnw2nDTAAMAAwADAAMAAwAHUArw23DTAAMAAwADAAMAAwADAAMAAwADAAMAB1AL8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQDHDTAAYABgAM8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA1w11ANwNMAAwAD0B5A0wADAAMAAwADAAMADsDfQN/A0EDgwOFA4wABsOMAAwADAAMAAwADAAMAAwANIG0gbSBtIG0gbSBtIG0gYjDigOwQUuDsEFMw7SBjoO0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGQg5KDlIOVg7SBtIGXg5lDm0OdQ7SBtIGfQ6EDooOjQ6UDtIGmg6hDtIG0gaoDqwO0ga0DrwO0gZgAGAAYADEDmAAYAAkBtIGzA5gANIOYADaDokO0gbSBt8O5w7SBu8O0gb1DvwO0gZgAGAAxA7SBtIG0gbSBtIGYABgAGAAYAAED2AAsAUMD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHJA8sBywHLAcsBywHLAccDywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywPLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAc0D9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHPA/SBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gYUD0QPlQCVAJUAMAAwADAAMACVAJUAlQCVAJUAlQCVAEwPMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA//8EAAQABAAEAAQABAAEAAQABAANAAMAAQABAAIABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQACgATABcAHgAbABoAHgAXABYAEgAeABsAGAAPABgAHABLAEsASwBLAEsASwBLAEsASwBLABgAGAAeAB4AHgATAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABYAGwASAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWAA0AEQAeAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAFAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJABYAGgAbABsAGwAeAB0AHQAeAE8AFwAeAA0AHgAeABoAGwBPAE8ADgBQAB0AHQAdAE8ATwAXAE8ATwBPABYAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAFAATwBAAE8ATwBPAEAATwBQAFAATwBQAB4AHgAeAB4AHgAeAB0AHQAdAB0AHgAdAB4ADgBQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgBQAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAkACQAJAAkACQAJAAkABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAFAAHgAeAB4AKwArAFAAUABQAFAAGABQACsAKwArACsAHgAeAFAAHgBQAFAAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUAAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAYAA0AKwArAB4AHgAbACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAB4ABAAEAB4ABAAEABMABAArACsAKwArACsAKwArACsAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAKwArACsAKwBWAFYAVgBWAB4AHgArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AGgAaABoAGAAYAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQAEwAEACsAEwATAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABLAEsASwBLAEsASwBLAEsASwBLABoAGQAZAB4AUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABMAUAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABABQAFAABAAEAB4ABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUAAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAFAABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQAUABQAB4AHgAYABMAUAArACsABAAbABsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAFAABAAEAAQABAAEAFAABAAEAAQAUAAEAAQABAAEAAQAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArACsAHgArAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAUAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEAA0ADQBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUAArACsAKwBQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABABQACsAKwArACsAKwArACsAKwAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUAAaABoAUABQAFAAUABQAEwAHgAbAFAAHgAEACsAKwAEAAQABAArAFAAUABQAFAAUABQACsAKwArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQACsAUABQACsAKwAEACsABAAEAAQABAAEACsAKwArACsABAAEACsAKwAEAAQABAArACsAKwAEACsAKwArACsAKwArACsAUABQAFAAUAArAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLAAQABABQAFAAUAAEAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAArACsAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AGwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAKwArACsAKwArAAQABAAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAAQAUAArAFAAUABQAFAAUABQACsAKwArAFAAUABQACsAUABQAFAAUAArACsAKwBQAFAAKwBQACsAUABQACsAKwArAFAAUAArACsAKwBQAFAAUAArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArAAQABAAEAAQABAArACsAKwAEAAQABAArAAQABAAEAAQAKwArAFAAKwArACsAKwArACsABAArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAHgAeAB4AHgAeAB4AGwAeACsAKwArACsAKwAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAUABQAFAAKwArACsAKwArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwAOAFAAUABQAFAAUABQAFAAHgBQAAQABAAEAA4AUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAKwArAAQAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAKwArACsAKwArACsAUAArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAFAABAAEAAQABAAEAAQABAArAAQABAAEACsABAAEAAQABABQAB4AKwArACsAKwBQAFAAUAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQABoAUABQAFAAUABQAFAAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQACsAUAArACsAUABQAFAAUABQAFAAUAArACsAKwAEACsAKwArACsABAAEAAQABAAEAAQAKwAEACsABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArAAQABAAeACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAXAAqACoAKgAqACoAKgAqACsAKwArACsAGwBcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAeAEsASwBLAEsASwBLAEsASwBLAEsADQANACsAKwArACsAKwBcAFwAKwBcACsAXABcAFwAXABcACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAXAArAFwAXABcAFwAXABcAFwAXABcAFwAKgBcAFwAKgAqACoAKgAqACoAKgAqACoAXAArACsAXABcAFwAXABcACsAXAArACoAKgAqACoAKgAqACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwBcAFwAXABcAFAADgAOAA4ADgAeAA4ADgAJAA4ADgANAAkAEwATABMAEwATAAkAHgATAB4AHgAeAAQABAAeAB4AHgAeAB4AHgBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQAFAADQAEAB4ABAAeAAQAFgARABYAEQAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAAQABAAEAAQADQAEAAQAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAA0ADQAeAB4AHgAeAB4AHgAEAB4AHgAeAB4AHgAeACsAHgAeAA4ADgANAA4AHgAeAB4AHgAeAAkACQArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgBcAEsASwBLAEsASwBLAEsASwBLAEsADQANAB4AHgAeAB4AXABcAFwAXABcAFwAKgAqACoAKgBcAFwAXABcACoAKgAqAFwAKgAqACoAXABcACoAKgAqACoAKgAqACoAXABcAFwAKgAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqAFwAKgBLAEsASwBLAEsASwBLAEsASwBLACoAKgAqACoAKgAqAFAAUABQAFAAUABQACsAUAArACsAKwArACsAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAKwBQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsABAAEAAQAHgANAB4AHgAeAB4AHgAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUAArACsADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWABEAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQANAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAANAA0AKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUAArAAQABAArACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqAA0ADQAVAFwADQAeAA0AGwBcACoAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwAeAB4AEwATAA0ADQAOAB4AEwATAB4ABAAEAAQACQArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAHgArACsAKwATABMASwBLAEsASwBLAEsASwBLAEsASwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAXABcAFwAXABcACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAXAArACsAKwAqACoAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsAHgAeAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKwAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKwArAAQASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACoAKgAqACoAKgAqACoAXAAqACoAKgAqACoAKgArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABABQAFAAUABQAFAAUABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwANAA0AHgANAA0ADQANAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwAeAB4AHgAeAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArAA0ADQANAA0ADQBLAEsASwBLAEsASwBLAEsASwBLACsAKwArAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUAAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAAQAUABQAFAAUABQAFAABABQAFAABAAEAAQAUAArACsAKwArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQACsAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAFAAUABQACsAHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQACsAKwAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQACsAHgAeAB4AHgAeAB4AHgAOAB4AKwANAA0ADQANAA0ADQANAAkADQANAA0ACAAEAAsABAAEAA0ACQANAA0ADAAdAB0AHgAXABcAFgAXABcAFwAWABcAHQAdAB4AHgAUABQAFAANAAEAAQAEAAQABAAEAAQACQAaABoAGgAaABoAGgAaABoAHgAXABcAHQAVABUAHgAeAB4AHgAeAB4AGAAWABEAFQAVABUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ADQAeAA0ADQANAA0AHgANAA0ADQAHAB4AHgAeAB4AKwAEAAQABAAEAAQABAAEAAQABAAEAFAAUAArACsATwBQAFAAUABQAFAAHgAeAB4AFgARAE8AUABPAE8ATwBPAFAAUABQAFAAUAAeAB4AHgAWABEAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArABsAGwAbABsAGwAbABsAGgAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGgAbABsAGwAbABoAGwAbABoAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAHgAeAFAAGgAeAB0AHgBQAB4AGgAeAB4AHgAeAB4AHgAeAB4AHgBPAB4AUAAbAB4AHgBQAFAAUABQAFAAHgAeAB4AHQAdAB4AUAAeAFAAHgBQAB4AUABPAFAAUAAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgBQAFAAUABQAE8ATwBQAFAAUABQAFAATwBQAFAATwBQAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAUABQAFAATwBPAE8ATwBPAE8ATwBPAE8ATwBQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABPAB4AHgArACsAKwArAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHQAdAB4AHgAeAB0AHQAeAB4AHQAeAB4AHgAdAB4AHQAbABsAHgAdAB4AHgAeAB4AHQAeAB4AHQAdAB0AHQAeAB4AHQAeAB0AHgAdAB0AHQAdAB0AHQAeAB0AHgAeAB4AHgAeAB0AHQAdAB0AHgAeAB4AHgAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHgAeAB0AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAeAB0AHQAdAB0AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAdAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAWABEAHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAWABEAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AHQAdAB0AHgAeAB0AHgAeAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlAB4AHQAdAB4AHgAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AJQAlAB0AHQAlAB4AJQAlACUAIAAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAdAB0AHQAeAB0AJQAdAB0AHgAdAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAdAB0AHQAdACUAHgAlACUAJQAdACUAJQAdAB0AHQAlACUAHQAdACUAHQAdACUAJQAlAB4AHQAeAB4AHgAeAB0AHQAlAB0AHQAdAB0AHQAdACUAJQAlACUAJQAdACUAJQAgACUAHQAdACUAJQAlACUAJQAlACUAJQAeAB4AHgAlACUAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AFwAXABcAFwAXABcAHgATABMAJQAeAB4AHgAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARABYAEQAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAEAAQABAAeAB4AKwArACsAKwArABMADQANAA0AUAATAA0AUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUAANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAA0ADQANAA0ADQANAA0ADQAeAA0AFgANAB4AHgAXABcAHgAeABcAFwAWABEAFgARABYAEQAWABEADQANAA0ADQATAFAADQANAB4ADQANAB4AHgAeAB4AHgAMAAwADQANAA0AHgANAA0AFgANAA0ADQANAA0ADQANAA0AHgANAB4ADQANAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArAA0AEQARACUAJQBHAFcAVwAWABEAFgARABYAEQAWABEAFgARACUAJQAWABEAFgARABYAEQAWABEAFQAWABEAEQAlAFcAVwBXAFcAVwBXAFcAVwBXAAQABAAEAAQABAAEACUAVwBXAFcAVwA2ACUAJQBXAFcAVwBHAEcAJQAlACUAKwBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBRAFcAUQBXAFEAVwBXAFcAVwBXAFcAUQBXAFcAVwBXAFcAVwBRAFEAKwArAAQABAAVABUARwBHAFcAFQBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBRAFcAVwBXAFcAVwBXAFEAUQBXAFcAVwBXABUAUQBHAEcAVwArACsAKwArACsAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwAlACUAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACsAKwArACsAKwArACsAKwArACsAKwArAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBPAE8ATwBPAE8ATwBPAE8AJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADQATAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABLAEsASwBLAEsASwBLAEsASwBLAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAABAAEAAQABAAeAAQABAAEAAQABAAEAAQABAAEAAQAHgBQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAeAA0ADQANAA0ADQArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAAQAUABQAFAABABQAFAAUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAeAB4AHgAeAAQAKwArACsAUABQAFAAUABQAFAAHgAeABoAHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADgAOABMAEwArACsAKwArACsAKwArACsABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwANAA0ASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUAAeAB4AHgBQAA4AUABQAAQAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArAB4AWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYACsAKwArAAQAHgAeAB4AHgAeAB4ADQANAA0AHgAeAB4AHgArAFAASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArAB4AHgBcAFwAXABcAFwAKgBcAFwAXABcAFwAXABcAFwAXABcAEsASwBLAEsASwBLAEsASwBLAEsAXABcAFwAXABcACsAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAFAAUABQAAQAUABQAFAAUABQAFAAUABQAAQABAArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAHgANAA0ADQBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAXAAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAKgAqACoAXABcACoAKgBcAFwAXABcAFwAKgAqAFwAKgBcACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcACoAKgBQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAA0ADQBQAFAAUAAEAAQAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQADQAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAVABVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBUAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVACsAKwArACsAKwArACsAKwArACsAKwArAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAKwArACsAKwBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAKwArACsAKwAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAKwArACsAKwArAFYABABWAFYAVgBWAFYAVgBWAFYAVgBWAB4AVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgArAFYAVgBWAFYAVgArAFYAKwBWAFYAKwBWAFYAKwBWAFYAVgBWAFYAVgBWAFYAVgBWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAEQAWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAaAB4AKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAGAARABEAGAAYABMAEwAWABEAFAArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACUAJQAlACUAJQAWABEAFgARABYAEQAWABEAFgARABYAEQAlACUAFgARACUAJQAlACUAJQAlACUAEQAlABEAKwAVABUAEwATACUAFgARABYAEQAWABEAJQAlACUAJQAlACUAJQAlACsAJQAbABoAJQArACsAKwArAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAcAKwATACUAJQAbABoAJQAlABYAEQAlACUAEQAlABEAJQBXAFcAVwBXAFcAVwBXAFcAVwBXABUAFQAlACUAJQATACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXABYAJQARACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAWACUAEQAlABYAEQARABYAEQARABUAVwBRAFEAUQBRAFEAUQBRAFEAUQBRAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcARwArACsAVwBXAFcAVwBXAFcAKwArAFcAVwBXAFcAVwBXACsAKwBXAFcAVwBXAFcAVwArACsAVwBXAFcAKwArACsAGgAbACUAJQAlABsAGwArAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAAQAB0AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsADQANAA0AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAA0AUABQAFAAUAArACsAKwArAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwArAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwBQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAUABQAFAAUABQAAQABAAEACsABAAEACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAKwBQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAA0ADQANAA0ADQANAA0ADQAeACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAArACsAKwArAFAAUABQAFAAUAANAA0ADQANAA0ADQAUACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsADQANAA0ADQANAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArAAQABAANACsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAB4AHgAeAB4AHgArACsAKwArACsAKwAEAAQABAAEAAQABAAEAA0ADQAeAB4AHgAeAB4AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsASwBLAEsASwBLAEsASwBLAEsASwANAA0ADQANAFAABAAEAFAAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAeAA4AUAArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAADQANAB4ADQAEAAQABAAEAB4ABAAEAEsASwBLAEsASwBLAEsASwBLAEsAUAAOAFAADQANAA0AKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAANAA0AHgANAA0AHgAEACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAA0AKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsABAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsABAAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAUAArACsAKwArACsAKwAEACsAKwArACsAKwBQAFAAUABQAFAABAAEACsAKwAEAAQABAAEAAQABAAEACsAKwArAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAAQABABQAFAAUABQAA0ADQANAA0AHgBLAEsASwBLAEsASwBLAEsASwBLAA0ADQArAB4ABABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUAAeAFAAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABAAEAAQADgANAA0AEwATAB4AHgAeAA0ADQANAA0ADQANAA0ADQANAA0ADQANAA0ADQANAFAAUABQAFAABAAEACsAKwAEAA0ADQAeAFAAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKwArACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBcAFwADQANAA0AKgBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAKwArAFAAKwArAFAAUABQAFAAUABQAFAAUAArAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQAKwAEAAQAKwArAAQABAAEAAQAUAAEAFAABAAEAA0ADQANACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABABQAA4AUAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAFAABAAEAAQABAAOAB4ADQANAA0ADQAOAB4ABAArACsAKwArACsAKwArACsAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAA0ADQANAFAADgAOAA4ADQANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAAQABAAEAFAADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAOABMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAArACsAKwAEACsABAAEACsABAAEAAQABAAEAAQABABQAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAaABoAGgAaAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABIAEgAQwBDAEMAUABQAFAAUABDAFAAUABQAEgAQwBIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABDAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAJAAkACQAJAAkACQAJABYAEQArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwANAA0AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAANACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAA0ADQANAB4AHgAeAB4AHgAeAFAAUABQAFAADQAeACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAA0AHgAeACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAARwBHABUARwAJACsAKwArACsAKwArACsAKwArACsAKwAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUQBRAFEAKwArACsAKwArACsAKwArACsAKwArACsAKwBRAFEAUQBRACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAHgAEAAQADQAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQABAAEAAQABAAeAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQAHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAKwArAFAAKwArAFAAUAArACsAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUAArAFAAUABQAFAAUABQAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAHgAeAFAAUABQAFAAUAArAFAAKwArACsAUABQAFAAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeACsAKwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4ABAAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAHgAeAA0ADQANAA0AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArAAQABAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwBQAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArABsAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAB4AHgAeAB4ABAAEAAQABAAEAAQABABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArABYAFgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAGgBQAFAAUAAaAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUAArACsAKwArACsAKwBQACsAKwArACsAUAArAFAAKwBQACsAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUAArAFAAKwBQACsAUAArAFAAUAArAFAAKwArAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAKwBQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8AJQAlACUAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB4AHgAeACUAJQAlAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAlACUAJQAlACUAHgAlACUAJQAlACUAIAAgACAAJQAlACAAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACEAIQAhACEAIQAlACUAIAAgACUAJQAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAIAAlACUAJQAlACAAIAAgACUAIAAgACAAJQAlACUAJQAlACUAJQAgACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAlAB4AJQAeACUAJQAlACUAJQAgACUAJQAlACUAHgAlAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACAAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABcAFwAXABUAFQAVAB4AHgAeAB4AJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAgACUAJQAgACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAIAAgACUAJQAgACAAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACAAIAAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACAAIAAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAA==";
+    LETTER_NUMBER_MODIFIER = 50;
+    BK = 1;
+    CR$1 = 2;
+    LF$1 = 3;
+    CM = 4;
+    NL = 5;
+    WJ = 7;
+    ZW = 8;
+    GL = 9;
+    SP = 10;
+    ZWJ$1 = 11;
+    B2 = 12;
+    BA = 13;
+    BB = 14;
+    HY = 15;
+    CB = 16;
+    CL = 17;
+    CP = 18;
+    EX = 19;
+    IN = 20;
+    NS = 21;
+    OP = 22;
+    QU = 23;
+    IS = 24;
+    NU = 25;
+    PO = 26;
+    PR = 27;
+    SY = 28;
+    AI = 29;
+    AL = 30;
+    CJ = 31;
+    EB = 32;
+    EM = 33;
+    H2 = 34;
+    H3 = 35;
+    HL = 36;
+    ID = 37;
+    JL = 38;
+    JV = 39;
+    JT = 40;
+    RI$1 = 41;
+    SA = 42;
+    XX = 43;
+    ea_OP = [9001, 65288];
+    BREAK_MANDATORY = "!";
+    BREAK_NOT_ALLOWED$1 = "×";
+    BREAK_ALLOWED$1 = "÷";
+    UnicodeTrie$1 = createTrieFromBase64$1(base64$1);
+    ALPHABETICS = [AL, HL];
+    HARD_LINE_BREAKS = [BK, CR$1, LF$1, NL];
+    SPACE$1 = [SP, ZW];
+    PREFIX_POSTFIX = [PR, PO];
+    LINE_BREAKS = HARD_LINE_BREAKS.concat(SPACE$1);
+    KOREAN_SYLLABLE_BLOCK = [JL, JV, JT, H2, H3];
+    HYPHEN = [HY, BA];
+    codePointsToCharacterClasses = function(codePoints, lineBreak2) {
+      if (lineBreak2 === void 0) {
+        lineBreak2 = "strict";
+      }
+      var types = [];
+      var indices = [];
+      var categories = [];
+      codePoints.forEach(function(codePoint, index) {
+        var classType = UnicodeTrie$1.get(codePoint);
+        if (classType > LETTER_NUMBER_MODIFIER) {
+          categories.push(true);
+          classType -= LETTER_NUMBER_MODIFIER;
+        } else {
+          categories.push(false);
         }
-        this.nodes.forEach(propagateDirtyNodes);
-        this.nodes.forEach(resolveTargetDelta);
-        this.nodes.forEach(calcProjection);
-        this.nodes.forEach(cleanDirtyNodes);
-        if (statsBuffer.addProjectionMetrics) {
-          statsBuffer.addProjectionMetrics(metrics);
+        if (["normal", "auto", "loose"].indexOf(lineBreak2) !== -1) {
+          if ([8208, 8211, 12316, 12448].indexOf(codePoint) !== -1) {
+            indices.push(index);
+            return types.push(CB);
+          }
         }
-      };
-      this.resolvedRelativeTargetAt = 0;
-      this.linkedParentVersion = 0;
-      this.hasProjected = false;
-      this.isVisible = true;
-      this.animationProgress = 0;
-      this.sharedNodes = /* @__PURE__ */ new Map();
-      this.latestValues = latestValues;
-      this.root = parent ? parent.root || parent : this;
-      this.path = parent ? [...parent.path, parent] : [];
-      this.parent = parent;
-      this.depth = parent ? parent.depth + 1 : 0;
-      for (let i = 0; i < this.path.length; i++) {
-        this.path[i].shouldResetTransform = true;
-      }
-      if (this.root === this)
-        this.nodes = new FlatTree();
-    }
-    addEventListener(name, handler) {
-      if (!this.eventHandlers.has(name)) {
-        this.eventHandlers.set(name, new SubscriptionManager());
-      }
-      return this.eventHandlers.get(name).add(handler);
-    }
-    notifyListeners(name, ...args) {
-      const subscriptionManager = this.eventHandlers.get(name);
-      subscriptionManager && subscriptionManager.notify(...args);
-    }
-    hasListeners(name) {
-      return this.eventHandlers.has(name);
-    }
-    /**
-     * Lifecycles
-     */
-    mount(instance) {
-      if (this.instance)
-        return;
-      this.isSVG = isSVGElement(instance) && !isSVGSVGElement(instance);
-      this.instance = instance;
-      const { layoutId, layout: layout2, visualElement } = this.options;
-      if (visualElement && !visualElement.current) {
-        visualElement.mount(instance);
-      }
-      this.root.nodes.add(this);
-      this.parent && this.parent.children.add(this);
-      if (this.root.hasTreeAnimated && (layout2 || layoutId)) {
-        this.isLayoutDirty = true;
-      }
-      if (attachResizeListener) {
-        let cancelDelay;
-        let innerWidth = 0;
-        const resizeUnblockUpdate = () => this.root.updateBlockedByResize = false;
-        frame.read(() => {
-          innerWidth = window.innerWidth;
-        });
-        attachResizeListener(instance, () => {
-          const newInnerWidth = window.innerWidth;
-          if (newInnerWidth === innerWidth)
-            return;
-          innerWidth = newInnerWidth;
-          this.root.updateBlockedByResize = true;
-          cancelDelay && cancelDelay();
-          cancelDelay = delay(resizeUnblockUpdate, 250);
-          if (globalProjectionState.hasAnimatedSinceResize) {
-            globalProjectionState.hasAnimatedSinceResize = false;
-            this.nodes.forEach(finishAnimation);
+        if (classType === CM || classType === ZWJ$1) {
+          if (index === 0) {
+            indices.push(index);
+            return types.push(AL);
           }
-        });
-      }
-      if (layoutId) {
-        this.root.registerSharedNode(layoutId, this);
-      }
-      if (this.options.animate !== false && visualElement && (layoutId || layout2)) {
-        this.addEventListener("didUpdate", ({ delta, hasLayoutChanged, hasRelativeLayoutChanged, layout: newLayout }) => {
-          if (this.isTreeAnimationBlocked()) {
-            this.target = void 0;
-            this.relativeTarget = void 0;
-            return;
+          var prev = types[index - 1];
+          if (LINE_BREAKS.indexOf(prev) === -1) {
+            indices.push(indices[index - 1]);
+            return types.push(prev);
           }
-          const layoutTransition = this.options.transition || visualElement.getDefaultTransition() || defaultLayoutTransition;
-          const { onLayoutAnimationStart, onLayoutAnimationComplete } = visualElement.getProps();
-          const hasTargetChanged = !this.targetLayout || !boxEqualsRounded(this.targetLayout, newLayout);
-          const hasOnlyRelativeTargetChanged = !hasLayoutChanged && hasRelativeLayoutChanged;
-          if (this.options.layoutRoot || this.resumeFrom || hasOnlyRelativeTargetChanged || hasLayoutChanged && (hasTargetChanged || !this.currentAnimation)) {
-            if (this.resumeFrom) {
-              this.resumingFrom = this.resumeFrom;
-              this.resumingFrom.resumingFrom = void 0;
-            }
-            const animationOptions = {
-              ...getValueTransition(layoutTransition, "layout"),
-              onPlay: onLayoutAnimationStart,
-              onComplete: onLayoutAnimationComplete
-            };
-            if (visualElement.shouldReduceMotion || this.options.layoutRoot) {
-              animationOptions.delay = 0;
-              animationOptions.type = false;
-            }
-            this.startAnimation(animationOptions);
-            this.setAnimationOrigin(delta, hasOnlyRelativeTargetChanged);
+          indices.push(index);
+          return types.push(AL);
+        }
+        indices.push(index);
+        if (classType === CJ) {
+          return types.push(lineBreak2 === "strict" ? NS : ID);
+        }
+        if (classType === SA) {
+          return types.push(AL);
+        }
+        if (classType === AI) {
+          return types.push(AL);
+        }
+        if (classType === XX) {
+          if (codePoint >= 131072 && codePoint <= 196605 || codePoint >= 196608 && codePoint <= 262141) {
+            return types.push(ID);
           } else {
-            if (!hasLayoutChanged) {
-              finishAnimation(this);
-            }
-            if (this.isLead() && this.options.onExitComplete) {
-              this.options.onExitComplete();
-            }
-          }
-          this.targetLayout = newLayout;
-        });
-      }
-    }
-    unmount() {
-      this.options.layoutId && this.willUpdate();
-      this.root.nodes.remove(this);
-      const stack = this.getStack();
-      stack && stack.remove(this);
-      this.parent && this.parent.children.delete(this);
-      this.instance = void 0;
-      this.eventHandlers.clear();
-      cancelFrame(this.updateProjection);
-    }
-    // only on the root
-    blockUpdate() {
-      this.updateManuallyBlocked = true;
-    }
-    unblockUpdate() {
-      this.updateManuallyBlocked = false;
-    }
-    isUpdateBlocked() {
-      return this.updateManuallyBlocked || this.updateBlockedByResize;
-    }
-    isTreeAnimationBlocked() {
-      return this.isAnimationBlocked || this.parent && this.parent.isTreeAnimationBlocked() || false;
-    }
-    // Note: currently only running on root node
-    startUpdate() {
-      if (this.isUpdateBlocked())
-        return;
-      this.isUpdating = true;
-      this.nodes && this.nodes.forEach(resetSkewAndRotation);
-      this.animationId++;
-    }
-    getTransformTemplate() {
-      const { visualElement } = this.options;
-      return visualElement && visualElement.getProps().transformTemplate;
-    }
-    willUpdate(shouldNotifyListeners = true) {
-      this.root.hasTreeAnimated = true;
-      if (this.root.isUpdateBlocked()) {
-        this.options.onExitComplete && this.options.onExitComplete();
-        return;
-      }
-      if (window.MotionCancelOptimisedAnimation && !this.hasCheckedOptimisedAppear) {
-        cancelTreeOptimisedTransformAnimations(this);
-      }
-      !this.root.isUpdating && this.root.startUpdate();
-      if (this.isLayoutDirty)
-        return;
-      this.isLayoutDirty = true;
-      for (let i = 0; i < this.path.length; i++) {
-        const node = this.path[i];
-        node.shouldResetTransform = true;
-        if (typeof node.latestValues.x === "string" || typeof node.latestValues.y === "string") {
-          node.isLayoutDirty = true;
-        }
-        node.updateScroll("snapshot");
-        if (node.options.layoutRoot) {
-          node.willUpdate(false);
-        }
-      }
-      const { layoutId, layout: layout2 } = this.options;
-      if (layoutId === void 0 && !layout2)
-        return;
-      const transformTemplate = this.getTransformTemplate();
-      this.prevTransformTemplateValue = transformTemplate ? transformTemplate(this.latestValues, "") : void 0;
-      this.updateSnapshot();
-      shouldNotifyListeners && this.notifyListeners("willUpdate");
-    }
-    update() {
-      this.updateScheduled = false;
-      const updateWasBlocked = this.isUpdateBlocked();
-      if (updateWasBlocked) {
-        const wasBlockedByResize = this.updateBlockedByResize;
-        this.unblockUpdate();
-        this.updateBlockedByResize = false;
-        this.clearAllSnapshots();
-        if (wasBlockedByResize) {
-          this.nodes.forEach(forceLayoutMeasure);
-        }
-        this.nodes.forEach(clearMeasurements);
-        return;
-      }
-      if (this.animationId <= this.animationCommitId) {
-        this.nodes.forEach(clearIsLayoutDirty);
-        return;
-      }
-      this.animationCommitId = this.animationId;
-      if (!this.isUpdating) {
-        this.nodes.forEach(clearIsLayoutDirty);
-      } else {
-        this.isUpdating = false;
-        this.nodes.forEach(ensureDraggedNodesSnapshotted);
-        this.nodes.forEach(resetTransformStyle);
-        this.nodes.forEach(updateLayout);
-        this.nodes.forEach(notifyLayoutUpdate);
-      }
-      this.clearAllSnapshots();
-      const now2 = time.now();
-      frameData.delta = clamp(0, 1e3 / 60, now2 - frameData.timestamp);
-      frameData.timestamp = now2;
-      frameData.isProcessing = true;
-      frameSteps.update.process(frameData);
-      frameSteps.preRender.process(frameData);
-      frameSteps.render.process(frameData);
-      frameData.isProcessing = false;
-    }
-    didUpdate() {
-      if (!this.updateScheduled) {
-        this.updateScheduled = true;
-        microtask.read(this.scheduleUpdate);
-      }
-    }
-    clearAllSnapshots() {
-      this.nodes.forEach(clearSnapshot);
-      this.sharedNodes.forEach(removeLeadSnapshots);
-    }
-    scheduleUpdateProjection() {
-      if (!this.projectionUpdateScheduled) {
-        this.projectionUpdateScheduled = true;
-        frame.preRender(this.updateProjection, false, true);
-      }
-    }
-    scheduleCheckAfterUnmount() {
-      frame.postRender(() => {
-        if (this.isLayoutDirty) {
-          this.root.didUpdate();
-        } else {
-          this.root.checkUpdateFailed();
-        }
-      });
-    }
-    /**
-     * Update measurements
-     */
-    updateSnapshot() {
-      if (this.snapshot || !this.instance)
-        return;
-      this.snapshot = this.measure();
-      if (this.snapshot && !calcLength(this.snapshot.measuredBox.x) && !calcLength(this.snapshot.measuredBox.y)) {
-        this.snapshot = void 0;
-      }
-    }
-    updateLayout() {
-      if (!this.instance)
-        return;
-      this.updateScroll();
-      if (!(this.options.alwaysMeasureLayout && this.isLead()) && !this.isLayoutDirty) {
-        return;
-      }
-      if (this.resumeFrom && !this.resumeFrom.instance) {
-        for (let i = 0; i < this.path.length; i++) {
-          const node = this.path[i];
-          node.updateScroll();
-        }
-      }
-      const prevLayout = this.layout;
-      this.layout = this.measure(false);
-      this.layoutVersion++;
-      if (!this.layoutCorrected)
-        this.layoutCorrected = createBox();
-      this.isLayoutDirty = false;
-      this.projectionDelta = void 0;
-      this.notifyListeners("measure", this.layout.layoutBox);
-      const { visualElement } = this.options;
-      visualElement && visualElement.notify("LayoutMeasure", this.layout.layoutBox, prevLayout ? prevLayout.layoutBox : void 0);
-    }
-    updateScroll(phase = "measure") {
-      let needsMeasurement = Boolean(this.options.layoutScroll && this.instance);
-      if (this.scroll && this.scroll.animationId === this.root.animationId && this.scroll.phase === phase) {
-        needsMeasurement = false;
-      }
-      if (needsMeasurement && this.instance) {
-        const isRoot = checkIsScrollRoot(this.instance);
-        this.scroll = {
-          animationId: this.root.animationId,
-          phase,
-          isRoot,
-          offset: measureScroll(this.instance),
-          wasRoot: this.scroll ? this.scroll.isRoot : isRoot
-        };
-      }
-    }
-    resetTransform() {
-      if (!resetTransform)
-        return;
-      const isResetRequested = this.isLayoutDirty || this.shouldResetTransform || this.options.alwaysMeasureLayout;
-      const hasProjection = this.projectionDelta && !isDeltaZero(this.projectionDelta);
-      const transformTemplate = this.getTransformTemplate();
-      const transformTemplateValue = transformTemplate ? transformTemplate(this.latestValues, "") : void 0;
-      const transformTemplateHasChanged = transformTemplateValue !== this.prevTransformTemplateValue;
-      if (isResetRequested && this.instance && (hasProjection || hasTransform(this.latestValues) || transformTemplateHasChanged)) {
-        resetTransform(this.instance, transformTemplateValue);
-        this.shouldResetTransform = false;
-        this.scheduleRender();
-      }
-    }
-    measure(removeTransform = true) {
-      const pageBox = this.measurePageBox();
-      let layoutBox = this.removeElementScroll(pageBox);
-      if (removeTransform) {
-        layoutBox = this.removeTransform(layoutBox);
-      }
-      roundBox(layoutBox);
-      return {
-        animationId: this.root.animationId,
-        measuredBox: pageBox,
-        layoutBox,
-        latestValues: {},
-        source: this.id
-      };
-    }
-    measurePageBox() {
-      var _a;
-      const { visualElement } = this.options;
-      if (!visualElement)
-        return createBox();
-      const box = visualElement.measureViewportBox();
-      const wasInScrollRoot = ((_a = this.scroll) == null ? void 0 : _a.wasRoot) || this.path.some(checkNodeWasScrollRoot);
-      if (!wasInScrollRoot) {
-        const { scroll: scroll2 } = this.root;
-        if (scroll2) {
-          translateAxis(box.x, scroll2.offset.x);
-          translateAxis(box.y, scroll2.offset.y);
-        }
-      }
-      return box;
-    }
-    removeElementScroll(box) {
-      var _a;
-      const boxWithoutScroll = createBox();
-      copyBoxInto(boxWithoutScroll, box);
-      if ((_a = this.scroll) == null ? void 0 : _a.wasRoot) {
-        return boxWithoutScroll;
-      }
-      for (let i = 0; i < this.path.length; i++) {
-        const node = this.path[i];
-        const { scroll: scroll2, options } = node;
-        if (node !== this.root && scroll2 && options.layoutScroll) {
-          if (scroll2.wasRoot) {
-            copyBoxInto(boxWithoutScroll, box);
-          }
-          translateAxis(boxWithoutScroll.x, scroll2.offset.x);
-          translateAxis(boxWithoutScroll.y, scroll2.offset.y);
-        }
-      }
-      return boxWithoutScroll;
-    }
-    applyTransform(box, transformOnly = false, output) {
-      var _a, _b;
-      const withTransforms = output || createBox();
-      copyBoxInto(withTransforms, box);
-      for (let i = 0; i < this.path.length; i++) {
-        const node = this.path[i];
-        if (!transformOnly && node.options.layoutScroll && node.scroll && node !== node.root) {
-          translateAxis(withTransforms.x, -node.scroll.offset.x);
-          translateAxis(withTransforms.y, -node.scroll.offset.y);
-        }
-        if (!hasTransform(node.latestValues))
-          continue;
-        transformBox(withTransforms, node.latestValues, (_a = node.layout) == null ? void 0 : _a.layoutBox);
-      }
-      if (hasTransform(this.latestValues)) {
-        transformBox(withTransforms, this.latestValues, (_b = this.layout) == null ? void 0 : _b.layoutBox);
-      }
-      return withTransforms;
-    }
-    removeTransform(box) {
-      var _a;
-      const boxWithoutTransform = createBox();
-      copyBoxInto(boxWithoutTransform, box);
-      for (let i = 0; i < this.path.length; i++) {
-        const node = this.path[i];
-        if (!hasTransform(node.latestValues))
-          continue;
-        let sourceBox;
-        if (node.instance) {
-          hasScale(node.latestValues) && node.updateSnapshot();
-          sourceBox = createBox();
-          copyBoxInto(sourceBox, node.measurePageBox());
-        }
-        removeBoxTransforms(boxWithoutTransform, node.latestValues, (_a = node.snapshot) == null ? void 0 : _a.layoutBox, sourceBox);
-      }
-      if (hasTransform(this.latestValues)) {
-        removeBoxTransforms(boxWithoutTransform, this.latestValues);
-      }
-      return boxWithoutTransform;
-    }
-    setTargetDelta(delta) {
-      this.targetDelta = delta;
-      this.root.scheduleUpdateProjection();
-      this.isProjectionDirty = true;
-    }
-    setOptions(options) {
-      this.options = {
-        ...this.options,
-        ...options,
-        crossfade: options.crossfade !== void 0 ? options.crossfade : true
-      };
-    }
-    clearMeasurements() {
-      this.scroll = void 0;
-      this.layout = void 0;
-      this.snapshot = void 0;
-      this.prevTransformTemplateValue = void 0;
-      this.targetDelta = void 0;
-      this.target = void 0;
-      this.isLayoutDirty = false;
-    }
-    forceRelativeParentToResolveTarget() {
-      if (!this.relativeParent)
-        return;
-      if (this.relativeParent.resolvedRelativeTargetAt !== frameData.timestamp) {
-        this.relativeParent.resolveTargetDelta(true);
-      }
-    }
-    resolveTargetDelta(forceRecalculation = false) {
-      var _a;
-      const lead = this.getLead();
-      this.isProjectionDirty || (this.isProjectionDirty = lead.isProjectionDirty);
-      this.isTransformDirty || (this.isTransformDirty = lead.isTransformDirty);
-      this.isSharedProjectionDirty || (this.isSharedProjectionDirty = lead.isSharedProjectionDirty);
-      const isShared = Boolean(this.resumingFrom) || this !== lead;
-      const canSkip = !(forceRecalculation || isShared && this.isSharedProjectionDirty || this.isProjectionDirty || ((_a = this.parent) == null ? void 0 : _a.isProjectionDirty) || this.attemptToResolveRelativeTarget || this.root.updateBlockedByResize);
-      if (canSkip)
-        return;
-      const { layout: layout2, layoutId } = this.options;
-      if (!this.layout || !(layout2 || layoutId))
-        return;
-      this.resolvedRelativeTargetAt = frameData.timestamp;
-      const relativeParent = this.getClosestProjectingParent();
-      if (relativeParent && this.linkedParentVersion !== relativeParent.layoutVersion && !relativeParent.options.layoutRoot) {
-        this.removeRelativeTarget();
-      }
-      if (!this.targetDelta && !this.relativeTarget) {
-        if (this.options.layoutAnchor !== false && relativeParent && relativeParent.layout) {
-          this.createRelativeTarget(relativeParent, this.layout.layoutBox, relativeParent.layout.layoutBox);
-        } else {
-          this.removeRelativeTarget();
-        }
-      }
-      if (!this.relativeTarget && !this.targetDelta)
-        return;
-      if (!this.target) {
-        this.target = createBox();
-        this.targetWithTransforms = createBox();
-      }
-      if (this.relativeTarget && this.relativeTargetOrigin && this.relativeParent && this.relativeParent.target) {
-        this.forceRelativeParentToResolveTarget();
-        calcRelativeBox(this.target, this.relativeTarget, this.relativeParent.target, this.options.layoutAnchor || void 0);
-      } else if (this.targetDelta) {
-        if (Boolean(this.resumingFrom)) {
-          this.applyTransform(this.layout.layoutBox, false, this.target);
-        } else {
-          copyBoxInto(this.target, this.layout.layoutBox);
-        }
-        applyBoxDelta(this.target, this.targetDelta);
-      } else {
-        copyBoxInto(this.target, this.layout.layoutBox);
-      }
-      if (this.attemptToResolveRelativeTarget) {
-        this.attemptToResolveRelativeTarget = false;
-        if (this.options.layoutAnchor !== false && relativeParent && Boolean(relativeParent.resumingFrom) === Boolean(this.resumingFrom) && !relativeParent.options.layoutScroll && relativeParent.target && this.animationProgress !== 1) {
-          this.createRelativeTarget(relativeParent, this.target, relativeParent.target);
-        } else {
-          this.relativeParent = this.relativeTarget = void 0;
-        }
-      }
-      if (statsBuffer.value) {
-        metrics.calculatedTargetDeltas++;
-      }
-    }
-    getClosestProjectingParent() {
-      if (!this.parent || hasScale(this.parent.latestValues) || has2DTranslate(this.parent.latestValues)) {
-        return void 0;
-      }
-      if (this.parent.isProjecting()) {
-        return this.parent;
-      } else {
-        return this.parent.getClosestProjectingParent();
-      }
-    }
-    isProjecting() {
-      return Boolean((this.relativeTarget || this.targetDelta || this.options.layoutRoot) && this.layout);
-    }
-    createRelativeTarget(relativeParent, layout2, parentLayout) {
-      this.relativeParent = relativeParent;
-      this.linkedParentVersion = relativeParent.layoutVersion;
-      this.forceRelativeParentToResolveTarget();
-      this.relativeTarget = createBox();
-      this.relativeTargetOrigin = createBox();
-      calcRelativePosition(this.relativeTargetOrigin, layout2, parentLayout, this.options.layoutAnchor || void 0);
-      copyBoxInto(this.relativeTarget, this.relativeTargetOrigin);
-    }
-    removeRelativeTarget() {
-      this.relativeParent = this.relativeTarget = void 0;
-    }
-    calcProjection() {
-      var _a;
-      const lead = this.getLead();
-      const isShared = Boolean(this.resumingFrom) || this !== lead;
-      let canSkip = true;
-      if (this.isProjectionDirty || ((_a = this.parent) == null ? void 0 : _a.isProjectionDirty)) {
-        canSkip = false;
-      }
-      if (isShared && (this.isSharedProjectionDirty || this.isTransformDirty)) {
-        canSkip = false;
-      }
-      if (this.resolvedRelativeTargetAt === frameData.timestamp) {
-        canSkip = false;
-      }
-      if (canSkip)
-        return;
-      const { layout: layout2, layoutId } = this.options;
-      this.isTreeAnimating = Boolean(this.parent && this.parent.isTreeAnimating || this.currentAnimation || this.pendingAnimation);
-      if (!this.isTreeAnimating) {
-        this.targetDelta = this.relativeTarget = void 0;
-      }
-      if (!this.layout || !(layout2 || layoutId))
-        return;
-      copyBoxInto(this.layoutCorrected, this.layout.layoutBox);
-      const prevTreeScaleX = this.treeScale.x;
-      const prevTreeScaleY = this.treeScale.y;
-      applyTreeDeltas(this.layoutCorrected, this.treeScale, this.path, isShared);
-      if (lead.layout && !lead.target && (this.treeScale.x !== 1 || this.treeScale.y !== 1)) {
-        lead.target = lead.layout.layoutBox;
-        lead.targetWithTransforms = createBox();
-      }
-      const { target } = lead;
-      if (!target) {
-        if (this.prevProjectionDelta) {
-          this.createProjectionDeltas();
-          this.scheduleRender();
-        }
-        return;
-      }
-      if (!this.projectionDelta || !this.prevProjectionDelta) {
-        this.createProjectionDeltas();
-      } else {
-        copyAxisDeltaInto(this.prevProjectionDelta.x, this.projectionDelta.x);
-        copyAxisDeltaInto(this.prevProjectionDelta.y, this.projectionDelta.y);
-      }
-      calcBoxDelta(this.projectionDelta, this.layoutCorrected, target, this.latestValues);
-      if (this.treeScale.x !== prevTreeScaleX || this.treeScale.y !== prevTreeScaleY || !axisDeltaEquals(this.projectionDelta.x, this.prevProjectionDelta.x) || !axisDeltaEquals(this.projectionDelta.y, this.prevProjectionDelta.y)) {
-        this.hasProjected = true;
-        this.scheduleRender();
-        this.notifyListeners("projectionUpdate", target);
-      }
-      if (statsBuffer.value) {
-        metrics.calculatedProjections++;
-      }
-    }
-    hide() {
-      this.isVisible = false;
-    }
-    show() {
-      this.isVisible = true;
-    }
-    scheduleRender(notifyAll2 = true) {
-      var _a;
-      (_a = this.options.visualElement) == null ? void 0 : _a.scheduleRender();
-      if (notifyAll2) {
-        const stack = this.getStack();
-        stack && stack.scheduleRender();
-      }
-      if (this.resumingFrom && !this.resumingFrom.instance) {
-        this.resumingFrom = void 0;
-      }
-    }
-    createProjectionDeltas() {
-      this.prevProjectionDelta = createDelta();
-      this.projectionDelta = createDelta();
-      this.projectionDeltaWithTransform = createDelta();
-    }
-    setAnimationOrigin(delta, hasOnlyRelativeTargetChanged = false) {
-      const snapshot = this.snapshot;
-      const snapshotLatestValues = snapshot ? snapshot.latestValues : {};
-      const mixedValues = { ...this.latestValues };
-      const targetDelta = createDelta();
-      if (!this.relativeParent || !this.relativeParent.options.layoutRoot) {
-        this.relativeTarget = this.relativeTargetOrigin = void 0;
-      }
-      this.attemptToResolveRelativeTarget = !hasOnlyRelativeTargetChanged;
-      const relativeLayout = createBox();
-      const snapshotSource = snapshot ? snapshot.source : void 0;
-      const layoutSource = this.layout ? this.layout.source : void 0;
-      const isSharedLayoutAnimation = snapshotSource !== layoutSource;
-      const stack = this.getStack();
-      const isOnlyMember = !stack || stack.members.length <= 1;
-      const shouldCrossfadeOpacity = Boolean(isSharedLayoutAnimation && !isOnlyMember && this.options.crossfade === true && !this.path.some(hasOpacityCrossfade));
-      this.animationProgress = 0;
-      let prevRelativeTarget;
-      this.mixTargetDelta = (latest) => {
-        const progress2 = latest / 1e3;
-        mixAxisDelta(targetDelta.x, delta.x, progress2);
-        mixAxisDelta(targetDelta.y, delta.y, progress2);
-        this.setTargetDelta(targetDelta);
-        if (this.relativeTarget && this.relativeTargetOrigin && this.layout && this.relativeParent && this.relativeParent.layout) {
-          calcRelativePosition(relativeLayout, this.layout.layoutBox, this.relativeParent.layout.layoutBox, this.options.layoutAnchor || void 0);
-          mixBox(this.relativeTarget, this.relativeTargetOrigin, relativeLayout, progress2);
-          if (prevRelativeTarget && boxEquals(this.relativeTarget, prevRelativeTarget)) {
-            this.isProjectionDirty = false;
-          }
-          if (!prevRelativeTarget)
-            prevRelativeTarget = createBox();
-          copyBoxInto(prevRelativeTarget, this.relativeTarget);
-        }
-        if (isSharedLayoutAnimation) {
-          this.animationValues = mixedValues;
-          mixValues(mixedValues, snapshotLatestValues, this.latestValues, progress2, shouldCrossfadeOpacity, isOnlyMember);
-        }
-        this.root.scheduleUpdateProjection();
-        this.scheduleRender();
-        this.animationProgress = progress2;
-      };
-      this.mixTargetDelta(this.options.layoutRoot ? 1e3 : 0);
-    }
-    startAnimation(options) {
-      var _a, _b, _c;
-      this.notifyListeners("animationStart");
-      (_a = this.currentAnimation) == null ? void 0 : _a.stop();
-      (_c = (_b = this.resumingFrom) == null ? void 0 : _b.currentAnimation) == null ? void 0 : _c.stop();
-      if (this.pendingAnimation) {
-        cancelFrame(this.pendingAnimation);
-        this.pendingAnimation = void 0;
-      }
-      this.pendingAnimation = frame.update(() => {
-        globalProjectionState.hasAnimatedSinceResize = true;
-        activeAnimations.layout++;
-        this.motionValue || (this.motionValue = motionValue(0));
-        this.motionValue.jump(0, false);
-        this.currentAnimation = animateSingleValue(this.motionValue, [0, 1e3], {
-          ...options,
-          velocity: 0,
-          isSync: true,
-          onUpdate: (latest) => {
-            this.mixTargetDelta(latest);
-            options.onUpdate && options.onUpdate(latest);
-          },
-          onStop: () => {
-            activeAnimations.layout--;
-          },
-          onComplete: () => {
-            activeAnimations.layout--;
-            options.onComplete && options.onComplete();
-            this.completeAnimation();
-          }
-        });
-        if (this.resumingFrom) {
-          this.resumingFrom.currentAnimation = this.currentAnimation;
-        }
-        this.pendingAnimation = void 0;
-      });
-    }
-    completeAnimation() {
-      if (this.resumingFrom) {
-        this.resumingFrom.currentAnimation = void 0;
-        this.resumingFrom.preserveOpacity = void 0;
-      }
-      const stack = this.getStack();
-      stack && stack.exitAnimationComplete();
-      this.resumingFrom = this.currentAnimation = this.animationValues = void 0;
-      this.notifyListeners("animationComplete");
-    }
-    finishAnimation() {
-      if (this.currentAnimation) {
-        this.mixTargetDelta && this.mixTargetDelta(animationTarget);
-        this.currentAnimation.stop();
-      }
-      this.completeAnimation();
-    }
-    applyTransformsToTarget() {
-      const lead = this.getLead();
-      let { targetWithTransforms, target, layout: layout2, latestValues } = lead;
-      if (!targetWithTransforms || !target || !layout2)
-        return;
-      if (this !== lead && this.layout && layout2 && shouldAnimatePositionOnly(this.options.animationType, this.layout.layoutBox, layout2.layoutBox)) {
-        target = this.target || createBox();
-        const xLength = calcLength(this.layout.layoutBox.x);
-        target.x.min = lead.target.x.min;
-        target.x.max = target.x.min + xLength;
-        const yLength = calcLength(this.layout.layoutBox.y);
-        target.y.min = lead.target.y.min;
-        target.y.max = target.y.min + yLength;
-      }
-      copyBoxInto(targetWithTransforms, target);
-      transformBox(targetWithTransforms, latestValues);
-      calcBoxDelta(this.projectionDeltaWithTransform, this.layoutCorrected, targetWithTransforms, latestValues);
-    }
-    registerSharedNode(layoutId, node) {
-      if (!this.sharedNodes.has(layoutId)) {
-        this.sharedNodes.set(layoutId, new NodeStack());
-      }
-      const stack = this.sharedNodes.get(layoutId);
-      stack.add(node);
-      const config = node.options.initialPromotionConfig;
-      node.promote({
-        transition: config ? config.transition : void 0,
-        preserveFollowOpacity: config && config.shouldPreserveFollowOpacity ? config.shouldPreserveFollowOpacity(node) : void 0
-      });
-    }
-    isLead() {
-      const stack = this.getStack();
-      return stack ? stack.lead === this : true;
-    }
-    getLead() {
-      var _a;
-      const { layoutId } = this.options;
-      return layoutId ? ((_a = this.getStack()) == null ? void 0 : _a.lead) || this : this;
-    }
-    getPrevLead() {
-      var _a;
-      const { layoutId } = this.options;
-      return layoutId ? (_a = this.getStack()) == null ? void 0 : _a.prevLead : void 0;
-    }
-    getStack() {
-      const { layoutId } = this.options;
-      if (layoutId)
-        return this.root.sharedNodes.get(layoutId);
-    }
-    promote({ needsReset, transition, preserveFollowOpacity } = {}) {
-      const stack = this.getStack();
-      if (stack)
-        stack.promote(this, preserveFollowOpacity);
-      if (needsReset) {
-        this.projectionDelta = void 0;
-        this.needsReset = true;
-      }
-      if (transition)
-        this.setOptions({ transition });
-    }
-    relegate() {
-      const stack = this.getStack();
-      if (stack) {
-        return stack.relegate(this);
-      } else {
-        return false;
-      }
-    }
-    resetSkewAndRotation() {
-      const { visualElement } = this.options;
-      if (!visualElement)
-        return;
-      let hasDistortingTransform = false;
-      const { latestValues } = visualElement;
-      if (latestValues.z || latestValues.rotate || latestValues.rotateX || latestValues.rotateY || latestValues.rotateZ || latestValues.skewX || latestValues.skewY) {
-        hasDistortingTransform = true;
-      }
-      if (!hasDistortingTransform)
-        return;
-      const resetValues = {};
-      if (latestValues.z) {
-        resetDistortingTransform("z", visualElement, resetValues, this.animationValues);
-      }
-      for (let i = 0; i < transformAxes.length; i++) {
-        resetDistortingTransform(`rotate${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
-        resetDistortingTransform(`skew${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
-      }
-      visualElement.render();
-      for (const key in resetValues) {
-        visualElement.setStaticValue(key, resetValues[key]);
-        if (this.animationValues) {
-          this.animationValues[key] = resetValues[key];
-        }
-      }
-      visualElement.scheduleRender();
-    }
-    applyProjectionStyles(targetStyle, styleProp) {
-      if (!this.instance || this.isSVG)
-        return;
-      if (!this.isVisible) {
-        targetStyle.visibility = "hidden";
-        return;
-      }
-      const transformTemplate = this.getTransformTemplate();
-      if (this.needsReset) {
-        this.needsReset = false;
-        targetStyle.visibility = "";
-        targetStyle.opacity = "";
-        targetStyle.pointerEvents = resolveMotionValue(styleProp == null ? void 0 : styleProp.pointerEvents) || "";
-        targetStyle.transform = transformTemplate ? transformTemplate(this.latestValues, "") : "none";
-        return;
-      }
-      const lead = this.getLead();
-      if (!this.projectionDelta || !this.layout || !lead.target) {
-        if (this.options.layoutId) {
-          targetStyle.opacity = this.latestValues.opacity !== void 0 ? this.latestValues.opacity : 1;
-          targetStyle.pointerEvents = resolveMotionValue(styleProp == null ? void 0 : styleProp.pointerEvents) || "";
-        }
-        if (this.hasProjected && !hasTransform(this.latestValues)) {
-          targetStyle.transform = transformTemplate ? transformTemplate({}, "") : "none";
-          this.hasProjected = false;
-        }
-        return;
-      }
-      targetStyle.visibility = "";
-      const valuesToRender = lead.animationValues || lead.latestValues;
-      this.applyTransformsToTarget();
-      let transform2 = buildProjectionTransform(this.projectionDeltaWithTransform, this.treeScale, valuesToRender);
-      if (transformTemplate) {
-        transform2 = transformTemplate(valuesToRender, transform2);
-      }
-      targetStyle.transform = transform2;
-      const { x, y } = this.projectionDelta;
-      targetStyle.transformOrigin = `${x.origin * 100}% ${y.origin * 100}% 0`;
-      if (lead.animationValues) {
-        targetStyle.opacity = lead === this ? valuesToRender.opacity ?? this.latestValues.opacity ?? 1 : this.preserveOpacity ? this.latestValues.opacity : valuesToRender.opacityExit;
-      } else {
-        targetStyle.opacity = lead === this ? valuesToRender.opacity !== void 0 ? valuesToRender.opacity : "" : valuesToRender.opacityExit !== void 0 ? valuesToRender.opacityExit : 0;
-      }
-      for (const key in scaleCorrectors) {
-        if (valuesToRender[key] === void 0)
-          continue;
-        const { correct, applyTo, isCSSVariable } = scaleCorrectors[key];
-        const corrected = transform2 === "none" ? valuesToRender[key] : correct(valuesToRender[key], lead);
-        if (applyTo) {
-          const num = applyTo.length;
-          for (let i = 0; i < num; i++) {
-            targetStyle[applyTo[i]] = corrected;
-          }
-        } else {
-          if (isCSSVariable) {
-            this.options.visualElement.renderState.vars[key] = corrected;
-          } else {
-            targetStyle[key] = corrected;
+            return types.push(AL);
           }
         }
-      }
-      if (this.options.layoutId) {
-        targetStyle.pointerEvents = lead === this ? resolveMotionValue(styleProp == null ? void 0 : styleProp.pointerEvents) || "" : "none";
-      }
-    }
-    clearSnapshot() {
-      this.resumeFrom = this.snapshot = void 0;
-    }
-    // Only run on root
-    resetTree() {
-      this.root.nodes.forEach((node) => {
-        var _a;
-        return (_a = node.currentAnimation) == null ? void 0 : _a.stop();
+        types.push(classType);
       });
-      this.root.nodes.forEach(clearMeasurements);
-      this.root.sharedNodes.clear();
-    }
-  };
-}
-function updateLayout(node) {
-  node.updateLayout();
-}
-function notifyLayoutUpdate(node) {
-  var _a;
-  const snapshot = ((_a = node.resumeFrom) == null ? void 0 : _a.snapshot) || node.snapshot;
-  if (node.isLead() && node.layout && snapshot && node.hasListeners("didUpdate")) {
-    const { layoutBox: layout2, measuredBox: measuredLayout } = node.layout;
-    const { animationType } = node.options;
-    const isShared = snapshot.source !== node.layout.source;
-    if (animationType === "size") {
-      eachAxis((axis) => {
-        const axisSnapshot = isShared ? snapshot.measuredBox[axis] : snapshot.layoutBox[axis];
-        const length = calcLength(axisSnapshot);
-        axisSnapshot.min = layout2[axis].min;
-        axisSnapshot.max = axisSnapshot.min + length;
-      });
-    } else if (animationType === "x" || animationType === "y") {
-      const snapAxis = animationType === "x" ? "y" : "x";
-      copyAxisInto(isShared ? snapshot.measuredBox[snapAxis] : snapshot.layoutBox[snapAxis], layout2[snapAxis]);
-    } else if (shouldAnimatePositionOnly(animationType, snapshot.layoutBox, layout2)) {
-      eachAxis((axis) => {
-        const axisSnapshot = isShared ? snapshot.measuredBox[axis] : snapshot.layoutBox[axis];
-        const length = calcLength(layout2[axis]);
-        axisSnapshot.max = axisSnapshot.min + length;
-        if (node.relativeTarget && !node.currentAnimation) {
-          node.isProjectionDirty = true;
-          node.relativeTarget[axis].max = node.relativeTarget[axis].min + length;
-        }
-      });
-    }
-    const layoutDelta = createDelta();
-    calcBoxDelta(layoutDelta, layout2, snapshot.layoutBox);
-    const visualDelta = createDelta();
-    if (isShared) {
-      calcBoxDelta(visualDelta, node.applyTransform(measuredLayout, true), snapshot.measuredBox);
-    } else {
-      calcBoxDelta(visualDelta, layout2, snapshot.layoutBox);
-    }
-    const hasLayoutChanged = !isDeltaZero(layoutDelta);
-    let hasRelativeLayoutChanged = false;
-    if (!node.resumeFrom) {
-      const relativeParent = node.getClosestProjectingParent();
-      if (relativeParent && !relativeParent.resumeFrom) {
-        const { snapshot: parentSnapshot, layout: parentLayout } = relativeParent;
-        if (parentSnapshot && parentLayout) {
-          const anchor = node.options.layoutAnchor || void 0;
-          const relativeSnapshot = createBox();
-          calcRelativePosition(relativeSnapshot, snapshot.layoutBox, parentSnapshot.layoutBox, anchor);
-          const relativeLayout = createBox();
-          calcRelativePosition(relativeLayout, layout2, parentLayout.layoutBox, anchor);
-          if (!boxEqualsRounded(relativeSnapshot, relativeLayout)) {
-            hasRelativeLayoutChanged = true;
+      return [indices, types, categories];
+    };
+    isAdjacentWithSpaceIgnored = function(a2, b, currentIndex, classTypes) {
+      var current = classTypes[currentIndex];
+      if (Array.isArray(a2) ? a2.indexOf(current) !== -1 : a2 === current) {
+        var i = currentIndex;
+        while (i <= classTypes.length) {
+          i++;
+          var next = classTypes[i];
+          if (next === b) {
+            return true;
           }
-          if (relativeParent.options.layoutRoot) {
-            node.relativeTarget = relativeLayout;
-            node.relativeTargetOrigin = relativeSnapshot;
-            node.relativeParent = relativeParent;
-          }
-        }
-      }
-    }
-    node.notifyListeners("didUpdate", {
-      layout: layout2,
-      snapshot,
-      delta: visualDelta,
-      layoutDelta,
-      hasLayoutChanged,
-      hasRelativeLayoutChanged
-    });
-  } else if (node.isLead()) {
-    const { onExitComplete } = node.options;
-    onExitComplete && onExitComplete();
-  }
-  node.options.transition = void 0;
-}
-function propagateDirtyNodes(node) {
-  if (statsBuffer.value) {
-    metrics.nodes++;
-  }
-  if (!node.parent)
-    return;
-  if (!node.isProjecting()) {
-    node.isProjectionDirty = node.parent.isProjectionDirty;
-  }
-  node.isSharedProjectionDirty || (node.isSharedProjectionDirty = Boolean(node.isProjectionDirty || node.parent.isProjectionDirty || node.parent.isSharedProjectionDirty));
-  node.isTransformDirty || (node.isTransformDirty = node.parent.isTransformDirty);
-}
-function cleanDirtyNodes(node) {
-  node.isProjectionDirty = node.isSharedProjectionDirty = node.isTransformDirty = false;
-}
-function clearSnapshot(node) {
-  node.clearSnapshot();
-}
-function clearMeasurements(node) {
-  node.clearMeasurements();
-}
-function forceLayoutMeasure(node) {
-  node.isLayoutDirty = true;
-  node.updateLayout();
-}
-function clearIsLayoutDirty(node) {
-  node.isLayoutDirty = false;
-}
-function ensureDraggedNodesSnapshotted(node) {
-  if (node.isAnimationBlocked && node.layout && !node.isLayoutDirty) {
-    node.snapshot = node.layout;
-    node.isLayoutDirty = true;
-  }
-}
-function resetTransformStyle(node) {
-  const { visualElement } = node.options;
-  if (visualElement && visualElement.getProps().onBeforeLayoutMeasure) {
-    visualElement.notify("BeforeLayoutMeasure");
-  }
-  node.resetTransform();
-}
-function finishAnimation(node) {
-  node.finishAnimation();
-  node.targetDelta = node.relativeTarget = node.target = void 0;
-  node.isProjectionDirty = true;
-}
-function resolveTargetDelta(node) {
-  node.resolveTargetDelta();
-}
-function calcProjection(node) {
-  node.calcProjection();
-}
-function resetSkewAndRotation(node) {
-  node.resetSkewAndRotation();
-}
-function removeLeadSnapshots(stack) {
-  stack.removeLeadSnapshot();
-}
-function mixAxisDelta(output, delta, p) {
-  output.translate = mixNumber(delta.translate, 0, p);
-  output.scale = mixNumber(delta.scale, 1, p);
-  output.origin = delta.origin;
-  output.originPoint = delta.originPoint;
-}
-function mixAxis(output, from, to, p) {
-  output.min = mixNumber(from.min, to.min, p);
-  output.max = mixNumber(from.max, to.max, p);
-}
-function mixBox(output, from, to, p) {
-  mixAxis(output.x, from.x, to.x, p);
-  mixAxis(output.y, from.y, to.y, p);
-}
-function hasOpacityCrossfade(node) {
-  return node.animationValues && node.animationValues.opacityExit !== void 0;
-}
-var defaultLayoutTransition = {
-  duration: 0.45,
-  ease: [0.4, 0, 0.1, 1]
-};
-var userAgentContains = (string) => typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().includes(string);
-var roundPoint = userAgentContains("applewebkit/") && !userAgentContains("chrome/") ? Math.round : noop;
-function roundAxis(axis) {
-  axis.min = roundPoint(axis.min);
-  axis.max = roundPoint(axis.max);
-}
-function roundBox(box) {
-  roundAxis(box.x);
-  roundAxis(box.y);
-}
-function shouldAnimatePositionOnly(animationType, snapshot, layout2) {
-  return animationType === "position" || animationType === "preserve-aspect" && !isNear(aspectRatio(snapshot), aspectRatio(layout2), 0.2);
-}
-function checkNodeWasScrollRoot(node) {
-  var _a;
-  return node !== node.root && ((_a = node.scroll) == null ? void 0 : _a.wasRoot);
-}
-
-// node_modules/motion-dom/dist/es/projection/node/DocumentProjectionNode.mjs
-var DocumentProjectionNode = createProjectionNode({
-  attachResizeListener: (ref, notify2) => addDomEvent(ref, "resize", notify2),
-  measureScroll: () => {
-    var _a, _b;
-    return {
-      x: document.documentElement.scrollLeft || ((_a = document.body) == null ? void 0 : _a.scrollLeft) || 0,
-      y: document.documentElement.scrollTop || ((_b = document.body) == null ? void 0 : _b.scrollTop) || 0
-    };
-  },
-  checkIsScrollRoot: () => true
-});
-
-// node_modules/motion-dom/dist/es/projection/node/group.mjs
-var notify = (node) => !node.isLayoutDirty && node.willUpdate(false);
-function nodeGroup() {
-  const nodes = /* @__PURE__ */ new Set();
-  const subscriptions = /* @__PURE__ */ new WeakMap();
-  const dirtyAll = () => nodes.forEach(notify);
-  return {
-    add: (node) => {
-      nodes.add(node);
-      subscriptions.set(node, node.addEventListener("willUpdate", dirtyAll));
-    },
-    remove: (node) => {
-      nodes.delete(node);
-      const unsubscribe = subscriptions.get(node);
-      if (unsubscribe) {
-        unsubscribe();
-        subscriptions.delete(node);
-      }
-      dirtyAll();
-    },
-    dirty: dirtyAll
-  };
-}
-
-// node_modules/motion-dom/dist/es/projection/node/HTMLProjectionNode.mjs
-var rootProjectionNode = {
-  current: void 0
-};
-var HTMLProjectionNode = createProjectionNode({
-  measureScroll: (instance) => ({
-    x: instance.scrollLeft,
-    y: instance.scrollTop
-  }),
-  defaultParent: () => {
-    if (!rootProjectionNode.current) {
-      const documentNode = new DocumentProjectionNode({});
-      documentNode.mount(window);
-      documentNode.setOptions({ layoutScroll: true });
-      rootProjectionNode.current = documentNode;
-    }
-    return rootProjectionNode.current;
-  },
-  resetTransform: (instance, value) => {
-    instance.style.transform = value !== void 0 ? value : "none";
-  },
-  checkIsScrollRoot: (instance) => Boolean(window.getComputedStyle(instance).position === "fixed")
-});
-
-// node_modules/motion-dom/dist/es/layout/LayoutAnimationBuilder.mjs
-var layoutSelector = "[data-layout], [data-layout-id]";
-var noop2 = () => {
-};
-function snapshotFromTarget(projection) {
-  var _a;
-  const target = projection.targetWithTransforms || projection.target;
-  if (!target)
-    return void 0;
-  const measuredBox = createBox();
-  const layoutBox = createBox();
-  copyBoxInto(measuredBox, target);
-  copyBoxInto(layoutBox, target);
-  return {
-    animationId: ((_a = projection.root) == null ? void 0 : _a.animationId) ?? 0,
-    measuredBox,
-    layoutBox,
-    latestValues: projection.animationValues || projection.latestValues || {},
-    source: projection.id
-  };
-}
-var LayoutAnimationBuilder = class {
-  constructor(scope, updateDom, defaultOptions) {
-    this.sharedTransitions = /* @__PURE__ */ new Map();
-    this.notifyReady = noop2;
-    this.rejectReady = noop2;
-    this.scope = scope;
-    this.updateDom = updateDom;
-    this.defaultOptions = defaultOptions;
-    this.readyPromise = new Promise((resolve, reject) => {
-      this.notifyReady = resolve;
-      this.rejectReady = reject;
-    });
-    frame.postRender(() => {
-      this.start().then(this.notifyReady).catch(this.rejectReady);
-    });
-  }
-  shared(id4, transition) {
-    this.sharedTransitions.set(id4, transition);
-    return this;
-  }
-  then(resolve, reject) {
-    return this.readyPromise.then(resolve, reject);
-  }
-  async start() {
-    const beforeElements = collectLayoutElements(this.scope);
-    const beforeRecords = this.buildRecords(beforeElements);
-    beforeRecords.forEach(({ projection }) => {
-      const hasCurrentAnimation = Boolean(projection.currentAnimation);
-      const isSharedLayout = Boolean(projection.options.layoutId);
-      if (hasCurrentAnimation && isSharedLayout) {
-        const snapshot = snapshotFromTarget(projection);
-        if (snapshot) {
-          projection.snapshot = snapshot;
-        } else if (projection.snapshot) {
-          projection.snapshot = void 0;
-        }
-      } else if (projection.snapshot && (projection.currentAnimation || projection.isProjecting())) {
-        projection.snapshot = void 0;
-      }
-      projection.isPresent = true;
-      projection.willUpdate();
-    });
-    await this.updateDom();
-    const afterElements = collectLayoutElements(this.scope);
-    const afterRecords = this.buildRecords(afterElements);
-    this.handleExitingElements(beforeRecords, afterRecords);
-    afterRecords.forEach(({ projection }) => {
-      var _a;
-      const instance = projection.instance;
-      const resumeFromInstance = (_a = projection.resumeFrom) == null ? void 0 : _a.instance;
-      if (!instance || !resumeFromInstance)
-        return;
-      if (!("style" in instance))
-        return;
-      const currentTransform = instance.style.transform;
-      const resumeFromTransform = resumeFromInstance.style.transform;
-      if (currentTransform && resumeFromTransform && currentTransform === resumeFromTransform) {
-        instance.style.transform = "";
-        instance.style.transformOrigin = "";
-      }
-    });
-    afterRecords.forEach(({ projection }) => {
-      projection.isPresent = true;
-    });
-    const root = getProjectionRoot(afterRecords, beforeRecords);
-    root == null ? void 0 : root.didUpdate();
-    await new Promise((resolve) => {
-      frame.postRender(() => resolve());
-    });
-    const animations2 = collectAnimations(afterRecords);
-    const animation = new GroupAnimation(animations2);
-    return animation;
-  }
-  buildRecords(elements) {
-    const records = [];
-    const recordMap = /* @__PURE__ */ new Map();
-    for (const element of elements) {
-      const parentRecord = findParentRecord(element, recordMap, this.scope);
-      const { layout: layout2, layoutId } = readLayoutAttributes(element);
-      const override = layoutId ? this.sharedTransitions.get(layoutId) : void 0;
-      const transition = override || this.defaultOptions;
-      const record2 = getOrCreateRecord(element, parentRecord == null ? void 0 : parentRecord.projection, {
-        layout: layout2,
-        layoutId,
-        animationType: typeof layout2 === "string" ? layout2 : "both",
-        transition
-      });
-      recordMap.set(element, record2);
-      records.push(record2);
-    }
-    return records;
-  }
-  handleExitingElements(beforeRecords, afterRecords) {
-    const afterElementsSet = new Set(afterRecords.map((record2) => record2.element));
-    beforeRecords.forEach((record2) => {
-      if (afterElementsSet.has(record2.element))
-        return;
-      if (record2.projection.options.layoutId) {
-        record2.projection.isPresent = false;
-        record2.projection.relegate();
-      }
-      record2.visualElement.unmount();
-      visualElementStore.delete(record2.element);
-    });
-    const beforeElementsSet = new Set(beforeRecords.map((record2) => record2.element));
-    afterRecords.forEach(({ element, projection }) => {
-      if (beforeElementsSet.has(element) && projection.resumeFrom && !projection.resumeFrom.instance && !projection.isLead()) {
-        projection.resumeFrom = void 0;
-        projection.snapshot = void 0;
-      }
-    });
-  }
-};
-function parseAnimateLayoutArgs(scopeOrUpdateDom, updateDomOrOptions, options) {
-  if (typeof scopeOrUpdateDom === "function") {
-    return {
-      scope: document,
-      updateDom: scopeOrUpdateDom,
-      defaultOptions: updateDomOrOptions
-    };
-  }
-  const elements = resolveElements(scopeOrUpdateDom);
-  const scope = elements[0] || document;
-  return {
-    scope,
-    updateDom: updateDomOrOptions,
-    defaultOptions: options
-  };
-}
-function collectLayoutElements(scope) {
-  const elements = Array.from(scope.querySelectorAll(layoutSelector));
-  if (scope instanceof Element && scope.matches(layoutSelector)) {
-    if (!elements.includes(scope)) {
-      elements.unshift(scope);
-    }
-  }
-  return elements;
-}
-function readLayoutAttributes(element) {
-  const layoutId = element.getAttribute("data-layout-id") || void 0;
-  const rawLayout = element.getAttribute("data-layout");
-  let layout2;
-  if (rawLayout === "" || rawLayout === "true") {
-    layout2 = true;
-  } else if (rawLayout) {
-    layout2 = rawLayout;
-  }
-  return {
-    layout: layout2,
-    layoutId
-  };
-}
-function createVisualState() {
-  return {
-    latestValues: {},
-    renderState: {
-      transform: {},
-      transformOrigin: {},
-      style: {},
-      vars: {}
-    }
-  };
-}
-function getOrCreateRecord(element, parentProjection, projectionOptions) {
-  const existing = visualElementStore.get(element);
-  const visualElement = existing ?? new HTMLVisualElement({
-    props: {},
-    presenceContext: null,
-    visualState: createVisualState()
-  }, { allowProjection: true });
-  if (!existing || !visualElement.projection) {
-    visualElement.projection = new HTMLProjectionNode(visualElement.latestValues, parentProjection);
-  }
-  visualElement.projection.setOptions({
-    ...projectionOptions,
-    visualElement
-  });
-  if (!visualElement.current) {
-    visualElement.mount(element);
-  } else if (!visualElement.projection.instance) {
-    visualElement.projection.mount(element);
-  }
-  if (!existing) {
-    visualElementStore.set(element, visualElement);
-  }
-  return {
-    element,
-    visualElement,
-    projection: visualElement.projection
-  };
-}
-function findParentRecord(element, recordMap, scope) {
-  let parent = element.parentElement;
-  while (parent) {
-    const record2 = recordMap.get(parent);
-    if (record2)
-      return record2;
-    if (parent === scope)
-      break;
-    parent = parent.parentElement;
-  }
-  return void 0;
-}
-function getProjectionRoot(afterRecords, beforeRecords) {
-  const record2 = afterRecords[0] || beforeRecords[0];
-  return record2 == null ? void 0 : record2.projection.root;
-}
-function collectAnimations(afterRecords) {
-  const animations2 = /* @__PURE__ */ new Set();
-  afterRecords.forEach((record2) => {
-    const animation = record2.projection.currentAnimation;
-    if (animation)
-      animations2.add(animation);
-  });
-  return Array.from(animations2);
-}
-
-// node_modules/motion-dom/dist/es/frameloop/index-legacy.mjs
-var sync = frame;
-var cancelSync = stepsOrder.reduce((acc, key) => {
-  acc[key] = (process2) => cancelFrame(process2);
-  return acc;
-}, {});
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
-var React2 = __toESM(require_react(), 1);
-var import_react6 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
-var import_react5 = __toESM(require_react(), 1);
-var MotionConfigContext = (0, import_react5.createContext)({
-  transformPagePoint: (p) => p,
-  isStatic: false,
-  reducedMotion: "never"
-});
-
-// node_modules/framer-motion/dist/es/utils/use-composed-ref.mjs
-var React = __toESM(require_react(), 1);
-function setRef(ref, value) {
-  if (typeof ref === "function") {
-    return ref(value);
-  } else if (ref !== null && ref !== void 0) {
-    ref.current = value;
-  }
-}
-function composeRefs(...refs) {
-  return (node) => {
-    let hasCleanup = false;
-    const cleanups = refs.map((ref) => {
-      const cleanup = setRef(ref, node);
-      if (!hasCleanup && typeof cleanup === "function") {
-        hasCleanup = true;
-      }
-      return cleanup;
-    });
-    if (hasCleanup) {
-      return () => {
-        for (let i = 0; i < cleanups.length; i++) {
-          const cleanup = cleanups[i];
-          if (typeof cleanup === "function") {
-            cleanup();
-          } else {
-            setRef(refs[i], null);
-          }
-        }
-      };
-    }
-  };
-}
-function useComposedRefs(...refs) {
-  return React.useCallback(composeRefs(...refs), refs);
-}
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
-var PopChildMeasure = class extends React2.Component {
-  getSnapshotBeforeUpdate(prevProps) {
-    const element = this.props.childRef.current;
-    if (isHTMLElement(element) && prevProps.isPresent && !this.props.isPresent && this.props.pop !== false) {
-      const parent = element.offsetParent;
-      const parentWidth = isHTMLElement(parent) ? parent.offsetWidth || 0 : 0;
-      const parentHeight = isHTMLElement(parent) ? parent.offsetHeight || 0 : 0;
-      const computedStyle = getComputedStyle(element);
-      const size = this.props.sizeRef.current;
-      size.height = parseFloat(computedStyle.height);
-      size.width = parseFloat(computedStyle.width);
-      size.top = element.offsetTop;
-      size.left = element.offsetLeft;
-      size.right = parentWidth - size.width - size.left;
-      size.bottom = parentHeight - size.height - size.top;
-    }
-    return null;
-  }
-  /**
-   * Required with getSnapshotBeforeUpdate to stop React complaining.
-   */
-  componentDidUpdate() {
-  }
-  render() {
-    return this.props.children;
-  }
-};
-function PopChild({ children, isPresent: isPresent2, anchorX, anchorY, root, pop }) {
-  var _a;
-  const id4 = (0, import_react6.useId)();
-  const ref = (0, import_react6.useRef)(null);
-  const size = (0, import_react6.useRef)({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
-  });
-  const { nonce } = (0, import_react6.useContext)(MotionConfigContext);
-  const childRef = ((_a = children.props) == null ? void 0 : _a.ref) ?? (children == null ? void 0 : children.ref);
-  const composedRef = useComposedRefs(ref, childRef);
-  (0, import_react6.useInsertionEffect)(() => {
-    const { width, height, top, left, right, bottom } = size.current;
-    if (isPresent2 || pop === false || !ref.current || !width || !height)
-      return;
-    const x = anchorX === "left" ? `left: ${left}` : `right: ${right}`;
-    const y = anchorY === "bottom" ? `bottom: ${bottom}` : `top: ${top}`;
-    ref.current.dataset.motionPopId = id4;
-    const style2 = document.createElement("style");
-    if (nonce)
-      style2.nonce = nonce;
-    const parent = root ?? document.head;
-    parent.appendChild(style2);
-    if (style2.sheet) {
-      style2.sheet.insertRule(`
-          [data-motion-pop-id="${id4}"] {
-            position: absolute !important;
-            width: ${width}px !important;
-            height: ${height}px !important;
-            ${x}px !important;
-            ${y}px !important;
-          }
-        `);
-    }
-    return () => {
-      var _a2;
-      (_a2 = ref.current) == null ? void 0 : _a2.removeAttribute("data-motion-pop-id");
-      if (parent.contains(style2)) {
-        parent.removeChild(style2);
-      }
-    };
-  }, [isPresent2]);
-  return (0, import_jsx_runtime.jsx)(PopChildMeasure, { isPresent: isPresent2, childRef: ref, sizeRef: size, pop, children: pop === false ? children : React2.cloneElement(children, { ref: composedRef }) });
-}
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
-var PresenceChild = ({ children, initial, isPresent: isPresent2, onExitComplete, custom, presenceAffectsLayout, mode, anchorX, anchorY, root }) => {
-  const presenceChildren = useConstant(newChildrenMap);
-  const id4 = (0, import_react7.useId)();
-  let isReusedContext = true;
-  let context = (0, import_react7.useMemo)(() => {
-    isReusedContext = false;
-    return {
-      id: id4,
-      initial,
-      isPresent: isPresent2,
-      custom,
-      onExitComplete: (childId) => {
-        presenceChildren.set(childId, true);
-        for (const isComplete of presenceChildren.values()) {
-          if (!isComplete)
-            return;
-        }
-        onExitComplete && onExitComplete();
-      },
-      register: (childId) => {
-        presenceChildren.set(childId, false);
-        return () => presenceChildren.delete(childId);
-      }
-    };
-  }, [isPresent2, presenceChildren, onExitComplete]);
-  if (presenceAffectsLayout && isReusedContext) {
-    context = { ...context };
-  }
-  (0, import_react7.useMemo)(() => {
-    presenceChildren.forEach((_, key) => presenceChildren.set(key, false));
-  }, [isPresent2]);
-  React3.useEffect(() => {
-    !isPresent2 && !presenceChildren.size && onExitComplete && onExitComplete();
-  }, [isPresent2]);
-  children = (0, import_jsx_runtime2.jsx)(PopChild, { pop: mode === "popLayout", isPresent: isPresent2, anchorX, anchorY, root, children });
-  return (0, import_jsx_runtime2.jsx)(PresenceContext.Provider, { value: context, children });
-};
-function newChildrenMap() {
-  return /* @__PURE__ */ new Map();
-}
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
-var import_react8 = __toESM(require_react(), 1);
-function usePresence(subscribe = true) {
-  const context = (0, import_react8.useContext)(PresenceContext);
-  if (context === null)
-    return [true, null];
-  const { isPresent: isPresent2, onExitComplete, register } = context;
-  const id4 = (0, import_react8.useId)();
-  (0, import_react8.useEffect)(() => {
-    if (subscribe) {
-      return register(id4);
-    }
-  }, [subscribe]);
-  const safeToRemove = (0, import_react8.useCallback)(() => subscribe && onExitComplete && onExitComplete(id4), [id4, onExitComplete, subscribe]);
-  return !isPresent2 && onExitComplete ? [false, safeToRemove] : [true];
-}
-function useIsPresent() {
-  return isPresent((0, import_react8.useContext)(PresenceContext));
-}
-function isPresent(context) {
-  return context === null ? true : context.isPresent;
-}
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs
-var import_react9 = __toESM(require_react(), 1);
-var getChildKey = (child) => child.key || "";
-function onlyElements(children) {
-  const filtered = [];
-  import_react9.Children.forEach(children, (child) => {
-    if ((0, import_react9.isValidElement)(child))
-      filtered.push(child);
-  });
-  return filtered;
-}
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
-var AnimatePresence = ({ children, custom, initial = true, onExitComplete, presenceAffectsLayout = true, mode = "sync", propagate = false, anchorX = "left", anchorY = "top", root }) => {
-  const [isParentPresent, safeToRemove] = usePresence(propagate);
-  const presentChildren = (0, import_react10.useMemo)(() => onlyElements(children), [children]);
-  const presentKeys = propagate && !isParentPresent ? [] : presentChildren.map(getChildKey);
-  const isInitialRender = (0, import_react10.useRef)(true);
-  const pendingPresentChildren = (0, import_react10.useRef)(presentChildren);
-  const exitComplete = useConstant(() => /* @__PURE__ */ new Map());
-  const exitingComponents = (0, import_react10.useRef)(/* @__PURE__ */ new Set());
-  const [diffedChildren, setDiffedChildren] = (0, import_react10.useState)(presentChildren);
-  const [renderedChildren, setRenderedChildren] = (0, import_react10.useState)(presentChildren);
-  useIsomorphicLayoutEffect(() => {
-    isInitialRender.current = false;
-    pendingPresentChildren.current = presentChildren;
-    for (let i = 0; i < renderedChildren.length; i++) {
-      const key = getChildKey(renderedChildren[i]);
-      if (!presentKeys.includes(key)) {
-        if (exitComplete.get(key) !== true) {
-          exitComplete.set(key, false);
-        }
-      } else {
-        exitComplete.delete(key);
-        exitingComponents.current.delete(key);
-      }
-    }
-  }, [renderedChildren, presentKeys.length, presentKeys.join("-")]);
-  const exitingChildren = [];
-  if (presentChildren !== diffedChildren) {
-    let nextChildren = [...presentChildren];
-    for (let i = 0; i < renderedChildren.length; i++) {
-      const child = renderedChildren[i];
-      const key = getChildKey(child);
-      if (!presentKeys.includes(key)) {
-        nextChildren.splice(i, 0, child);
-        exitingChildren.push(child);
-      }
-    }
-    if (mode === "wait" && exitingChildren.length) {
-      nextChildren = exitingChildren;
-    }
-    setRenderedChildren(onlyElements(nextChildren));
-    setDiffedChildren(presentChildren);
-    return null;
-  }
-  if (mode === "wait" && renderedChildren.length > 1) {
-    console.warn(`You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.`);
-  }
-  const { forceRender } = (0, import_react10.useContext)(LayoutGroupContext);
-  return (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: renderedChildren.map((child) => {
-    const key = getChildKey(child);
-    const isPresent2 = propagate && !isParentPresent ? false : presentChildren === renderedChildren || presentKeys.includes(key);
-    const onExit = () => {
-      if (exitingComponents.current.has(key)) {
-        return;
-      }
-      if (exitComplete.has(key)) {
-        exitingComponents.current.add(key);
-        exitComplete.set(key, true);
-      } else {
-        return;
-      }
-      let isEveryExitComplete = true;
-      exitComplete.forEach((isExitComplete) => {
-        if (!isExitComplete)
-          isEveryExitComplete = false;
-      });
-      if (isEveryExitComplete) {
-        forceRender == null ? void 0 : forceRender();
-        setRenderedChildren(pendingPresentChildren.current);
-        propagate && (safeToRemove == null ? void 0 : safeToRemove());
-        onExitComplete && onExitComplete();
-      }
-    };
-    return (0, import_jsx_runtime3.jsx)(PresenceChild, { isPresent: isPresent2, initial: !isInitialRender.current || initial ? void 0 : false, custom, presenceAffectsLayout, mode, root, onExitComplete: isPresent2 ? void 0 : onExit, anchorX, anchorY, children: child }, key);
-  }) });
-};
-
-// node_modules/framer-motion/dist/es/components/LayoutGroup/index.mjs
-var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
-var import_react14 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/DeprecatedLayoutGroupContext.mjs
-var import_react11 = __toESM(require_react(), 1);
-var DeprecatedLayoutGroupContext = (0, import_react11.createContext)(null);
-
-// node_modules/framer-motion/dist/es/utils/use-force-update.mjs
-var import_react13 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/utils/use-is-mounted.mjs
-var import_react12 = __toESM(require_react(), 1);
-function useIsMounted() {
-  const isMounted = (0, import_react12.useRef)(false);
-  useIsomorphicLayoutEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-  return isMounted;
-}
-
-// node_modules/framer-motion/dist/es/utils/use-force-update.mjs
-function useForceUpdate() {
-  const isMounted = useIsMounted();
-  const [forcedRenderCount, setForcedRenderCount] = (0, import_react13.useState)(0);
-  const forceRender = (0, import_react13.useCallback)(() => {
-    isMounted.current && setForcedRenderCount(forcedRenderCount + 1);
-  }, [forcedRenderCount]);
-  const deferredForceRender = (0, import_react13.useCallback)(() => frame.postRender(forceRender), [forceRender]);
-  return [deferredForceRender, forcedRenderCount];
-}
-
-// node_modules/framer-motion/dist/es/components/LayoutGroup/index.mjs
-var shouldInheritGroup = (inherit) => inherit === true;
-var shouldInheritId = (inherit) => shouldInheritGroup(inherit === true) || inherit === "id";
-var LayoutGroup = ({ children, id: id4, inherit = true }) => {
-  const layoutGroupContext = (0, import_react14.useContext)(LayoutGroupContext);
-  const deprecatedLayoutGroupContext = (0, import_react14.useContext)(DeprecatedLayoutGroupContext);
-  const [forceRender, key] = useForceUpdate();
-  const context = (0, import_react14.useRef)(null);
-  const upstreamId = layoutGroupContext.id || deprecatedLayoutGroupContext;
-  if (context.current === null) {
-    if (shouldInheritId(inherit) && upstreamId) {
-      id4 = id4 ? upstreamId + "-" + id4 : upstreamId;
-    }
-    context.current = {
-      id: id4,
-      group: shouldInheritGroup(inherit) ? layoutGroupContext.group || nodeGroup() : nodeGroup()
-    };
-  }
-  const memoizedContext = (0, import_react14.useMemo)(() => ({ ...context.current, forceRender }), [key]);
-  return (0, import_jsx_runtime4.jsx)(LayoutGroupContext.Provider, { value: memoizedContext, children });
-};
-
-// node_modules/framer-motion/dist/es/components/LazyMotion/index.mjs
-var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
-var import_react16 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/LazyContext.mjs
-var import_react15 = __toESM(require_react(), 1);
-var LazyContext = (0, import_react15.createContext)({ strict: false });
-
-// node_modules/framer-motion/dist/es/motion/features/definitions.mjs
-var featureProps = {
-  animation: [
-    "animate",
-    "variants",
-    "whileHover",
-    "whileTap",
-    "exit",
-    "whileInView",
-    "whileFocus",
-    "whileDrag"
-  ],
-  exit: ["exit"],
-  drag: ["drag", "dragControls"],
-  focus: ["whileFocus"],
-  hover: ["whileHover", "onHoverStart", "onHoverEnd"],
-  tap: ["whileTap", "onTap", "onTapStart", "onTapCancel"],
-  pan: ["onPan", "onPanStart", "onPanSessionStart", "onPanEnd"],
-  inView: ["whileInView", "onViewportEnter", "onViewportLeave"],
-  layout: ["layout", "layoutId"]
-};
-var isInitialized = false;
-function initFeatureDefinitions() {
-  if (isInitialized)
-    return;
-  const initialFeatureDefinitions = {};
-  for (const key in featureProps) {
-    initialFeatureDefinitions[key] = {
-      isEnabled: (props) => featureProps[key].some((name) => !!props[name])
-    };
-  }
-  setFeatureDefinitions(initialFeatureDefinitions);
-  isInitialized = true;
-}
-function getInitializedFeatureDefinitions() {
-  initFeatureDefinitions();
-  return getFeatureDefinitions();
-}
-
-// node_modules/framer-motion/dist/es/motion/features/load-features.mjs
-function loadFeatures(features) {
-  const featureDefinitions2 = getInitializedFeatureDefinitions();
-  for (const key in features) {
-    featureDefinitions2[key] = {
-      ...featureDefinitions2[key],
-      ...features[key]
-    };
-  }
-  setFeatureDefinitions(featureDefinitions2);
-}
-
-// node_modules/framer-motion/dist/es/components/LazyMotion/index.mjs
-function LazyMotion({ children, features, strict = false }) {
-  const [, setIsLoaded] = (0, import_react16.useState)(!isLazyBundle(features));
-  const loadedRenderer = (0, import_react16.useRef)(void 0);
-  if (!isLazyBundle(features)) {
-    const { renderer, ...loadedFeatures } = features;
-    loadedRenderer.current = renderer;
-    loadFeatures(loadedFeatures);
-  }
-  (0, import_react16.useEffect)(() => {
-    if (isLazyBundle(features)) {
-      features().then(({ renderer, ...loadedFeatures }) => {
-        loadFeatures(loadedFeatures);
-        loadedRenderer.current = renderer;
-        setIsLoaded(true);
-      });
-    }
-  }, []);
-  return (0, import_jsx_runtime5.jsx)(LazyContext.Provider, { value: { renderer: loadedRenderer.current, strict }, children });
-}
-function isLazyBundle(features) {
-  return typeof features === "function";
-}
-
-// node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs
-var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
-var import_react17 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs
-var validMotionProps = /* @__PURE__ */ new Set([
-  "animate",
-  "exit",
-  "variants",
-  "initial",
-  "style",
-  "values",
-  "variants",
-  "transition",
-  "transformTemplate",
-  "custom",
-  "inherit",
-  "onBeforeLayoutMeasure",
-  "onAnimationStart",
-  "onAnimationComplete",
-  "onUpdate",
-  "onDragStart",
-  "onDrag",
-  "onDragEnd",
-  "onMeasureDragConstraints",
-  "onDirectionLock",
-  "onDragTransitionEnd",
-  "_dragX",
-  "_dragY",
-  "onHoverStart",
-  "onHoverEnd",
-  "onViewportEnter",
-  "onViewportLeave",
-  "globalTapTarget",
-  "propagate",
-  "ignoreStrict",
-  "viewport"
-]);
-function isValidMotionProp(key) {
-  return key.startsWith("while") || key.startsWith("drag") && key !== "draggable" || key.startsWith("layout") || key.startsWith("onTap") || key.startsWith("onPan") || key.startsWith("onLayout") || validMotionProps.has(key);
-}
-
-// node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs
-var shouldForward = (key) => !isValidMotionProp(key);
-function loadExternalIsValidProp(isValidProp) {
-  if (typeof isValidProp !== "function")
-    return;
-  shouldForward = (key) => key.startsWith("on") ? !isValidMotionProp(key) : isValidProp(key);
-}
-try {
-  const emotionPkg = "@emotion/is-prop-valid";
-  loadExternalIsValidProp(__require(emotionPkg).default);
-} catch {
-}
-function filterProps(props, isDom, forwardMotionProps) {
-  const filteredProps = {};
-  for (const key in props) {
-    if (key === "values" && typeof props.values === "object")
-      continue;
-    if (isMotionValue(props[key]))
-      continue;
-    if (shouldForward(key) || forwardMotionProps === true && isValidMotionProp(key) || !isDom && !isValidMotionProp(key) || // If trying to use native HTML drag events, forward drag listeners
-    props["draggable"] && key.startsWith("onDrag")) {
-      filteredProps[key] = props[key];
-    }
-  }
-  return filteredProps;
-}
-
-// node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs
-function MotionConfig({ children, isValidProp, ...config }) {
-  isValidProp && loadExternalIsValidProp(isValidProp);
-  const parentConfig = (0, import_react17.useContext)(MotionConfigContext);
-  config = { ...parentConfig, ...config };
-  config.transition = resolveTransition(config.transition, parentConfig.transition);
-  config.isStatic = useConstant(() => config.isStatic);
-  const context = (0, import_react17.useMemo)(() => config, [
-    JSON.stringify(config.transition),
-    config.transformPagePoint,
-    config.reducedMotion,
-    config.skipAnimations
-  ]);
-  return (0, import_jsx_runtime6.jsx)(MotionConfigContext.Provider, { value: context, children });
-}
-
-// node_modules/framer-motion/dist/es/motion/index.mjs
-var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
-var import_react27 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
-var import_react18 = __toESM(require_react(), 1);
-var MotionContext = (0, import_react18.createContext)({});
-
-// node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
-var import_react19 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
-function getCurrentTreeVariants(props, context) {
-  if (isControllingVariants(props)) {
-    const { initial, animate: animate2 } = props;
-    return {
-      initial: initial === false || isVariantLabel(initial) ? initial : void 0,
-      animate: isVariantLabel(animate2) ? animate2 : void 0
-    };
-  }
-  return props.inherit !== false ? context : {};
-}
-
-// node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
-function useCreateMotionContext(props) {
-  const { initial, animate: animate2 } = getCurrentTreeVariants(props, (0, import_react19.useContext)(MotionContext));
-  return (0, import_react19.useMemo)(() => ({ initial, animate: animate2 }), [variantLabelsAsDependency(initial), variantLabelsAsDependency(animate2)]);
-}
-function variantLabelsAsDependency(prop) {
-  return Array.isArray(prop) ? prop.join(" ") : prop;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/use-render.mjs
-var import_react22 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/render/html/use-props.mjs
-var import_react20 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs
-var createHtmlRenderState = () => ({
-  style: {},
-  transform: {},
-  transformOrigin: {},
-  vars: {}
-});
-
-// node_modules/framer-motion/dist/es/render/html/use-props.mjs
-function copyRawValuesOnly(target, source, props) {
-  for (const key in source) {
-    if (!isMotionValue(source[key]) && !isForcedMotionValue(key, props)) {
-      target[key] = source[key];
-    }
-  }
-}
-function useInitialMotionValues({ transformTemplate }, visualState) {
-  return (0, import_react20.useMemo)(() => {
-    const state = createHtmlRenderState();
-    buildHTMLStyles(state, visualState, transformTemplate);
-    return Object.assign({}, state.vars, state.style);
-  }, [visualState]);
-}
-function useStyle(props, visualState) {
-  const styleProp = props.style || {};
-  const style2 = {};
-  copyRawValuesOnly(style2, styleProp, props);
-  Object.assign(style2, useInitialMotionValues(props, visualState));
-  return style2;
-}
-function useHTMLProps(props, visualState) {
-  const htmlProps = {};
-  const style2 = useStyle(props, visualState);
-  if (props.drag && props.dragListener !== false) {
-    htmlProps.draggable = false;
-    style2.userSelect = style2.WebkitUserSelect = style2.WebkitTouchCallout = "none";
-    style2.touchAction = props.drag === true ? "none" : `pan-${props.drag === "x" ? "y" : "x"}`;
-  }
-  if (props.tabIndex === void 0 && (props.onTap || props.onTapStart || props.whileTap)) {
-    htmlProps.tabIndex = 0;
-  }
-  htmlProps.style = style2;
-  return htmlProps;
-}
-
-// node_modules/framer-motion/dist/es/render/svg/use-props.mjs
-var import_react21 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
-var createSvgRenderState = () => ({
-  ...createHtmlRenderState(),
-  attrs: {}
-});
-
-// node_modules/framer-motion/dist/es/render/svg/use-props.mjs
-function useSVGProps(props, visualState, _isStatic, Component3) {
-  const visualProps = (0, import_react21.useMemo)(() => {
-    const state = createSvgRenderState();
-    buildSVGAttrs(state, visualState, isSVGTag(Component3), props.transformTemplate, props.style);
-    return {
-      ...state.attrs,
-      style: { ...state.style }
-    };
-  }, [visualState]);
-  if (props.style) {
-    const rawStyles = {};
-    copyRawValuesOnly(rawStyles, props.style, props);
-    visualProps.style = { ...rawStyles, ...visualProps.style };
-  }
-  return visualProps;
-}
-
-// node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs
-var lowercaseSVGElements = [
-  "animate",
-  "circle",
-  "defs",
-  "desc",
-  "ellipse",
-  "g",
-  "image",
-  "line",
-  "filter",
-  "marker",
-  "mask",
-  "metadata",
-  "path",
-  "pattern",
-  "polygon",
-  "polyline",
-  "rect",
-  "stop",
-  "switch",
-  "symbol",
-  "svg",
-  "text",
-  "tspan",
-  "use",
-  "view"
-];
-
-// node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs
-function isSVGComponent(Component3) {
-  if (
-    /**
-     * If it's not a string, it's a custom React component. Currently we only support
-     * HTML custom React components.
-     */
-    typeof Component3 !== "string" || /**
-     * If it contains a dash, the element is a custom HTML webcomponent.
-     */
-    Component3.includes("-")
-  ) {
-    return false;
-  } else if (
-    /**
-     * If it's in our list of lowercase SVG tags, it's an SVG component
-     */
-    lowercaseSVGElements.indexOf(Component3) > -1 || /**
-     * If it contains a capital letter, it's an SVG component
-     */
-    /[A-Z]/u.test(Component3)
-  ) {
-    return true;
-  }
-  return false;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/use-render.mjs
-function useRender(Component3, props, ref, { latestValues }, isStatic, forwardMotionProps = false, isSVG) {
-  const useVisualProps = isSVG ?? isSVGComponent(Component3) ? useSVGProps : useHTMLProps;
-  const visualProps = useVisualProps(props, latestValues, isStatic, Component3);
-  const filteredProps = filterProps(props, typeof Component3 === "string", forwardMotionProps);
-  const elementProps = Component3 !== import_react22.Fragment ? { ...filteredProps, ...visualProps, ref } : {};
-  const { children } = props;
-  const renderedChildren = (0, import_react22.useMemo)(() => isMotionValue(children) ? children.get() : children, [children]);
-  return (0, import_react22.createElement)(Component3, {
-    ...elementProps,
-    children: renderedChildren
-  });
-}
-
-// node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
-var import_react23 = __toESM(require_react(), 1);
-function makeState({ scrapeMotionValuesFromProps: scrapeMotionValuesFromProps3, createRenderState }, props, context, presenceContext) {
-  const state = {
-    latestValues: makeLatestValues(props, context, presenceContext, scrapeMotionValuesFromProps3),
-    renderState: createRenderState()
-  };
-  return state;
-}
-function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
-  const values = {};
-  const motionValues = scrapeMotionValues(props, {});
-  for (const key in motionValues) {
-    values[key] = resolveMotionValue(motionValues[key]);
-  }
-  let { initial, animate: animate2 } = props;
-  const isControllingVariants$1 = isControllingVariants(props);
-  const isVariantNode$1 = isVariantNode(props);
-  if (context && isVariantNode$1 && !isControllingVariants$1 && props.inherit !== false) {
-    if (initial === void 0)
-      initial = context.initial;
-    if (animate2 === void 0)
-      animate2 = context.animate;
-  }
-  let isInitialAnimationBlocked = presenceContext ? presenceContext.initial === false : false;
-  isInitialAnimationBlocked = isInitialAnimationBlocked || initial === false;
-  const variantToSet = isInitialAnimationBlocked ? animate2 : initial;
-  if (variantToSet && typeof variantToSet !== "boolean" && !isAnimationControls(variantToSet)) {
-    const list = Array.isArray(variantToSet) ? variantToSet : [variantToSet];
-    for (let i = 0; i < list.length; i++) {
-      const resolved = resolveVariantFromProps(props, list[i]);
-      if (resolved) {
-        const { transitionEnd, transition, ...target } = resolved;
-        for (const key in target) {
-          let valueTarget = target[key];
-          if (Array.isArray(valueTarget)) {
-            const index = isInitialAnimationBlocked ? valueTarget.length - 1 : 0;
-            valueTarget = valueTarget[index];
-          }
-          if (valueTarget !== null) {
-            values[key] = valueTarget;
-          }
-        }
-        for (const key in transitionEnd) {
-          values[key] = transitionEnd[key];
-        }
-      }
-    }
-  }
-  return values;
-}
-var makeUseVisualState = (config) => (props, isStatic) => {
-  const context = (0, import_react23.useContext)(MotionContext);
-  const presenceContext = (0, import_react23.useContext)(PresenceContext);
-  const make = () => makeState(config, props, context, presenceContext);
-  return isStatic ? make() : useConstant(make);
-};
-
-// node_modules/framer-motion/dist/es/render/html/use-html-visual-state.mjs
-var useHTMLVisualState = makeUseVisualState({
-  scrapeMotionValuesFromProps,
-  createRenderState: createHtmlRenderState
-});
-
-// node_modules/framer-motion/dist/es/render/svg/use-svg-visual-state.mjs
-var useSVGVisualState = makeUseVisualState({
-  scrapeMotionValuesFromProps: scrapeMotionValuesFromProps2,
-  createRenderState: createSvgRenderState
-});
-
-// node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
-var motionComponentSymbol = Symbol.for("motionComponentSymbol");
-
-// node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
-var import_react24 = __toESM(require_react(), 1);
-function useMotionRef(visualState, visualElement, externalRef) {
-  const externalRefContainer = (0, import_react24.useRef)(externalRef);
-  (0, import_react24.useInsertionEffect)(() => {
-    externalRefContainer.current = externalRef;
-  });
-  const refCleanup = (0, import_react24.useRef)(null);
-  return (0, import_react24.useCallback)((instance) => {
-    var _a;
-    if (instance) {
-      (_a = visualState.onMount) == null ? void 0 : _a.call(visualState, instance);
-    }
-    const ref = externalRefContainer.current;
-    if (typeof ref === "function") {
-      if (instance) {
-        const cleanup = ref(instance);
-        if (typeof cleanup === "function") {
-          refCleanup.current = cleanup;
-        }
-      } else if (refCleanup.current) {
-        refCleanup.current();
-        refCleanup.current = null;
-      } else {
-        ref(instance);
-      }
-    } else if (ref) {
-      ref.current = instance;
-    }
-    if (visualElement) {
-      instance ? visualElement.mount(instance) : visualElement.unmount();
-    }
-  }, [visualElement]);
-}
-
-// node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
-var import_react26 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
-var import_react25 = __toESM(require_react(), 1);
-var SwitchLayoutGroupContext = (0, import_react25.createContext)({});
-
-// node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
-function isRefObject(ref) {
-  return ref && typeof ref === "object" && Object.prototype.hasOwnProperty.call(ref, "current");
-}
-
-// node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
-function useVisualElement(Component3, visualState, props, createVisualElement, ProjectionNodeConstructor, isSVG) {
-  var _a, _b;
-  const { visualElement: parent } = (0, import_react26.useContext)(MotionContext);
-  const lazyContext = (0, import_react26.useContext)(LazyContext);
-  const presenceContext = (0, import_react26.useContext)(PresenceContext);
-  const motionConfig = (0, import_react26.useContext)(MotionConfigContext);
-  const reducedMotionConfig = motionConfig.reducedMotion;
-  const skipAnimations = motionConfig.skipAnimations;
-  const visualElementRef = (0, import_react26.useRef)(null);
-  const hasMountedOnce = (0, import_react26.useRef)(false);
-  createVisualElement = createVisualElement || lazyContext.renderer;
-  if (!visualElementRef.current && createVisualElement) {
-    visualElementRef.current = createVisualElement(Component3, {
-      visualState,
-      parent,
-      props,
-      presenceContext,
-      blockInitialAnimation: presenceContext ? presenceContext.initial === false : false,
-      reducedMotionConfig,
-      skipAnimations,
-      isSVG
-    });
-    if (hasMountedOnce.current && visualElementRef.current) {
-      visualElementRef.current.manuallyAnimateOnMount = true;
-    }
-  }
-  const visualElement = visualElementRef.current;
-  const initialLayoutGroupConfig = (0, import_react26.useContext)(SwitchLayoutGroupContext);
-  if (visualElement && !visualElement.projection && ProjectionNodeConstructor && (visualElement.type === "html" || visualElement.type === "svg")) {
-    createProjectionNode2(visualElementRef.current, props, ProjectionNodeConstructor, initialLayoutGroupConfig);
-  }
-  const isMounted = (0, import_react26.useRef)(false);
-  (0, import_react26.useInsertionEffect)(() => {
-    if (visualElement && isMounted.current) {
-      visualElement.update(props, presenceContext);
-    }
-  });
-  const optimisedAppearId = props[optimizedAppearDataAttribute];
-  const wantsHandoff = (0, import_react26.useRef)(Boolean(optimisedAppearId) && typeof window !== "undefined" && !((_a = window.MotionHandoffIsComplete) == null ? void 0 : _a.call(window, optimisedAppearId)) && ((_b = window.MotionHasOptimisedAnimation) == null ? void 0 : _b.call(window, optimisedAppearId)));
-  useIsomorphicLayoutEffect(() => {
-    hasMountedOnce.current = true;
-    if (!visualElement)
-      return;
-    isMounted.current = true;
-    window.MotionIsMounted = true;
-    visualElement.updateFeatures();
-    visualElement.scheduleRenderMicrotask();
-    if (wantsHandoff.current && visualElement.animationState) {
-      visualElement.animationState.animateChanges();
-    }
-  });
-  (0, import_react26.useEffect)(() => {
-    if (!visualElement)
-      return;
-    if (!wantsHandoff.current && visualElement.animationState) {
-      visualElement.animationState.animateChanges();
-    }
-    if (wantsHandoff.current) {
-      queueMicrotask(() => {
-        var _a2;
-        (_a2 = window.MotionHandoffMarkAsComplete) == null ? void 0 : _a2.call(window, optimisedAppearId);
-      });
-      wantsHandoff.current = false;
-    }
-    visualElement.enteringChildren = void 0;
-  });
-  return visualElement;
-}
-function createProjectionNode2(visualElement, props, ProjectionNodeConstructor, initialPromotionConfig) {
-  const { layoutId, layout: layout2, drag: drag2, dragConstraints, layoutScroll, layoutRoot, layoutAnchor, layoutCrossfade } = props;
-  visualElement.projection = new ProjectionNodeConstructor(visualElement.latestValues, props["data-framer-portal-id"] ? void 0 : getClosestProjectingNode(visualElement.parent));
-  visualElement.projection.setOptions({
-    layoutId,
-    layout: layout2,
-    alwaysMeasureLayout: Boolean(drag2) || dragConstraints && isRefObject(dragConstraints),
-    visualElement,
-    /**
-     * TODO: Update options in an effect. This could be tricky as it'll be too late
-     * to update by the time layout animations run.
-     * We also need to fix this safeToRemove by linking it up to the one returned by usePresence,
-     * ensuring it gets called if there's no potential layout animations.
-     *
-     */
-    animationType: typeof layout2 === "string" ? layout2 : "both",
-    initialPromotionConfig,
-    crossfade: layoutCrossfade,
-    layoutScroll,
-    layoutRoot,
-    layoutAnchor
-  });
-}
-function getClosestProjectingNode(visualElement) {
-  if (!visualElement)
-    return void 0;
-  return visualElement.options.allowProjection !== false ? visualElement.projection : getClosestProjectingNode(visualElement.parent);
-}
-
-// node_modules/framer-motion/dist/es/motion/index.mjs
-function createMotionComponent(Component3, { forwardMotionProps = false, type } = {}, preloadedFeatures, createVisualElement) {
-  preloadedFeatures && loadFeatures(preloadedFeatures);
-  const isSVG = type ? type === "svg" : isSVGComponent(Component3);
-  const useVisualState2 = isSVG ? useSVGVisualState : useHTMLVisualState;
-  function MotionDOMComponent(props, externalRef) {
-    let MeasureLayout2;
-    const configAndProps = {
-      ...(0, import_react27.useContext)(MotionConfigContext),
-      ...props,
-      layoutId: useLayoutId(props)
-    };
-    const { isStatic } = configAndProps;
-    const context = useCreateMotionContext(props);
-    const visualState = useVisualState2(props, isStatic);
-    if (!isStatic && typeof window !== "undefined") {
-      useStrictMode(configAndProps, preloadedFeatures);
-      const layoutProjection = getProjectionFunctionality(configAndProps);
-      MeasureLayout2 = layoutProjection.MeasureLayout;
-      context.visualElement = useVisualElement(Component3, visualState, configAndProps, createVisualElement, layoutProjection.ProjectionNode, isSVG);
-    }
-    return (0, import_jsx_runtime7.jsxs)(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? (0, import_jsx_runtime7.jsx)(MeasureLayout2, { visualElement: context.visualElement, ...configAndProps }) : null, useRender(Component3, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, forwardMotionProps, isSVG)] });
-  }
-  MotionDOMComponent.displayName = `motion.${typeof Component3 === "string" ? Component3 : `create(${Component3.displayName ?? Component3.name ?? ""})`}`;
-  const ForwardRefMotionComponent = (0, import_react27.forwardRef)(MotionDOMComponent);
-  ForwardRefMotionComponent[motionComponentSymbol] = Component3;
-  return ForwardRefMotionComponent;
-}
-function useLayoutId({ layoutId }) {
-  const layoutGroupId = (0, import_react27.useContext)(LayoutGroupContext).id;
-  return layoutGroupId && layoutId !== void 0 ? layoutGroupId + "-" + layoutId : layoutId;
-}
-function useStrictMode(configAndProps, preloadedFeatures) {
-  const isStrict = (0, import_react27.useContext)(LazyContext).strict;
-  if (preloadedFeatures && isStrict) {
-    const strictMessage = "You have rendered a `motion` component within a `LazyMotion` component. This will break tree shaking. Import and render a `m` component instead.";
-    configAndProps.ignoreStrict ? warning(false, strictMessage, "lazy-strict-mode") : invariant(false, strictMessage, "lazy-strict-mode");
-  }
-}
-function getProjectionFunctionality(props) {
-  const featureDefinitions2 = getInitializedFeatureDefinitions();
-  const { drag: drag2, layout: layout2 } = featureDefinitions2;
-  if (!drag2 && !layout2)
-    return {};
-  const combined = { ...drag2, ...layout2 };
-  return {
-    MeasureLayout: (drag2 == null ? void 0 : drag2.isEnabled(props)) || (layout2 == null ? void 0 : layout2.isEnabled(props)) ? combined.MeasureLayout : void 0,
-    ProjectionNode: combined.ProjectionNode
-  };
-}
-
-// node_modules/framer-motion/dist/es/render/components/create-proxy.mjs
-function createMotionProxy(preloadedFeatures, createVisualElement) {
-  if (typeof Proxy === "undefined") {
-    return createMotionComponent;
-  }
-  const componentCache = /* @__PURE__ */ new Map();
-  const factory = (Component3, options) => {
-    return createMotionComponent(Component3, options, preloadedFeatures, createVisualElement);
-  };
-  const deprecatedFactoryFunction = (Component3, options) => {
-    if (true) {
-      warnOnce(false, "motion() is deprecated. Use motion.create() instead.");
-    }
-    return factory(Component3, options);
-  };
-  return new Proxy(deprecatedFactoryFunction, {
-    /**
-     * Called when `motion` is referenced with a prop: `motion.div`, `motion.input` etc.
-     * The prop name is passed through as `key` and we can use that to generate a `motion`
-     * DOM component with that name.
-     */
-    get: (_target, key) => {
-      if (key === "create")
-        return factory;
-      if (!componentCache.has(key)) {
-        componentCache.set(key, createMotionComponent(key, void 0, preloadedFeatures, createVisualElement));
-      }
-      return componentCache.get(key);
-    }
-  });
-}
-
-// node_modules/framer-motion/dist/es/render/components/m/proxy.mjs
-var m = createMotionProxy();
-
-// node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
-var import_react28 = __toESM(require_react(), 1);
-var createDomVisualElement = (Component3, options) => {
-  const isSVG = options.isSVG ?? isSVGComponent(Component3);
-  return isSVG ? new SVGVisualElement(options) : new HTMLVisualElement(options, {
-    allowProjection: Component3 !== import_react28.Fragment
-  });
-};
-
-// node_modules/framer-motion/dist/es/motion/features/animation/index.mjs
-var AnimationFeature = class extends Feature {
-  /**
-   * We dynamically generate the AnimationState manager as it contains a reference
-   * to the underlying animation library. We only want to load that if we load this,
-   * so people can optionally code split it out using the `m` component.
-   */
-  constructor(node) {
-    super(node);
-    node.animationState || (node.animationState = createAnimationState(node));
-  }
-  updateAnimationControlsSubscription() {
-    const { animate: animate2 } = this.node.getProps();
-    if (isAnimationControls(animate2)) {
-      this.unmountControls = animate2.subscribe(this.node);
-    }
-  }
-  /**
-   * Subscribe any provided AnimationControls to the component's VisualElement
-   */
-  mount() {
-    this.updateAnimationControlsSubscription();
-  }
-  update() {
-    const { animate: animate2 } = this.node.getProps();
-    const { animate: prevAnimate } = this.node.prevProps || {};
-    if (animate2 !== prevAnimate) {
-      this.updateAnimationControlsSubscription();
-    }
-  }
-  unmount() {
-    var _a;
-    this.node.animationState.reset();
-    (_a = this.unmountControls) == null ? void 0 : _a.call(this);
-  }
-};
-
-// node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs
-var id2 = 0;
-var ExitAnimationFeature = class extends Feature {
-  constructor() {
-    super(...arguments);
-    this.id = id2++;
-    this.isExitComplete = false;
-  }
-  update() {
-    var _a;
-    if (!this.node.presenceContext)
-      return;
-    const { isPresent: isPresent2, onExitComplete } = this.node.presenceContext;
-    const { isPresent: prevIsPresent } = this.node.prevPresenceContext || {};
-    if (!this.node.animationState || isPresent2 === prevIsPresent) {
-      return;
-    }
-    if (isPresent2 && prevIsPresent === false) {
-      if (this.isExitComplete) {
-        const { initial, custom } = this.node.getProps();
-        if (typeof initial === "string") {
-          const resolved = resolveVariant(this.node, initial, custom);
-          if (resolved) {
-            const { transition, transitionEnd, ...target } = resolved;
-            for (const key in target) {
-              (_a = this.node.getValue(key)) == null ? void 0 : _a.jump(target[key]);
-            }
-          }
-        }
-        this.node.animationState.reset();
-        this.node.animationState.animateChanges();
-      } else {
-        this.node.animationState.setActive("exit", false);
-      }
-      this.isExitComplete = false;
-      return;
-    }
-    const exitAnimation = this.node.animationState.setActive("exit", !isPresent2);
-    if (onExitComplete && !isPresent2) {
-      exitAnimation.then(() => {
-        this.isExitComplete = true;
-        onExitComplete(this.id);
-      });
-    }
-  }
-  mount() {
-    const { register, onExitComplete } = this.node.presenceContext || {};
-    if (onExitComplete) {
-      onExitComplete(this.id);
-    }
-    if (register) {
-      this.unmount = register(this.id);
-    }
-  }
-  unmount() {
-  }
-};
-
-// node_modules/framer-motion/dist/es/motion/features/animations.mjs
-var animations = {
-  animation: {
-    Feature: AnimationFeature
-  },
-  exit: {
-    Feature: ExitAnimationFeature
-  }
-};
-
-// node_modules/framer-motion/dist/es/events/event-info.mjs
-function extractEventInfo(event) {
-  return {
-    point: {
-      x: event.pageX,
-      y: event.pageY
-    }
-  };
-}
-var addPointerInfo = (handler) => (event) => isPrimaryPointer(event) && handler(event, extractEventInfo(event));
-
-// node_modules/framer-motion/dist/es/events/add-pointer-event.mjs
-function addPointerEvent(target, eventName, handler, options) {
-  return addDomEvent(target, eventName, addPointerInfo(handler), options);
-}
-
-// node_modules/framer-motion/dist/es/utils/get-context-window.mjs
-var getContextWindow = ({ current: current2 }) => {
-  return current2 ? current2.ownerDocument.defaultView : null;
-};
-
-// node_modules/framer-motion/dist/es/utils/distance.mjs
-var distance = (a, b) => Math.abs(a - b);
-function distance2D(a, b) {
-  const xDelta = distance(a.x, b.x);
-  const yDelta = distance(a.y, b.y);
-  return Math.sqrt(xDelta ** 2 + yDelta ** 2);
-}
-
-// node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs
-var overflowStyles = /* @__PURE__ */ new Set(["auto", "scroll"]);
-var PanSession = class {
-  constructor(event, handlers, { transformPagePoint, contextWindow = window, dragSnapToOrigin = false, distanceThreshold = 3, element } = {}) {
-    this.startEvent = null;
-    this.lastMoveEvent = null;
-    this.lastMoveEventInfo = null;
-    this.lastRawMoveEventInfo = null;
-    this.handlers = {};
-    this.contextWindow = window;
-    this.scrollPositions = /* @__PURE__ */ new Map();
-    this.removeScrollListeners = null;
-    this.onElementScroll = (event2) => {
-      this.handleScroll(event2.target);
-    };
-    this.onWindowScroll = () => {
-      this.handleScroll(window);
-    };
-    this.updatePoint = () => {
-      if (!(this.lastMoveEvent && this.lastMoveEventInfo))
-        return;
-      if (this.lastRawMoveEventInfo) {
-        this.lastMoveEventInfo = transformPoint(this.lastRawMoveEventInfo, this.transformPagePoint);
-      }
-      const info2 = getPanInfo(this.lastMoveEventInfo, this.history);
-      const isPanStarted = this.startEvent !== null;
-      const isDistancePastThreshold = distance2D(info2.offset, { x: 0, y: 0 }) >= this.distanceThreshold;
-      if (!isPanStarted && !isDistancePastThreshold)
-        return;
-      const { point: point3 } = info2;
-      const { timestamp: timestamp2 } = frameData;
-      this.history.push({ ...point3, timestamp: timestamp2 });
-      const { onStart, onMove } = this.handlers;
-      if (!isPanStarted) {
-        onStart && onStart(this.lastMoveEvent, info2);
-        this.startEvent = this.lastMoveEvent;
-      }
-      onMove && onMove(this.lastMoveEvent, info2);
-    };
-    this.handlePointerMove = (event2, info2) => {
-      this.lastMoveEvent = event2;
-      this.lastRawMoveEventInfo = info2;
-      this.lastMoveEventInfo = transformPoint(info2, this.transformPagePoint);
-      frame.update(this.updatePoint, true);
-    };
-    this.handlePointerUp = (event2, info2) => {
-      this.end();
-      const { onEnd, onSessionEnd, resumeAnimation } = this.handlers;
-      if (this.dragSnapToOrigin || !this.startEvent) {
-        resumeAnimation && resumeAnimation();
-      }
-      if (!(this.lastMoveEvent && this.lastMoveEventInfo))
-        return;
-      const panInfo = getPanInfo(event2.type === "pointercancel" ? this.lastMoveEventInfo : transformPoint(info2, this.transformPagePoint), this.history);
-      if (this.startEvent && onEnd) {
-        onEnd(event2, panInfo);
-      }
-      onSessionEnd && onSessionEnd(event2, panInfo);
-    };
-    if (!isPrimaryPointer(event))
-      return;
-    this.dragSnapToOrigin = dragSnapToOrigin;
-    this.handlers = handlers;
-    this.transformPagePoint = transformPagePoint;
-    this.distanceThreshold = distanceThreshold;
-    this.contextWindow = contextWindow || window;
-    const info = extractEventInfo(event);
-    const initialInfo = transformPoint(info, this.transformPagePoint);
-    const { point: point2 } = initialInfo;
-    const { timestamp } = frameData;
-    this.history = [{ ...point2, timestamp }];
-    const { onSessionStart } = handlers;
-    onSessionStart && onSessionStart(event, getPanInfo(initialInfo, this.history));
-    this.removeListeners = pipe(addPointerEvent(this.contextWindow, "pointermove", this.handlePointerMove), addPointerEvent(this.contextWindow, "pointerup", this.handlePointerUp), addPointerEvent(this.contextWindow, "pointercancel", this.handlePointerUp));
-    if (element) {
-      this.startScrollTracking(element);
-    }
-  }
-  /**
-   * Start tracking scroll on ancestors and window.
-   */
-  startScrollTracking(element) {
-    let current2 = element.parentElement;
-    while (current2) {
-      const style2 = getComputedStyle(current2);
-      if (overflowStyles.has(style2.overflowX) || overflowStyles.has(style2.overflowY)) {
-        this.scrollPositions.set(current2, {
-          x: current2.scrollLeft,
-          y: current2.scrollTop
-        });
-      }
-      current2 = current2.parentElement;
-    }
-    this.scrollPositions.set(window, {
-      x: window.scrollX,
-      y: window.scrollY
-    });
-    window.addEventListener("scroll", this.onElementScroll, {
-      capture: true
-    });
-    window.addEventListener("scroll", this.onWindowScroll);
-    this.removeScrollListeners = () => {
-      window.removeEventListener("scroll", this.onElementScroll, {
-        capture: true
-      });
-      window.removeEventListener("scroll", this.onWindowScroll);
-    };
-  }
-  /**
-   * Handle scroll compensation during drag.
-   *
-   * For element scroll: adjusts history origin since pageX/pageY doesn't change.
-   * For window scroll: adjusts lastMoveEventInfo since pageX/pageY would change.
-   */
-  handleScroll(target) {
-    const initial = this.scrollPositions.get(target);
-    if (!initial)
-      return;
-    const isWindow = target === window;
-    const current2 = isWindow ? { x: window.scrollX, y: window.scrollY } : {
-      x: target.scrollLeft,
-      y: target.scrollTop
-    };
-    const delta = { x: current2.x - initial.x, y: current2.y - initial.y };
-    if (delta.x === 0 && delta.y === 0)
-      return;
-    if (isWindow) {
-      if (this.lastMoveEventInfo) {
-        this.lastMoveEventInfo.point.x += delta.x;
-        this.lastMoveEventInfo.point.y += delta.y;
-      }
-    } else {
-      if (this.history.length > 0) {
-        this.history[0].x -= delta.x;
-        this.history[0].y -= delta.y;
-      }
-    }
-    this.scrollPositions.set(target, current2);
-    frame.update(this.updatePoint, true);
-  }
-  updateHandlers(handlers) {
-    this.handlers = handlers;
-  }
-  end() {
-    this.removeListeners && this.removeListeners();
-    this.removeScrollListeners && this.removeScrollListeners();
-    this.scrollPositions.clear();
-    cancelFrame(this.updatePoint);
-  }
-};
-function transformPoint(info, transformPagePoint) {
-  return transformPagePoint ? { point: transformPagePoint(info.point) } : info;
-}
-function subtractPoint(a, b) {
-  return { x: a.x - b.x, y: a.y - b.y };
-}
-function getPanInfo({ point: point2 }, history) {
-  return {
-    point: point2,
-    delta: subtractPoint(point2, lastDevicePoint(history)),
-    offset: subtractPoint(point2, startDevicePoint(history)),
-    velocity: getVelocity(history, 0.1)
-  };
-}
-function startDevicePoint(history) {
-  return history[0];
-}
-function lastDevicePoint(history) {
-  return history[history.length - 1];
-}
-function getVelocity(history, timeDelta) {
-  if (history.length < 2) {
-    return { x: 0, y: 0 };
-  }
-  let i = history.length - 1;
-  let timestampedPoint = null;
-  const lastPoint = lastDevicePoint(history);
-  while (i >= 0) {
-    timestampedPoint = history[i];
-    if (lastPoint.timestamp - timestampedPoint.timestamp > secondsToMilliseconds(timeDelta)) {
-      break;
-    }
-    i--;
-  }
-  if (!timestampedPoint) {
-    return { x: 0, y: 0 };
-  }
-  if (timestampedPoint === history[0] && history.length > 2 && lastPoint.timestamp - timestampedPoint.timestamp > secondsToMilliseconds(timeDelta) * 2) {
-    timestampedPoint = history[1];
-  }
-  const time2 = millisecondsToSeconds(lastPoint.timestamp - timestampedPoint.timestamp);
-  if (time2 === 0) {
-    return { x: 0, y: 0 };
-  }
-  const currentVelocity = {
-    x: (lastPoint.x - timestampedPoint.x) / time2,
-    y: (lastPoint.y - timestampedPoint.y) / time2
-  };
-  if (currentVelocity.x === Infinity) {
-    currentVelocity.x = 0;
-  }
-  if (currentVelocity.y === Infinity) {
-    currentVelocity.y = 0;
-  }
-  return currentVelocity;
-}
-
-// node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs
-function applyConstraints(point2, { min, max }, elastic) {
-  if (min !== void 0 && point2 < min) {
-    point2 = elastic ? mixNumber(min, point2, elastic.min) : Math.max(point2, min);
-  } else if (max !== void 0 && point2 > max) {
-    point2 = elastic ? mixNumber(max, point2, elastic.max) : Math.min(point2, max);
-  }
-  return point2;
-}
-function calcRelativeAxisConstraints(axis, min, max) {
-  return {
-    min: min !== void 0 ? axis.min + min : void 0,
-    max: max !== void 0 ? axis.max + max - (axis.max - axis.min) : void 0
-  };
-}
-function calcRelativeConstraints(layoutBox, { top, left, bottom, right }) {
-  return {
-    x: calcRelativeAxisConstraints(layoutBox.x, left, right),
-    y: calcRelativeAxisConstraints(layoutBox.y, top, bottom)
-  };
-}
-function calcViewportAxisConstraints(layoutAxis, constraintsAxis) {
-  let min = constraintsAxis.min - layoutAxis.min;
-  let max = constraintsAxis.max - layoutAxis.max;
-  if (constraintsAxis.max - constraintsAxis.min < layoutAxis.max - layoutAxis.min) {
-    [min, max] = [max, min];
-  }
-  return { min, max };
-}
-function calcViewportConstraints(layoutBox, constraintsBox) {
-  return {
-    x: calcViewportAxisConstraints(layoutBox.x, constraintsBox.x),
-    y: calcViewportAxisConstraints(layoutBox.y, constraintsBox.y)
-  };
-}
-function calcOrigin(source, target) {
-  let origin = 0.5;
-  const sourceLength = calcLength(source);
-  const targetLength = calcLength(target);
-  if (targetLength > sourceLength) {
-    origin = progress(target.min, target.max - sourceLength, source.min);
-  } else if (sourceLength > targetLength) {
-    origin = progress(source.min, source.max - targetLength, target.min);
-  }
-  return clamp(0, 1, origin);
-}
-function rebaseAxisConstraints(layout2, constraints) {
-  const relativeConstraints = {};
-  if (constraints.min !== void 0) {
-    relativeConstraints.min = constraints.min - layout2.min;
-  }
-  if (constraints.max !== void 0) {
-    relativeConstraints.max = constraints.max - layout2.min;
-  }
-  return relativeConstraints;
-}
-var defaultElastic = 0.35;
-function resolveDragElastic(dragElastic = defaultElastic) {
-  if (dragElastic === false) {
-    dragElastic = 0;
-  } else if (dragElastic === true) {
-    dragElastic = defaultElastic;
-  }
-  return {
-    x: resolveAxisElastic(dragElastic, "left", "right"),
-    y: resolveAxisElastic(dragElastic, "top", "bottom")
-  };
-}
-function resolveAxisElastic(dragElastic, minLabel, maxLabel) {
-  return {
-    min: resolvePointElastic(dragElastic, minLabel),
-    max: resolvePointElastic(dragElastic, maxLabel)
-  };
-}
-function resolvePointElastic(dragElastic, label) {
-  return typeof dragElastic === "number" ? dragElastic : dragElastic[label] || 0;
-}
-
-// node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs
-var elementDragControls = /* @__PURE__ */ new WeakMap();
-var VisualElementDragControls = class {
-  constructor(visualElement) {
-    this.openDragLock = null;
-    this.isDragging = false;
-    this.currentDirection = null;
-    this.originPoint = { x: 0, y: 0 };
-    this.constraints = false;
-    this.hasMutatedConstraints = false;
-    this.elastic = createBox();
-    this.latestPointerEvent = null;
-    this.latestPanInfo = null;
-    this.visualElement = visualElement;
-  }
-  start(originEvent, { snapToCursor = false, distanceThreshold } = {}) {
-    const { presenceContext } = this.visualElement;
-    if (presenceContext && presenceContext.isPresent === false)
-      return;
-    const onSessionStart = (event) => {
-      if (snapToCursor) {
-        this.snapToCursor(extractEventInfo(event).point);
-      }
-      this.stopAnimation();
-    };
-    const onStart = (event, info) => {
-      const { drag: drag2, dragPropagation, onDragStart } = this.getProps();
-      if (drag2 && !dragPropagation) {
-        if (this.openDragLock)
-          this.openDragLock();
-        this.openDragLock = setDragLock(drag2);
-        if (!this.openDragLock)
-          return;
-      }
-      this.latestPointerEvent = event;
-      this.latestPanInfo = info;
-      this.isDragging = true;
-      this.currentDirection = null;
-      this.resolveConstraints();
-      if (this.visualElement.projection) {
-        this.visualElement.projection.isAnimationBlocked = true;
-        this.visualElement.projection.target = void 0;
-      }
-      eachAxis((axis) => {
-        let current2 = this.getAxisMotionValue(axis).get() || 0;
-        if (percent.test(current2)) {
-          const { projection } = this.visualElement;
-          if (projection && projection.layout) {
-            const measuredAxis = projection.layout.layoutBox[axis];
-            if (measuredAxis) {
-              const length = calcLength(measuredAxis);
-              current2 = length * (parseFloat(current2) / 100);
-            }
-          }
-        }
-        this.originPoint[axis] = current2;
-      });
-      if (onDragStart) {
-        frame.update(() => onDragStart(event, info), false, true);
-      }
-      addValueToWillChange(this.visualElement, "transform");
-      const { animationState } = this.visualElement;
-      animationState && animationState.setActive("whileDrag", true);
-    };
-    const onMove = (event, info) => {
-      this.latestPointerEvent = event;
-      this.latestPanInfo = info;
-      const { dragPropagation, dragDirectionLock, onDirectionLock, onDrag } = this.getProps();
-      if (!dragPropagation && !this.openDragLock)
-        return;
-      const { offset } = info;
-      if (dragDirectionLock && this.currentDirection === null) {
-        this.currentDirection = getCurrentDirection(offset);
-        if (this.currentDirection !== null) {
-          onDirectionLock && onDirectionLock(this.currentDirection);
-        }
-        return;
-      }
-      this.updateAxis("x", info.point, offset);
-      this.updateAxis("y", info.point, offset);
-      this.visualElement.render();
-      if (onDrag) {
-        frame.update(() => onDrag(event, info), false, true);
-      }
-    };
-    const onSessionEnd = (event, info) => {
-      this.latestPointerEvent = event;
-      this.latestPanInfo = info;
-      this.stop(event, info);
-      this.latestPointerEvent = null;
-      this.latestPanInfo = null;
-    };
-    const resumeAnimation = () => {
-      const { dragSnapToOrigin: snap } = this.getProps();
-      if (snap || this.constraints) {
-        this.startAnimation({ x: 0, y: 0 });
-      }
-    };
-    const { dragSnapToOrigin } = this.getProps();
-    this.panSession = new PanSession(originEvent, {
-      onSessionStart,
-      onStart,
-      onMove,
-      onSessionEnd,
-      resumeAnimation
-    }, {
-      transformPagePoint: this.visualElement.getTransformPagePoint(),
-      dragSnapToOrigin,
-      distanceThreshold,
-      contextWindow: getContextWindow(this.visualElement),
-      element: this.visualElement.current
-    });
-  }
-  /**
-   * @internal
-   */
-  stop(event, panInfo) {
-    const finalEvent = event || this.latestPointerEvent;
-    const finalPanInfo = panInfo || this.latestPanInfo;
-    const isDragging2 = this.isDragging;
-    this.cancel();
-    if (!isDragging2 || !finalPanInfo || !finalEvent)
-      return;
-    const { velocity } = finalPanInfo;
-    this.startAnimation(velocity);
-    const { onDragEnd } = this.getProps();
-    if (onDragEnd) {
-      frame.postRender(() => onDragEnd(finalEvent, finalPanInfo));
-    }
-  }
-  /**
-   * @internal
-   */
-  cancel() {
-    this.isDragging = false;
-    const { projection, animationState } = this.visualElement;
-    if (projection) {
-      projection.isAnimationBlocked = false;
-    }
-    this.endPanSession();
-    const { dragPropagation } = this.getProps();
-    if (!dragPropagation && this.openDragLock) {
-      this.openDragLock();
-      this.openDragLock = null;
-    }
-    animationState && animationState.setActive("whileDrag", false);
-  }
-  /**
-   * Clean up the pan session without modifying other drag state.
-   * This is used during unmount to ensure event listeners are removed
-   * without affecting projection animations or drag locks.
-   * @internal
-   */
-  endPanSession() {
-    this.panSession && this.panSession.end();
-    this.panSession = void 0;
-  }
-  updateAxis(axis, _point, offset) {
-    const { drag: drag2 } = this.getProps();
-    if (!offset || !shouldDrag(axis, drag2, this.currentDirection))
-      return;
-    const axisValue = this.getAxisMotionValue(axis);
-    let next2 = this.originPoint[axis] + offset[axis];
-    if (this.constraints && this.constraints[axis]) {
-      next2 = applyConstraints(next2, this.constraints[axis], this.elastic[axis]);
-    }
-    axisValue.set(next2);
-  }
-  resolveConstraints() {
-    var _a;
-    const { dragConstraints, dragElastic } = this.getProps();
-    const layout2 = this.visualElement.projection && !this.visualElement.projection.layout ? this.visualElement.projection.measure(false) : (_a = this.visualElement.projection) == null ? void 0 : _a.layout;
-    const prevConstraints = this.constraints;
-    if (dragConstraints && isRefObject(dragConstraints)) {
-      if (!this.constraints) {
-        this.constraints = this.resolveRefConstraints();
-      }
-    } else {
-      if (dragConstraints && layout2) {
-        this.constraints = calcRelativeConstraints(layout2.layoutBox, dragConstraints);
-      } else {
-        this.constraints = false;
-      }
-    }
-    this.elastic = resolveDragElastic(dragElastic);
-    if (prevConstraints !== this.constraints && !isRefObject(dragConstraints) && layout2 && this.constraints && !this.hasMutatedConstraints) {
-      eachAxis((axis) => {
-        if (this.constraints !== false && this.getAxisMotionValue(axis)) {
-          this.constraints[axis] = rebaseAxisConstraints(layout2.layoutBox[axis], this.constraints[axis]);
-        }
-      });
-    }
-  }
-  resolveRefConstraints() {
-    const { dragConstraints: constraints, onMeasureDragConstraints } = this.getProps();
-    if (!constraints || !isRefObject(constraints))
-      return false;
-    const constraintsElement = constraints.current;
-    invariant(constraintsElement !== null, "If `dragConstraints` is set as a React ref, that ref must be passed to another component's `ref` prop.", "drag-constraints-ref");
-    const { projection } = this.visualElement;
-    if (!projection || !projection.layout)
-      return false;
-    const constraintsBox = measurePageBox(constraintsElement, projection.root, this.visualElement.getTransformPagePoint());
-    let measuredConstraints = calcViewportConstraints(projection.layout.layoutBox, constraintsBox);
-    if (onMeasureDragConstraints) {
-      const userConstraints = onMeasureDragConstraints(convertBoxToBoundingBox(measuredConstraints));
-      this.hasMutatedConstraints = !!userConstraints;
-      if (userConstraints) {
-        measuredConstraints = convertBoundingBoxToBox(userConstraints);
-      }
-    }
-    return measuredConstraints;
-  }
-  startAnimation(velocity) {
-    const { drag: drag2, dragMomentum, dragElastic, dragTransition, dragSnapToOrigin, onDragTransitionEnd } = this.getProps();
-    const constraints = this.constraints || {};
-    const momentumAnimations = eachAxis((axis) => {
-      if (!shouldDrag(axis, drag2, this.currentDirection)) {
-        return;
-      }
-      let transition = constraints && constraints[axis] || {};
-      if (dragSnapToOrigin === true || dragSnapToOrigin === axis)
-        transition = { min: 0, max: 0 };
-      const bounceStiffness = dragElastic ? 200 : 1e6;
-      const bounceDamping = dragElastic ? 40 : 1e7;
-      const inertia2 = {
-        type: "inertia",
-        velocity: dragMomentum ? velocity[axis] : 0,
-        bounceStiffness,
-        bounceDamping,
-        timeConstant: 750,
-        restDelta: 1,
-        restSpeed: 10,
-        ...dragTransition,
-        ...transition
-      };
-      return this.startAxisValueAnimation(axis, inertia2);
-    });
-    return Promise.all(momentumAnimations).then(onDragTransitionEnd);
-  }
-  startAxisValueAnimation(axis, transition) {
-    const axisValue = this.getAxisMotionValue(axis);
-    addValueToWillChange(this.visualElement, axis);
-    return axisValue.start(animateMotionValue(axis, axisValue, 0, transition, this.visualElement, false));
-  }
-  stopAnimation() {
-    eachAxis((axis) => this.getAxisMotionValue(axis).stop());
-  }
-  /**
-   * Drag works differently depending on which props are provided.
-   *
-   * - If _dragX and _dragY are provided, we output the gesture delta directly to those motion values.
-   * - Otherwise, we apply the delta to the x/y motion values.
-   */
-  getAxisMotionValue(axis) {
-    const dragKey = `_drag${axis.toUpperCase()}`;
-    const props = this.visualElement.getProps();
-    const externalMotionValue = props[dragKey];
-    return externalMotionValue ? externalMotionValue : this.visualElement.getValue(axis, (props.initial ? props.initial[axis] : void 0) || 0);
-  }
-  snapToCursor(point2) {
-    eachAxis((axis) => {
-      const { drag: drag2 } = this.getProps();
-      if (!shouldDrag(axis, drag2, this.currentDirection))
-        return;
-      const { projection } = this.visualElement;
-      const axisValue = this.getAxisMotionValue(axis);
-      if (projection && projection.layout) {
-        const { min, max } = projection.layout.layoutBox[axis];
-        const current2 = axisValue.get() || 0;
-        axisValue.set(point2[axis] - mixNumber(min, max, 0.5) + current2);
-      }
-    });
-  }
-  /**
-   * When the viewport resizes we want to check if the measured constraints
-   * have changed and, if so, reposition the element within those new constraints
-   * relative to where it was before the resize.
-   */
-  scalePositionWithinConstraints() {
-    if (!this.visualElement.current)
-      return;
-    const { drag: drag2, dragConstraints } = this.getProps();
-    const { projection } = this.visualElement;
-    if (!isRefObject(dragConstraints) || !projection || !this.constraints)
-      return;
-    this.stopAnimation();
-    const boxProgress = { x: 0, y: 0 };
-    eachAxis((axis) => {
-      const axisValue = this.getAxisMotionValue(axis);
-      if (axisValue && this.constraints !== false) {
-        const latest = axisValue.get();
-        boxProgress[axis] = calcOrigin({ min: latest, max: latest }, this.constraints[axis]);
-      }
-    });
-    const { transformTemplate } = this.visualElement.getProps();
-    this.visualElement.current.style.transform = transformTemplate ? transformTemplate({}, "") : "none";
-    projection.root && projection.root.updateScroll();
-    projection.updateLayout();
-    this.constraints = false;
-    this.resolveConstraints();
-    eachAxis((axis) => {
-      if (!shouldDrag(axis, drag2, null))
-        return;
-      const axisValue = this.getAxisMotionValue(axis);
-      const { min, max } = this.constraints[axis];
-      axisValue.set(mixNumber(min, max, boxProgress[axis]));
-    });
-    this.visualElement.render();
-  }
-  addListeners() {
-    if (!this.visualElement.current)
-      return;
-    elementDragControls.set(this.visualElement, this);
-    const element = this.visualElement.current;
-    const stopPointerListener = addPointerEvent(element, "pointerdown", (event) => {
-      const { drag: drag2, dragListener = true } = this.getProps();
-      const target = event.target;
-      const isClickingTextInputChild = target !== element && isElementTextInput(target);
-      if (drag2 && dragListener && !isClickingTextInputChild) {
-        this.start(event);
-      }
-    });
-    let stopResizeObservers;
-    const measureDragConstraints = () => {
-      const { dragConstraints } = this.getProps();
-      if (isRefObject(dragConstraints) && dragConstraints.current) {
-        this.constraints = this.resolveRefConstraints();
-        if (!stopResizeObservers) {
-          stopResizeObservers = startResizeObservers(element, dragConstraints.current, () => this.scalePositionWithinConstraints());
-        }
-      }
-    };
-    const { projection } = this.visualElement;
-    const stopMeasureLayoutListener = projection.addEventListener("measure", measureDragConstraints);
-    if (projection && !projection.layout) {
-      projection.root && projection.root.updateScroll();
-      projection.updateLayout();
-    }
-    frame.read(measureDragConstraints);
-    const stopResizeListener = addDomEvent(window, "resize", () => this.scalePositionWithinConstraints());
-    const stopLayoutUpdateListener = projection.addEventListener("didUpdate", ({ delta, hasLayoutChanged }) => {
-      if (this.isDragging && hasLayoutChanged) {
-        eachAxis((axis) => {
-          const motionValue2 = this.getAxisMotionValue(axis);
-          if (!motionValue2)
-            return;
-          this.originPoint[axis] += delta[axis].translate;
-          motionValue2.set(motionValue2.get() + delta[axis].translate);
-        });
-        this.visualElement.render();
-      }
-    });
-    return () => {
-      stopResizeListener();
-      stopPointerListener();
-      stopMeasureLayoutListener();
-      stopLayoutUpdateListener && stopLayoutUpdateListener();
-      stopResizeObservers && stopResizeObservers();
-    };
-  }
-  getProps() {
-    const props = this.visualElement.getProps();
-    const { drag: drag2 = false, dragDirectionLock = false, dragPropagation = false, dragConstraints = false, dragElastic = defaultElastic, dragMomentum = true } = props;
-    return {
-      ...props,
-      drag: drag2,
-      dragDirectionLock,
-      dragPropagation,
-      dragConstraints,
-      dragElastic,
-      dragMomentum
-    };
-  }
-};
-function skipFirstCall(callback) {
-  let isFirst = true;
-  return () => {
-    if (isFirst) {
-      isFirst = false;
-      return;
-    }
-    callback();
-  };
-}
-function startResizeObservers(element, constraintsElement, onResize) {
-  const stopElement = resize(element, skipFirstCall(onResize));
-  const stopContainer = resize(constraintsElement, skipFirstCall(onResize));
-  return () => {
-    stopElement();
-    stopContainer();
-  };
-}
-function shouldDrag(direction, drag2, currentDirection) {
-  return (drag2 === true || drag2 === direction) && (currentDirection === null || currentDirection === direction);
-}
-function getCurrentDirection(offset, lockThreshold = 10) {
-  let direction = null;
-  if (Math.abs(offset.y) > lockThreshold) {
-    direction = "y";
-  } else if (Math.abs(offset.x) > lockThreshold) {
-    direction = "x";
-  }
-  return direction;
-}
-
-// node_modules/framer-motion/dist/es/gestures/drag/index.mjs
-var DragGesture = class extends Feature {
-  constructor(node) {
-    super(node);
-    this.removeGroupControls = noop;
-    this.removeListeners = noop;
-    this.controls = new VisualElementDragControls(node);
-  }
-  mount() {
-    const { dragControls } = this.node.getProps();
-    if (dragControls) {
-      this.removeGroupControls = dragControls.subscribe(this.controls);
-    }
-    this.removeListeners = this.controls.addListeners() || noop;
-  }
-  update() {
-    const { dragControls } = this.node.getProps();
-    const { dragControls: prevDragControls } = this.node.prevProps || {};
-    if (dragControls !== prevDragControls) {
-      this.removeGroupControls();
-      if (dragControls) {
-        this.removeGroupControls = dragControls.subscribe(this.controls);
-      }
-    }
-  }
-  unmount() {
-    this.removeGroupControls();
-    this.removeListeners();
-    if (!this.controls.isDragging) {
-      this.controls.endPanSession();
-    }
-  }
-};
-
-// node_modules/framer-motion/dist/es/gestures/pan/index.mjs
-var asyncHandler = (handler) => (event, info) => {
-  if (handler) {
-    frame.update(() => handler(event, info), false, true);
-  }
-};
-var PanGesture = class extends Feature {
-  constructor() {
-    super(...arguments);
-    this.removePointerDownListener = noop;
-  }
-  onPointerDown(pointerDownEvent) {
-    this.session = new PanSession(pointerDownEvent, this.createPanHandlers(), {
-      transformPagePoint: this.node.getTransformPagePoint(),
-      contextWindow: getContextWindow(this.node)
-    });
-  }
-  createPanHandlers() {
-    const { onPanSessionStart, onPanStart, onPan, onPanEnd } = this.node.getProps();
-    return {
-      onSessionStart: asyncHandler(onPanSessionStart),
-      onStart: asyncHandler(onPanStart),
-      onMove: asyncHandler(onPan),
-      onEnd: (event, info) => {
-        delete this.session;
-        if (onPanEnd) {
-          frame.postRender(() => onPanEnd(event, info));
-        }
-      }
-    };
-  }
-  mount() {
-    this.removePointerDownListener = addPointerEvent(this.node.current, "pointerdown", (event) => this.onPointerDown(event));
-  }
-  update() {
-    this.session && this.session.updateHandlers(this.createPanHandlers());
-  }
-  unmount() {
-    this.removePointerDownListener();
-    this.session && this.session.end();
-  }
-};
-
-// node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
-var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
-var import_react29 = __toESM(require_react(), 1);
-var hasTakenAnySnapshot = false;
-var MeasureLayoutWithContext = class extends import_react29.Component {
-  /**
-   * This only mounts projection nodes for components that
-   * need measuring, we might want to do it for all components
-   * in order to incorporate transforms
-   */
-  componentDidMount() {
-    const { visualElement, layoutGroup, switchLayoutGroup, layoutId } = this.props;
-    const { projection } = visualElement;
-    if (projection) {
-      if (layoutGroup.group)
-        layoutGroup.group.add(projection);
-      if (switchLayoutGroup && switchLayoutGroup.register && layoutId) {
-        switchLayoutGroup.register(projection);
-      }
-      if (hasTakenAnySnapshot) {
-        projection.root.didUpdate();
-      }
-      projection.addEventListener("animationComplete", () => {
-        this.safeToRemove();
-      });
-      projection.setOptions({
-        ...projection.options,
-        layoutDependency: this.props.layoutDependency,
-        onExitComplete: () => this.safeToRemove()
-      });
-    }
-    globalProjectionState.hasEverUpdated = true;
-  }
-  getSnapshotBeforeUpdate(prevProps) {
-    const { layoutDependency, visualElement, drag: drag2, isPresent: isPresent2 } = this.props;
-    const { projection } = visualElement;
-    if (!projection)
-      return null;
-    projection.isPresent = isPresent2;
-    if (prevProps.layoutDependency !== layoutDependency) {
-      projection.setOptions({
-        ...projection.options,
-        layoutDependency
-      });
-    }
-    hasTakenAnySnapshot = true;
-    if (drag2 || prevProps.layoutDependency !== layoutDependency || layoutDependency === void 0 || prevProps.isPresent !== isPresent2) {
-      projection.willUpdate();
-    } else {
-      this.safeToRemove();
-    }
-    if (prevProps.isPresent !== isPresent2) {
-      if (isPresent2) {
-        projection.promote();
-      } else if (!projection.relegate()) {
-        frame.postRender(() => {
-          const stack = projection.getStack();
-          if (!stack || !stack.members.length) {
-            this.safeToRemove();
-          }
-        });
-      }
-    }
-    return null;
-  }
-  componentDidUpdate() {
-    const { visualElement, layoutAnchor } = this.props;
-    const { projection } = visualElement;
-    if (projection) {
-      projection.options.layoutAnchor = layoutAnchor;
-      projection.root.didUpdate();
-      microtask.postRender(() => {
-        if (!projection.currentAnimation && projection.isLead()) {
-          this.safeToRemove();
-        }
-      });
-    }
-  }
-  componentWillUnmount() {
-    const { visualElement, layoutGroup, switchLayoutGroup: promoteContext } = this.props;
-    const { projection } = visualElement;
-    hasTakenAnySnapshot = true;
-    if (projection) {
-      projection.scheduleCheckAfterUnmount();
-      if (layoutGroup && layoutGroup.group)
-        layoutGroup.group.remove(projection);
-      if (promoteContext && promoteContext.deregister)
-        promoteContext.deregister(projection);
-    }
-  }
-  safeToRemove() {
-    const { safeToRemove } = this.props;
-    safeToRemove && safeToRemove();
-  }
-  render() {
-    return null;
-  }
-};
-function MeasureLayout(props) {
-  const [isPresent2, safeToRemove] = usePresence();
-  const layoutGroup = (0, import_react29.useContext)(LayoutGroupContext);
-  return (0, import_jsx_runtime8.jsx)(MeasureLayoutWithContext, { ...props, layoutGroup, switchLayoutGroup: (0, import_react29.useContext)(SwitchLayoutGroupContext), isPresent: isPresent2, safeToRemove });
-}
-
-// node_modules/framer-motion/dist/es/motion/features/drag.mjs
-var drag = {
-  pan: {
-    Feature: PanGesture
-  },
-  drag: {
-    Feature: DragGesture,
-    ProjectionNode: HTMLProjectionNode,
-    MeasureLayout
-  }
-};
-
-// node_modules/framer-motion/dist/es/gestures/hover.mjs
-function handleHoverEvent(node, event, lifecycle) {
-  const { props } = node;
-  if (node.animationState && props.whileHover) {
-    node.animationState.setActive("whileHover", lifecycle === "Start");
-  }
-  const eventName = "onHover" + lifecycle;
-  const callback = props[eventName];
-  if (callback) {
-    frame.postRender(() => callback(event, extractEventInfo(event)));
-  }
-}
-var HoverGesture = class extends Feature {
-  mount() {
-    const { current: current2 } = this.node;
-    if (!current2)
-      return;
-    this.unmount = hover(current2, (_element, startEvent) => {
-      handleHoverEvent(this.node, startEvent, "Start");
-      return (endEvent) => handleHoverEvent(this.node, endEvent, "End");
-    });
-  }
-  unmount() {
-  }
-};
-
-// node_modules/framer-motion/dist/es/gestures/focus.mjs
-var FocusGesture = class extends Feature {
-  constructor() {
-    super(...arguments);
-    this.isActive = false;
-  }
-  onFocus() {
-    let isFocusVisible = false;
-    try {
-      isFocusVisible = this.node.current.matches(":focus-visible");
-    } catch (e) {
-      isFocusVisible = true;
-    }
-    if (!isFocusVisible || !this.node.animationState)
-      return;
-    this.node.animationState.setActive("whileFocus", true);
-    this.isActive = true;
-  }
-  onBlur() {
-    if (!this.isActive || !this.node.animationState)
-      return;
-    this.node.animationState.setActive("whileFocus", false);
-    this.isActive = false;
-  }
-  mount() {
-    this.unmount = pipe(addDomEvent(this.node.current, "focus", () => this.onFocus()), addDomEvent(this.node.current, "blur", () => this.onBlur()));
-  }
-  unmount() {
-  }
-};
-
-// node_modules/framer-motion/dist/es/gestures/press.mjs
-function handlePressEvent(node, event, lifecycle) {
-  const { props } = node;
-  if (node.current instanceof HTMLButtonElement && node.current.disabled) {
-    return;
-  }
-  if (node.animationState && props.whileTap) {
-    node.animationState.setActive("whileTap", lifecycle === "Start");
-  }
-  const eventName = "onTap" + (lifecycle === "End" ? "" : lifecycle);
-  const callback = props[eventName];
-  if (callback) {
-    frame.postRender(() => callback(event, extractEventInfo(event)));
-  }
-}
-var PressGesture = class extends Feature {
-  mount() {
-    const { current: current2 } = this.node;
-    if (!current2)
-      return;
-    const { globalTapTarget, propagate } = this.node.props;
-    this.unmount = press(current2, (_element, startEvent) => {
-      handlePressEvent(this.node, startEvent, "Start");
-      return (endEvent, { success }) => handlePressEvent(this.node, endEvent, success ? "End" : "Cancel");
-    }, {
-      useGlobalTarget: globalTapTarget,
-      stopPropagation: (propagate == null ? void 0 : propagate.tap) === false
-    });
-  }
-  unmount() {
-  }
-};
-
-// node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs
-var observerCallbacks = /* @__PURE__ */ new WeakMap();
-var observers = /* @__PURE__ */ new WeakMap();
-var fireObserverCallback = (entry) => {
-  const callback = observerCallbacks.get(entry.target);
-  callback && callback(entry);
-};
-var fireAllObserverCallbacks = (entries) => {
-  entries.forEach(fireObserverCallback);
-};
-function initIntersectionObserver({ root, ...options }) {
-  const lookupRoot = root || document;
-  if (!observers.has(lookupRoot)) {
-    observers.set(lookupRoot, {});
-  }
-  const rootObservers = observers.get(lookupRoot);
-  const key = JSON.stringify(options);
-  if (!rootObservers[key]) {
-    rootObservers[key] = new IntersectionObserver(fireAllObserverCallbacks, { root, ...options });
-  }
-  return rootObservers[key];
-}
-function observeIntersection(element, options, callback) {
-  const rootInteresectionObserver = initIntersectionObserver(options);
-  observerCallbacks.set(element, callback);
-  rootInteresectionObserver.observe(element);
-  return () => {
-    observerCallbacks.delete(element);
-    rootInteresectionObserver.unobserve(element);
-  };
-}
-
-// node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs
-var thresholdNames = {
-  some: 0,
-  all: 1
-};
-var InViewFeature = class extends Feature {
-  constructor() {
-    super(...arguments);
-    this.hasEnteredView = false;
-    this.isInView = false;
-  }
-  startObserver() {
-    var _a;
-    (_a = this.stopObserver) == null ? void 0 : _a.call(this);
-    const { viewport = {} } = this.node.getProps();
-    const { root, margin: rootMargin, amount = "some", once } = viewport;
-    const options = {
-      root: root ? root.current : void 0,
-      rootMargin,
-      threshold: typeof amount === "number" ? amount : thresholdNames[amount]
-    };
-    const onIntersectionUpdate = (entry) => {
-      const { isIntersecting } = entry;
-      if (this.isInView === isIntersecting)
-        return;
-      this.isInView = isIntersecting;
-      if (once && !isIntersecting && this.hasEnteredView) {
-        return;
-      } else if (isIntersecting) {
-        this.hasEnteredView = true;
-      }
-      if (this.node.animationState) {
-        this.node.animationState.setActive("whileInView", isIntersecting);
-      }
-      const { onViewportEnter, onViewportLeave } = this.node.getProps();
-      const callback = isIntersecting ? onViewportEnter : onViewportLeave;
-      callback && callback(entry);
-    };
-    this.stopObserver = observeIntersection(this.node.current, options, onIntersectionUpdate);
-  }
-  mount() {
-    this.startObserver();
-  }
-  update() {
-    if (typeof IntersectionObserver === "undefined")
-      return;
-    const { props, prevProps } = this.node;
-    const hasOptionsChanged = ["amount", "margin", "root"].some(hasViewportOptionChanged(props, prevProps));
-    if (hasOptionsChanged) {
-      this.startObserver();
-    }
-  }
-  unmount() {
-    var _a;
-    (_a = this.stopObserver) == null ? void 0 : _a.call(this);
-    this.hasEnteredView = false;
-    this.isInView = false;
-  }
-};
-function hasViewportOptionChanged({ viewport = {} }, { viewport: prevViewport = {} } = {}) {
-  return (name) => viewport[name] !== prevViewport[name];
-}
-
-// node_modules/framer-motion/dist/es/motion/features/gestures.mjs
-var gestureAnimations = {
-  inView: {
-    Feature: InViewFeature
-  },
-  tap: {
-    Feature: PressGesture
-  },
-  focus: {
-    Feature: FocusGesture
-  },
-  hover: {
-    Feature: HoverGesture
-  }
-};
-
-// node_modules/framer-motion/dist/es/motion/features/layout.mjs
-var layout = {
-  layout: {
-    ProjectionNode: HTMLProjectionNode,
-    MeasureLayout
-  }
-};
-
-// node_modules/framer-motion/dist/es/render/components/motion/feature-bundle.mjs
-var featureBundle = {
-  ...animations,
-  ...gestureAnimations,
-  ...drag,
-  ...layout
-};
-
-// node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs
-var motion = createMotionProxy(featureBundle, createDomVisualElement);
-
-// node_modules/framer-motion/dist/es/utils/use-unmount-effect.mjs
-var import_react30 = __toESM(require_react(), 1);
-function useUnmountEffect(callback) {
-  return (0, import_react30.useEffect)(() => () => callback(), []);
-}
-
-// node_modules/framer-motion/dist/es/render/dom/features-animation.mjs
-var domAnimation = {
-  renderer: createDomVisualElement,
-  ...animations,
-  ...gestureAnimations
-};
-
-// node_modules/framer-motion/dist/es/render/dom/features-max.mjs
-var domMax = {
-  ...domAnimation,
-  ...drag,
-  ...layout
-};
-
-// node_modules/framer-motion/dist/es/render/dom/features-min.mjs
-var domMin = {
-  renderer: createDomVisualElement,
-  ...animations
-};
-
-// node_modules/framer-motion/dist/es/utils/use-motion-value-event.mjs
-var import_react31 = __toESM(require_react(), 1);
-function useMotionValueEvent(value, event, callback) {
-  (0, import_react31.useInsertionEffect)(() => value.on(event, callback), [value, event, callback]);
-}
-
-// node_modules/framer-motion/dist/es/value/use-scroll.mjs
-var import_react32 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/utils/can-use-native-timeline.mjs
-function canUseNativeTimeline(target) {
-  if (typeof window === "undefined")
-    return false;
-  return target ? supportsViewTimeline() : supportsScrollTimeline();
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/info.mjs
-var maxElapsed2 = 50;
-var createAxisInfo = () => ({
-  current: 0,
-  offset: [],
-  progress: 0,
-  scrollLength: 0,
-  targetOffset: 0,
-  targetLength: 0,
-  containerLength: 0,
-  velocity: 0
-});
-var createScrollInfo = () => ({
-  time: 0,
-  x: createAxisInfo(),
-  y: createAxisInfo()
-});
-var keys = {
-  x: {
-    length: "Width",
-    position: "Left"
-  },
-  y: {
-    length: "Height",
-    position: "Top"
-  }
-};
-function updateAxisInfo(element, axisName, info, time2) {
-  const axis = info[axisName];
-  const { length, position } = keys[axisName];
-  const prev = axis.current;
-  const prevTime = info.time;
-  axis.current = Math.abs(element[`scroll${position}`]);
-  axis.scrollLength = element[`scroll${length}`] - element[`client${length}`];
-  axis.offset.length = 0;
-  axis.offset[0] = 0;
-  axis.offset[1] = axis.scrollLength;
-  axis.progress = progress(0, axis.scrollLength, axis.current);
-  const elapsed = time2 - prevTime;
-  axis.velocity = elapsed > maxElapsed2 ? 0 : velocityPerSecond(axis.current - prev, elapsed);
-}
-function updateScrollInfo(element, info, time2) {
-  updateAxisInfo(element, "x", info, time2);
-  updateAxisInfo(element, "y", info, time2);
-  info.time = time2;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/offsets/inset.mjs
-function calcInset(element, container) {
-  const inset = { x: 0, y: 0 };
-  let current2 = element;
-  while (current2 && current2 !== container) {
-    if (isHTMLElement(current2)) {
-      inset.x += current2.offsetLeft;
-      inset.y += current2.offsetTop;
-      current2 = current2.offsetParent;
-    } else if (current2.tagName === "svg") {
-      const svgBoundingBox = current2.getBoundingClientRect();
-      current2 = current2.parentElement;
-      const parentBoundingBox = current2.getBoundingClientRect();
-      inset.x += svgBoundingBox.left - parentBoundingBox.left;
-      inset.y += svgBoundingBox.top - parentBoundingBox.top;
-    } else if (current2 instanceof SVGGraphicsElement) {
-      const { x, y } = current2.getBBox();
-      inset.x += x;
-      inset.y += y;
-      let svg = null;
-      let parent = current2.parentNode;
-      while (!svg) {
-        if (parent.tagName === "svg") {
-          svg = parent;
-        }
-        parent = current2.parentNode;
-      }
-      current2 = svg;
-    } else {
-      break;
-    }
-  }
-  return inset;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/offsets/edge.mjs
-var namedEdges = {
-  start: 0,
-  center: 0.5,
-  end: 1
-};
-function resolveEdge(edge, length, inset = 0) {
-  let delta = 0;
-  if (edge in namedEdges) {
-    edge = namedEdges[edge];
-  }
-  if (typeof edge === "string") {
-    const asNumber3 = parseFloat(edge);
-    if (edge.endsWith("px")) {
-      delta = asNumber3;
-    } else if (edge.endsWith("%")) {
-      edge = asNumber3 / 100;
-    } else if (edge.endsWith("vw")) {
-      delta = asNumber3 / 100 * document.documentElement.clientWidth;
-    } else if (edge.endsWith("vh")) {
-      delta = asNumber3 / 100 * document.documentElement.clientHeight;
-    } else {
-      edge = asNumber3;
-    }
-  }
-  if (typeof edge === "number") {
-    delta = length * edge;
-  }
-  return inset + delta;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/offsets/offset.mjs
-var defaultOffset2 = [0, 0];
-function resolveOffset(offset, containerLength, targetLength, targetInset) {
-  let offsetDefinition = Array.isArray(offset) ? offset : defaultOffset2;
-  let targetPoint = 0;
-  let containerPoint = 0;
-  if (typeof offset === "number") {
-    offsetDefinition = [offset, offset];
-  } else if (typeof offset === "string") {
-    offset = offset.trim();
-    if (offset.includes(" ")) {
-      offsetDefinition = offset.split(" ");
-    } else {
-      offsetDefinition = [offset, namedEdges[offset] ? offset : `0`];
-    }
-  }
-  targetPoint = resolveEdge(offsetDefinition[0], targetLength, targetInset);
-  containerPoint = resolveEdge(offsetDefinition[1], containerLength);
-  return targetPoint - containerPoint;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/offsets/presets.mjs
-var ScrollOffset = {
-  Enter: [
-    [0, 1],
-    [1, 1]
-  ],
-  Exit: [
-    [0, 0],
-    [1, 0]
-  ],
-  Any: [
-    [1, 0],
-    [0, 1]
-  ],
-  All: [
-    [0, 0],
-    [1, 1]
-  ]
-};
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/offsets/index.mjs
-var point = { x: 0, y: 0 };
-function getTargetSize(target) {
-  return "getBBox" in target && target.tagName !== "svg" ? target.getBBox() : { width: target.clientWidth, height: target.clientHeight };
-}
-function resolveOffsets(container, info, options) {
-  const { offset: offsetDefinition = ScrollOffset.All } = options;
-  const { target = container, axis = "y" } = options;
-  const lengthLabel = axis === "y" ? "height" : "width";
-  const inset = target !== container ? calcInset(target, container) : point;
-  const targetSize = target === container ? { width: container.scrollWidth, height: container.scrollHeight } : getTargetSize(target);
-  const containerSize = {
-    width: container.clientWidth,
-    height: container.clientHeight
-  };
-  info[axis].offset.length = 0;
-  let hasChanged = !info[axis].interpolate;
-  const numOffsets = offsetDefinition.length;
-  for (let i = 0; i < numOffsets; i++) {
-    const offset = resolveOffset(offsetDefinition[i], containerSize[lengthLabel], targetSize[lengthLabel], inset[axis]);
-    if (!hasChanged && offset !== info[axis].interpolatorOffsets[i]) {
-      hasChanged = true;
-    }
-    info[axis].offset[i] = offset;
-  }
-  if (hasChanged) {
-    info[axis].interpolate = interpolate(info[axis].offset, defaultOffset(offsetDefinition), { clamp: false });
-    info[axis].interpolatorOffsets = [...info[axis].offset];
-  }
-  info[axis].progress = clamp(0, 1, info[axis].interpolate(info[axis].current));
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/on-scroll-handler.mjs
-function measure(container, target = container, info) {
-  info.x.targetOffset = 0;
-  info.y.targetOffset = 0;
-  if (target !== container) {
-    let node = target;
-    while (node && node !== container) {
-      info.x.targetOffset += node.offsetLeft;
-      info.y.targetOffset += node.offsetTop;
-      node = node.offsetParent;
-    }
-  }
-  info.x.targetLength = target === container ? target.scrollWidth : target.clientWidth;
-  info.y.targetLength = target === container ? target.scrollHeight : target.clientHeight;
-  info.x.containerLength = container.clientWidth;
-  info.y.containerLength = container.clientHeight;
-  if (true) {
-    if (container && target && target !== container) {
-      warnOnce(getComputedStyle(container).position !== "static", "Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.");
-    }
-  }
-}
-function createOnScrollHandler(element, onScroll, info, options = {}) {
-  return {
-    measure: (time2) => {
-      measure(element, options.target, info);
-      updateScrollInfo(element, info, time2);
-      if (options.offset || options.target) {
-        resolveOffsets(element, info, options);
-      }
-    },
-    notify: () => onScroll(info)
-  };
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/track.mjs
-var scrollListeners = /* @__PURE__ */ new WeakMap();
-var resizeListeners = /* @__PURE__ */ new WeakMap();
-var onScrollHandlers = /* @__PURE__ */ new WeakMap();
-var scrollSize = /* @__PURE__ */ new WeakMap();
-var dimensionCheckProcesses = /* @__PURE__ */ new WeakMap();
-var getEventTarget = (element) => element === document.scrollingElement ? window : element;
-function scrollInfo(onScroll, { container = document.scrollingElement, trackContentSize = false, ...options } = {}) {
-  if (!container)
-    return noop;
-  let containerHandlers = onScrollHandlers.get(container);
-  if (!containerHandlers) {
-    containerHandlers = /* @__PURE__ */ new Set();
-    onScrollHandlers.set(container, containerHandlers);
-  }
-  const info = createScrollInfo();
-  const containerHandler = createOnScrollHandler(container, onScroll, info, options);
-  containerHandlers.add(containerHandler);
-  if (!scrollListeners.has(container)) {
-    const measureAll = () => {
-      for (const handler of containerHandlers) {
-        handler.measure(frameData.timestamp);
-      }
-      frame.preUpdate(notifyAll2);
-    };
-    const notifyAll2 = () => {
-      for (const handler of containerHandlers) {
-        handler.notify();
-      }
-    };
-    const listener2 = () => frame.read(measureAll);
-    scrollListeners.set(container, listener2);
-    const target = getEventTarget(container);
-    window.addEventListener("resize", listener2);
-    if (container !== document.documentElement) {
-      resizeListeners.set(container, resize(container, listener2));
-    }
-    target.addEventListener("scroll", listener2);
-    listener2();
-  }
-  if (trackContentSize && !dimensionCheckProcesses.has(container)) {
-    const listener2 = scrollListeners.get(container);
-    const size = {
-      width: container.scrollWidth,
-      height: container.scrollHeight
-    };
-    scrollSize.set(container, size);
-    const checkScrollDimensions = () => {
-      const newWidth = container.scrollWidth;
-      const newHeight = container.scrollHeight;
-      if (size.width !== newWidth || size.height !== newHeight) {
-        listener2();
-        size.width = newWidth;
-        size.height = newHeight;
-      }
-    };
-    const dimensionCheckProcess = frame.read(checkScrollDimensions, true);
-    dimensionCheckProcesses.set(container, dimensionCheckProcess);
-  }
-  const listener = scrollListeners.get(container);
-  frame.read(listener, false, true);
-  return () => {
-    var _a;
-    cancelFrame(listener);
-    const currentHandlers = onScrollHandlers.get(container);
-    if (!currentHandlers)
-      return;
-    currentHandlers.delete(containerHandler);
-    if (currentHandlers.size)
-      return;
-    const scrollListener = scrollListeners.get(container);
-    scrollListeners.delete(container);
-    if (scrollListener) {
-      getEventTarget(container).removeEventListener("scroll", scrollListener);
-      (_a = resizeListeners.get(container)) == null ? void 0 : _a();
-      window.removeEventListener("resize", scrollListener);
-    }
-    const dimensionCheckProcess = dimensionCheckProcesses.get(container);
-    if (dimensionCheckProcess) {
-      cancelFrame(dimensionCheckProcess);
-      dimensionCheckProcesses.delete(container);
-    }
-    scrollSize.delete(container);
-  };
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/utils/offset-to-range.mjs
-var presets = [
-  [ScrollOffset.Enter, "entry"],
-  [ScrollOffset.Exit, "exit"],
-  [ScrollOffset.Any, "cover"],
-  [ScrollOffset.All, "contain"]
-];
-var stringToProgress = {
-  start: 0,
-  end: 1
-};
-function parseStringOffset(s) {
-  const parts = s.trim().split(/\s+/);
-  if (parts.length !== 2)
-    return void 0;
-  const a = stringToProgress[parts[0]];
-  const b = stringToProgress[parts[1]];
-  if (a === void 0 || b === void 0)
-    return void 0;
-  return [a, b];
-}
-function normaliseOffset(offset) {
-  if (offset.length !== 2)
-    return void 0;
-  const result = [];
-  for (const item of offset) {
-    if (Array.isArray(item)) {
-      result.push(item);
-    } else if (typeof item === "string") {
-      const parsed = parseStringOffset(item);
-      if (!parsed)
-        return void 0;
-      result.push(parsed);
-    } else {
-      return void 0;
-    }
-  }
-  return result;
-}
-function matchesPreset(offset, preset) {
-  const normalised = normaliseOffset(offset);
-  if (!normalised)
-    return false;
-  for (let i = 0; i < 2; i++) {
-    const o = normalised[i];
-    const p = preset[i];
-    if (o[0] !== p[0] || o[1] !== p[1])
-      return false;
-  }
-  return true;
-}
-function offsetToViewTimelineRange(offset) {
-  if (!offset) {
-    return { rangeStart: "contain 0%", rangeEnd: "contain 100%" };
-  }
-  for (const [preset, name] of presets) {
-    if (matchesPreset(offset, preset)) {
-      return { rangeStart: `${name} 0%`, rangeEnd: `${name} 100%` };
-    }
-  }
-  return void 0;
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/utils/get-timeline.mjs
-var timelineCache = /* @__PURE__ */ new Map();
-function scrollTimelineFallback(options) {
-  const currentTime = { value: 0 };
-  const cancel = scrollInfo((info) => {
-    currentTime.value = info[options.axis].progress * 100;
-  }, options);
-  return { currentTime, cancel };
-}
-function getTimeline({ source, container, ...options }) {
-  const { axis } = options;
-  if (source)
-    container = source;
-  let containerCache = timelineCache.get(container);
-  if (!containerCache) {
-    containerCache = /* @__PURE__ */ new Map();
-    timelineCache.set(container, containerCache);
-  }
-  const targetKey = options.target ?? "self";
-  let targetCache = containerCache.get(targetKey);
-  if (!targetCache) {
-    targetCache = {};
-    containerCache.set(targetKey, targetCache);
-  }
-  const axisKey = axis + (options.offset ?? []).join(",");
-  if (!targetCache[axisKey]) {
-    if (options.target && canUseNativeTimeline(options.target)) {
-      const range = offsetToViewTimelineRange(options.offset);
-      if (range) {
-        targetCache[axisKey] = new ViewTimeline({
-          subject: options.target,
-          axis
-        });
-      } else {
-        targetCache[axisKey] = scrollTimelineFallback({
-          container,
-          ...options
-        });
-      }
-    } else if (canUseNativeTimeline()) {
-      targetCache[axisKey] = new ScrollTimeline({
-        source: container,
-        axis
-      });
-    } else {
-      targetCache[axisKey] = scrollTimelineFallback({
-        container,
-        ...options
-      });
-    }
-  }
-  return targetCache[axisKey];
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/attach-animation.mjs
-function attachToAnimation(animation, options) {
-  const timeline = getTimeline(options);
-  const range = options.target ? offsetToViewTimelineRange(options.offset) : void 0;
-  const useNative = options.target ? canUseNativeTimeline(options.target) && !!range : canUseNativeTimeline();
-  return animation.attachTimeline({
-    timeline: useNative ? timeline : void 0,
-    ...range && useNative && {
-      rangeStart: range.rangeStart,
-      rangeEnd: range.rangeEnd
-    },
-    observe: (valueAnimation) => {
-      valueAnimation.pause();
-      return observeTimeline((progress2) => {
-        valueAnimation.time = valueAnimation.iterationDuration * progress2;
-      }, timeline);
-    }
-  });
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/attach-function.mjs
-function isOnScrollWithInfo(onScroll) {
-  return onScroll.length === 2;
-}
-function attachToFunction(onScroll, options) {
-  if (isOnScrollWithInfo(onScroll)) {
-    return scrollInfo((info) => {
-      onScroll(info[options.axis].progress, info);
-    }, options);
-  } else {
-    return observeTimeline(onScroll, getTimeline(options));
-  }
-}
-
-// node_modules/framer-motion/dist/es/render/dom/scroll/index.mjs
-function scroll(onScroll, { axis = "y", container = document.scrollingElement, ...options } = {}) {
-  if (!container)
-    return noop;
-  const optionsWithDefaults = { axis, container, ...options };
-  return typeof onScroll === "function" ? attachToFunction(onScroll, optionsWithDefaults) : attachToAnimation(onScroll, optionsWithDefaults);
-}
-
-// node_modules/framer-motion/dist/es/value/use-scroll.mjs
-var createScrollMotionValues = () => ({
-  scrollX: motionValue(0),
-  scrollY: motionValue(0),
-  scrollXProgress: motionValue(0),
-  scrollYProgress: motionValue(0)
-});
-var isRefPending = (ref) => {
-  if (!ref)
-    return false;
-  return !ref.current;
-};
-function makeAccelerateConfig(axis, options, container, target) {
-  return {
-    factory: (animation) => scroll(animation, {
-      ...options,
-      axis,
-      container: (container == null ? void 0 : container.current) || void 0,
-      target: (target == null ? void 0 : target.current) || void 0
-    }),
-    times: [0, 1],
-    keyframes: [0, 1],
-    ease: (v) => v,
-    duration: 1
-  };
-}
-function canAccelerateScroll(target, offset) {
-  if (typeof window === "undefined")
-    return false;
-  return target ? supportsViewTimeline() && !!offsetToViewTimelineRange(offset) : supportsScrollTimeline();
-}
-function useScroll({ container, target, ...options } = {}) {
-  const values = useConstant(createScrollMotionValues);
-  if (canAccelerateScroll(target, options.offset)) {
-    values.scrollXProgress.accelerate = makeAccelerateConfig("x", options, container, target);
-    values.scrollYProgress.accelerate = makeAccelerateConfig("y", options, container, target);
-  }
-  const scrollAnimation = (0, import_react32.useRef)(null);
-  const needsStart = (0, import_react32.useRef)(false);
-  const start2 = (0, import_react32.useCallback)(() => {
-    scrollAnimation.current = scroll((_progress, { x, y }) => {
-      values.scrollX.set(x.current);
-      values.scrollXProgress.set(x.progress);
-      values.scrollY.set(y.current);
-      values.scrollYProgress.set(y.progress);
-    }, {
-      ...options,
-      container: (container == null ? void 0 : container.current) || void 0,
-      target: (target == null ? void 0 : target.current) || void 0
-    });
-    return () => {
-      var _a;
-      (_a = scrollAnimation.current) == null ? void 0 : _a.call(scrollAnimation);
-    };
-  }, [container, target, JSON.stringify(options.offset)]);
-  useIsomorphicLayoutEffect(() => {
-    needsStart.current = false;
-    if (isRefPending(container) || isRefPending(target)) {
-      needsStart.current = true;
-      return;
-    } else {
-      return start2();
-    }
-  }, [start2]);
-  (0, import_react32.useEffect)(() => {
-    if (needsStart.current) {
-      invariant(!isRefPending(container), "Container ref is defined but not hydrated", "use-scroll-ref");
-      invariant(!isRefPending(target), "Target ref is defined but not hydrated", "use-scroll-ref");
-      return start2();
-    } else {
-      return;
-    }
-  }, [start2]);
-  return values;
-}
-
-// node_modules/framer-motion/dist/es/value/scroll/use-element-scroll.mjs
-function useElementScroll(ref) {
-  if (true) {
-    warnOnce(false, "useElementScroll is deprecated. Convert to useScroll({ container: ref }).");
-  }
-  return useScroll({ container: ref });
-}
-
-// node_modules/framer-motion/dist/es/value/scroll/use-viewport-scroll.mjs
-function useViewportScroll() {
-  if (true) {
-    warnOnce(false, "useViewportScroll is deprecated. Convert to useScroll().");
-  }
-  return useScroll();
-}
-
-// node_modules/framer-motion/dist/es/value/use-motion-value.mjs
-var import_react33 = __toESM(require_react(), 1);
-function useMotionValue(initial) {
-  const value = useConstant(() => motionValue(initial));
-  const { isStatic } = (0, import_react33.useContext)(MotionConfigContext);
-  if (isStatic) {
-    const [, setLatest] = (0, import_react33.useState)(initial);
-    (0, import_react33.useEffect)(() => value.on("change", setLatest), []);
-  }
-  return value;
-}
-
-// node_modules/framer-motion/dist/es/value/use-combine-values.mjs
-function useCombineMotionValues(values, combineValues) {
-  const value = useMotionValue(combineValues());
-  const updateValue = () => value.set(combineValues());
-  updateValue();
-  useIsomorphicLayoutEffect(() => {
-    const scheduleUpdate = () => frame.preRender(updateValue, false, true);
-    const subscriptions = values.map((v) => v.on("change", scheduleUpdate));
-    return () => {
-      subscriptions.forEach((unsubscribe) => unsubscribe());
-      cancelFrame(updateValue);
-    };
-  });
-  return value;
-}
-
-// node_modules/framer-motion/dist/es/value/use-motion-template.mjs
-function useMotionTemplate(fragments, ...values) {
-  const numFragments = fragments.length;
-  function buildValue() {
-    let output = ``;
-    for (let i = 0; i < numFragments; i++) {
-      output += fragments[i];
-      const value = values[i];
-      if (value) {
-        output += isMotionValue(value) ? value.get() : value;
-      }
-    }
-    return output;
-  }
-  return useCombineMotionValues(values.filter(isMotionValue), buildValue);
-}
-
-// node_modules/framer-motion/dist/es/value/use-follow-value.mjs
-var import_react34 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/value/use-computed.mjs
-function useComputed(compute) {
-  collectMotionValues.current = [];
-  compute();
-  const value = useCombineMotionValues(collectMotionValues.current, compute);
-  collectMotionValues.current = void 0;
-  return value;
-}
-
-// node_modules/framer-motion/dist/es/value/use-transform.mjs
-function useTransform(input, inputRangeOrTransformer, outputRangeOrMap, options) {
-  if (typeof input === "function") {
-    return useComputed(input);
-  }
-  const isOutputMap = outputRangeOrMap !== void 0 && !Array.isArray(outputRangeOrMap) && typeof inputRangeOrTransformer !== "function";
-  if (isOutputMap) {
-    return useMapTransform(input, inputRangeOrTransformer, outputRangeOrMap, options);
-  }
-  const outputRange = outputRangeOrMap;
-  const transformer = typeof inputRangeOrTransformer === "function" ? inputRangeOrTransformer : transform(inputRangeOrTransformer, outputRange, options);
-  const result = Array.isArray(input) ? useListTransform(input, transformer) : useListTransform([input], ([latest]) => transformer(latest));
-  const inputAccelerate = !Array.isArray(input) ? input.accelerate : void 0;
-  if (inputAccelerate && !inputAccelerate.isTransformed && typeof inputRangeOrTransformer !== "function" && Array.isArray(outputRangeOrMap) && (options == null ? void 0 : options.clamp) !== false) {
-    result.accelerate = {
-      ...inputAccelerate,
-      times: inputRangeOrTransformer,
-      keyframes: outputRangeOrMap,
-      isTransformed: true,
-      ...(options == null ? void 0 : options.ease) ? { ease: options.ease } : {}
-    };
-  }
-  return result;
-}
-function useListTransform(values, transformer) {
-  const latest = useConstant(() => []);
-  return useCombineMotionValues(values, () => {
-    latest.length = 0;
-    const numValues = values.length;
-    for (let i = 0; i < numValues; i++) {
-      latest[i] = values[i].get();
-    }
-    return transformer(latest);
-  });
-}
-function useMapTransform(inputValue, inputRange, outputMap, options) {
-  const keys2 = useConstant(() => Object.keys(outputMap));
-  const output = useConstant(() => ({}));
-  for (const key of keys2) {
-    output[key] = useTransform(inputValue, inputRange, outputMap[key], options);
-  }
-  return output;
-}
-
-// node_modules/framer-motion/dist/es/value/use-follow-value.mjs
-function useFollowValue(source, options = {}) {
-  const { isStatic } = (0, import_react34.useContext)(MotionConfigContext);
-  const getFromSource = () => isMotionValue(source) ? source.get() : source;
-  if (isStatic) {
-    return useTransform(getFromSource);
-  }
-  const value = useMotionValue(getFromSource());
-  (0, import_react34.useInsertionEffect)(() => {
-    return attachFollow(value, source, options);
-  }, [value, JSON.stringify(options)]);
-  return value;
-}
-
-// node_modules/framer-motion/dist/es/value/use-spring.mjs
-function useSpring(source, options = {}) {
-  return useFollowValue(source, { type: "spring", ...options });
-}
-
-// node_modules/framer-motion/dist/es/utils/use-animation-frame.mjs
-var import_react35 = __toESM(require_react(), 1);
-function useAnimationFrame(callback) {
-  const initialTimestamp = (0, import_react35.useRef)(0);
-  const { isStatic } = (0, import_react35.useContext)(MotionConfigContext);
-  (0, import_react35.useEffect)(() => {
-    if (isStatic)
-      return;
-    const provideTimeSinceStart = ({ timestamp, delta }) => {
-      if (!initialTimestamp.current)
-        initialTimestamp.current = timestamp;
-      callback(timestamp - initialTimestamp.current, delta);
-    };
-    frame.update(provideTimeSinceStart, true);
-    return () => cancelFrame(provideTimeSinceStart);
-  }, [callback]);
-}
-
-// node_modules/framer-motion/dist/es/value/use-time.mjs
-function useTime() {
-  const time2 = useMotionValue(0);
-  useAnimationFrame((t) => time2.set(t));
-  return time2;
-}
-
-// node_modules/framer-motion/dist/es/value/use-velocity.mjs
-function useVelocity(value) {
-  const velocity = useMotionValue(value.getVelocity());
-  const updateVelocity = () => {
-    const latest = value.getVelocity();
-    velocity.set(latest);
-    if (latest)
-      frame.update(updateVelocity);
-  };
-  useMotionValueEvent(value, "change", () => {
-    frame.update(updateVelocity, false, true);
-  });
-  return velocity;
-}
-
-// node_modules/framer-motion/dist/es/value/use-will-change/WillChangeMotionValue.mjs
-var WillChangeMotionValue = class extends MotionValue {
-  constructor() {
-    super(...arguments);
-    this.isEnabled = false;
-  }
-  add(name) {
-    if (transformProps.has(name) || acceleratedValues.has(name)) {
-      this.isEnabled = true;
-      this.update();
-    }
-  }
-  update() {
-    this.set(this.isEnabled ? "transform" : "auto");
-  }
-};
-
-// node_modules/framer-motion/dist/es/value/use-will-change/index.mjs
-function useWillChange() {
-  return useConstant(() => new WillChangeMotionValue("auto"));
-}
-
-// node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion.mjs
-var import_react36 = __toESM(require_react(), 1);
-function useReducedMotion() {
-  !hasReducedMotionListener.current && initPrefersReducedMotion();
-  const [shouldReduceMotion] = (0, import_react36.useState)(prefersReducedMotion.current);
-  if (true) {
-    warnOnce(shouldReduceMotion !== true, "You have Reduced Motion enabled on your device. Animations may not appear as expected.", "reduced-motion-disabled");
-  }
-  return shouldReduceMotion;
-}
-
-// node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion-config.mjs
-var import_react37 = __toESM(require_react(), 1);
-function useReducedMotionConfig() {
-  const reducedMotionPreference = useReducedMotion();
-  const { reducedMotion } = (0, import_react37.useContext)(MotionConfigContext);
-  if (reducedMotion === "never") {
-    return false;
-  } else if (reducedMotion === "always") {
-    return true;
-  } else {
-    return reducedMotionPreference;
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/hooks/animation-controls.mjs
-function stopAnimation(visualElement) {
-  visualElement.values.forEach((value) => value.stop());
-}
-function setVariants(visualElement, variantLabels) {
-  const reversedLabels = [...variantLabels].reverse();
-  reversedLabels.forEach((key) => {
-    const variant = visualElement.getVariant(key);
-    variant && setTarget(visualElement, variant);
-    if (visualElement.variantChildren) {
-      visualElement.variantChildren.forEach((child) => {
-        setVariants(child, variantLabels);
-      });
-    }
-  });
-}
-function setValues(visualElement, definition) {
-  if (Array.isArray(definition)) {
-    return setVariants(visualElement, definition);
-  } else if (typeof definition === "string") {
-    return setVariants(visualElement, [definition]);
-  } else {
-    setTarget(visualElement, definition);
-  }
-}
-function animationControls() {
-  let hasMounted = false;
-  const subscribers = /* @__PURE__ */ new Set();
-  const controls = {
-    subscribe(visualElement) {
-      subscribers.add(visualElement);
-      return () => void subscribers.delete(visualElement);
-    },
-    start(definition, transitionOverride) {
-      invariant(hasMounted, "controls.start() should only be called after a component has mounted. Consider calling within a useEffect hook.");
-      const animations2 = [];
-      subscribers.forEach((visualElement) => {
-        animations2.push(animateVisualElement(visualElement, definition, {
-          transitionOverride
-        }));
-      });
-      return Promise.all(animations2);
-    },
-    set(definition) {
-      invariant(hasMounted, "controls.set() should only be called after a component has mounted. Consider calling within a useEffect hook.");
-      return subscribers.forEach((visualElement) => {
-        setValues(visualElement, definition);
-      });
-    },
-    stop() {
-      subscribers.forEach((visualElement) => {
-        stopAnimation(visualElement);
-      });
-    },
-    mount() {
-      hasMounted = true;
-      return () => {
-        hasMounted = false;
-        controls.stop();
-      };
-    }
-  };
-  return controls;
-}
-
-// node_modules/framer-motion/dist/es/animation/hooks/use-animate.mjs
-var import_react38 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/animation/utils/is-dom-keyframes.mjs
-function isDOMKeyframes(keyframes2) {
-  return typeof keyframes2 === "object" && !Array.isArray(keyframes2);
-}
-
-// node_modules/framer-motion/dist/es/animation/animate/resolve-subjects.mjs
-function resolveSubjects(subject, keyframes2, scope, selectorCache) {
-  if (subject == null) {
-    return [];
-  }
-  if (typeof subject === "string" && isDOMKeyframes(keyframes2)) {
-    return resolveElements(subject, scope, selectorCache);
-  } else if (subject instanceof NodeList) {
-    return Array.from(subject);
-  } else if (Array.isArray(subject)) {
-    return subject.filter((s) => s != null);
-  } else {
-    return [subject];
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/utils/calc-repeat-duration.mjs
-function calculateRepeatDuration(duration, repeat, _repeatDelay) {
-  return duration * (repeat + 1);
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/utils/calc-time.mjs
-function calcNextTime(current2, next2, prev, labels) {
-  if (typeof next2 === "number") {
-    return next2;
-  } else if (next2.startsWith("-") || next2.startsWith("+")) {
-    return Math.max(0, current2 + parseFloat(next2));
-  } else if (next2 === "<") {
-    return prev;
-  } else if (next2.startsWith("<")) {
-    return Math.max(0, prev + parseFloat(next2.slice(1)));
-  } else {
-    return labels.get(next2) ?? current2;
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/utils/edit.mjs
-function eraseKeyframes(sequence, startTime, endTime) {
-  for (let i = 0; i < sequence.length; i++) {
-    const keyframe = sequence[i];
-    if (keyframe.at > startTime && keyframe.at < endTime) {
-      removeItem(sequence, keyframe);
-      i--;
-    }
-  }
-}
-function addKeyframes(sequence, keyframes2, easing, offset, startTime, endTime) {
-  eraseKeyframes(sequence, startTime, endTime);
-  for (let i = 0; i < keyframes2.length; i++) {
-    sequence.push({
-      value: keyframes2[i],
-      at: mixNumber(startTime, endTime, offset[i]),
-      easing: getEasingForSegment(easing, i)
-    });
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/utils/normalize-times.mjs
-function normalizeTimes(times, repeat) {
-  for (let i = 0; i < times.length; i++) {
-    times[i] = times[i] / (repeat + 1);
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/utils/sort.mjs
-function compareByTime(a, b) {
-  if (a.at === b.at) {
-    if (a.value === null)
-      return 1;
-    if (b.value === null)
-      return -1;
-    return 0;
-  } else {
-    return a.at - b.at;
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/sequence/create.mjs
-var defaultSegmentEasing = "easeInOut";
-var MAX_REPEAT = 20;
-function createAnimationsFromSequence(sequence, { defaultTransition = {}, ...sequenceTransition } = {}, scope, generators) {
-  const defaultDuration = defaultTransition.duration || 0.3;
-  const animationDefinitions = /* @__PURE__ */ new Map();
-  const sequences = /* @__PURE__ */ new Map();
-  const elementCache = {};
-  const timeLabels = /* @__PURE__ */ new Map();
-  let prevTime = 0;
-  let currentTime = 0;
-  let totalDuration = 0;
-  for (let i = 0; i < sequence.length; i++) {
-    const segment = sequence[i];
-    if (typeof segment === "string") {
-      timeLabels.set(segment, currentTime);
-      continue;
-    } else if (!Array.isArray(segment)) {
-      timeLabels.set(segment.name, calcNextTime(currentTime, segment.at, prevTime, timeLabels));
-      continue;
-    }
-    let [subject, keyframes2, transition = {}] = segment;
-    if (transition.at !== void 0) {
-      currentTime = calcNextTime(currentTime, transition.at, prevTime, timeLabels);
-    }
-    let maxDuration = 0;
-    const resolveValueSequence = (valueKeyframes, valueTransition, valueSequence, elementIndex = 0, numSubjects = 0) => {
-      const valueKeyframesAsList = keyframesAsList(valueKeyframes);
-      const { delay: delay2 = 0, times = defaultOffset(valueKeyframesAsList), type = defaultTransition.type || "keyframes", repeat, repeatType, repeatDelay = 0, ...remainingTransition } = valueTransition;
-      let { ease: ease2 = defaultTransition.ease || "easeOut", duration } = valueTransition;
-      const calculatedDelay = typeof delay2 === "function" ? delay2(elementIndex, numSubjects) : delay2;
-      const numKeyframes = valueKeyframesAsList.length;
-      const createGenerator = isGenerator(type) ? type : generators == null ? void 0 : generators[type || "keyframes"];
-      if (numKeyframes <= 2 && createGenerator) {
-        let absoluteDelta = 100;
-        if (numKeyframes === 2 && isNumberKeyframesArray(valueKeyframesAsList)) {
-          const delta = valueKeyframesAsList[1] - valueKeyframesAsList[0];
-          absoluteDelta = Math.abs(delta);
-        }
-        const springTransition = {
-          ...defaultTransition,
-          ...remainingTransition
-        };
-        if (duration !== void 0) {
-          springTransition.duration = secondsToMilliseconds(duration);
-        }
-        const springEasing = createGeneratorEasing(springTransition, absoluteDelta, createGenerator);
-        ease2 = springEasing.ease;
-        duration = springEasing.duration;
-      }
-      duration ?? (duration = defaultDuration);
-      const startTime = currentTime + calculatedDelay;
-      if (times.length === 1 && times[0] === 0) {
-        times[1] = 1;
-      }
-      const remainder = times.length - valueKeyframesAsList.length;
-      remainder > 0 && fillOffset(times, remainder);
-      valueKeyframesAsList.length === 1 && valueKeyframesAsList.unshift(null);
-      if (repeat) {
-        invariant(repeat < MAX_REPEAT, "Repeat count too high, must be less than 20", "repeat-count-high");
-        duration = calculateRepeatDuration(duration, repeat);
-        const originalKeyframes = [...valueKeyframesAsList];
-        const originalTimes = [...times];
-        ease2 = Array.isArray(ease2) ? [...ease2] : [ease2];
-        const originalEase = [...ease2];
-        for (let repeatIndex = 0; repeatIndex < repeat; repeatIndex++) {
-          valueKeyframesAsList.push(...originalKeyframes);
-          for (let keyframeIndex = 0; keyframeIndex < originalKeyframes.length; keyframeIndex++) {
-            times.push(originalTimes[keyframeIndex] + (repeatIndex + 1));
-            ease2.push(keyframeIndex === 0 ? "linear" : getEasingForSegment(originalEase, keyframeIndex - 1));
-          }
-        }
-        normalizeTimes(times, repeat);
-      }
-      const targetTime = startTime + duration;
-      addKeyframes(valueSequence, valueKeyframesAsList, ease2, times, startTime, targetTime);
-      maxDuration = Math.max(calculatedDelay + duration, maxDuration);
-      totalDuration = Math.max(targetTime, totalDuration);
-    };
-    if (isMotionValue(subject)) {
-      const subjectSequence = getSubjectSequence(subject, sequences);
-      resolveValueSequence(keyframes2, transition, getValueSequence("default", subjectSequence));
-    } else {
-      const subjects = resolveSubjects(subject, keyframes2, scope, elementCache);
-      const numSubjects = subjects.length;
-      for (let subjectIndex = 0; subjectIndex < numSubjects; subjectIndex++) {
-        keyframes2 = keyframes2;
-        transition = transition;
-        const thisSubject = subjects[subjectIndex];
-        const subjectSequence = getSubjectSequence(thisSubject, sequences);
-        for (const key in keyframes2) {
-          resolveValueSequence(keyframes2[key], getValueTransition2(transition, key), getValueSequence(key, subjectSequence), subjectIndex, numSubjects);
-        }
-      }
-    }
-    prevTime = currentTime;
-    currentTime += maxDuration;
-  }
-  sequences.forEach((valueSequences, element) => {
-    for (const key in valueSequences) {
-      const valueSequence = valueSequences[key];
-      valueSequence.sort(compareByTime);
-      const keyframes2 = [];
-      const valueOffset = [];
-      const valueEasing = [];
-      for (let i = 0; i < valueSequence.length; i++) {
-        const { at, value, easing } = valueSequence[i];
-        keyframes2.push(value);
-        valueOffset.push(progress(0, totalDuration, at));
-        valueEasing.push(easing || "easeOut");
-      }
-      if (valueOffset[0] !== 0) {
-        valueOffset.unshift(0);
-        keyframes2.unshift(keyframes2[0]);
-        valueEasing.unshift(defaultSegmentEasing);
-      }
-      if (valueOffset[valueOffset.length - 1] !== 1) {
-        valueOffset.push(1);
-        keyframes2.push(null);
-      }
-      if (!animationDefinitions.has(element)) {
-        animationDefinitions.set(element, {
-          keyframes: {},
-          transition: {}
-        });
-      }
-      const definition = animationDefinitions.get(element);
-      definition.keyframes[key] = keyframes2;
-      const { type: _type, ...remainingDefaultTransition } = defaultTransition;
-      definition.transition[key] = {
-        ...remainingDefaultTransition,
-        duration: totalDuration,
-        ease: valueEasing,
-        times: valueOffset,
-        ...sequenceTransition
-      };
-    }
-  });
-  return animationDefinitions;
-}
-function getSubjectSequence(subject, sequences) {
-  !sequences.has(subject) && sequences.set(subject, {});
-  return sequences.get(subject);
-}
-function getValueSequence(name, sequences) {
-  if (!sequences[name])
-    sequences[name] = [];
-  return sequences[name];
-}
-function keyframesAsList(keyframes2) {
-  return Array.isArray(keyframes2) ? keyframes2 : [keyframes2];
-}
-function getValueTransition2(transition, key) {
-  return transition && transition[key] ? {
-    ...transition,
-    ...transition[key]
-  } : { ...transition };
-}
-var isNumber = (keyframe) => typeof keyframe === "number";
-var isNumberKeyframesArray = (keyframes2) => keyframes2.every(isNumber);
-
-// node_modules/framer-motion/dist/es/animation/utils/create-visual-element.mjs
-function createDOMVisualElement(element) {
-  const options = {
-    presenceContext: null,
-    props: {},
-    visualState: {
-      renderState: {
-        transform: {},
-        transformOrigin: {},
-        style: {},
-        vars: {},
-        attrs: {}
-      },
-      latestValues: {}
-    }
-  };
-  const node = isSVGElement(element) && !isSVGSVGElement(element) ? new SVGVisualElement(options) : new HTMLVisualElement(options);
-  node.mount(element);
-  visualElementStore.set(element, node);
-}
-function createObjectVisualElement(subject) {
-  const options = {
-    presenceContext: null,
-    props: {},
-    visualState: {
-      renderState: {
-        output: {}
-      },
-      latestValues: {}
-    }
-  };
-  const node = new ObjectVisualElement(options);
-  node.mount(subject);
-  visualElementStore.set(subject, node);
-}
-
-// node_modules/framer-motion/dist/es/animation/animate/subject.mjs
-function isSingleValue(subject, keyframes2) {
-  return isMotionValue(subject) || typeof subject === "number" || typeof subject === "string" && !isDOMKeyframes(keyframes2);
-}
-function animateSubject(subject, keyframes2, options, scope) {
-  const animations2 = [];
-  if (isSingleValue(subject, keyframes2)) {
-    animations2.push(animateSingleValue(subject, isDOMKeyframes(keyframes2) ? keyframes2.default || keyframes2 : keyframes2, options ? options.default || options : options));
-  } else {
-    if (subject == null) {
-      return animations2;
-    }
-    const subjects = resolveSubjects(subject, keyframes2, scope);
-    const numSubjects = subjects.length;
-    invariant(Boolean(numSubjects), "No valid elements provided.", "no-valid-elements");
-    for (let i = 0; i < numSubjects; i++) {
-      const thisSubject = subjects[i];
-      const createVisualElement = thisSubject instanceof Element ? createDOMVisualElement : createObjectVisualElement;
-      if (!visualElementStore.has(thisSubject)) {
-        createVisualElement(thisSubject);
-      }
-      const visualElement = visualElementStore.get(thisSubject);
-      const transition = { ...options };
-      if ("delay" in transition && typeof transition.delay === "function") {
-        transition.delay = transition.delay(i, numSubjects);
-      }
-      animations2.push(...animateTarget(visualElement, { ...keyframes2, transition }, {}));
-    }
-  }
-  return animations2;
-}
-
-// node_modules/framer-motion/dist/es/animation/animate/sequence.mjs
-function animateSequence(sequence, options, scope) {
-  const animations2 = [];
-  const processedSequence = sequence.map((segment) => {
-    if (Array.isArray(segment) && typeof segment[0] === "function") {
-      const callback = segment[0];
-      const mv = motionValue(0);
-      mv.on("change", callback);
-      if (segment.length === 1) {
-        return [mv, [0, 1]];
-      } else if (segment.length === 2) {
-        return [mv, [0, 1], segment[1]];
-      } else {
-        return [mv, segment[1], segment[2]];
-      }
-    }
-    return segment;
-  });
-  const animationDefinitions = createAnimationsFromSequence(processedSequence, options, scope, { spring });
-  animationDefinitions.forEach(({ keyframes: keyframes2, transition }, subject) => {
-    animations2.push(...animateSubject(subject, keyframes2, transition));
-  });
-  return animations2;
-}
-
-// node_modules/framer-motion/dist/es/animation/animate/index.mjs
-function isSequence(value) {
-  return Array.isArray(value) && value.some(Array.isArray);
-}
-function createScopedAnimate(options = {}) {
-  const { scope, reduceMotion } = options;
-  function scopedAnimate(subjectOrSequence, optionsOrKeyframes, options2) {
-    let animations2 = [];
-    let animationOnComplete;
-    if (isSequence(subjectOrSequence)) {
-      const { onComplete, ...sequenceOptions } = optionsOrKeyframes || {};
-      if (typeof onComplete === "function") {
-        animationOnComplete = onComplete;
-      }
-      animations2 = animateSequence(subjectOrSequence, reduceMotion !== void 0 ? { reduceMotion, ...sequenceOptions } : sequenceOptions, scope);
-    } else {
-      const { onComplete, ...rest } = options2 || {};
-      if (typeof onComplete === "function") {
-        animationOnComplete = onComplete;
-      }
-      animations2 = animateSubject(subjectOrSequence, optionsOrKeyframes, reduceMotion !== void 0 ? { reduceMotion, ...rest } : rest, scope);
-    }
-    const animation = new GroupAnimationWithThen(animations2);
-    if (animationOnComplete) {
-      animation.finished.then(animationOnComplete);
-    }
-    if (scope) {
-      scope.animations.push(animation);
-      animation.finished.then(() => {
-        removeItem(scope.animations, animation);
-      });
-    }
-    return animation;
-  }
-  return scopedAnimate;
-}
-var animate = createScopedAnimate();
-
-// node_modules/framer-motion/dist/es/animation/hooks/use-animate.mjs
-function useAnimate() {
-  const scope = useConstant(() => ({
-    current: null,
-    // Will be hydrated by React
-    animations: []
-  }));
-  const reduceMotion = useReducedMotionConfig() ?? void 0;
-  const animate2 = (0, import_react38.useMemo)(() => createScopedAnimate({ scope, reduceMotion }), [scope, reduceMotion]);
-  useUnmountEffect(() => {
-    scope.animations.forEach((animation) => animation.stop());
-    scope.animations.length = 0;
-  });
-  return [scope, animate2];
-}
-
-// node_modules/framer-motion/dist/es/animation/animators/waapi/animate-elements.mjs
-function animateElements(elementOrSelector, keyframes2, options, scope) {
-  if (elementOrSelector == null) {
-    return [];
-  }
-  const elements = resolveElements(elementOrSelector, scope);
-  const numElements = elements.length;
-  invariant(Boolean(numElements), "No valid elements provided.", "no-valid-elements");
-  const animationDefinitions = [];
-  for (let i = 0; i < numElements; i++) {
-    const element = elements[i];
-    const elementTransition = { ...options };
-    if (typeof elementTransition.delay === "function") {
-      elementTransition.delay = elementTransition.delay(i, numElements);
-    }
-    for (const valueName in keyframes2) {
-      let valueKeyframes = keyframes2[valueName];
-      if (!Array.isArray(valueKeyframes)) {
-        valueKeyframes = [valueKeyframes];
-      }
-      const valueOptions = {
-        ...getValueTransition(elementTransition, valueName)
-      };
-      valueOptions.duration && (valueOptions.duration = secondsToMilliseconds(valueOptions.duration));
-      valueOptions.delay && (valueOptions.delay = secondsToMilliseconds(valueOptions.delay));
-      const map = getAnimationMap(element);
-      const key = animationMapKey(valueName, valueOptions.pseudoElement || "");
-      const currentAnimation = map.get(key);
-      currentAnimation && currentAnimation.stop();
-      animationDefinitions.push({
-        map,
-        key,
-        unresolvedKeyframes: valueKeyframes,
-        options: {
-          ...valueOptions,
-          element,
-          name: valueName,
-          allowFlatten: !elementTransition.type && !elementTransition.ease
-        }
-      });
-    }
-  }
-  for (let i = 0; i < animationDefinitions.length; i++) {
-    const { unresolvedKeyframes, options: animationOptions } = animationDefinitions[i];
-    const { element, name, pseudoElement } = animationOptions;
-    if (!pseudoElement && unresolvedKeyframes[0] === null) {
-      unresolvedKeyframes[0] = getComputedStyle2(element, name);
-    }
-    fillWildcards(unresolvedKeyframes);
-    applyPxDefaults(unresolvedKeyframes, name);
-    if (!pseudoElement && unresolvedKeyframes.length < 2) {
-      unresolvedKeyframes.unshift(getComputedStyle2(element, name));
-    }
-    animationOptions.keyframes = unresolvedKeyframes;
-  }
-  const animations2 = [];
-  for (let i = 0; i < animationDefinitions.length; i++) {
-    const { map, key, options: animationOptions } = animationDefinitions[i];
-    const animation = new NativeAnimation(animationOptions);
-    map.set(key, animation);
-    animation.finished.finally(() => map.delete(key));
-    animations2.push(animation);
-  }
-  return animations2;
-}
-
-// node_modules/framer-motion/dist/es/animation/animators/waapi/animate-style.mjs
-var createScopedWaapiAnimate = (scope) => {
-  function scopedAnimate(elementOrSelector, keyframes2, options) {
-    return new GroupAnimationWithThen(animateElements(elementOrSelector, keyframes2, options, scope));
-  }
-  return scopedAnimate;
-};
-var animateMini = createScopedWaapiAnimate();
-
-// node_modules/framer-motion/dist/es/animation/hooks/use-animate-style.mjs
-function useAnimateMini() {
-  const scope = useConstant(() => ({
-    current: null,
-    // Will be hydrated by React
-    animations: []
-  }));
-  const animate2 = useConstant(() => createScopedWaapiAnimate(scope));
-  useUnmountEffect(() => {
-    scope.animations.forEach((animation) => animation.stop());
-  });
-  return [scope, animate2];
-}
-
-// node_modules/framer-motion/dist/es/animation/hooks/use-animation.mjs
-function useAnimationControls() {
-  const controls = useConstant(animationControls);
-  useIsomorphicLayoutEffect(controls.mount, []);
-  return controls;
-}
-var useAnimation = useAnimationControls;
-
-// node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence-data.mjs
-var import_react39 = __toESM(require_react(), 1);
-function usePresenceData() {
-  const context = (0, import_react39.useContext)(PresenceContext);
-  return context ? context.custom : void 0;
-}
-
-// node_modules/framer-motion/dist/es/events/use-dom-event.mjs
-var import_react40 = __toESM(require_react(), 1);
-function useDomEvent(ref, eventName, handler, options) {
-  (0, import_react40.useEffect)(() => {
-    const element = ref.current;
-    if (handler && element) {
-      return addDomEvent(element, eventName, handler, options);
-    }
-  }, [ref, eventName, handler, options]);
-}
-
-// node_modules/framer-motion/dist/es/gestures/drag/use-drag-controls.mjs
-var DragControls = class {
-  constructor() {
-    this.componentControls = /* @__PURE__ */ new Set();
-  }
-  /**
-   * Subscribe a component's internal `VisualElementDragControls` to the user-facing API.
-   *
-   * @internal
-   */
-  subscribe(controls) {
-    this.componentControls.add(controls);
-    return () => this.componentControls.delete(controls);
-  }
-  /**
-   * Start a drag gesture on every `motion` component that has this set of drag controls
-   * passed into it via the `dragControls` prop.
-   *
-   * ```jsx
-   * dragControls.start(e, {
-   *   snapToCursor: true
-   * })
-   * ```
-   *
-   * @param event - PointerEvent
-   * @param options - Options
-   *
-   * @public
-   */
-  start(event, options) {
-    this.componentControls.forEach((controls) => {
-      controls.start(event.nativeEvent || event, options);
-    });
-  }
-  /**
-   * Cancels a drag gesture.
-   *
-   * ```jsx
-   * dragControls.cancel()
-   * ```
-   *
-   * @public
-   */
-  cancel() {
-    this.componentControls.forEach((controls) => {
-      controls.cancel();
-    });
-  }
-  /**
-   * Stops a drag gesture.
-   *
-   * ```jsx
-   * dragControls.stop()
-   * ```
-   *
-   * @public
-   */
-  stop() {
-    this.componentControls.forEach((controls) => {
-      controls.stop();
-    });
-  }
-};
-var createDragControls = () => new DragControls();
-function useDragControls() {
-  return useConstant(createDragControls);
-}
-
-// node_modules/framer-motion/dist/es/motion/utils/is-motion-component.mjs
-function isMotionComponent(component) {
-  return component !== null && typeof component === "object" && motionComponentSymbol in component;
-}
-
-// node_modules/framer-motion/dist/es/motion/utils/unwrap-motion-component.mjs
-function unwrapMotionComponent(component) {
-  if (isMotionComponent(component)) {
-    return component[motionComponentSymbol];
-  }
-  return void 0;
-}
-
-// node_modules/framer-motion/dist/es/projection/use-instant-layout-transition.mjs
-function useInstantLayoutTransition() {
-  return startTransition;
-}
-function startTransition(callback) {
-  if (!rootProjectionNode.current)
-    return;
-  rootProjectionNode.current.isUpdating = false;
-  rootProjectionNode.current.blockUpdate();
-  callback && callback();
-}
-
-// node_modules/framer-motion/dist/es/projection/use-reset-projection.mjs
-var import_react41 = __toESM(require_react(), 1);
-function useResetProjection() {
-  const reset = (0, import_react41.useCallback)(() => {
-    const root = rootProjectionNode.current;
-    if (!root)
-      return;
-    root.resetTree();
-  }, []);
-  return reset;
-}
-
-// node_modules/framer-motion/dist/es/utils/use-cycle.mjs
-var import_react42 = __toESM(require_react(), 1);
-function useCycle(...items) {
-  const index = (0, import_react42.useRef)(0);
-  const [item, setItem] = (0, import_react42.useState)(items[index.current]);
-  const runCycle = (0, import_react42.useCallback)(
-    (next2) => {
-      index.current = typeof next2 !== "number" ? wrap(0, items.length, index.current + 1) : next2;
-      setItem(items[index.current]);
-    },
-    // The array will change on each call, but by putting items.length at
-    // the front of this array, we guarantee the dependency comparison will match up
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items.length, ...items]
-  );
-  return [item, runCycle];
-}
-
-// node_modules/framer-motion/dist/es/utils/use-in-view.mjs
-var import_react43 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/render/dom/viewport/index.mjs
-var thresholds = {
-  some: 0,
-  all: 1
-};
-function inView(elementOrSelector, onStart, { root, margin: rootMargin, amount = "some" } = {}) {
-  const elements = resolveElements(elementOrSelector);
-  const activeIntersections = /* @__PURE__ */ new WeakMap();
-  const onIntersectionChange = (entries) => {
-    entries.forEach((entry) => {
-      const onEnd = activeIntersections.get(entry.target);
-      if (entry.isIntersecting === Boolean(onEnd))
-        return;
-      if (entry.isIntersecting) {
-        const newOnEnd = onStart(entry.target, entry);
-        if (typeof newOnEnd === "function") {
-          activeIntersections.set(entry.target, newOnEnd);
-        } else {
-          observer2.unobserve(entry.target);
-        }
-      } else if (typeof onEnd === "function") {
-        onEnd(entry);
-        activeIntersections.delete(entry.target);
-      }
-    });
-  };
-  const observer2 = new IntersectionObserver(onIntersectionChange, {
-    root,
-    rootMargin,
-    threshold: typeof amount === "number" ? amount : thresholds[amount]
-  });
-  elements.forEach((element) => observer2.observe(element));
-  return () => observer2.disconnect();
-}
-
-// node_modules/framer-motion/dist/es/utils/use-in-view.mjs
-function useInView(ref, { root, margin, amount, once = false, initial = false } = {}) {
-  const [isInView, setInView] = (0, import_react43.useState)(initial);
-  (0, import_react43.useEffect)(() => {
-    if (!ref.current || once && isInView)
-      return;
-    const onEnter = () => {
-      setInView(true);
-      return once ? void 0 : () => setInView(false);
-    };
-    const options = {
-      root: root && root.current || void 0,
-      margin,
-      amount
-    };
-    return inView(ref.current, onEnter, options);
-  }, [root, ref, margin, once, amount]);
-  return isInView;
-}
-
-// node_modules/framer-motion/dist/es/utils/use-instant-transition.mjs
-var import_react44 = __toESM(require_react(), 1);
-function useInstantTransition() {
-  const [forceUpdate, forcedRenderCount] = useForceUpdate();
-  const startInstantLayoutTransition = useInstantLayoutTransition();
-  const unlockOnFrameRef = (0, import_react44.useRef)(-1);
-  (0, import_react44.useEffect)(() => {
-    frame.postRender(() => frame.postRender(() => {
-      if (forcedRenderCount !== unlockOnFrameRef.current)
-        return;
-      MotionGlobalConfig.instantAnimations = false;
-    }));
-  }, [forcedRenderCount]);
-  return (callback) => {
-    startInstantLayoutTransition(() => {
-      MotionGlobalConfig.instantAnimations = true;
-      forceUpdate();
-      callback();
-      unlockOnFrameRef.current = forcedRenderCount + 1;
-    });
-  };
-}
-function disableInstantTransitions() {
-  MotionGlobalConfig.instantAnimations = false;
-}
-
-// node_modules/framer-motion/dist/es/utils/use-page-in-view.mjs
-var import_react45 = __toESM(require_react(), 1);
-function usePageInView() {
-  const [isInView, setIsInView] = (0, import_react45.useState)(true);
-  (0, import_react45.useEffect)(() => {
-    const handleVisibilityChange = () => setIsInView(!document.hidden);
-    if (document.hidden) {
-      handleVisibilityChange();
-    }
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
-  return isInView;
-}
-
-// node_modules/framer-motion/dist/es/utils/transform-viewbox-point.mjs
-function transformViewBoxPoint(svgRef) {
-  return (point2) => {
-    var _a;
-    const svg = svgRef.current;
-    if (!svg) {
-      return point2;
-    }
-    const viewBox = (_a = svg.viewBox) == null ? void 0 : _a.baseVal;
-    if (!viewBox || viewBox.width === 0 && viewBox.height === 0) {
-      return point2;
-    }
-    const bbox = svg.getBoundingClientRect();
-    if (bbox.width === 0 || bbox.height === 0) {
-      return point2;
-    }
-    const scaleX2 = viewBox.width / bbox.width;
-    const scaleY2 = viewBox.height / bbox.height;
-    const svgX = bbox.left + window.scrollX;
-    const svgY = bbox.top + window.scrollY;
-    return {
-      x: (point2.x - svgX) * scaleX2 + svgX,
-      y: (point2.y - svgY) * scaleY2 + svgY
-    };
-  };
-}
-
-// node_modules/framer-motion/dist/es/utils/transform-rotated-parent.mjs
-function correctParentTransform(parentRef) {
-  return (point2) => {
-    const parent = parentRef.current;
-    if (!parent)
-      return point2;
-    const inv = getInverseMatrix(parent);
-    if (!inv)
-      return point2;
-    const rect = parent.getBoundingClientRect();
-    const cx = rect.left + window.scrollX + rect.width / 2;
-    const cy = rect.top + window.scrollY + rect.height / 2;
-    const dx = point2.x - cx;
-    const dy = point2.y - cy;
-    return {
-      x: cx + inv.a * dx + inv.c * dy,
-      y: cy + inv.b * dx + inv.d * dy
-    };
-  };
-}
-function getInverseMatrix(element) {
-  const { transform: transform2 } = getComputedStyle(element);
-  if (!transform2 || transform2 === "none")
-    return null;
-  const match = transform2.match(/^matrix3d\((.*)\)$/u) || transform2.match(/^matrix\((.*)\)$/u);
-  if (!match)
-    return null;
-  const v = match[1].split(",").map(Number);
-  const is3d = transform2.startsWith("matrix3d");
-  const a = v[0], b = v[1];
-  const c = is3d ? v[4] : v[2];
-  const d = is3d ? v[5] : v[3];
-  const det = a * d - b * c;
-  if (Math.abs(det) < 1e-10)
-    return null;
-  return { a: d / det, b: -b / det, c: -c / det, d: a / det };
-}
-
-// node_modules/framer-motion/dist/es/animation/optimized-appear/store.mjs
-var appearAnimationStore = /* @__PURE__ */ new Map();
-var appearComplete = /* @__PURE__ */ new Map();
-
-// node_modules/framer-motion/dist/es/animation/optimized-appear/store-id.mjs
-var appearStoreId = (elementId, valueName) => {
-  const key = transformProps.has(valueName) ? "transform" : valueName;
-  return `${elementId}: ${key}`;
-};
-
-// node_modules/framer-motion/dist/es/animation/optimized-appear/handoff.mjs
-function handoffOptimizedAppearAnimation(elementId, valueName, frame2) {
-  var _a;
-  const storeId = appearStoreId(elementId, valueName);
-  const optimisedAnimation = appearAnimationStore.get(storeId);
-  if (!optimisedAnimation) {
-    return null;
-  }
-  const { animation, startTime } = optimisedAnimation;
-  function cancelAnimation() {
-    var _a2;
-    (_a2 = window.MotionCancelOptimisedAnimation) == null ? void 0 : _a2.call(window, elementId, valueName, frame2);
-  }
-  animation.onfinish = cancelAnimation;
-  if (startTime === null || ((_a = window.MotionHandoffIsComplete) == null ? void 0 : _a.call(window, elementId))) {
-    cancelAnimation();
-    return null;
-  } else {
-    return startTime;
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/optimized-appear/start.mjs
-var startFrameTime;
-var readyAnimation;
-var suspendedAnimations = /* @__PURE__ */ new Set();
-function resumeSuspendedAnimations() {
-  suspendedAnimations.forEach((data) => {
-    data.animation.play();
-    data.animation.startTime = data.startTime;
-  });
-  suspendedAnimations.clear();
-}
-function startOptimizedAppearAnimation(element, name, keyframes2, options, onReady) {
-  if (window.MotionIsMounted) {
-    return;
-  }
-  const id4 = element.dataset[optimizedAppearDataId];
-  if (!id4)
-    return;
-  window.MotionHandoffAnimation = handoffOptimizedAppearAnimation;
-  const storeId = appearStoreId(id4, name);
-  if (!readyAnimation) {
-    readyAnimation = startWaapiAnimation(
-      element,
-      name,
-      [keyframes2[0], keyframes2[0]],
-      /**
-       * 10 secs is basically just a super-safe duration to give Chrome
-       * long enough to get the animation ready.
-       */
-      { duration: 1e4, ease: "linear" }
-    );
-    appearAnimationStore.set(storeId, {
-      animation: readyAnimation,
-      startTime: null
-    });
-    window.MotionHandoffAnimation = handoffOptimizedAppearAnimation;
-    window.MotionHasOptimisedAnimation = (elementId, valueName) => {
-      if (!elementId)
-        return false;
-      if (!valueName) {
-        return appearComplete.has(elementId);
-      }
-      const animationId = appearStoreId(elementId, valueName);
-      return Boolean(appearAnimationStore.get(animationId));
-    };
-    window.MotionHandoffMarkAsComplete = (elementId) => {
-      if (appearComplete.has(elementId)) {
-        appearComplete.set(elementId, true);
-      }
-    };
-    window.MotionHandoffIsComplete = (elementId) => {
-      return appearComplete.get(elementId) === true;
-    };
-    window.MotionCancelOptimisedAnimation = (elementId, valueName, frame2, canResume) => {
-      const animationId = appearStoreId(elementId, valueName);
-      const data = appearAnimationStore.get(animationId);
-      if (!data)
-        return;
-      if (frame2 && canResume === void 0) {
-        frame2.postRender(() => {
-          frame2.postRender(() => {
-            data.animation.cancel();
-          });
-        });
-      } else {
-        data.animation.cancel();
-      }
-      if (frame2 && canResume) {
-        suspendedAnimations.add(data);
-        frame2.render(resumeSuspendedAnimations);
-      } else {
-        appearAnimationStore.delete(animationId);
-        if (!appearAnimationStore.size) {
-          window.MotionCancelOptimisedAnimation = void 0;
-        }
-      }
-    };
-    window.MotionCheckAppearSync = (visualElement, valueName, value) => {
-      var _a, _b;
-      const appearId = getOptimisedAppearId(visualElement);
-      if (!appearId)
-        return;
-      const valueIsOptimised = (_a = window.MotionHasOptimisedAnimation) == null ? void 0 : _a.call(window, appearId, valueName);
-      const externalAnimationValue = (_b = visualElement.props.values) == null ? void 0 : _b[valueName];
-      if (!valueIsOptimised || !externalAnimationValue)
-        return;
-      const removeSyncCheck = value.on("change", (latestValue) => {
-        var _a2;
-        if (externalAnimationValue.get() !== latestValue) {
-          (_a2 = window.MotionCancelOptimisedAnimation) == null ? void 0 : _a2.call(window, appearId, valueName);
-          removeSyncCheck();
-        }
-      });
-      return removeSyncCheck;
-    };
-  }
-  const startAnimation = () => {
-    readyAnimation.cancel();
-    const appearAnimation = startWaapiAnimation(element, name, keyframes2, options);
-    if (startFrameTime === void 0) {
-      startFrameTime = performance.now();
-    }
-    appearAnimation.startTime = startFrameTime;
-    appearAnimationStore.set(storeId, {
-      animation: appearAnimation,
-      startTime: startFrameTime
-    });
-    if (onReady)
-      onReady(appearAnimation);
-  };
-  appearComplete.set(id4, false);
-  if (readyAnimation.ready) {
-    readyAnimation.ready.then(startAnimation).catch(noop);
-  } else {
-    startAnimation();
-  }
-}
-
-// node_modules/framer-motion/dist/es/animation/hooks/use-animated-state.mjs
-var import_react46 = __toESM(require_react(), 1);
-var createObject = () => ({});
-var StateVisualElement = class extends VisualElement {
-  constructor() {
-    super(...arguments);
-    this.measureInstanceViewportBox = createBox;
-  }
-  build() {
-  }
-  resetTransform() {
-  }
-  restoreTransform() {
-  }
-  removeValueFromRenderState() {
-  }
-  renderInstance() {
-  }
-  scrapeMotionValuesFromProps() {
-    return createObject();
-  }
-  getBaseTargetFromProps() {
-    return void 0;
-  }
-  readValueFromInstance(_state, key, options) {
-    return options.initialState[key] || 0;
-  }
-  sortInstanceNodePosition() {
-    return 0;
-  }
-};
-var useVisualState = makeUseVisualState({
-  scrapeMotionValuesFromProps: createObject,
-  createRenderState: createObject
-});
-function useAnimatedState(initialState) {
-  const [animationState, setAnimationState] = (0, import_react46.useState)(initialState);
-  const visualState = useVisualState({}, false);
-  const element = useConstant(() => {
-    return new StateVisualElement({
-      props: {
-        onUpdate: (v) => {
-          setAnimationState({ ...v });
-        }
-      },
-      visualState,
-      presenceContext: null
-    }, { initialState });
-  });
-  (0, import_react46.useLayoutEffect)(() => {
-    element.mount({});
-    return () => element.unmount();
-  }, [element]);
-  const startAnimation = useConstant(() => (animationDefinition) => {
-    return animateVisualElement(element, animationDefinition);
-  });
-  return [animationState, startAnimation];
-}
-
-// node_modules/framer-motion/dist/es/components/AnimateSharedLayout.mjs
-var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
-var React4 = __toESM(require_react(), 1);
-var id3 = 0;
-var AnimateSharedLayout = ({ children }) => {
-  React4.useEffect(() => {
-    invariant(false, "AnimateSharedLayout is deprecated: https://www.framer.com/docs/guide-upgrade/##shared-layout-animations");
-  }, []);
-  return (0, import_jsx_runtime9.jsx)(LayoutGroup, { id: useConstant(() => `asl-${id3++}`), children });
-};
-
-// node_modules/framer-motion/dist/es/value/use-inverted-scale.mjs
-var import_react47 = __toESM(require_react(), 1);
-var maxScale = 1e5;
-var invertScale = (scale2) => scale2 > 1e-3 ? 1 / scale2 : maxScale;
-var hasWarned2 = false;
-function useInvertedScale(scale2) {
-  let parentScaleX = useMotionValue(1);
-  let parentScaleY = useMotionValue(1);
-  const { visualElement } = (0, import_react47.useContext)(MotionContext);
-  invariant(!!(scale2 || visualElement), "If no scale values are provided, useInvertedScale must be used within a child of another motion component.");
-  warning(hasWarned2, "useInvertedScale is deprecated and will be removed in 3.0. Use the layout prop instead.");
-  hasWarned2 = true;
-  if (scale2) {
-    parentScaleX = scale2.scaleX || parentScaleX;
-    parentScaleY = scale2.scaleY || parentScaleY;
-  } else if (visualElement) {
-    parentScaleX = visualElement.getValue("scaleX", 1);
-    parentScaleY = visualElement.getValue("scaleY", 1);
-  }
-  const scaleX2 = useTransform(parentScaleX, invertScale);
-  const scaleY2 = useTransform(parentScaleY, invertScale);
-  return { scaleX: scaleX2, scaleY: scaleY2 };
-}
-
-// node_modules/framer-motion/dist/es/components/Reorder/namespace.mjs
-var namespace_exports = {};
-__export(namespace_exports, {
-  Group: () => ReorderGroup,
-  Item: () => ReorderItem
-});
-
-// node_modules/framer-motion/dist/es/components/Reorder/Group.mjs
-var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
-var import_react49 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/context/ReorderContext.mjs
-var import_react48 = __toESM(require_react(), 1);
-var ReorderContext = (0, import_react48.createContext)(null);
-
-// node_modules/framer-motion/dist/es/components/Reorder/utils/check-reorder.mjs
-function checkReorder(order, value, offset, velocity) {
-  if (!velocity)
-    return order;
-  const index = order.findIndex((item2) => item2.value === value);
-  if (index === -1)
-    return order;
-  const nextOffset = velocity > 0 ? 1 : -1;
-  const nextItem = order[index + nextOffset];
-  if (!nextItem)
-    return order;
-  const item = order[index];
-  const nextLayout = nextItem.layout;
-  const nextItemCenter = mixNumber(nextLayout.min, nextLayout.max, 0.5);
-  if (nextOffset === 1 && item.layout.max + offset > nextItemCenter || nextOffset === -1 && item.layout.min + offset < nextItemCenter) {
-    return moveItem(order, index, index + nextOffset);
-  }
-  return order;
-}
-
-// node_modules/framer-motion/dist/es/components/Reorder/Group.mjs
-function ReorderGroupComponent({ children, as = "ul", axis = "y", onReorder, values, ...props }, externalRef) {
-  const Component3 = useConstant(() => motion[as]);
-  const order = [];
-  const isReordering = (0, import_react49.useRef)(false);
-  const groupRef = (0, import_react49.useRef)(null);
-  invariant(Boolean(values), "Reorder.Group must be provided a values prop", "reorder-values");
-  const context = {
-    axis,
-    groupRef,
-    registerItem: (value, layout2) => {
-      const idx = order.findIndex((entry) => value === entry.value);
-      if (idx !== -1) {
-        order[idx].layout = layout2[axis];
-      } else {
-        order.push({ value, layout: layout2[axis] });
-      }
-      order.sort(compareMin);
-    },
-    updateOrder: (item, offset, velocity) => {
-      if (isReordering.current)
-        return;
-      const newOrder = checkReorder(order, item, offset, velocity);
-      if (order !== newOrder) {
-        isReordering.current = true;
-        const newValues = [...values];
-        for (let i = 0; i < newOrder.length; i++) {
-          if (order[i].value !== newOrder[i].value) {
-            const a = values.indexOf(order[i].value);
-            const b = values.indexOf(newOrder[i].value);
-            if (a !== -1 && b !== -1) {
-              [newValues[a], newValues[b]] = [newValues[b], newValues[a]];
-            }
+          if (next !== SP) {
             break;
           }
         }
-        onReorder(newValues);
       }
+      if (current === SP) {
+        var i = currentIndex;
+        while (i > 0) {
+          i--;
+          var prev = classTypes[i];
+          if (Array.isArray(a2) ? a2.indexOf(prev) !== -1 : a2 === prev) {
+            var n = currentIndex;
+            while (n <= classTypes.length) {
+              n++;
+              var next = classTypes[n];
+              if (next === b) {
+                return true;
+              }
+              if (next !== SP) {
+                break;
+              }
+            }
+          }
+          if (prev !== SP) {
+            break;
+          }
+        }
+      }
+      return false;
+    };
+    previousNonSpaceClassType = function(currentIndex, classTypes) {
+      var i = currentIndex;
+      while (i >= 0) {
+        var type = classTypes[i];
+        if (type === SP) {
+          i--;
+        } else {
+          return type;
+        }
+      }
+      return 0;
+    };
+    _lineBreakAtIndex = function(codePoints, classTypes, indicies, index, forbiddenBreaks) {
+      if (indicies[index] === 0) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      var currentIndex = index - 1;
+      if (Array.isArray(forbiddenBreaks) && forbiddenBreaks[currentIndex] === true) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      var beforeIndex = currentIndex - 1;
+      var afterIndex = currentIndex + 1;
+      var current = classTypes[currentIndex];
+      var before = beforeIndex >= 0 ? classTypes[beforeIndex] : 0;
+      var next = classTypes[afterIndex];
+      if (current === CR$1 && next === LF$1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (HARD_LINE_BREAKS.indexOf(current) !== -1) {
+        return BREAK_MANDATORY;
+      }
+      if (HARD_LINE_BREAKS.indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (SPACE$1.indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (previousNonSpaceClassType(currentIndex, classTypes) === ZW) {
+        return BREAK_ALLOWED$1;
+      }
+      if (UnicodeTrie$1.get(codePoints[currentIndex]) === ZWJ$1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if ((current === EB || current === EM) && UnicodeTrie$1.get(codePoints[afterIndex]) === ZWJ$1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === WJ || next === WJ) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === GL) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if ([SP, BA, HY].indexOf(current) === -1 && next === GL) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if ([CL, CP, EX, IS, SY].indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (previousNonSpaceClassType(currentIndex, classTypes) === OP) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (isAdjacentWithSpaceIgnored(QU, OP, currentIndex, classTypes)) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (isAdjacentWithSpaceIgnored([CL, CP], NS, currentIndex, classTypes)) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (isAdjacentWithSpaceIgnored(B2, B2, currentIndex, classTypes)) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === SP) {
+        return BREAK_ALLOWED$1;
+      }
+      if (current === QU || next === QU) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (next === CB || current === CB) {
+        return BREAK_ALLOWED$1;
+      }
+      if ([BA, HY, NS].indexOf(next) !== -1 || current === BB) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (before === HL && HYPHEN.indexOf(current) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === SY && next === HL) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (next === IN) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (ALPHABETICS.indexOf(next) !== -1 && current === NU || ALPHABETICS.indexOf(current) !== -1 && next === NU) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === PR && [ID, EB, EM].indexOf(next) !== -1 || [ID, EB, EM].indexOf(current) !== -1 && next === PO) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (ALPHABETICS.indexOf(current) !== -1 && PREFIX_POSTFIX.indexOf(next) !== -1 || PREFIX_POSTFIX.indexOf(current) !== -1 && ALPHABETICS.indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (
+        // (PR | PO) × ( OP | HY )? NU
+        [PR, PO].indexOf(current) !== -1 && (next === NU || [OP, HY].indexOf(next) !== -1 && classTypes[afterIndex + 1] === NU) || // ( OP | HY ) × NU
+        [OP, HY].indexOf(current) !== -1 && next === NU || // NU ×	(NU | SY | IS)
+        current === NU && [NU, SY, IS].indexOf(next) !== -1
+      ) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if ([NU, SY, IS, CL, CP].indexOf(next) !== -1) {
+        var prevIndex = currentIndex;
+        while (prevIndex >= 0) {
+          var type = classTypes[prevIndex];
+          if (type === NU) {
+            return BREAK_NOT_ALLOWED$1;
+          } else if ([SY, IS].indexOf(type) !== -1) {
+            prevIndex--;
+          } else {
+            break;
+          }
+        }
+      }
+      if ([PR, PO].indexOf(next) !== -1) {
+        var prevIndex = [CL, CP].indexOf(current) !== -1 ? beforeIndex : currentIndex;
+        while (prevIndex >= 0) {
+          var type = classTypes[prevIndex];
+          if (type === NU) {
+            return BREAK_NOT_ALLOWED$1;
+          } else if ([SY, IS].indexOf(type) !== -1) {
+            prevIndex--;
+          } else {
+            break;
+          }
+        }
+      }
+      if (JL === current && [JL, JV, H2, H3].indexOf(next) !== -1 || [JV, H2].indexOf(current) !== -1 && [JV, JT].indexOf(next) !== -1 || [JT, H3].indexOf(current) !== -1 && next === JT) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (KOREAN_SYLLABLE_BLOCK.indexOf(current) !== -1 && [IN, PO].indexOf(next) !== -1 || KOREAN_SYLLABLE_BLOCK.indexOf(next) !== -1 && current === PR) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (ALPHABETICS.indexOf(current) !== -1 && ALPHABETICS.indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === IS && ALPHABETICS.indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (ALPHABETICS.concat(NU).indexOf(current) !== -1 && next === OP && ea_OP.indexOf(codePoints[afterIndex]) === -1 || ALPHABETICS.concat(NU).indexOf(next) !== -1 && current === CP) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      if (current === RI$1 && next === RI$1) {
+        var i = indicies[currentIndex];
+        var count = 1;
+        while (i > 0) {
+          i--;
+          if (classTypes[i] === RI$1) {
+            count++;
+          } else {
+            break;
+          }
+        }
+        if (count % 2 !== 0) {
+          return BREAK_NOT_ALLOWED$1;
+        }
+      }
+      if (current === EB && next === EM) {
+        return BREAK_NOT_ALLOWED$1;
+      }
+      return BREAK_ALLOWED$1;
+    };
+    cssFormattedClasses = function(codePoints, options) {
+      if (!options) {
+        options = { lineBreak: "normal", wordBreak: "normal" };
+      }
+      var _a = codePointsToCharacterClasses(codePoints, options.lineBreak), indicies = _a[0], classTypes = _a[1], isLetterNumber = _a[2];
+      if (options.wordBreak === "break-all" || options.wordBreak === "break-word") {
+        classTypes = classTypes.map(function(type) {
+          return [NU, AL, SA].indexOf(type) !== -1 ? ID : type;
+        });
+      }
+      var forbiddenBreakpoints = options.wordBreak === "keep-all" ? isLetterNumber.map(function(letterNumber, i) {
+        return letterNumber && codePoints[i] >= 19968 && codePoints[i] <= 40959;
+      }) : void 0;
+      return [indicies, classTypes, forbiddenBreakpoints];
+    };
+    Break = /** @class */
+    function() {
+      function Break2(codePoints, lineBreak2, start, end) {
+        this.codePoints = codePoints;
+        this.required = lineBreak2 === BREAK_MANDATORY;
+        this.start = start;
+        this.end = end;
+      }
+      Break2.prototype.slice = function() {
+        return fromCodePoint$1.apply(void 0, this.codePoints.slice(this.start, this.end));
+      };
+      return Break2;
+    }();
+    LineBreaker = function(str, options) {
+      var codePoints = toCodePoints$1(str);
+      var _a = cssFormattedClasses(codePoints, options), indicies = _a[0], classTypes = _a[1], forbiddenBreakpoints = _a[2];
+      var length = codePoints.length;
+      var lastEnd = 0;
+      var nextIndex = 0;
+      return {
+        next: function() {
+          if (nextIndex >= length) {
+            return { done: true, value: null };
+          }
+          var lineBreak2 = BREAK_NOT_ALLOWED$1;
+          while (nextIndex < length && (lineBreak2 = _lineBreakAtIndex(codePoints, classTypes, indicies, ++nextIndex, forbiddenBreakpoints)) === BREAK_NOT_ALLOWED$1) {
+          }
+          if (lineBreak2 !== BREAK_NOT_ALLOWED$1 || nextIndex === length) {
+            var value = new Break(codePoints, lineBreak2, lastEnd, nextIndex);
+            lastEnd = nextIndex;
+            return { value, done: false };
+          }
+          return { done: true, value: null };
+        }
+      };
+    };
+    FLAG_UNRESTRICTED = 1 << 0;
+    FLAG_ID = 1 << 1;
+    FLAG_INTEGER = 1 << 2;
+    FLAG_NUMBER = 1 << 3;
+    LINE_FEED = 10;
+    SOLIDUS = 47;
+    REVERSE_SOLIDUS = 92;
+    CHARACTER_TABULATION = 9;
+    SPACE = 32;
+    QUOTATION_MARK = 34;
+    EQUALS_SIGN = 61;
+    NUMBER_SIGN = 35;
+    DOLLAR_SIGN = 36;
+    PERCENTAGE_SIGN = 37;
+    APOSTROPHE = 39;
+    LEFT_PARENTHESIS = 40;
+    RIGHT_PARENTHESIS = 41;
+    LOW_LINE = 95;
+    HYPHEN_MINUS = 45;
+    EXCLAMATION_MARK = 33;
+    LESS_THAN_SIGN = 60;
+    GREATER_THAN_SIGN = 62;
+    COMMERCIAL_AT = 64;
+    LEFT_SQUARE_BRACKET = 91;
+    RIGHT_SQUARE_BRACKET = 93;
+    CIRCUMFLEX_ACCENT = 61;
+    LEFT_CURLY_BRACKET = 123;
+    QUESTION_MARK = 63;
+    RIGHT_CURLY_BRACKET = 125;
+    VERTICAL_LINE = 124;
+    TILDE = 126;
+    CONTROL = 128;
+    REPLACEMENT_CHARACTER = 65533;
+    ASTERISK = 42;
+    PLUS_SIGN = 43;
+    COMMA = 44;
+    COLON = 58;
+    SEMICOLON = 59;
+    FULL_STOP = 46;
+    NULL = 0;
+    BACKSPACE = 8;
+    LINE_TABULATION = 11;
+    SHIFT_OUT = 14;
+    INFORMATION_SEPARATOR_ONE = 31;
+    DELETE = 127;
+    EOF = -1;
+    ZERO = 48;
+    a = 97;
+    e = 101;
+    f = 102;
+    u = 117;
+    z = 122;
+    A = 65;
+    E = 69;
+    F = 70;
+    U = 85;
+    Z = 90;
+    isDigit = function(codePoint) {
+      return codePoint >= ZERO && codePoint <= 57;
+    };
+    isSurrogateCodePoint = function(codePoint) {
+      return codePoint >= 55296 && codePoint <= 57343;
+    };
+    isHex = function(codePoint) {
+      return isDigit(codePoint) || codePoint >= A && codePoint <= F || codePoint >= a && codePoint <= f;
+    };
+    isLowerCaseLetter = function(codePoint) {
+      return codePoint >= a && codePoint <= z;
+    };
+    isUpperCaseLetter = function(codePoint) {
+      return codePoint >= A && codePoint <= Z;
+    };
+    isLetter = function(codePoint) {
+      return isLowerCaseLetter(codePoint) || isUpperCaseLetter(codePoint);
+    };
+    isNonASCIICodePoint = function(codePoint) {
+      return codePoint >= CONTROL;
+    };
+    isWhiteSpace = function(codePoint) {
+      return codePoint === LINE_FEED || codePoint === CHARACTER_TABULATION || codePoint === SPACE;
+    };
+    isNameStartCodePoint = function(codePoint) {
+      return isLetter(codePoint) || isNonASCIICodePoint(codePoint) || codePoint === LOW_LINE;
+    };
+    isNameCodePoint = function(codePoint) {
+      return isNameStartCodePoint(codePoint) || isDigit(codePoint) || codePoint === HYPHEN_MINUS;
+    };
+    isNonPrintableCodePoint = function(codePoint) {
+      return codePoint >= NULL && codePoint <= BACKSPACE || codePoint === LINE_TABULATION || codePoint >= SHIFT_OUT && codePoint <= INFORMATION_SEPARATOR_ONE || codePoint === DELETE;
+    };
+    isValidEscape = function(c1, c2) {
+      if (c1 !== REVERSE_SOLIDUS) {
+        return false;
+      }
+      return c2 !== LINE_FEED;
+    };
+    isIdentifierStart = function(c1, c2, c3) {
+      if (c1 === HYPHEN_MINUS) {
+        return isNameStartCodePoint(c2) || isValidEscape(c2, c3);
+      } else if (isNameStartCodePoint(c1)) {
+        return true;
+      } else if (c1 === REVERSE_SOLIDUS && isValidEscape(c1, c2)) {
+        return true;
+      }
+      return false;
+    };
+    isNumberStart = function(c1, c2, c3) {
+      if (c1 === PLUS_SIGN || c1 === HYPHEN_MINUS) {
+        if (isDigit(c2)) {
+          return true;
+        }
+        return c2 === FULL_STOP && isDigit(c3);
+      }
+      if (c1 === FULL_STOP) {
+        return isDigit(c2);
+      }
+      return isDigit(c1);
+    };
+    stringToNumber = function(codePoints) {
+      var c = 0;
+      var sign = 1;
+      if (codePoints[c] === PLUS_SIGN || codePoints[c] === HYPHEN_MINUS) {
+        if (codePoints[c] === HYPHEN_MINUS) {
+          sign = -1;
+        }
+        c++;
+      }
+      var integers = [];
+      while (isDigit(codePoints[c])) {
+        integers.push(codePoints[c++]);
+      }
+      var int = integers.length ? parseInt(fromCodePoint$1.apply(void 0, integers), 10) : 0;
+      if (codePoints[c] === FULL_STOP) {
+        c++;
+      }
+      var fraction = [];
+      while (isDigit(codePoints[c])) {
+        fraction.push(codePoints[c++]);
+      }
+      var fracd = fraction.length;
+      var frac = fracd ? parseInt(fromCodePoint$1.apply(void 0, fraction), 10) : 0;
+      if (codePoints[c] === E || codePoints[c] === e) {
+        c++;
+      }
+      var expsign = 1;
+      if (codePoints[c] === PLUS_SIGN || codePoints[c] === HYPHEN_MINUS) {
+        if (codePoints[c] === HYPHEN_MINUS) {
+          expsign = -1;
+        }
+        c++;
+      }
+      var exponent = [];
+      while (isDigit(codePoints[c])) {
+        exponent.push(codePoints[c++]);
+      }
+      var exp = exponent.length ? parseInt(fromCodePoint$1.apply(void 0, exponent), 10) : 0;
+      return sign * (int + frac * Math.pow(10, -fracd)) * Math.pow(10, expsign * exp);
+    };
+    LEFT_PARENTHESIS_TOKEN = {
+      type: 2
+      /* LEFT_PARENTHESIS_TOKEN */
+    };
+    RIGHT_PARENTHESIS_TOKEN = {
+      type: 3
+      /* RIGHT_PARENTHESIS_TOKEN */
+    };
+    COMMA_TOKEN = {
+      type: 4
+      /* COMMA_TOKEN */
+    };
+    SUFFIX_MATCH_TOKEN = {
+      type: 13
+      /* SUFFIX_MATCH_TOKEN */
+    };
+    PREFIX_MATCH_TOKEN = {
+      type: 8
+      /* PREFIX_MATCH_TOKEN */
+    };
+    COLUMN_TOKEN = {
+      type: 21
+      /* COLUMN_TOKEN */
+    };
+    DASH_MATCH_TOKEN = {
+      type: 9
+      /* DASH_MATCH_TOKEN */
+    };
+    INCLUDE_MATCH_TOKEN = {
+      type: 10
+      /* INCLUDE_MATCH_TOKEN */
+    };
+    LEFT_CURLY_BRACKET_TOKEN = {
+      type: 11
+      /* LEFT_CURLY_BRACKET_TOKEN */
+    };
+    RIGHT_CURLY_BRACKET_TOKEN = {
+      type: 12
+      /* RIGHT_CURLY_BRACKET_TOKEN */
+    };
+    SUBSTRING_MATCH_TOKEN = {
+      type: 14
+      /* SUBSTRING_MATCH_TOKEN */
+    };
+    BAD_URL_TOKEN = {
+      type: 23
+      /* BAD_URL_TOKEN */
+    };
+    BAD_STRING_TOKEN = {
+      type: 1
+      /* BAD_STRING_TOKEN */
+    };
+    CDO_TOKEN = {
+      type: 25
+      /* CDO_TOKEN */
+    };
+    CDC_TOKEN = {
+      type: 24
+      /* CDC_TOKEN */
+    };
+    COLON_TOKEN = {
+      type: 26
+      /* COLON_TOKEN */
+    };
+    SEMICOLON_TOKEN = {
+      type: 27
+      /* SEMICOLON_TOKEN */
+    };
+    LEFT_SQUARE_BRACKET_TOKEN = {
+      type: 28
+      /* LEFT_SQUARE_BRACKET_TOKEN */
+    };
+    RIGHT_SQUARE_BRACKET_TOKEN = {
+      type: 29
+      /* RIGHT_SQUARE_BRACKET_TOKEN */
+    };
+    WHITESPACE_TOKEN = {
+      type: 31
+      /* WHITESPACE_TOKEN */
+    };
+    EOF_TOKEN = {
+      type: 32
+      /* EOF_TOKEN */
+    };
+    Tokenizer = /** @class */
+    function() {
+      function Tokenizer2() {
+        this._value = [];
+      }
+      Tokenizer2.prototype.write = function(chunk) {
+        this._value = this._value.concat(toCodePoints$1(chunk));
+      };
+      Tokenizer2.prototype.read = function() {
+        var tokens = [];
+        var token = this.consumeToken();
+        while (token !== EOF_TOKEN) {
+          tokens.push(token);
+          token = this.consumeToken();
+        }
+        return tokens;
+      };
+      Tokenizer2.prototype.consumeToken = function() {
+        var codePoint = this.consumeCodePoint();
+        switch (codePoint) {
+          case QUOTATION_MARK:
+            return this.consumeStringToken(QUOTATION_MARK);
+          case NUMBER_SIGN:
+            var c1 = this.peekCodePoint(0);
+            var c2 = this.peekCodePoint(1);
+            var c3 = this.peekCodePoint(2);
+            if (isNameCodePoint(c1) || isValidEscape(c2, c3)) {
+              var flags = isIdentifierStart(c1, c2, c3) ? FLAG_ID : FLAG_UNRESTRICTED;
+              var value = this.consumeName();
+              return { type: 5, value, flags };
+            }
+            break;
+          case DOLLAR_SIGN:
+            if (this.peekCodePoint(0) === EQUALS_SIGN) {
+              this.consumeCodePoint();
+              return SUFFIX_MATCH_TOKEN;
+            }
+            break;
+          case APOSTROPHE:
+            return this.consumeStringToken(APOSTROPHE);
+          case LEFT_PARENTHESIS:
+            return LEFT_PARENTHESIS_TOKEN;
+          case RIGHT_PARENTHESIS:
+            return RIGHT_PARENTHESIS_TOKEN;
+          case ASTERISK:
+            if (this.peekCodePoint(0) === EQUALS_SIGN) {
+              this.consumeCodePoint();
+              return SUBSTRING_MATCH_TOKEN;
+            }
+            break;
+          case PLUS_SIGN:
+            if (isNumberStart(codePoint, this.peekCodePoint(0), this.peekCodePoint(1))) {
+              this.reconsumeCodePoint(codePoint);
+              return this.consumeNumericToken();
+            }
+            break;
+          case COMMA:
+            return COMMA_TOKEN;
+          case HYPHEN_MINUS:
+            var e1 = codePoint;
+            var e2 = this.peekCodePoint(0);
+            var e3 = this.peekCodePoint(1);
+            if (isNumberStart(e1, e2, e3)) {
+              this.reconsumeCodePoint(codePoint);
+              return this.consumeNumericToken();
+            }
+            if (isIdentifierStart(e1, e2, e3)) {
+              this.reconsumeCodePoint(codePoint);
+              return this.consumeIdentLikeToken();
+            }
+            if (e2 === HYPHEN_MINUS && e3 === GREATER_THAN_SIGN) {
+              this.consumeCodePoint();
+              this.consumeCodePoint();
+              return CDC_TOKEN;
+            }
+            break;
+          case FULL_STOP:
+            if (isNumberStart(codePoint, this.peekCodePoint(0), this.peekCodePoint(1))) {
+              this.reconsumeCodePoint(codePoint);
+              return this.consumeNumericToken();
+            }
+            break;
+          case SOLIDUS:
+            if (this.peekCodePoint(0) === ASTERISK) {
+              this.consumeCodePoint();
+              while (true) {
+                var c = this.consumeCodePoint();
+                if (c === ASTERISK) {
+                  c = this.consumeCodePoint();
+                  if (c === SOLIDUS) {
+                    return this.consumeToken();
+                  }
+                }
+                if (c === EOF) {
+                  return this.consumeToken();
+                }
+              }
+            }
+            break;
+          case COLON:
+            return COLON_TOKEN;
+          case SEMICOLON:
+            return SEMICOLON_TOKEN;
+          case LESS_THAN_SIGN:
+            if (this.peekCodePoint(0) === EXCLAMATION_MARK && this.peekCodePoint(1) === HYPHEN_MINUS && this.peekCodePoint(2) === HYPHEN_MINUS) {
+              this.consumeCodePoint();
+              this.consumeCodePoint();
+              return CDO_TOKEN;
+            }
+            break;
+          case COMMERCIAL_AT:
+            var a1 = this.peekCodePoint(0);
+            var a2 = this.peekCodePoint(1);
+            var a3 = this.peekCodePoint(2);
+            if (isIdentifierStart(a1, a2, a3)) {
+              var value = this.consumeName();
+              return { type: 7, value };
+            }
+            break;
+          case LEFT_SQUARE_BRACKET:
+            return LEFT_SQUARE_BRACKET_TOKEN;
+          case REVERSE_SOLIDUS:
+            if (isValidEscape(codePoint, this.peekCodePoint(0))) {
+              this.reconsumeCodePoint(codePoint);
+              return this.consumeIdentLikeToken();
+            }
+            break;
+          case RIGHT_SQUARE_BRACKET:
+            return RIGHT_SQUARE_BRACKET_TOKEN;
+          case CIRCUMFLEX_ACCENT:
+            if (this.peekCodePoint(0) === EQUALS_SIGN) {
+              this.consumeCodePoint();
+              return PREFIX_MATCH_TOKEN;
+            }
+            break;
+          case LEFT_CURLY_BRACKET:
+            return LEFT_CURLY_BRACKET_TOKEN;
+          case RIGHT_CURLY_BRACKET:
+            return RIGHT_CURLY_BRACKET_TOKEN;
+          case u:
+          case U:
+            var u1 = this.peekCodePoint(0);
+            var u2 = this.peekCodePoint(1);
+            if (u1 === PLUS_SIGN && (isHex(u2) || u2 === QUESTION_MARK)) {
+              this.consumeCodePoint();
+              this.consumeUnicodeRangeToken();
+            }
+            this.reconsumeCodePoint(codePoint);
+            return this.consumeIdentLikeToken();
+          case VERTICAL_LINE:
+            if (this.peekCodePoint(0) === EQUALS_SIGN) {
+              this.consumeCodePoint();
+              return DASH_MATCH_TOKEN;
+            }
+            if (this.peekCodePoint(0) === VERTICAL_LINE) {
+              this.consumeCodePoint();
+              return COLUMN_TOKEN;
+            }
+            break;
+          case TILDE:
+            if (this.peekCodePoint(0) === EQUALS_SIGN) {
+              this.consumeCodePoint();
+              return INCLUDE_MATCH_TOKEN;
+            }
+            break;
+          case EOF:
+            return EOF_TOKEN;
+        }
+        if (isWhiteSpace(codePoint)) {
+          this.consumeWhiteSpace();
+          return WHITESPACE_TOKEN;
+        }
+        if (isDigit(codePoint)) {
+          this.reconsumeCodePoint(codePoint);
+          return this.consumeNumericToken();
+        }
+        if (isNameStartCodePoint(codePoint)) {
+          this.reconsumeCodePoint(codePoint);
+          return this.consumeIdentLikeToken();
+        }
+        return { type: 6, value: fromCodePoint$1(codePoint) };
+      };
+      Tokenizer2.prototype.consumeCodePoint = function() {
+        var value = this._value.shift();
+        return typeof value === "undefined" ? -1 : value;
+      };
+      Tokenizer2.prototype.reconsumeCodePoint = function(codePoint) {
+        this._value.unshift(codePoint);
+      };
+      Tokenizer2.prototype.peekCodePoint = function(delta) {
+        if (delta >= this._value.length) {
+          return -1;
+        }
+        return this._value[delta];
+      };
+      Tokenizer2.prototype.consumeUnicodeRangeToken = function() {
+        var digits = [];
+        var codePoint = this.consumeCodePoint();
+        while (isHex(codePoint) && digits.length < 6) {
+          digits.push(codePoint);
+          codePoint = this.consumeCodePoint();
+        }
+        var questionMarks = false;
+        while (codePoint === QUESTION_MARK && digits.length < 6) {
+          digits.push(codePoint);
+          codePoint = this.consumeCodePoint();
+          questionMarks = true;
+        }
+        if (questionMarks) {
+          var start_1 = parseInt(fromCodePoint$1.apply(void 0, digits.map(function(digit) {
+            return digit === QUESTION_MARK ? ZERO : digit;
+          })), 16);
+          var end = parseInt(fromCodePoint$1.apply(void 0, digits.map(function(digit) {
+            return digit === QUESTION_MARK ? F : digit;
+          })), 16);
+          return { type: 30, start: start_1, end };
+        }
+        var start = parseInt(fromCodePoint$1.apply(void 0, digits), 16);
+        if (this.peekCodePoint(0) === HYPHEN_MINUS && isHex(this.peekCodePoint(1))) {
+          this.consumeCodePoint();
+          codePoint = this.consumeCodePoint();
+          var endDigits = [];
+          while (isHex(codePoint) && endDigits.length < 6) {
+            endDigits.push(codePoint);
+            codePoint = this.consumeCodePoint();
+          }
+          var end = parseInt(fromCodePoint$1.apply(void 0, endDigits), 16);
+          return { type: 30, start, end };
+        } else {
+          return { type: 30, start, end: start };
+        }
+      };
+      Tokenizer2.prototype.consumeIdentLikeToken = function() {
+        var value = this.consumeName();
+        if (value.toLowerCase() === "url" && this.peekCodePoint(0) === LEFT_PARENTHESIS) {
+          this.consumeCodePoint();
+          return this.consumeUrlToken();
+        } else if (this.peekCodePoint(0) === LEFT_PARENTHESIS) {
+          this.consumeCodePoint();
+          return { type: 19, value };
+        }
+        return { type: 20, value };
+      };
+      Tokenizer2.prototype.consumeUrlToken = function() {
+        var value = [];
+        this.consumeWhiteSpace();
+        if (this.peekCodePoint(0) === EOF) {
+          return { type: 22, value: "" };
+        }
+        var next = this.peekCodePoint(0);
+        if (next === APOSTROPHE || next === QUOTATION_MARK) {
+          var stringToken = this.consumeStringToken(this.consumeCodePoint());
+          if (stringToken.type === 0) {
+            this.consumeWhiteSpace();
+            if (this.peekCodePoint(0) === EOF || this.peekCodePoint(0) === RIGHT_PARENTHESIS) {
+              this.consumeCodePoint();
+              return { type: 22, value: stringToken.value };
+            }
+          }
+          this.consumeBadUrlRemnants();
+          return BAD_URL_TOKEN;
+        }
+        while (true) {
+          var codePoint = this.consumeCodePoint();
+          if (codePoint === EOF || codePoint === RIGHT_PARENTHESIS) {
+            return { type: 22, value: fromCodePoint$1.apply(void 0, value) };
+          } else if (isWhiteSpace(codePoint)) {
+            this.consumeWhiteSpace();
+            if (this.peekCodePoint(0) === EOF || this.peekCodePoint(0) === RIGHT_PARENTHESIS) {
+              this.consumeCodePoint();
+              return { type: 22, value: fromCodePoint$1.apply(void 0, value) };
+            }
+            this.consumeBadUrlRemnants();
+            return BAD_URL_TOKEN;
+          } else if (codePoint === QUOTATION_MARK || codePoint === APOSTROPHE || codePoint === LEFT_PARENTHESIS || isNonPrintableCodePoint(codePoint)) {
+            this.consumeBadUrlRemnants();
+            return BAD_URL_TOKEN;
+          } else if (codePoint === REVERSE_SOLIDUS) {
+            if (isValidEscape(codePoint, this.peekCodePoint(0))) {
+              value.push(this.consumeEscapedCodePoint());
+            } else {
+              this.consumeBadUrlRemnants();
+              return BAD_URL_TOKEN;
+            }
+          } else {
+            value.push(codePoint);
+          }
+        }
+      };
+      Tokenizer2.prototype.consumeWhiteSpace = function() {
+        while (isWhiteSpace(this.peekCodePoint(0))) {
+          this.consumeCodePoint();
+        }
+      };
+      Tokenizer2.prototype.consumeBadUrlRemnants = function() {
+        while (true) {
+          var codePoint = this.consumeCodePoint();
+          if (codePoint === RIGHT_PARENTHESIS || codePoint === EOF) {
+            return;
+          }
+          if (isValidEscape(codePoint, this.peekCodePoint(0))) {
+            this.consumeEscapedCodePoint();
+          }
+        }
+      };
+      Tokenizer2.prototype.consumeStringSlice = function(count) {
+        var SLICE_STACK_SIZE = 5e4;
+        var value = "";
+        while (count > 0) {
+          var amount = Math.min(SLICE_STACK_SIZE, count);
+          value += fromCodePoint$1.apply(void 0, this._value.splice(0, amount));
+          count -= amount;
+        }
+        this._value.shift();
+        return value;
+      };
+      Tokenizer2.prototype.consumeStringToken = function(endingCodePoint) {
+        var value = "";
+        var i = 0;
+        do {
+          var codePoint = this._value[i];
+          if (codePoint === EOF || codePoint === void 0 || codePoint === endingCodePoint) {
+            value += this.consumeStringSlice(i);
+            return { type: 0, value };
+          }
+          if (codePoint === LINE_FEED) {
+            this._value.splice(0, i);
+            return BAD_STRING_TOKEN;
+          }
+          if (codePoint === REVERSE_SOLIDUS) {
+            var next = this._value[i + 1];
+            if (next !== EOF && next !== void 0) {
+              if (next === LINE_FEED) {
+                value += this.consumeStringSlice(i);
+                i = -1;
+                this._value.shift();
+              } else if (isValidEscape(codePoint, next)) {
+                value += this.consumeStringSlice(i);
+                value += fromCodePoint$1(this.consumeEscapedCodePoint());
+                i = -1;
+              }
+            }
+          }
+          i++;
+        } while (true);
+      };
+      Tokenizer2.prototype.consumeNumber = function() {
+        var repr = [];
+        var type = FLAG_INTEGER;
+        var c1 = this.peekCodePoint(0);
+        if (c1 === PLUS_SIGN || c1 === HYPHEN_MINUS) {
+          repr.push(this.consumeCodePoint());
+        }
+        while (isDigit(this.peekCodePoint(0))) {
+          repr.push(this.consumeCodePoint());
+        }
+        c1 = this.peekCodePoint(0);
+        var c2 = this.peekCodePoint(1);
+        if (c1 === FULL_STOP && isDigit(c2)) {
+          repr.push(this.consumeCodePoint(), this.consumeCodePoint());
+          type = FLAG_NUMBER;
+          while (isDigit(this.peekCodePoint(0))) {
+            repr.push(this.consumeCodePoint());
+          }
+        }
+        c1 = this.peekCodePoint(0);
+        c2 = this.peekCodePoint(1);
+        var c3 = this.peekCodePoint(2);
+        if ((c1 === E || c1 === e) && ((c2 === PLUS_SIGN || c2 === HYPHEN_MINUS) && isDigit(c3) || isDigit(c2))) {
+          repr.push(this.consumeCodePoint(), this.consumeCodePoint());
+          type = FLAG_NUMBER;
+          while (isDigit(this.peekCodePoint(0))) {
+            repr.push(this.consumeCodePoint());
+          }
+        }
+        return [stringToNumber(repr), type];
+      };
+      Tokenizer2.prototype.consumeNumericToken = function() {
+        var _a = this.consumeNumber(), number = _a[0], flags = _a[1];
+        var c1 = this.peekCodePoint(0);
+        var c2 = this.peekCodePoint(1);
+        var c3 = this.peekCodePoint(2);
+        if (isIdentifierStart(c1, c2, c3)) {
+          var unit = this.consumeName();
+          return { type: 15, number, flags, unit };
+        }
+        if (c1 === PERCENTAGE_SIGN) {
+          this.consumeCodePoint();
+          return { type: 16, number, flags };
+        }
+        return { type: 17, number, flags };
+      };
+      Tokenizer2.prototype.consumeEscapedCodePoint = function() {
+        var codePoint = this.consumeCodePoint();
+        if (isHex(codePoint)) {
+          var hex = fromCodePoint$1(codePoint);
+          while (isHex(this.peekCodePoint(0)) && hex.length < 6) {
+            hex += fromCodePoint$1(this.consumeCodePoint());
+          }
+          if (isWhiteSpace(this.peekCodePoint(0))) {
+            this.consumeCodePoint();
+          }
+          var hexCodePoint = parseInt(hex, 16);
+          if (hexCodePoint === 0 || isSurrogateCodePoint(hexCodePoint) || hexCodePoint > 1114111) {
+            return REPLACEMENT_CHARACTER;
+          }
+          return hexCodePoint;
+        }
+        if (codePoint === EOF) {
+          return REPLACEMENT_CHARACTER;
+        }
+        return codePoint;
+      };
+      Tokenizer2.prototype.consumeName = function() {
+        var result = "";
+        while (true) {
+          var codePoint = this.consumeCodePoint();
+          if (isNameCodePoint(codePoint)) {
+            result += fromCodePoint$1(codePoint);
+          } else if (isValidEscape(codePoint, this.peekCodePoint(0))) {
+            result += fromCodePoint$1(this.consumeEscapedCodePoint());
+          } else {
+            this.reconsumeCodePoint(codePoint);
+            return result;
+          }
+        }
+      };
+      return Tokenizer2;
+    }();
+    Parser = /** @class */
+    function() {
+      function Parser2(tokens) {
+        this._tokens = tokens;
+      }
+      Parser2.create = function(value) {
+        var tokenizer = new Tokenizer();
+        tokenizer.write(value);
+        return new Parser2(tokenizer.read());
+      };
+      Parser2.parseValue = function(value) {
+        return Parser2.create(value).parseComponentValue();
+      };
+      Parser2.parseValues = function(value) {
+        return Parser2.create(value).parseComponentValues();
+      };
+      Parser2.prototype.parseComponentValue = function() {
+        var token = this.consumeToken();
+        while (token.type === 31) {
+          token = this.consumeToken();
+        }
+        if (token.type === 32) {
+          throw new SyntaxError("Error parsing CSS component value, unexpected EOF");
+        }
+        this.reconsumeToken(token);
+        var value = this.consumeComponentValue();
+        do {
+          token = this.consumeToken();
+        } while (token.type === 31);
+        if (token.type === 32) {
+          return value;
+        }
+        throw new SyntaxError("Error parsing CSS component value, multiple values found when expecting only one");
+      };
+      Parser2.prototype.parseComponentValues = function() {
+        var values = [];
+        while (true) {
+          var value = this.consumeComponentValue();
+          if (value.type === 32) {
+            return values;
+          }
+          values.push(value);
+          values.push();
+        }
+      };
+      Parser2.prototype.consumeComponentValue = function() {
+        var token = this.consumeToken();
+        switch (token.type) {
+          case 11:
+          case 28:
+          case 2:
+            return this.consumeSimpleBlock(token.type);
+          case 19:
+            return this.consumeFunction(token);
+        }
+        return token;
+      };
+      Parser2.prototype.consumeSimpleBlock = function(type) {
+        var block = { type, values: [] };
+        var token = this.consumeToken();
+        while (true) {
+          if (token.type === 32 || isEndingTokenFor(token, type)) {
+            return block;
+          }
+          this.reconsumeToken(token);
+          block.values.push(this.consumeComponentValue());
+          token = this.consumeToken();
+        }
+      };
+      Parser2.prototype.consumeFunction = function(functionToken) {
+        var cssFunction = {
+          name: functionToken.value,
+          values: [],
+          type: 18
+          /* FUNCTION */
+        };
+        while (true) {
+          var token = this.consumeToken();
+          if (token.type === 32 || token.type === 3) {
+            return cssFunction;
+          }
+          this.reconsumeToken(token);
+          cssFunction.values.push(this.consumeComponentValue());
+        }
+      };
+      Parser2.prototype.consumeToken = function() {
+        var token = this._tokens.shift();
+        return typeof token === "undefined" ? EOF_TOKEN : token;
+      };
+      Parser2.prototype.reconsumeToken = function(token) {
+        this._tokens.unshift(token);
+      };
+      return Parser2;
+    }();
+    isDimensionToken = function(token) {
+      return token.type === 15;
+    };
+    isNumberToken = function(token) {
+      return token.type === 17;
+    };
+    isIdentToken = function(token) {
+      return token.type === 20;
+    };
+    isStringToken = function(token) {
+      return token.type === 0;
+    };
+    isIdentWithValue = function(token, value) {
+      return isIdentToken(token) && token.value === value;
+    };
+    nonWhiteSpace = function(token) {
+      return token.type !== 31;
+    };
+    nonFunctionArgSeparator = function(token) {
+      return token.type !== 31 && token.type !== 4;
+    };
+    parseFunctionArgs = function(tokens) {
+      var args = [];
+      var arg = [];
+      tokens.forEach(function(token) {
+        if (token.type === 4) {
+          if (arg.length === 0) {
+            throw new Error("Error parsing function args, zero tokens for arg");
+          }
+          args.push(arg);
+          arg = [];
+          return;
+        }
+        if (token.type !== 31) {
+          arg.push(token);
+        }
+      });
+      if (arg.length) {
+        args.push(arg);
+      }
+      return args;
+    };
+    isEndingTokenFor = function(token, type) {
+      if (type === 11 && token.type === 12) {
+        return true;
+      }
+      if (type === 28 && token.type === 29) {
+        return true;
+      }
+      return type === 2 && token.type === 3;
+    };
+    isLength = function(token) {
+      return token.type === 17 || token.type === 15;
+    };
+    isLengthPercentage = function(token) {
+      return token.type === 16 || isLength(token);
+    };
+    parseLengthPercentageTuple = function(tokens) {
+      return tokens.length > 1 ? [tokens[0], tokens[1]] : [tokens[0]];
+    };
+    ZERO_LENGTH = {
+      type: 17,
+      number: 0,
+      flags: FLAG_INTEGER
+    };
+    FIFTY_PERCENT = {
+      type: 16,
+      number: 50,
+      flags: FLAG_INTEGER
+    };
+    HUNDRED_PERCENT = {
+      type: 16,
+      number: 100,
+      flags: FLAG_INTEGER
+    };
+    getAbsoluteValueForTuple = function(tuple, width, height) {
+      var x = tuple[0], y = tuple[1];
+      return [getAbsoluteValue(x, width), getAbsoluteValue(typeof y !== "undefined" ? y : x, height)];
+    };
+    getAbsoluteValue = function(token, parent) {
+      if (token.type === 16) {
+        return token.number / 100 * parent;
+      }
+      if (isDimensionToken(token)) {
+        switch (token.unit) {
+          case "rem":
+          case "em":
+            return 16 * token.number;
+          case "px":
+          default:
+            return token.number;
+        }
+      }
+      return token.number;
+    };
+    DEG = "deg";
+    GRAD = "grad";
+    RAD = "rad";
+    TURN = "turn";
+    angle = {
+      name: "angle",
+      parse: function(_context, value) {
+        if (value.type === 15) {
+          switch (value.unit) {
+            case DEG:
+              return Math.PI * value.number / 180;
+            case GRAD:
+              return Math.PI / 200 * value.number;
+            case RAD:
+              return value.number;
+            case TURN:
+              return Math.PI * 2 * value.number;
+          }
+        }
+        throw new Error("Unsupported angle type");
+      }
+    };
+    isAngle = function(value) {
+      if (value.type === 15) {
+        if (value.unit === DEG || value.unit === GRAD || value.unit === RAD || value.unit === TURN) {
+          return true;
+        }
+      }
+      return false;
+    };
+    parseNamedSide = function(tokens) {
+      var sideOrCorner = tokens.filter(isIdentToken).map(function(ident) {
+        return ident.value;
+      }).join(" ");
+      switch (sideOrCorner) {
+        case "to bottom right":
+        case "to right bottom":
+        case "left top":
+        case "top left":
+          return [ZERO_LENGTH, ZERO_LENGTH];
+        case "to top":
+        case "bottom":
+          return deg(0);
+        case "to bottom left":
+        case "to left bottom":
+        case "right top":
+        case "top right":
+          return [ZERO_LENGTH, HUNDRED_PERCENT];
+        case "to right":
+        case "left":
+          return deg(90);
+        case "to top left":
+        case "to left top":
+        case "right bottom":
+        case "bottom right":
+          return [HUNDRED_PERCENT, HUNDRED_PERCENT];
+        case "to bottom":
+        case "top":
+          return deg(180);
+        case "to top right":
+        case "to right top":
+        case "left bottom":
+        case "bottom left":
+          return [HUNDRED_PERCENT, ZERO_LENGTH];
+        case "to left":
+        case "right":
+          return deg(270);
+      }
+      return 0;
+    };
+    deg = function(deg2) {
+      return Math.PI * deg2 / 180;
+    };
+    color$1 = {
+      name: "color",
+      parse: function(context, value) {
+        if (value.type === 18) {
+          var colorFunction = SUPPORTED_COLOR_FUNCTIONS[value.name];
+          if (typeof colorFunction === "undefined") {
+            throw new Error('Attempting to parse an unsupported color function "' + value.name + '"');
+          }
+          return colorFunction(context, value.values);
+        }
+        if (value.type === 5) {
+          if (value.value.length === 3) {
+            var r = value.value.substring(0, 1);
+            var g = value.value.substring(1, 2);
+            var b = value.value.substring(2, 3);
+            return pack(parseInt(r + r, 16), parseInt(g + g, 16), parseInt(b + b, 16), 1);
+          }
+          if (value.value.length === 4) {
+            var r = value.value.substring(0, 1);
+            var g = value.value.substring(1, 2);
+            var b = value.value.substring(2, 3);
+            var a2 = value.value.substring(3, 4);
+            return pack(parseInt(r + r, 16), parseInt(g + g, 16), parseInt(b + b, 16), parseInt(a2 + a2, 16) / 255);
+          }
+          if (value.value.length === 6) {
+            var r = value.value.substring(0, 2);
+            var g = value.value.substring(2, 4);
+            var b = value.value.substring(4, 6);
+            return pack(parseInt(r, 16), parseInt(g, 16), parseInt(b, 16), 1);
+          }
+          if (value.value.length === 8) {
+            var r = value.value.substring(0, 2);
+            var g = value.value.substring(2, 4);
+            var b = value.value.substring(4, 6);
+            var a2 = value.value.substring(6, 8);
+            return pack(parseInt(r, 16), parseInt(g, 16), parseInt(b, 16), parseInt(a2, 16) / 255);
+          }
+        }
+        if (value.type === 20) {
+          var namedColor = COLORS[value.value.toUpperCase()];
+          if (typeof namedColor !== "undefined") {
+            return namedColor;
+          }
+        }
+        return COLORS.TRANSPARENT;
+      }
+    };
+    isTransparent = function(color2) {
+      return (255 & color2) === 0;
+    };
+    asString = function(color2) {
+      var alpha = 255 & color2;
+      var blue = 255 & color2 >> 8;
+      var green = 255 & color2 >> 16;
+      var red = 255 & color2 >> 24;
+      return alpha < 255 ? "rgba(" + red + "," + green + "," + blue + "," + alpha / 255 + ")" : "rgb(" + red + "," + green + "," + blue + ")";
+    };
+    pack = function(r, g, b, a2) {
+      return (r << 24 | g << 16 | b << 8 | Math.round(a2 * 255) << 0) >>> 0;
+    };
+    getTokenColorValue = function(token, i) {
+      if (token.type === 17) {
+        return token.number;
+      }
+      if (token.type === 16) {
+        var max = i === 3 ? 1 : 255;
+        return i === 3 ? token.number / 100 * max : Math.round(token.number / 100 * max);
+      }
+      return 0;
+    };
+    rgb = function(_context, args) {
+      var tokens = args.filter(nonFunctionArgSeparator);
+      if (tokens.length === 3) {
+        var _a = tokens.map(getTokenColorValue), r = _a[0], g = _a[1], b = _a[2];
+        return pack(r, g, b, 1);
+      }
+      if (tokens.length === 4) {
+        var _b = tokens.map(getTokenColorValue), r = _b[0], g = _b[1], b = _b[2], a2 = _b[3];
+        return pack(r, g, b, a2);
+      }
+      return 0;
+    };
+    hsl = function(context, args) {
+      var tokens = args.filter(nonFunctionArgSeparator);
+      var hue = tokens[0], saturation = tokens[1], lightness = tokens[2], alpha = tokens[3];
+      var h = (hue.type === 17 ? deg(hue.number) : angle.parse(context, hue)) / (Math.PI * 2);
+      var s = isLengthPercentage(saturation) ? saturation.number / 100 : 0;
+      var l = isLengthPercentage(lightness) ? lightness.number / 100 : 0;
+      var a2 = typeof alpha !== "undefined" && isLengthPercentage(alpha) ? getAbsoluteValue(alpha, 1) : 1;
+      if (s === 0) {
+        return pack(l * 255, l * 255, l * 255, 1);
+      }
+      var t2 = l <= 0.5 ? l * (s + 1) : l + s - l * s;
+      var t1 = l * 2 - t2;
+      var r = hue2rgb(t1, t2, h + 1 / 3);
+      var g = hue2rgb(t1, t2, h);
+      var b = hue2rgb(t1, t2, h - 1 / 3);
+      return pack(r * 255, g * 255, b * 255, a2);
+    };
+    SUPPORTED_COLOR_FUNCTIONS = {
+      hsl,
+      hsla: hsl,
+      rgb,
+      rgba: rgb
+    };
+    parseColor = function(context, value) {
+      return color$1.parse(context, Parser.create(value).parseComponentValue());
+    };
+    COLORS = {
+      ALICEBLUE: 4042850303,
+      ANTIQUEWHITE: 4209760255,
+      AQUA: 16777215,
+      AQUAMARINE: 2147472639,
+      AZURE: 4043309055,
+      BEIGE: 4126530815,
+      BISQUE: 4293182719,
+      BLACK: 255,
+      BLANCHEDALMOND: 4293643775,
+      BLUE: 65535,
+      BLUEVIOLET: 2318131967,
+      BROWN: 2771004159,
+      BURLYWOOD: 3736635391,
+      CADETBLUE: 1604231423,
+      CHARTREUSE: 2147418367,
+      CHOCOLATE: 3530104575,
+      CORAL: 4286533887,
+      CORNFLOWERBLUE: 1687547391,
+      CORNSILK: 4294499583,
+      CRIMSON: 3692313855,
+      CYAN: 16777215,
+      DARKBLUE: 35839,
+      DARKCYAN: 9145343,
+      DARKGOLDENROD: 3095837695,
+      DARKGRAY: 2846468607,
+      DARKGREEN: 6553855,
+      DARKGREY: 2846468607,
+      DARKKHAKI: 3182914559,
+      DARKMAGENTA: 2332068863,
+      DARKOLIVEGREEN: 1433087999,
+      DARKORANGE: 4287365375,
+      DARKORCHID: 2570243327,
+      DARKRED: 2332033279,
+      DARKSALMON: 3918953215,
+      DARKSEAGREEN: 2411499519,
+      DARKSLATEBLUE: 1211993087,
+      DARKSLATEGRAY: 793726975,
+      DARKSLATEGREY: 793726975,
+      DARKTURQUOISE: 13554175,
+      DARKVIOLET: 2483082239,
+      DEEPPINK: 4279538687,
+      DEEPSKYBLUE: 12582911,
+      DIMGRAY: 1768516095,
+      DIMGREY: 1768516095,
+      DODGERBLUE: 512819199,
+      FIREBRICK: 2988581631,
+      FLORALWHITE: 4294635775,
+      FORESTGREEN: 579543807,
+      FUCHSIA: 4278255615,
+      GAINSBORO: 3705462015,
+      GHOSTWHITE: 4177068031,
+      GOLD: 4292280575,
+      GOLDENROD: 3668254975,
+      GRAY: 2155905279,
+      GREEN: 8388863,
+      GREENYELLOW: 2919182335,
+      GREY: 2155905279,
+      HONEYDEW: 4043305215,
+      HOTPINK: 4285117695,
+      INDIANRED: 3445382399,
+      INDIGO: 1258324735,
+      IVORY: 4294963455,
+      KHAKI: 4041641215,
+      LAVENDER: 3873897215,
+      LAVENDERBLUSH: 4293981695,
+      LAWNGREEN: 2096890111,
+      LEMONCHIFFON: 4294626815,
+      LIGHTBLUE: 2916673279,
+      LIGHTCORAL: 4034953471,
+      LIGHTCYAN: 3774873599,
+      LIGHTGOLDENRODYELLOW: 4210742015,
+      LIGHTGRAY: 3553874943,
+      LIGHTGREEN: 2431553791,
+      LIGHTGREY: 3553874943,
+      LIGHTPINK: 4290167295,
+      LIGHTSALMON: 4288707327,
+      LIGHTSEAGREEN: 548580095,
+      LIGHTSKYBLUE: 2278488831,
+      LIGHTSLATEGRAY: 2005441023,
+      LIGHTSLATEGREY: 2005441023,
+      LIGHTSTEELBLUE: 2965692159,
+      LIGHTYELLOW: 4294959359,
+      LIME: 16711935,
+      LIMEGREEN: 852308735,
+      LINEN: 4210091775,
+      MAGENTA: 4278255615,
+      MAROON: 2147483903,
+      MEDIUMAQUAMARINE: 1724754687,
+      MEDIUMBLUE: 52735,
+      MEDIUMORCHID: 3126187007,
+      MEDIUMPURPLE: 2473647103,
+      MEDIUMSEAGREEN: 1018393087,
+      MEDIUMSLATEBLUE: 2070474495,
+      MEDIUMSPRINGGREEN: 16423679,
+      MEDIUMTURQUOISE: 1221709055,
+      MEDIUMVIOLETRED: 3340076543,
+      MIDNIGHTBLUE: 421097727,
+      MINTCREAM: 4127193855,
+      MISTYROSE: 4293190143,
+      MOCCASIN: 4293178879,
+      NAVAJOWHITE: 4292783615,
+      NAVY: 33023,
+      OLDLACE: 4260751103,
+      OLIVE: 2155872511,
+      OLIVEDRAB: 1804477439,
+      ORANGE: 4289003775,
+      ORANGERED: 4282712319,
+      ORCHID: 3664828159,
+      PALEGOLDENROD: 4008225535,
+      PALEGREEN: 2566625535,
+      PALETURQUOISE: 2951671551,
+      PALEVIOLETRED: 3681588223,
+      PAPAYAWHIP: 4293907967,
+      PEACHPUFF: 4292524543,
+      PERU: 3448061951,
+      PINK: 4290825215,
+      PLUM: 3718307327,
+      POWDERBLUE: 2967529215,
+      PURPLE: 2147516671,
+      REBECCAPURPLE: 1714657791,
+      RED: 4278190335,
+      ROSYBROWN: 3163525119,
+      ROYALBLUE: 1097458175,
+      SADDLEBROWN: 2336560127,
+      SALMON: 4202722047,
+      SANDYBROWN: 4104413439,
+      SEAGREEN: 780883967,
+      SEASHELL: 4294307583,
+      SIENNA: 2689740287,
+      SILVER: 3233857791,
+      SKYBLUE: 2278484991,
+      SLATEBLUE: 1784335871,
+      SLATEGRAY: 1887473919,
+      SLATEGREY: 1887473919,
+      SNOW: 4294638335,
+      SPRINGGREEN: 16744447,
+      STEELBLUE: 1182971135,
+      TAN: 3535047935,
+      TEAL: 8421631,
+      THISTLE: 3636451583,
+      TOMATO: 4284696575,
+      TRANSPARENT: 0,
+      TURQUOISE: 1088475391,
+      VIOLET: 4001558271,
+      WHEAT: 4125012991,
+      WHITE: 4294967295,
+      WHITESMOKE: 4126537215,
+      YELLOW: 4294902015,
+      YELLOWGREEN: 2597139199
+    };
+    backgroundClip = {
+      name: "background-clip",
+      initialValue: "border-box",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return tokens.map(function(token) {
+          if (isIdentToken(token)) {
+            switch (token.value) {
+              case "padding-box":
+                return 1;
+              case "content-box":
+                return 2;
+            }
+          }
+          return 0;
+        });
+      }
+    };
+    backgroundColor = {
+      name: "background-color",
+      initialValue: "transparent",
+      prefix: false,
+      type: 3,
+      format: "color"
+    };
+    parseColorStop = function(context, args) {
+      var color2 = color$1.parse(context, args[0]);
+      var stop = args[1];
+      return stop && isLengthPercentage(stop) ? { color: color2, stop } : { color: color2, stop: null };
+    };
+    processColorStops = function(stops, lineLength) {
+      var first = stops[0];
+      var last = stops[stops.length - 1];
+      if (first.stop === null) {
+        first.stop = ZERO_LENGTH;
+      }
+      if (last.stop === null) {
+        last.stop = HUNDRED_PERCENT;
+      }
+      var processStops = [];
+      var previous = 0;
+      for (var i = 0; i < stops.length; i++) {
+        var stop_1 = stops[i].stop;
+        if (stop_1 !== null) {
+          var absoluteValue = getAbsoluteValue(stop_1, lineLength);
+          if (absoluteValue > previous) {
+            processStops.push(absoluteValue);
+          } else {
+            processStops.push(previous);
+          }
+          previous = absoluteValue;
+        } else {
+          processStops.push(null);
+        }
+      }
+      var gapBegin = null;
+      for (var i = 0; i < processStops.length; i++) {
+        var stop_2 = processStops[i];
+        if (stop_2 === null) {
+          if (gapBegin === null) {
+            gapBegin = i;
+          }
+        } else if (gapBegin !== null) {
+          var gapLength = i - gapBegin;
+          var beforeGap = processStops[gapBegin - 1];
+          var gapValue = (stop_2 - beforeGap) / (gapLength + 1);
+          for (var g = 1; g <= gapLength; g++) {
+            processStops[gapBegin + g - 1] = gapValue * g;
+          }
+          gapBegin = null;
+        }
+      }
+      return stops.map(function(_a, i2) {
+        var color2 = _a.color;
+        return { color: color2, stop: Math.max(Math.min(1, processStops[i2] / lineLength), 0) };
+      });
+    };
+    getAngleFromCorner = function(corner, width, height) {
+      var centerX = width / 2;
+      var centerY = height / 2;
+      var x = getAbsoluteValue(corner[0], width) - centerX;
+      var y = centerY - getAbsoluteValue(corner[1], height);
+      return (Math.atan2(y, x) + Math.PI * 2) % (Math.PI * 2);
+    };
+    calculateGradientDirection = function(angle2, width, height) {
+      var radian = typeof angle2 === "number" ? angle2 : getAngleFromCorner(angle2, width, height);
+      var lineLength = Math.abs(width * Math.sin(radian)) + Math.abs(height * Math.cos(radian));
+      var halfWidth = width / 2;
+      var halfHeight = height / 2;
+      var halfLineLength = lineLength / 2;
+      var yDiff = Math.sin(radian - Math.PI / 2) * halfLineLength;
+      var xDiff = Math.cos(radian - Math.PI / 2) * halfLineLength;
+      return [lineLength, halfWidth - xDiff, halfWidth + xDiff, halfHeight - yDiff, halfHeight + yDiff];
+    };
+    distance = function(a2, b) {
+      return Math.sqrt(a2 * a2 + b * b);
+    };
+    findCorner = function(width, height, x, y, closest) {
+      var corners = [
+        [0, 0],
+        [0, height],
+        [width, 0],
+        [width, height]
+      ];
+      return corners.reduce(function(stat, corner) {
+        var cx = corner[0], cy = corner[1];
+        var d = distance(x - cx, y - cy);
+        if (closest ? d < stat.optimumDistance : d > stat.optimumDistance) {
+          return {
+            optimumCorner: corner,
+            optimumDistance: d
+          };
+        }
+        return stat;
+      }, {
+        optimumDistance: closest ? Infinity : -Infinity,
+        optimumCorner: null
+      }).optimumCorner;
+    };
+    calculateRadius = function(gradient, x, y, width, height) {
+      var rx = 0;
+      var ry = 0;
+      switch (gradient.size) {
+        case 0:
+          if (gradient.shape === 0) {
+            rx = ry = Math.min(Math.abs(x), Math.abs(x - width), Math.abs(y), Math.abs(y - height));
+          } else if (gradient.shape === 1) {
+            rx = Math.min(Math.abs(x), Math.abs(x - width));
+            ry = Math.min(Math.abs(y), Math.abs(y - height));
+          }
+          break;
+        case 2:
+          if (gradient.shape === 0) {
+            rx = ry = Math.min(distance(x, y), distance(x, y - height), distance(x - width, y), distance(x - width, y - height));
+          } else if (gradient.shape === 1) {
+            var c = Math.min(Math.abs(y), Math.abs(y - height)) / Math.min(Math.abs(x), Math.abs(x - width));
+            var _a = findCorner(width, height, x, y, true), cx = _a[0], cy = _a[1];
+            rx = distance(cx - x, (cy - y) / c);
+            ry = c * rx;
+          }
+          break;
+        case 1:
+          if (gradient.shape === 0) {
+            rx = ry = Math.max(Math.abs(x), Math.abs(x - width), Math.abs(y), Math.abs(y - height));
+          } else if (gradient.shape === 1) {
+            rx = Math.max(Math.abs(x), Math.abs(x - width));
+            ry = Math.max(Math.abs(y), Math.abs(y - height));
+          }
+          break;
+        case 3:
+          if (gradient.shape === 0) {
+            rx = ry = Math.max(distance(x, y), distance(x, y - height), distance(x - width, y), distance(x - width, y - height));
+          } else if (gradient.shape === 1) {
+            var c = Math.max(Math.abs(y), Math.abs(y - height)) / Math.max(Math.abs(x), Math.abs(x - width));
+            var _b = findCorner(width, height, x, y, false), cx = _b[0], cy = _b[1];
+            rx = distance(cx - x, (cy - y) / c);
+            ry = c * rx;
+          }
+          break;
+      }
+      if (Array.isArray(gradient.size)) {
+        rx = getAbsoluteValue(gradient.size[0], width);
+        ry = gradient.size.length === 2 ? getAbsoluteValue(gradient.size[1], height) : rx;
+      }
+      return [rx, ry];
+    };
+    linearGradient = function(context, tokens) {
+      var angle$1 = deg(180);
+      var stops = [];
+      parseFunctionArgs(tokens).forEach(function(arg, i) {
+        if (i === 0) {
+          var firstToken = arg[0];
+          if (firstToken.type === 20 && firstToken.value === "to") {
+            angle$1 = parseNamedSide(arg);
+            return;
+          } else if (isAngle(firstToken)) {
+            angle$1 = angle.parse(context, firstToken);
+            return;
+          }
+        }
+        var colorStop = parseColorStop(context, arg);
+        stops.push(colorStop);
+      });
+      return {
+        angle: angle$1,
+        stops,
+        type: 1
+        /* LINEAR_GRADIENT */
+      };
+    };
+    prefixLinearGradient = function(context, tokens) {
+      var angle$1 = deg(180);
+      var stops = [];
+      parseFunctionArgs(tokens).forEach(function(arg, i) {
+        if (i === 0) {
+          var firstToken = arg[0];
+          if (firstToken.type === 20 && ["top", "left", "right", "bottom"].indexOf(firstToken.value) !== -1) {
+            angle$1 = parseNamedSide(arg);
+            return;
+          } else if (isAngle(firstToken)) {
+            angle$1 = (angle.parse(context, firstToken) + deg(270)) % deg(360);
+            return;
+          }
+        }
+        var colorStop = parseColorStop(context, arg);
+        stops.push(colorStop);
+      });
+      return {
+        angle: angle$1,
+        stops,
+        type: 1
+        /* LINEAR_GRADIENT */
+      };
+    };
+    webkitGradient = function(context, tokens) {
+      var angle2 = deg(180);
+      var stops = [];
+      var type = 1;
+      var shape = 0;
+      var size = 3;
+      var position2 = [];
+      parseFunctionArgs(tokens).forEach(function(arg, i) {
+        var firstToken = arg[0];
+        if (i === 0) {
+          if (isIdentToken(firstToken) && firstToken.value === "linear") {
+            type = 1;
+            return;
+          } else if (isIdentToken(firstToken) && firstToken.value === "radial") {
+            type = 2;
+            return;
+          }
+        }
+        if (firstToken.type === 18) {
+          if (firstToken.name === "from") {
+            var color2 = color$1.parse(context, firstToken.values[0]);
+            stops.push({ stop: ZERO_LENGTH, color: color2 });
+          } else if (firstToken.name === "to") {
+            var color2 = color$1.parse(context, firstToken.values[0]);
+            stops.push({ stop: HUNDRED_PERCENT, color: color2 });
+          } else if (firstToken.name === "color-stop") {
+            var values = firstToken.values.filter(nonFunctionArgSeparator);
+            if (values.length === 2) {
+              var color2 = color$1.parse(context, values[1]);
+              var stop_1 = values[0];
+              if (isNumberToken(stop_1)) {
+                stops.push({
+                  stop: { type: 16, number: stop_1.number * 100, flags: stop_1.flags },
+                  color: color2
+                });
+              }
+            }
+          }
+        }
+      });
+      return type === 1 ? {
+        angle: (angle2 + deg(180)) % deg(360),
+        stops,
+        type
+      } : { size, shape, stops, position: position2, type };
+    };
+    CLOSEST_SIDE = "closest-side";
+    FARTHEST_SIDE = "farthest-side";
+    CLOSEST_CORNER = "closest-corner";
+    FARTHEST_CORNER = "farthest-corner";
+    CIRCLE = "circle";
+    ELLIPSE = "ellipse";
+    COVER = "cover";
+    CONTAIN = "contain";
+    radialGradient = function(context, tokens) {
+      var shape = 0;
+      var size = 3;
+      var stops = [];
+      var position2 = [];
+      parseFunctionArgs(tokens).forEach(function(arg, i) {
+        var isColorStop = true;
+        if (i === 0) {
+          var isAtPosition_1 = false;
+          isColorStop = arg.reduce(function(acc, token) {
+            if (isAtPosition_1) {
+              if (isIdentToken(token)) {
+                switch (token.value) {
+                  case "center":
+                    position2.push(FIFTY_PERCENT);
+                    return acc;
+                  case "top":
+                  case "left":
+                    position2.push(ZERO_LENGTH);
+                    return acc;
+                  case "right":
+                  case "bottom":
+                    position2.push(HUNDRED_PERCENT);
+                    return acc;
+                }
+              } else if (isLengthPercentage(token) || isLength(token)) {
+                position2.push(token);
+              }
+            } else if (isIdentToken(token)) {
+              switch (token.value) {
+                case CIRCLE:
+                  shape = 0;
+                  return false;
+                case ELLIPSE:
+                  shape = 1;
+                  return false;
+                case "at":
+                  isAtPosition_1 = true;
+                  return false;
+                case CLOSEST_SIDE:
+                  size = 0;
+                  return false;
+                case COVER:
+                case FARTHEST_SIDE:
+                  size = 1;
+                  return false;
+                case CONTAIN:
+                case CLOSEST_CORNER:
+                  size = 2;
+                  return false;
+                case FARTHEST_CORNER:
+                  size = 3;
+                  return false;
+              }
+            } else if (isLength(token) || isLengthPercentage(token)) {
+              if (!Array.isArray(size)) {
+                size = [];
+              }
+              size.push(token);
+              return false;
+            }
+            return acc;
+          }, isColorStop);
+        }
+        if (isColorStop) {
+          var colorStop = parseColorStop(context, arg);
+          stops.push(colorStop);
+        }
+      });
+      return {
+        size,
+        shape,
+        stops,
+        position: position2,
+        type: 2
+        /* RADIAL_GRADIENT */
+      };
+    };
+    prefixRadialGradient = function(context, tokens) {
+      var shape = 0;
+      var size = 3;
+      var stops = [];
+      var position2 = [];
+      parseFunctionArgs(tokens).forEach(function(arg, i) {
+        var isColorStop = true;
+        if (i === 0) {
+          isColorStop = arg.reduce(function(acc, token) {
+            if (isIdentToken(token)) {
+              switch (token.value) {
+                case "center":
+                  position2.push(FIFTY_PERCENT);
+                  return false;
+                case "top":
+                case "left":
+                  position2.push(ZERO_LENGTH);
+                  return false;
+                case "right":
+                case "bottom":
+                  position2.push(HUNDRED_PERCENT);
+                  return false;
+              }
+            } else if (isLengthPercentage(token) || isLength(token)) {
+              position2.push(token);
+              return false;
+            }
+            return acc;
+          }, isColorStop);
+        } else if (i === 1) {
+          isColorStop = arg.reduce(function(acc, token) {
+            if (isIdentToken(token)) {
+              switch (token.value) {
+                case CIRCLE:
+                  shape = 0;
+                  return false;
+                case ELLIPSE:
+                  shape = 1;
+                  return false;
+                case CONTAIN:
+                case CLOSEST_SIDE:
+                  size = 0;
+                  return false;
+                case FARTHEST_SIDE:
+                  size = 1;
+                  return false;
+                case CLOSEST_CORNER:
+                  size = 2;
+                  return false;
+                case COVER:
+                case FARTHEST_CORNER:
+                  size = 3;
+                  return false;
+              }
+            } else if (isLength(token) || isLengthPercentage(token)) {
+              if (!Array.isArray(size)) {
+                size = [];
+              }
+              size.push(token);
+              return false;
+            }
+            return acc;
+          }, isColorStop);
+        }
+        if (isColorStop) {
+          var colorStop = parseColorStop(context, arg);
+          stops.push(colorStop);
+        }
+      });
+      return {
+        size,
+        shape,
+        stops,
+        position: position2,
+        type: 2
+        /* RADIAL_GRADIENT */
+      };
+    };
+    isLinearGradient = function(background) {
+      return background.type === 1;
+    };
+    isRadialGradient = function(background) {
+      return background.type === 2;
+    };
+    image = {
+      name: "image",
+      parse: function(context, value) {
+        if (value.type === 22) {
+          var image_1 = {
+            url: value.value,
+            type: 0
+            /* URL */
+          };
+          context.cache.addImage(value.value);
+          return image_1;
+        }
+        if (value.type === 18) {
+          var imageFunction = SUPPORTED_IMAGE_FUNCTIONS[value.name];
+          if (typeof imageFunction === "undefined") {
+            throw new Error('Attempting to parse an unsupported image function "' + value.name + '"');
+          }
+          return imageFunction(context, value.values);
+        }
+        throw new Error("Unsupported image type " + value.type);
+      }
+    };
+    SUPPORTED_IMAGE_FUNCTIONS = {
+      "linear-gradient": linearGradient,
+      "-moz-linear-gradient": prefixLinearGradient,
+      "-ms-linear-gradient": prefixLinearGradient,
+      "-o-linear-gradient": prefixLinearGradient,
+      "-webkit-linear-gradient": prefixLinearGradient,
+      "radial-gradient": radialGradient,
+      "-moz-radial-gradient": prefixRadialGradient,
+      "-ms-radial-gradient": prefixRadialGradient,
+      "-o-radial-gradient": prefixRadialGradient,
+      "-webkit-radial-gradient": prefixRadialGradient,
+      "-webkit-gradient": webkitGradient
+    };
+    backgroundImage = {
+      name: "background-image",
+      initialValue: "none",
+      type: 1,
+      prefix: false,
+      parse: function(context, tokens) {
+        if (tokens.length === 0) {
+          return [];
+        }
+        var first = tokens[0];
+        if (first.type === 20 && first.value === "none") {
+          return [];
+        }
+        return tokens.filter(function(value) {
+          return nonFunctionArgSeparator(value) && isSupportedImage(value);
+        }).map(function(value) {
+          return image.parse(context, value);
+        });
+      }
+    };
+    backgroundOrigin = {
+      name: "background-origin",
+      initialValue: "border-box",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return tokens.map(function(token) {
+          if (isIdentToken(token)) {
+            switch (token.value) {
+              case "padding-box":
+                return 1;
+              case "content-box":
+                return 2;
+            }
+          }
+          return 0;
+        });
+      }
+    };
+    backgroundPosition = {
+      name: "background-position",
+      initialValue: "0% 0%",
+      type: 1,
+      prefix: false,
+      parse: function(_context, tokens) {
+        return parseFunctionArgs(tokens).map(function(values) {
+          return values.filter(isLengthPercentage);
+        }).map(parseLengthPercentageTuple);
+      }
+    };
+    backgroundRepeat = {
+      name: "background-repeat",
+      initialValue: "repeat",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return parseFunctionArgs(tokens).map(function(values) {
+          return values.filter(isIdentToken).map(function(token) {
+            return token.value;
+          }).join(" ");
+        }).map(parseBackgroundRepeat);
+      }
+    };
+    parseBackgroundRepeat = function(value) {
+      switch (value) {
+        case "no-repeat":
+          return 1;
+        case "repeat-x":
+        case "repeat no-repeat":
+          return 2;
+        case "repeat-y":
+        case "no-repeat repeat":
+          return 3;
+        case "repeat":
+        default:
+          return 0;
+      }
+    };
+    (function(BACKGROUND_SIZE2) {
+      BACKGROUND_SIZE2["AUTO"] = "auto";
+      BACKGROUND_SIZE2["CONTAIN"] = "contain";
+      BACKGROUND_SIZE2["COVER"] = "cover";
+    })(BACKGROUND_SIZE || (BACKGROUND_SIZE = {}));
+    backgroundSize = {
+      name: "background-size",
+      initialValue: "0",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return parseFunctionArgs(tokens).map(function(values) {
+          return values.filter(isBackgroundSizeInfoToken);
+        });
+      }
+    };
+    isBackgroundSizeInfoToken = function(value) {
+      return isIdentToken(value) || isLengthPercentage(value);
+    };
+    borderColorForSide = function(side) {
+      return {
+        name: "border-" + side + "-color",
+        initialValue: "transparent",
+        prefix: false,
+        type: 3,
+        format: "color"
+      };
+    };
+    borderTopColor = borderColorForSide("top");
+    borderRightColor = borderColorForSide("right");
+    borderBottomColor = borderColorForSide("bottom");
+    borderLeftColor = borderColorForSide("left");
+    borderRadiusForSide = function(side) {
+      return {
+        name: "border-radius-" + side,
+        initialValue: "0 0",
+        prefix: false,
+        type: 1,
+        parse: function(_context, tokens) {
+          return parseLengthPercentageTuple(tokens.filter(isLengthPercentage));
+        }
+      };
+    };
+    borderTopLeftRadius = borderRadiusForSide("top-left");
+    borderTopRightRadius = borderRadiusForSide("top-right");
+    borderBottomRightRadius = borderRadiusForSide("bottom-right");
+    borderBottomLeftRadius = borderRadiusForSide("bottom-left");
+    borderStyleForSide = function(side) {
+      return {
+        name: "border-" + side + "-style",
+        initialValue: "solid",
+        prefix: false,
+        type: 2,
+        parse: function(_context, style) {
+          switch (style) {
+            case "none":
+              return 0;
+            case "dashed":
+              return 2;
+            case "dotted":
+              return 3;
+            case "double":
+              return 4;
+          }
+          return 1;
+        }
+      };
+    };
+    borderTopStyle = borderStyleForSide("top");
+    borderRightStyle = borderStyleForSide("right");
+    borderBottomStyle = borderStyleForSide("bottom");
+    borderLeftStyle = borderStyleForSide("left");
+    borderWidthForSide = function(side) {
+      return {
+        name: "border-" + side + "-width",
+        initialValue: "0",
+        type: 0,
+        prefix: false,
+        parse: function(_context, token) {
+          if (isDimensionToken(token)) {
+            return token.number;
+          }
+          return 0;
+        }
+      };
+    };
+    borderTopWidth = borderWidthForSide("top");
+    borderRightWidth = borderWidthForSide("right");
+    borderBottomWidth = borderWidthForSide("bottom");
+    borderLeftWidth = borderWidthForSide("left");
+    color = {
+      name: "color",
+      initialValue: "transparent",
+      prefix: false,
+      type: 3,
+      format: "color"
+    };
+    direction = {
+      name: "direction",
+      initialValue: "ltr",
+      prefix: false,
+      type: 2,
+      parse: function(_context, direction2) {
+        switch (direction2) {
+          case "rtl":
+            return 1;
+          case "ltr":
+          default:
+            return 0;
+        }
+      }
+    };
+    display = {
+      name: "display",
+      initialValue: "inline-block",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return tokens.filter(isIdentToken).reduce(
+          function(bit, token) {
+            return bit | parseDisplayValue(token.value);
+          },
+          0
+          /* NONE */
+        );
+      }
+    };
+    parseDisplayValue = function(display2) {
+      switch (display2) {
+        case "block":
+        case "-webkit-box":
+          return 2;
+        case "inline":
+          return 4;
+        case "run-in":
+          return 8;
+        case "flow":
+          return 16;
+        case "flow-root":
+          return 32;
+        case "table":
+          return 64;
+        case "flex":
+        case "-webkit-flex":
+          return 128;
+        case "grid":
+        case "-ms-grid":
+          return 256;
+        case "ruby":
+          return 512;
+        case "subgrid":
+          return 1024;
+        case "list-item":
+          return 2048;
+        case "table-row-group":
+          return 4096;
+        case "table-header-group":
+          return 8192;
+        case "table-footer-group":
+          return 16384;
+        case "table-row":
+          return 32768;
+        case "table-cell":
+          return 65536;
+        case "table-column-group":
+          return 131072;
+        case "table-column":
+          return 262144;
+        case "table-caption":
+          return 524288;
+        case "ruby-base":
+          return 1048576;
+        case "ruby-text":
+          return 2097152;
+        case "ruby-base-container":
+          return 4194304;
+        case "ruby-text-container":
+          return 8388608;
+        case "contents":
+          return 16777216;
+        case "inline-block":
+          return 33554432;
+        case "inline-list-item":
+          return 67108864;
+        case "inline-table":
+          return 134217728;
+        case "inline-flex":
+          return 268435456;
+        case "inline-grid":
+          return 536870912;
+      }
+      return 0;
+    };
+    float = {
+      name: "float",
+      initialValue: "none",
+      prefix: false,
+      type: 2,
+      parse: function(_context, float2) {
+        switch (float2) {
+          case "left":
+            return 1;
+          case "right":
+            return 2;
+          case "inline-start":
+            return 3;
+          case "inline-end":
+            return 4;
+        }
+        return 0;
+      }
+    };
+    letterSpacing = {
+      name: "letter-spacing",
+      initialValue: "0",
+      prefix: false,
+      type: 0,
+      parse: function(_context, token) {
+        if (token.type === 20 && token.value === "normal") {
+          return 0;
+        }
+        if (token.type === 17) {
+          return token.number;
+        }
+        if (token.type === 15) {
+          return token.number;
+        }
+        return 0;
+      }
+    };
+    (function(LINE_BREAK2) {
+      LINE_BREAK2["NORMAL"] = "normal";
+      LINE_BREAK2["STRICT"] = "strict";
+    })(LINE_BREAK || (LINE_BREAK = {}));
+    lineBreak = {
+      name: "line-break",
+      initialValue: "normal",
+      prefix: false,
+      type: 2,
+      parse: function(_context, lineBreak2) {
+        switch (lineBreak2) {
+          case "strict":
+            return LINE_BREAK.STRICT;
+          case "normal":
+          default:
+            return LINE_BREAK.NORMAL;
+        }
+      }
+    };
+    lineHeight = {
+      name: "line-height",
+      initialValue: "normal",
+      prefix: false,
+      type: 4
+      /* TOKEN_VALUE */
+    };
+    computeLineHeight = function(token, fontSize2) {
+      if (isIdentToken(token) && token.value === "normal") {
+        return 1.2 * fontSize2;
+      } else if (token.type === 17) {
+        return fontSize2 * token.number;
+      } else if (isLengthPercentage(token)) {
+        return getAbsoluteValue(token, fontSize2);
+      }
+      return fontSize2;
+    };
+    listStyleImage = {
+      name: "list-style-image",
+      initialValue: "none",
+      type: 0,
+      prefix: false,
+      parse: function(context, token) {
+        if (token.type === 20 && token.value === "none") {
+          return null;
+        }
+        return image.parse(context, token);
+      }
+    };
+    listStylePosition = {
+      name: "list-style-position",
+      initialValue: "outside",
+      prefix: false,
+      type: 2,
+      parse: function(_context, position2) {
+        switch (position2) {
+          case "inside":
+            return 0;
+          case "outside":
+          default:
+            return 1;
+        }
+      }
+    };
+    listStyleType = {
+      name: "list-style-type",
+      initialValue: "none",
+      prefix: false,
+      type: 2,
+      parse: function(_context, type) {
+        switch (type) {
+          case "disc":
+            return 0;
+          case "circle":
+            return 1;
+          case "square":
+            return 2;
+          case "decimal":
+            return 3;
+          case "cjk-decimal":
+            return 4;
+          case "decimal-leading-zero":
+            return 5;
+          case "lower-roman":
+            return 6;
+          case "upper-roman":
+            return 7;
+          case "lower-greek":
+            return 8;
+          case "lower-alpha":
+            return 9;
+          case "upper-alpha":
+            return 10;
+          case "arabic-indic":
+            return 11;
+          case "armenian":
+            return 12;
+          case "bengali":
+            return 13;
+          case "cambodian":
+            return 14;
+          case "cjk-earthly-branch":
+            return 15;
+          case "cjk-heavenly-stem":
+            return 16;
+          case "cjk-ideographic":
+            return 17;
+          case "devanagari":
+            return 18;
+          case "ethiopic-numeric":
+            return 19;
+          case "georgian":
+            return 20;
+          case "gujarati":
+            return 21;
+          case "gurmukhi":
+            return 22;
+          case "hebrew":
+            return 22;
+          case "hiragana":
+            return 23;
+          case "hiragana-iroha":
+            return 24;
+          case "japanese-formal":
+            return 25;
+          case "japanese-informal":
+            return 26;
+          case "kannada":
+            return 27;
+          case "katakana":
+            return 28;
+          case "katakana-iroha":
+            return 29;
+          case "khmer":
+            return 30;
+          case "korean-hangul-formal":
+            return 31;
+          case "korean-hanja-formal":
+            return 32;
+          case "korean-hanja-informal":
+            return 33;
+          case "lao":
+            return 34;
+          case "lower-armenian":
+            return 35;
+          case "malayalam":
+            return 36;
+          case "mongolian":
+            return 37;
+          case "myanmar":
+            return 38;
+          case "oriya":
+            return 39;
+          case "persian":
+            return 40;
+          case "simp-chinese-formal":
+            return 41;
+          case "simp-chinese-informal":
+            return 42;
+          case "tamil":
+            return 43;
+          case "telugu":
+            return 44;
+          case "thai":
+            return 45;
+          case "tibetan":
+            return 46;
+          case "trad-chinese-formal":
+            return 47;
+          case "trad-chinese-informal":
+            return 48;
+          case "upper-armenian":
+            return 49;
+          case "disclosure-open":
+            return 50;
+          case "disclosure-closed":
+            return 51;
+          case "none":
+          default:
+            return -1;
+        }
+      }
+    };
+    marginForSide = function(side) {
+      return {
+        name: "margin-" + side,
+        initialValue: "0",
+        prefix: false,
+        type: 4
+        /* TOKEN_VALUE */
+      };
+    };
+    marginTop = marginForSide("top");
+    marginRight = marginForSide("right");
+    marginBottom = marginForSide("bottom");
+    marginLeft = marginForSide("left");
+    overflow = {
+      name: "overflow",
+      initialValue: "visible",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return tokens.filter(isIdentToken).map(function(overflow2) {
+          switch (overflow2.value) {
+            case "hidden":
+              return 1;
+            case "scroll":
+              return 2;
+            case "clip":
+              return 3;
+            case "auto":
+              return 4;
+            case "visible":
+            default:
+              return 0;
+          }
+        });
+      }
+    };
+    overflowWrap = {
+      name: "overflow-wrap",
+      initialValue: "normal",
+      prefix: false,
+      type: 2,
+      parse: function(_context, overflow2) {
+        switch (overflow2) {
+          case "break-word":
+            return "break-word";
+          case "normal":
+          default:
+            return "normal";
+        }
+      }
+    };
+    paddingForSide = function(side) {
+      return {
+        name: "padding-" + side,
+        initialValue: "0",
+        prefix: false,
+        type: 3,
+        format: "length-percentage"
+      };
+    };
+    paddingTop = paddingForSide("top");
+    paddingRight = paddingForSide("right");
+    paddingBottom = paddingForSide("bottom");
+    paddingLeft = paddingForSide("left");
+    textAlign = {
+      name: "text-align",
+      initialValue: "left",
+      prefix: false,
+      type: 2,
+      parse: function(_context, textAlign2) {
+        switch (textAlign2) {
+          case "right":
+            return 2;
+          case "center":
+          case "justify":
+            return 1;
+          case "left":
+          default:
+            return 0;
+        }
+      }
+    };
+    position = {
+      name: "position",
+      initialValue: "static",
+      prefix: false,
+      type: 2,
+      parse: function(_context, position2) {
+        switch (position2) {
+          case "relative":
+            return 1;
+          case "absolute":
+            return 2;
+          case "fixed":
+            return 3;
+          case "sticky":
+            return 4;
+        }
+        return 0;
+      }
+    };
+    textShadow = {
+      name: "text-shadow",
+      initialValue: "none",
+      type: 1,
+      prefix: false,
+      parse: function(context, tokens) {
+        if (tokens.length === 1 && isIdentWithValue(tokens[0], "none")) {
+          return [];
+        }
+        return parseFunctionArgs(tokens).map(function(values) {
+          var shadow = {
+            color: COLORS.TRANSPARENT,
+            offsetX: ZERO_LENGTH,
+            offsetY: ZERO_LENGTH,
+            blur: ZERO_LENGTH
+          };
+          var c = 0;
+          for (var i = 0; i < values.length; i++) {
+            var token = values[i];
+            if (isLength(token)) {
+              if (c === 0) {
+                shadow.offsetX = token;
+              } else if (c === 1) {
+                shadow.offsetY = token;
+              } else {
+                shadow.blur = token;
+              }
+              c++;
+            } else {
+              shadow.color = color$1.parse(context, token);
+            }
+          }
+          return shadow;
+        });
+      }
+    };
+    textTransform = {
+      name: "text-transform",
+      initialValue: "none",
+      prefix: false,
+      type: 2,
+      parse: function(_context, textTransform2) {
+        switch (textTransform2) {
+          case "uppercase":
+            return 2;
+          case "lowercase":
+            return 1;
+          case "capitalize":
+            return 3;
+        }
+        return 0;
+      }
+    };
+    transform$1 = {
+      name: "transform",
+      initialValue: "none",
+      prefix: true,
+      type: 0,
+      parse: function(_context, token) {
+        if (token.type === 20 && token.value === "none") {
+          return null;
+        }
+        if (token.type === 18) {
+          var transformFunction = SUPPORTED_TRANSFORM_FUNCTIONS[token.name];
+          if (typeof transformFunction === "undefined") {
+            throw new Error('Attempting to parse an unsupported transform function "' + token.name + '"');
+          }
+          return transformFunction(token.values);
+        }
+        return null;
+      }
+    };
+    matrix = function(args) {
+      var values = args.filter(function(arg) {
+        return arg.type === 17;
+      }).map(function(arg) {
+        return arg.number;
+      });
+      return values.length === 6 ? values : null;
+    };
+    matrix3d = function(args) {
+      var values = args.filter(function(arg) {
+        return arg.type === 17;
+      }).map(function(arg) {
+        return arg.number;
+      });
+      var a1 = values[0], b1 = values[1];
+      values[2];
+      values[3];
+      var a2 = values[4], b2 = values[5];
+      values[6];
+      values[7];
+      values[8];
+      values[9];
+      values[10];
+      values[11];
+      var a4 = values[12], b4 = values[13];
+      values[14];
+      values[15];
+      return values.length === 16 ? [a1, b1, a2, b2, a4, b4] : null;
+    };
+    SUPPORTED_TRANSFORM_FUNCTIONS = {
+      matrix,
+      matrix3d
+    };
+    DEFAULT_VALUE = {
+      type: 16,
+      number: 50,
+      flags: FLAG_INTEGER
+    };
+    DEFAULT = [DEFAULT_VALUE, DEFAULT_VALUE];
+    transformOrigin = {
+      name: "transform-origin",
+      initialValue: "50% 50%",
+      prefix: true,
+      type: 1,
+      parse: function(_context, tokens) {
+        var origins = tokens.filter(isLengthPercentage);
+        if (origins.length !== 2) {
+          return DEFAULT;
+        }
+        return [origins[0], origins[1]];
+      }
+    };
+    visibility = {
+      name: "visible",
+      initialValue: "none",
+      prefix: false,
+      type: 2,
+      parse: function(_context, visibility2) {
+        switch (visibility2) {
+          case "hidden":
+            return 1;
+          case "collapse":
+            return 2;
+          case "visible":
+          default:
+            return 0;
+        }
+      }
+    };
+    (function(WORD_BREAK2) {
+      WORD_BREAK2["NORMAL"] = "normal";
+      WORD_BREAK2["BREAK_ALL"] = "break-all";
+      WORD_BREAK2["KEEP_ALL"] = "keep-all";
+    })(WORD_BREAK || (WORD_BREAK = {}));
+    wordBreak = {
+      name: "word-break",
+      initialValue: "normal",
+      prefix: false,
+      type: 2,
+      parse: function(_context, wordBreak2) {
+        switch (wordBreak2) {
+          case "break-all":
+            return WORD_BREAK.BREAK_ALL;
+          case "keep-all":
+            return WORD_BREAK.KEEP_ALL;
+          case "normal":
+          default:
+            return WORD_BREAK.NORMAL;
+        }
+      }
+    };
+    zIndex = {
+      name: "z-index",
+      initialValue: "auto",
+      prefix: false,
+      type: 0,
+      parse: function(_context, token) {
+        if (token.type === 20) {
+          return { auto: true, order: 0 };
+        }
+        if (isNumberToken(token)) {
+          return { auto: false, order: token.number };
+        }
+        throw new Error("Invalid z-index number parsed");
+      }
+    };
+    time = {
+      name: "time",
+      parse: function(_context, value) {
+        if (value.type === 15) {
+          switch (value.unit.toLowerCase()) {
+            case "s":
+              return 1e3 * value.number;
+            case "ms":
+              return value.number;
+          }
+        }
+        throw new Error("Unsupported time type");
+      }
+    };
+    opacity = {
+      name: "opacity",
+      initialValue: "1",
+      type: 0,
+      prefix: false,
+      parse: function(_context, token) {
+        if (isNumberToken(token)) {
+          return token.number;
+        }
+        return 1;
+      }
+    };
+    textDecorationColor = {
+      name: "text-decoration-color",
+      initialValue: "transparent",
+      prefix: false,
+      type: 3,
+      format: "color"
+    };
+    textDecorationLine = {
+      name: "text-decoration-line",
+      initialValue: "none",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        return tokens.filter(isIdentToken).map(function(token) {
+          switch (token.value) {
+            case "underline":
+              return 1;
+            case "overline":
+              return 2;
+            case "line-through":
+              return 3;
+            case "none":
+              return 4;
+          }
+          return 0;
+        }).filter(function(line) {
+          return line !== 0;
+        });
+      }
+    };
+    fontFamily = {
+      name: "font-family",
+      initialValue: "",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        var accumulator = [];
+        var results = [];
+        tokens.forEach(function(token) {
+          switch (token.type) {
+            case 20:
+            case 0:
+              accumulator.push(token.value);
+              break;
+            case 17:
+              accumulator.push(token.number.toString());
+              break;
+            case 4:
+              results.push(accumulator.join(" "));
+              accumulator.length = 0;
+              break;
+          }
+        });
+        if (accumulator.length) {
+          results.push(accumulator.join(" "));
+        }
+        return results.map(function(result) {
+          return result.indexOf(" ") === -1 ? result : "'" + result + "'";
+        });
+      }
+    };
+    fontSize = {
+      name: "font-size",
+      initialValue: "0",
+      prefix: false,
+      type: 3,
+      format: "length"
+    };
+    fontWeight = {
+      name: "font-weight",
+      initialValue: "normal",
+      type: 0,
+      prefix: false,
+      parse: function(_context, token) {
+        if (isNumberToken(token)) {
+          return token.number;
+        }
+        if (isIdentToken(token)) {
+          switch (token.value) {
+            case "bold":
+              return 700;
+            case "normal":
+            default:
+              return 400;
+          }
+        }
+        return 400;
+      }
+    };
+    fontVariant = {
+      name: "font-variant",
+      initialValue: "none",
+      type: 1,
+      prefix: false,
+      parse: function(_context, tokens) {
+        return tokens.filter(isIdentToken).map(function(token) {
+          return token.value;
+        });
+      }
+    };
+    fontStyle = {
+      name: "font-style",
+      initialValue: "normal",
+      prefix: false,
+      type: 2,
+      parse: function(_context, overflow2) {
+        switch (overflow2) {
+          case "oblique":
+            return "oblique";
+          case "italic":
+            return "italic";
+          case "normal":
+          default:
+            return "normal";
+        }
+      }
+    };
+    contains = function(bit, value) {
+      return (bit & value) !== 0;
+    };
+    content = {
+      name: "content",
+      initialValue: "none",
+      type: 1,
+      prefix: false,
+      parse: function(_context, tokens) {
+        if (tokens.length === 0) {
+          return [];
+        }
+        var first = tokens[0];
+        if (first.type === 20 && first.value === "none") {
+          return [];
+        }
+        return tokens;
+      }
+    };
+    counterIncrement = {
+      name: "counter-increment",
+      initialValue: "none",
+      prefix: true,
+      type: 1,
+      parse: function(_context, tokens) {
+        if (tokens.length === 0) {
+          return null;
+        }
+        var first = tokens[0];
+        if (first.type === 20 && first.value === "none") {
+          return null;
+        }
+        var increments = [];
+        var filtered = tokens.filter(nonWhiteSpace);
+        for (var i = 0; i < filtered.length; i++) {
+          var counter = filtered[i];
+          var next = filtered[i + 1];
+          if (counter.type === 20) {
+            var increment = next && isNumberToken(next) ? next.number : 1;
+            increments.push({ counter: counter.value, increment });
+          }
+        }
+        return increments;
+      }
+    };
+    counterReset = {
+      name: "counter-reset",
+      initialValue: "none",
+      prefix: true,
+      type: 1,
+      parse: function(_context, tokens) {
+        if (tokens.length === 0) {
+          return [];
+        }
+        var resets = [];
+        var filtered = tokens.filter(nonWhiteSpace);
+        for (var i = 0; i < filtered.length; i++) {
+          var counter = filtered[i];
+          var next = filtered[i + 1];
+          if (isIdentToken(counter) && counter.value !== "none") {
+            var reset = next && isNumberToken(next) ? next.number : 0;
+            resets.push({ counter: counter.value, reset });
+          }
+        }
+        return resets;
+      }
+    };
+    duration = {
+      name: "duration",
+      initialValue: "0s",
+      prefix: false,
+      type: 1,
+      parse: function(context, tokens) {
+        return tokens.filter(isDimensionToken).map(function(token) {
+          return time.parse(context, token);
+        });
+      }
+    };
+    quotes = {
+      name: "quotes",
+      initialValue: "none",
+      prefix: true,
+      type: 1,
+      parse: function(_context, tokens) {
+        if (tokens.length === 0) {
+          return null;
+        }
+        var first = tokens[0];
+        if (first.type === 20 && first.value === "none") {
+          return null;
+        }
+        var quotes2 = [];
+        var filtered = tokens.filter(isStringToken);
+        if (filtered.length % 2 !== 0) {
+          return null;
+        }
+        for (var i = 0; i < filtered.length; i += 2) {
+          var open_1 = filtered[i].value;
+          var close_1 = filtered[i + 1].value;
+          quotes2.push({ open: open_1, close: close_1 });
+        }
+        return quotes2;
+      }
+    };
+    getQuote = function(quotes2, depth, open) {
+      if (!quotes2) {
+        return "";
+      }
+      var quote = quotes2[Math.min(depth, quotes2.length - 1)];
+      if (!quote) {
+        return "";
+      }
+      return open ? quote.open : quote.close;
+    };
+    boxShadow = {
+      name: "box-shadow",
+      initialValue: "none",
+      type: 1,
+      prefix: false,
+      parse: function(context, tokens) {
+        if (tokens.length === 1 && isIdentWithValue(tokens[0], "none")) {
+          return [];
+        }
+        return parseFunctionArgs(tokens).map(function(values) {
+          var shadow = {
+            color: 255,
+            offsetX: ZERO_LENGTH,
+            offsetY: ZERO_LENGTH,
+            blur: ZERO_LENGTH,
+            spread: ZERO_LENGTH,
+            inset: false
+          };
+          var c = 0;
+          for (var i = 0; i < values.length; i++) {
+            var token = values[i];
+            if (isIdentWithValue(token, "inset")) {
+              shadow.inset = true;
+            } else if (isLength(token)) {
+              if (c === 0) {
+                shadow.offsetX = token;
+              } else if (c === 1) {
+                shadow.offsetY = token;
+              } else if (c === 2) {
+                shadow.blur = token;
+              } else {
+                shadow.spread = token;
+              }
+              c++;
+            } else {
+              shadow.color = color$1.parse(context, token);
+            }
+          }
+          return shadow;
+        });
+      }
+    };
+    paintOrder = {
+      name: "paint-order",
+      initialValue: "normal",
+      prefix: false,
+      type: 1,
+      parse: function(_context, tokens) {
+        var DEFAULT_VALUE2 = [
+          0,
+          1,
+          2
+          /* MARKERS */
+        ];
+        var layers = [];
+        tokens.filter(isIdentToken).forEach(function(token) {
+          switch (token.value) {
+            case "stroke":
+              layers.push(
+                1
+                /* STROKE */
+              );
+              break;
+            case "fill":
+              layers.push(
+                0
+                /* FILL */
+              );
+              break;
+            case "markers":
+              layers.push(
+                2
+                /* MARKERS */
+              );
+              break;
+          }
+        });
+        DEFAULT_VALUE2.forEach(function(value) {
+          if (layers.indexOf(value) === -1) {
+            layers.push(value);
+          }
+        });
+        return layers;
+      }
+    };
+    webkitTextStrokeColor = {
+      name: "-webkit-text-stroke-color",
+      initialValue: "currentcolor",
+      prefix: false,
+      type: 3,
+      format: "color"
+    };
+    webkitTextStrokeWidth = {
+      name: "-webkit-text-stroke-width",
+      initialValue: "0",
+      type: 0,
+      prefix: false,
+      parse: function(_context, token) {
+        if (isDimensionToken(token)) {
+          return token.number;
+        }
+        return 0;
+      }
+    };
+    CSSParsedDeclaration = /** @class */
+    function() {
+      function CSSParsedDeclaration2(context, declaration) {
+        var _a, _b;
+        this.animationDuration = parse(context, duration, declaration.animationDuration);
+        this.backgroundClip = parse(context, backgroundClip, declaration.backgroundClip);
+        this.backgroundColor = parse(context, backgroundColor, declaration.backgroundColor);
+        this.backgroundImage = parse(context, backgroundImage, declaration.backgroundImage);
+        this.backgroundOrigin = parse(context, backgroundOrigin, declaration.backgroundOrigin);
+        this.backgroundPosition = parse(context, backgroundPosition, declaration.backgroundPosition);
+        this.backgroundRepeat = parse(context, backgroundRepeat, declaration.backgroundRepeat);
+        this.backgroundSize = parse(context, backgroundSize, declaration.backgroundSize);
+        this.borderTopColor = parse(context, borderTopColor, declaration.borderTopColor);
+        this.borderRightColor = parse(context, borderRightColor, declaration.borderRightColor);
+        this.borderBottomColor = parse(context, borderBottomColor, declaration.borderBottomColor);
+        this.borderLeftColor = parse(context, borderLeftColor, declaration.borderLeftColor);
+        this.borderTopLeftRadius = parse(context, borderTopLeftRadius, declaration.borderTopLeftRadius);
+        this.borderTopRightRadius = parse(context, borderTopRightRadius, declaration.borderTopRightRadius);
+        this.borderBottomRightRadius = parse(context, borderBottomRightRadius, declaration.borderBottomRightRadius);
+        this.borderBottomLeftRadius = parse(context, borderBottomLeftRadius, declaration.borderBottomLeftRadius);
+        this.borderTopStyle = parse(context, borderTopStyle, declaration.borderTopStyle);
+        this.borderRightStyle = parse(context, borderRightStyle, declaration.borderRightStyle);
+        this.borderBottomStyle = parse(context, borderBottomStyle, declaration.borderBottomStyle);
+        this.borderLeftStyle = parse(context, borderLeftStyle, declaration.borderLeftStyle);
+        this.borderTopWidth = parse(context, borderTopWidth, declaration.borderTopWidth);
+        this.borderRightWidth = parse(context, borderRightWidth, declaration.borderRightWidth);
+        this.borderBottomWidth = parse(context, borderBottomWidth, declaration.borderBottomWidth);
+        this.borderLeftWidth = parse(context, borderLeftWidth, declaration.borderLeftWidth);
+        this.boxShadow = parse(context, boxShadow, declaration.boxShadow);
+        this.color = parse(context, color, declaration.color);
+        this.direction = parse(context, direction, declaration.direction);
+        this.display = parse(context, display, declaration.display);
+        this.float = parse(context, float, declaration.cssFloat);
+        this.fontFamily = parse(context, fontFamily, declaration.fontFamily);
+        this.fontSize = parse(context, fontSize, declaration.fontSize);
+        this.fontStyle = parse(context, fontStyle, declaration.fontStyle);
+        this.fontVariant = parse(context, fontVariant, declaration.fontVariant);
+        this.fontWeight = parse(context, fontWeight, declaration.fontWeight);
+        this.letterSpacing = parse(context, letterSpacing, declaration.letterSpacing);
+        this.lineBreak = parse(context, lineBreak, declaration.lineBreak);
+        this.lineHeight = parse(context, lineHeight, declaration.lineHeight);
+        this.listStyleImage = parse(context, listStyleImage, declaration.listStyleImage);
+        this.listStylePosition = parse(context, listStylePosition, declaration.listStylePosition);
+        this.listStyleType = parse(context, listStyleType, declaration.listStyleType);
+        this.marginTop = parse(context, marginTop, declaration.marginTop);
+        this.marginRight = parse(context, marginRight, declaration.marginRight);
+        this.marginBottom = parse(context, marginBottom, declaration.marginBottom);
+        this.marginLeft = parse(context, marginLeft, declaration.marginLeft);
+        this.opacity = parse(context, opacity, declaration.opacity);
+        var overflowTuple = parse(context, overflow, declaration.overflow);
+        this.overflowX = overflowTuple[0];
+        this.overflowY = overflowTuple[overflowTuple.length > 1 ? 1 : 0];
+        this.overflowWrap = parse(context, overflowWrap, declaration.overflowWrap);
+        this.paddingTop = parse(context, paddingTop, declaration.paddingTop);
+        this.paddingRight = parse(context, paddingRight, declaration.paddingRight);
+        this.paddingBottom = parse(context, paddingBottom, declaration.paddingBottom);
+        this.paddingLeft = parse(context, paddingLeft, declaration.paddingLeft);
+        this.paintOrder = parse(context, paintOrder, declaration.paintOrder);
+        this.position = parse(context, position, declaration.position);
+        this.textAlign = parse(context, textAlign, declaration.textAlign);
+        this.textDecorationColor = parse(context, textDecorationColor, (_a = declaration.textDecorationColor) !== null && _a !== void 0 ? _a : declaration.color);
+        this.textDecorationLine = parse(context, textDecorationLine, (_b = declaration.textDecorationLine) !== null && _b !== void 0 ? _b : declaration.textDecoration);
+        this.textShadow = parse(context, textShadow, declaration.textShadow);
+        this.textTransform = parse(context, textTransform, declaration.textTransform);
+        this.transform = parse(context, transform$1, declaration.transform);
+        this.transformOrigin = parse(context, transformOrigin, declaration.transformOrigin);
+        this.visibility = parse(context, visibility, declaration.visibility);
+        this.webkitTextStrokeColor = parse(context, webkitTextStrokeColor, declaration.webkitTextStrokeColor);
+        this.webkitTextStrokeWidth = parse(context, webkitTextStrokeWidth, declaration.webkitTextStrokeWidth);
+        this.wordBreak = parse(context, wordBreak, declaration.wordBreak);
+        this.zIndex = parse(context, zIndex, declaration.zIndex);
+      }
+      CSSParsedDeclaration2.prototype.isVisible = function() {
+        return this.display > 0 && this.opacity > 0 && this.visibility === 0;
+      };
+      CSSParsedDeclaration2.prototype.isTransparent = function() {
+        return isTransparent(this.backgroundColor);
+      };
+      CSSParsedDeclaration2.prototype.isTransformed = function() {
+        return this.transform !== null;
+      };
+      CSSParsedDeclaration2.prototype.isPositioned = function() {
+        return this.position !== 0;
+      };
+      CSSParsedDeclaration2.prototype.isPositionedWithZIndex = function() {
+        return this.isPositioned() && !this.zIndex.auto;
+      };
+      CSSParsedDeclaration2.prototype.isFloating = function() {
+        return this.float !== 0;
+      };
+      CSSParsedDeclaration2.prototype.isInlineLevel = function() {
+        return contains(
+          this.display,
+          4
+          /* INLINE */
+        ) || contains(
+          this.display,
+          33554432
+          /* INLINE_BLOCK */
+        ) || contains(
+          this.display,
+          268435456
+          /* INLINE_FLEX */
+        ) || contains(
+          this.display,
+          536870912
+          /* INLINE_GRID */
+        ) || contains(
+          this.display,
+          67108864
+          /* INLINE_LIST_ITEM */
+        ) || contains(
+          this.display,
+          134217728
+          /* INLINE_TABLE */
+        );
+      };
+      return CSSParsedDeclaration2;
+    }();
+    CSSParsedPseudoDeclaration = /** @class */
+    function() {
+      function CSSParsedPseudoDeclaration2(context, declaration) {
+        this.content = parse(context, content, declaration.content);
+        this.quotes = parse(context, quotes, declaration.quotes);
+      }
+      return CSSParsedPseudoDeclaration2;
+    }();
+    CSSParsedCounterDeclaration = /** @class */
+    function() {
+      function CSSParsedCounterDeclaration2(context, declaration) {
+        this.counterIncrement = parse(context, counterIncrement, declaration.counterIncrement);
+        this.counterReset = parse(context, counterReset, declaration.counterReset);
+      }
+      return CSSParsedCounterDeclaration2;
+    }();
+    parse = function(context, descriptor, style) {
+      var tokenizer = new Tokenizer();
+      var value = style !== null && typeof style !== "undefined" ? style.toString() : descriptor.initialValue;
+      tokenizer.write(value);
+      var parser = new Parser(tokenizer.read());
+      switch (descriptor.type) {
+        case 2:
+          var token = parser.parseComponentValue();
+          return descriptor.parse(context, isIdentToken(token) ? token.value : descriptor.initialValue);
+        case 0:
+          return descriptor.parse(context, parser.parseComponentValue());
+        case 1:
+          return descriptor.parse(context, parser.parseComponentValues());
+        case 4:
+          return parser.parseComponentValue();
+        case 3:
+          switch (descriptor.format) {
+            case "angle":
+              return angle.parse(context, parser.parseComponentValue());
+            case "color":
+              return color$1.parse(context, parser.parseComponentValue());
+            case "image":
+              return image.parse(context, parser.parseComponentValue());
+            case "length":
+              var length_1 = parser.parseComponentValue();
+              return isLength(length_1) ? length_1 : ZERO_LENGTH;
+            case "length-percentage":
+              var value_1 = parser.parseComponentValue();
+              return isLengthPercentage(value_1) ? value_1 : ZERO_LENGTH;
+            case "time":
+              return time.parse(context, parser.parseComponentValue());
+          }
+          break;
+      }
+    };
+    elementDebuggerAttribute = "data-html2canvas-debug";
+    getElementDebugType = function(element) {
+      var attribute = element.getAttribute(elementDebuggerAttribute);
+      switch (attribute) {
+        case "all":
+          return 1;
+        case "clone":
+          return 2;
+        case "parse":
+          return 3;
+        case "render":
+          return 4;
+        default:
+          return 0;
+      }
+    };
+    isDebugging = function(element, type) {
+      var elementType = getElementDebugType(element);
+      return elementType === 1 || type === elementType;
+    };
+    ElementContainer = /** @class */
+    function() {
+      function ElementContainer2(context, element) {
+        this.context = context;
+        this.textNodes = [];
+        this.elements = [];
+        this.flags = 0;
+        if (isDebugging(
+          element,
+          3
+          /* PARSE */
+        )) {
+          debugger;
+        }
+        this.styles = new CSSParsedDeclaration(context, window.getComputedStyle(element, null));
+        if (isHTMLElementNode(element)) {
+          if (this.styles.animationDuration.some(function(duration2) {
+            return duration2 > 0;
+          })) {
+            element.style.animationDuration = "0s";
+          }
+          if (this.styles.transform !== null) {
+            element.style.transform = "none";
+          }
+        }
+        this.bounds = parseBounds(this.context, element);
+        if (isDebugging(
+          element,
+          4
+          /* RENDER */
+        )) {
+          this.flags |= 16;
+        }
+      }
+      return ElementContainer2;
+    }();
+    base64 = "AAAAAAAAAAAAEA4AGBkAAFAaAAACAAAAAAAIABAAGAAwADgACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAAQABIAEQATAAIABAACAAQAAgAEAAIABAAVABcAAgAEAAIABAACAAQAGAAaABwAHgAgACIAI4AlgAIABAAmwCjAKgAsAC2AL4AvQDFAMoA0gBPAVYBWgEIAAgACACMANoAYgFkAWwBdAF8AX0BhQGNAZUBlgGeAaMBlQGWAasBswF8AbsBwwF0AcsBYwHTAQgA2wG/AOMBdAF8AekB8QF0AfkB+wHiAHQBfAEIAAMC5gQIAAsCEgIIAAgAFgIeAggAIgIpAggAMQI5AkACygEIAAgASAJQAlgCYAIIAAgACAAKBQoFCgUTBRMFGQUrBSsFCAAIAAgACAAIAAgACAAIAAgACABdAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABoAmgCrwGvAQgAbgJ2AggAHgEIAAgACADnAXsCCAAIAAgAgwIIAAgACAAIAAgACACKAggAkQKZAggAPADJAAgAoQKkAqwCsgK6AsICCADJAggA0AIIAAgACAAIANYC3gIIAAgACAAIAAgACABAAOYCCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAkASoB+QIEAAgACAA8AEMCCABCBQgACABJBVAFCAAIAAgACAAIAAgACAAIAAgACABTBVoFCAAIAFoFCABfBWUFCAAIAAgACAAIAAgAbQUIAAgACAAIAAgACABzBXsFfQWFBYoFigWKBZEFigWKBYoFmAWfBaYFrgWxBbkFCAAIAAgACAAIAAgACAAIAAgACAAIAMEFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAMgFCADQBQgACAAIAAgACAAIAAgACAAIAAgACAAIAO4CCAAIAAgAiQAIAAgACABAAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD0AggACAD8AggACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIANYFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAMDvwAIAAgAJAIIAAgACAAIAAgACAAIAAgACwMTAwgACAB9BOsEGwMjAwgAKwMyAwsFYgE3A/MEPwMIAEUDTQNRAwgAWQOsAGEDCAAIAAgACAAIAAgACABpAzQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFIQUoBSwFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABtAwgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABMAEwACAAIAAgACAAIABgACAAIAAgACAC/AAgACAAyAQgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACAAIAAwAAgACAAIAAgACAAIAAgACAAIAAAARABIAAgACAAIABQASAAIAAgAIABwAEAAjgCIABsAqAC2AL0AigDQAtwC+IJIQqVAZUBWQqVAZUBlQGVAZUBlQGrC5UBlQGVAZUBlQGVAZUBlQGVAXsKlQGVAbAK6wsrDGUMpQzlDJUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAfAKAAuZA64AtwCJALoC6ADwAAgAuACgA/oEpgO6AqsD+AAIAAgAswMIAAgACAAIAIkAuwP5AfsBwwPLAwgACAAIAAgACADRA9kDCAAIAOED6QMIAAgACAAIAAgACADuA/YDCAAIAP4DyQAIAAgABgQIAAgAXQAOBAgACAAIAAgACAAIABMECAAIAAgACAAIAAgACAD8AAQBCAAIAAgAGgQiBCoECAExBAgAEAEIAAgACAAIAAgACAAIAAgACAAIAAgACAA4BAgACABABEYECAAIAAgATAQYAQgAVAQIAAgACAAIAAgACAAIAAgACAAIAFoECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAOQEIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAB+BAcACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAEABhgSMBAgACAAIAAgAlAQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAwAEAAQABAADAAMAAwADAAQABAAEAAQABAAEAAQABHATAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAdQMIAAgACAAIAAgACAAIAMkACAAIAAgAfQMIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACFA4kDCAAIAAgACAAIAOcBCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAIcDCAAIAAgACAAIAAgACAAIAAgACAAIAJEDCAAIAAgACADFAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABgBAgAZgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAbAQCBXIECAAIAHkECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABAAJwEQACjBKoEsgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAC6BMIECAAIAAgACAAIAAgACABmBAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAxwQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAGYECAAIAAgAzgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBd0FXwUIAOIF6gXxBYoF3gT5BQAGCAaKBYoFigWKBYoFigWKBYoFigWKBYoFigXWBIoFigWKBYoFigWKBYoFigWKBYsFEAaKBYoFigWKBYoFigWKBRQGCACKBYoFigWKBQgACAAIANEECAAIABgGigUgBggAJgYIAC4GMwaKBYoF0wQ3Bj4GigWKBYoFigWKBYoFigWKBYoFigWKBYoFigUIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWLBf///////wQABAAEAAQABAAEAAQABAAEAAQAAwAEAAQAAgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAQADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUAAAAFAAUAAAAFAAUAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAQAAAAUABQAFAAUABQAFAAAAAAAFAAUAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAFAAUAAQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAAABwAHAAcAAAAHAAcABwAFAAEAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAcABwAFAAUAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAQABAAAAAAAAAAAAAAAFAAUABQAFAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAHAAcAAAAHAAcAAAAAAAUABQAHAAUAAQAHAAEABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwABAAUABQAFAAUAAAAAAAAAAAAAAAEAAQABAAEAAQABAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABQANAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAABQAHAAUABQAFAAAAAAAAAAcABQAFAAUABQAFAAQABAAEAAQABAAEAAQABAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUAAAAFAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAUAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAcABwAFAAcABwAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUABwAHAAUABQAFAAUAAAAAAAcABwAAAAAABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAAAAAAAAAAABQAFAAAAAAAFAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAFAAUABQAFAAUAAAAFAAUABwAAAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABwAFAAUABQAFAAAAAAAHAAcAAAAAAAcABwAFAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAAAAAAAAAHAAcABwAAAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAUABQAFAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAHAAcABQAHAAcAAAAFAAcABwAAAAcABwAFAAUAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAFAAcABwAFAAUABQAAAAUAAAAHAAcABwAHAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAHAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUAAAAFAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAUAAAAFAAUAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABwAFAAUABQAFAAUABQAAAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABQAFAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAFAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAHAAUABQAFAAUABQAFAAUABwAHAAcABwAHAAcABwAHAAUABwAHAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABwAHAAcABwAFAAUABwAHAAcAAAAAAAAAAAAHAAcABQAHAAcABwAHAAcABwAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAUABQAFAAUABQAFAAUAAAAFAAAABQAAAAAABQAFAAUABQAFAAUABQAFAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAUABQAFAAUABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABwAFAAcABwAHAAcABwAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAUABQAFAAUABwAHAAUABQAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABQAFAAcABwAHAAUABwAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAcABQAFAAUABQAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAAAAAABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAAAAAAAAAFAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAUABQAHAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAFAAUABQAFAAcABwAFAAUABwAHAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAcABwAFAAUABwAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABQAAAAAABQAFAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAcABwAAAAAAAAAAAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAcABwAFAAcABwAAAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAFAAUABQAAAAUABQAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABwAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAHAAcABQAHAAUABQAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAAABwAHAAAAAAAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAFAAUABwAFAAcABwAFAAcABQAFAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAAAAAABwAHAAcABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAFAAcABwAFAAUABQAFAAUABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAUABQAFAAcABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABQAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAAAAAAFAAUABwAHAAcABwAFAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAHAAUABQAFAAUABQAFAAUABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAABQAAAAUABQAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAHAAcAAAAFAAUAAAAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABQAFAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAABQAFAAUABQAFAAUABQAAAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAFAAUABQAFAAUADgAOAA4ADgAOAA4ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAMAAwADAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkAAAAAAAAAAAAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAAAAAAAAAAAAsADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwACwAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAADgAOAA4AAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAAAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4AAAAOAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAAAAAAAA4AAAAOAAAAAAAAAAAADgAOAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAA=";
+    chars$1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    lookup$1 = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+    for (i$1 = 0; i$1 < chars$1.length; i$1++) {
+      lookup$1[chars$1.charCodeAt(i$1)] = i$1;
     }
-  };
-  (0, import_react49.useEffect)(() => {
-    isReordering.current = false;
-  });
-  const setRef2 = (element) => {
-    groupRef.current = element;
-    if (typeof externalRef === "function") {
-      externalRef(element);
-    } else if (externalRef) {
-      externalRef.current = element;
+    decode = function(base642) {
+      var bufferLength = base642.length * 0.75, len = base642.length, i, p = 0, encoded1, encoded2, encoded3, encoded4;
+      if (base642[base642.length - 1] === "=") {
+        bufferLength--;
+        if (base642[base642.length - 2] === "=") {
+          bufferLength--;
+        }
+      }
+      var buffer = typeof ArrayBuffer !== "undefined" && typeof Uint8Array !== "undefined" && typeof Uint8Array.prototype.slice !== "undefined" ? new ArrayBuffer(bufferLength) : new Array(bufferLength);
+      var bytes = Array.isArray(buffer) ? buffer : new Uint8Array(buffer);
+      for (i = 0; i < len; i += 4) {
+        encoded1 = lookup$1[base642.charCodeAt(i)];
+        encoded2 = lookup$1[base642.charCodeAt(i + 1)];
+        encoded3 = lookup$1[base642.charCodeAt(i + 2)];
+        encoded4 = lookup$1[base642.charCodeAt(i + 3)];
+        bytes[p++] = encoded1 << 2 | encoded2 >> 4;
+        bytes[p++] = (encoded2 & 15) << 4 | encoded3 >> 2;
+        bytes[p++] = (encoded3 & 3) << 6 | encoded4 & 63;
+      }
+      return buffer;
+    };
+    polyUint16Array = function(buffer) {
+      var length = buffer.length;
+      var bytes = [];
+      for (var i = 0; i < length; i += 2) {
+        bytes.push(buffer[i + 1] << 8 | buffer[i]);
+      }
+      return bytes;
+    };
+    polyUint32Array = function(buffer) {
+      var length = buffer.length;
+      var bytes = [];
+      for (var i = 0; i < length; i += 4) {
+        bytes.push(buffer[i + 3] << 24 | buffer[i + 2] << 16 | buffer[i + 1] << 8 | buffer[i]);
+      }
+      return bytes;
+    };
+    UTRIE2_SHIFT_2 = 5;
+    UTRIE2_SHIFT_1 = 6 + 5;
+    UTRIE2_INDEX_SHIFT = 2;
+    UTRIE2_SHIFT_1_2 = UTRIE2_SHIFT_1 - UTRIE2_SHIFT_2;
+    UTRIE2_LSCP_INDEX_2_OFFSET = 65536 >> UTRIE2_SHIFT_2;
+    UTRIE2_DATA_BLOCK_LENGTH = 1 << UTRIE2_SHIFT_2;
+    UTRIE2_DATA_MASK = UTRIE2_DATA_BLOCK_LENGTH - 1;
+    UTRIE2_LSCP_INDEX_2_LENGTH = 1024 >> UTRIE2_SHIFT_2;
+    UTRIE2_INDEX_2_BMP_LENGTH = UTRIE2_LSCP_INDEX_2_OFFSET + UTRIE2_LSCP_INDEX_2_LENGTH;
+    UTRIE2_UTF8_2B_INDEX_2_OFFSET = UTRIE2_INDEX_2_BMP_LENGTH;
+    UTRIE2_UTF8_2B_INDEX_2_LENGTH = 2048 >> 6;
+    UTRIE2_INDEX_1_OFFSET = UTRIE2_UTF8_2B_INDEX_2_OFFSET + UTRIE2_UTF8_2B_INDEX_2_LENGTH;
+    UTRIE2_OMITTED_BMP_INDEX_1_LENGTH = 65536 >> UTRIE2_SHIFT_1;
+    UTRIE2_INDEX_2_BLOCK_LENGTH = 1 << UTRIE2_SHIFT_1_2;
+    UTRIE2_INDEX_2_MASK = UTRIE2_INDEX_2_BLOCK_LENGTH - 1;
+    slice16 = function(view, start, end) {
+      if (view.slice) {
+        return view.slice(start, end);
+      }
+      return new Uint16Array(Array.prototype.slice.call(view, start, end));
+    };
+    slice32 = function(view, start, end) {
+      if (view.slice) {
+        return view.slice(start, end);
+      }
+      return new Uint32Array(Array.prototype.slice.call(view, start, end));
+    };
+    createTrieFromBase64 = function(base642, _byteLength) {
+      var buffer = decode(base642);
+      var view32 = Array.isArray(buffer) ? polyUint32Array(buffer) : new Uint32Array(buffer);
+      var view16 = Array.isArray(buffer) ? polyUint16Array(buffer) : new Uint16Array(buffer);
+      var headerLength = 24;
+      var index = slice16(view16, headerLength / 2, view32[4] / 2);
+      var data = view32[5] === 2 ? slice16(view16, (headerLength + view32[4]) / 2) : slice32(view32, Math.ceil((headerLength + view32[4]) / 4));
+      return new Trie(view32[0], view32[1], view32[2], view32[3], index, data);
+    };
+    Trie = /** @class */
+    function() {
+      function Trie2(initialValue, errorValue, highStart, highValueIndex, index, data) {
+        this.initialValue = initialValue;
+        this.errorValue = errorValue;
+        this.highStart = highStart;
+        this.highValueIndex = highValueIndex;
+        this.index = index;
+        this.data = data;
+      }
+      Trie2.prototype.get = function(codePoint) {
+        var ix;
+        if (codePoint >= 0) {
+          if (codePoint < 55296 || codePoint > 56319 && codePoint <= 65535) {
+            ix = this.index[codePoint >> UTRIE2_SHIFT_2];
+            ix = (ix << UTRIE2_INDEX_SHIFT) + (codePoint & UTRIE2_DATA_MASK);
+            return this.data[ix];
+          }
+          if (codePoint <= 65535) {
+            ix = this.index[UTRIE2_LSCP_INDEX_2_OFFSET + (codePoint - 55296 >> UTRIE2_SHIFT_2)];
+            ix = (ix << UTRIE2_INDEX_SHIFT) + (codePoint & UTRIE2_DATA_MASK);
+            return this.data[ix];
+          }
+          if (codePoint < this.highStart) {
+            ix = UTRIE2_INDEX_1_OFFSET - UTRIE2_OMITTED_BMP_INDEX_1_LENGTH + (codePoint >> UTRIE2_SHIFT_1);
+            ix = this.index[ix];
+            ix += codePoint >> UTRIE2_SHIFT_2 & UTRIE2_INDEX_2_MASK;
+            ix = this.index[ix];
+            ix = (ix << UTRIE2_INDEX_SHIFT) + (codePoint & UTRIE2_DATA_MASK);
+            return this.data[ix];
+          }
+          if (codePoint <= 1114111) {
+            return this.data[this.highValueIndex];
+          }
+        }
+        return this.errorValue;
+      };
+      return Trie2;
+    }();
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    lookup = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+    for (i = 0; i < chars.length; i++) {
+      lookup[chars.charCodeAt(i)] = i;
     }
-  };
-  const groupStyle = {
-    overflowAnchor: "none",
-    ...props.style
-  };
-  return (0, import_jsx_runtime10.jsx)(Component3, { ...props, style: groupStyle, ref: setRef2, ignoreStrict: true, children: (0, import_jsx_runtime10.jsx)(ReorderContext.Provider, { value: context, children }) });
-}
-var ReorderGroup = (0, import_react49.forwardRef)(ReorderGroupComponent);
-function compareMin(a, b) {
-  return a.layout.min - b.layout.min;
-}
-
-// node_modules/framer-motion/dist/es/components/Reorder/Item.mjs
-var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
-var import_react50 = __toESM(require_react(), 1);
-
-// node_modules/framer-motion/dist/es/components/Reorder/utils/auto-scroll.mjs
-var threshold = 50;
-var maxSpeed = 25;
-var overflowStyles2 = /* @__PURE__ */ new Set(["auto", "scroll"]);
-var initialScrollLimits = /* @__PURE__ */ new WeakMap();
-var activeScrollEdge = /* @__PURE__ */ new WeakMap();
-var currentGroupElement = null;
-function resetAutoScrollState() {
-  if (currentGroupElement) {
-    const scrollableAncestor = findScrollableAncestor(currentGroupElement, "y");
-    if (scrollableAncestor) {
-      activeScrollEdge.delete(scrollableAncestor);
-      initialScrollLimits.delete(scrollableAncestor);
+    Prepend = 1;
+    CR = 2;
+    LF = 3;
+    Control = 4;
+    Extend = 5;
+    SpacingMark = 7;
+    L = 8;
+    V = 9;
+    T = 10;
+    LV = 11;
+    LVT = 12;
+    ZWJ = 13;
+    Extended_Pictographic = 14;
+    RI = 15;
+    toCodePoints = function(str) {
+      var codePoints = [];
+      var i = 0;
+      var length = str.length;
+      while (i < length) {
+        var value = str.charCodeAt(i++);
+        if (value >= 55296 && value <= 56319 && i < length) {
+          var extra = str.charCodeAt(i++);
+          if ((extra & 64512) === 56320) {
+            codePoints.push(((value & 1023) << 10) + (extra & 1023) + 65536);
+          } else {
+            codePoints.push(value);
+            i--;
+          }
+        } else {
+          codePoints.push(value);
+        }
+      }
+      return codePoints;
+    };
+    fromCodePoint = function() {
+      var codePoints = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        codePoints[_i] = arguments[_i];
+      }
+      if (String.fromCodePoint) {
+        return String.fromCodePoint.apply(String, codePoints);
+      }
+      var length = codePoints.length;
+      if (!length) {
+        return "";
+      }
+      var codeUnits = [];
+      var index = -1;
+      var result = "";
+      while (++index < length) {
+        var codePoint = codePoints[index];
+        if (codePoint <= 65535) {
+          codeUnits.push(codePoint);
+        } else {
+          codePoint -= 65536;
+          codeUnits.push((codePoint >> 10) + 55296, codePoint % 1024 + 56320);
+        }
+        if (index + 1 === length || codeUnits.length > 16384) {
+          result += String.fromCharCode.apply(String, codeUnits);
+          codeUnits.length = 0;
+        }
+      }
+      return result;
+    };
+    UnicodeTrie = createTrieFromBase64(base64);
+    BREAK_NOT_ALLOWED = "×";
+    BREAK_ALLOWED = "÷";
+    codePointToClass = function(codePoint) {
+      return UnicodeTrie.get(codePoint);
+    };
+    _graphemeBreakAtIndex = function(_codePoints, classTypes, index) {
+      var prevIndex = index - 2;
+      var prev = classTypes[prevIndex];
+      var current = classTypes[index - 1];
+      var next = classTypes[index];
+      if (current === CR && next === LF) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if (current === CR || current === LF || current === Control) {
+        return BREAK_ALLOWED;
+      }
+      if (next === CR || next === LF || next === Control) {
+        return BREAK_ALLOWED;
+      }
+      if (current === L && [L, V, LV, LVT].indexOf(next) !== -1) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if ((current === LV || current === V) && (next === V || next === T)) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if ((current === LVT || current === T) && next === T) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if (next === ZWJ || next === Extend) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if (next === SpacingMark) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if (current === Prepend) {
+        return BREAK_NOT_ALLOWED;
+      }
+      if (current === ZWJ && next === Extended_Pictographic) {
+        while (prev === Extend) {
+          prev = classTypes[--prevIndex];
+        }
+        if (prev === Extended_Pictographic) {
+          return BREAK_NOT_ALLOWED;
+        }
+      }
+      if (current === RI && next === RI) {
+        var countRI = 0;
+        while (prev === RI) {
+          countRI++;
+          prev = classTypes[--prevIndex];
+        }
+        if (countRI % 2 === 0) {
+          return BREAK_NOT_ALLOWED;
+        }
+      }
+      return BREAK_ALLOWED;
+    };
+    GraphemeBreaker = function(str) {
+      var codePoints = toCodePoints(str);
+      var length = codePoints.length;
+      var index = 0;
+      var lastEnd = 0;
+      var classTypes = codePoints.map(codePointToClass);
+      return {
+        next: function() {
+          if (index >= length) {
+            return { done: true, value: null };
+          }
+          var graphemeBreak = BREAK_NOT_ALLOWED;
+          while (index < length && (graphemeBreak = _graphemeBreakAtIndex(codePoints, classTypes, ++index)) === BREAK_NOT_ALLOWED) {
+          }
+          if (graphemeBreak !== BREAK_NOT_ALLOWED || index === length) {
+            var value = fromCodePoint.apply(null, codePoints.slice(lastEnd, index));
+            lastEnd = index;
+            return { value, done: false };
+          }
+          return { done: true, value: null };
+        }
+      };
+    };
+    splitGraphemes = function(str) {
+      var breaker = GraphemeBreaker(str);
+      var graphemes = [];
+      var bk;
+      while (!(bk = breaker.next()).done) {
+        if (bk.value) {
+          graphemes.push(bk.value.slice());
+        }
+      }
+      return graphemes;
+    };
+    testRangeBounds = function(document2) {
+      var TEST_HEIGHT = 123;
+      if (document2.createRange) {
+        var range = document2.createRange();
+        if (range.getBoundingClientRect) {
+          var testElement = document2.createElement("boundtest");
+          testElement.style.height = TEST_HEIGHT + "px";
+          testElement.style.display = "block";
+          document2.body.appendChild(testElement);
+          range.selectNode(testElement);
+          var rangeBounds = range.getBoundingClientRect();
+          var rangeHeight = Math.round(rangeBounds.height);
+          document2.body.removeChild(testElement);
+          if (rangeHeight === TEST_HEIGHT) {
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+    testIOSLineBreak = function(document2) {
+      var testElement = document2.createElement("boundtest");
+      testElement.style.width = "50px";
+      testElement.style.display = "block";
+      testElement.style.fontSize = "12px";
+      testElement.style.letterSpacing = "0px";
+      testElement.style.wordSpacing = "0px";
+      document2.body.appendChild(testElement);
+      var range = document2.createRange();
+      testElement.innerHTML = typeof "".repeat === "function" ? "&#128104;".repeat(10) : "";
+      var node = testElement.firstChild;
+      var textList = toCodePoints$1(node.data).map(function(i) {
+        return fromCodePoint$1(i);
+      });
+      var offset = 0;
+      var prev = {};
+      var supports = textList.every(function(text, i) {
+        range.setStart(node, offset);
+        range.setEnd(node, offset + text.length);
+        var rect = range.getBoundingClientRect();
+        offset += text.length;
+        var boundAhead = rect.x > prev.x || rect.y > prev.y;
+        prev = rect;
+        if (i === 0) {
+          return true;
+        }
+        return boundAhead;
+      });
+      document2.body.removeChild(testElement);
+      return supports;
+    };
+    testCORS = function() {
+      return typeof new Image().crossOrigin !== "undefined";
+    };
+    testResponseType = function() {
+      return typeof new XMLHttpRequest().responseType === "string";
+    };
+    testSVG = function(document2) {
+      var img = new Image();
+      var canvas = document2.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return false;
+      }
+      img.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
+      try {
+        ctx.drawImage(img, 0, 0);
+        canvas.toDataURL();
+      } catch (e2) {
+        return false;
+      }
+      return true;
+    };
+    isGreenPixel = function(data) {
+      return data[0] === 0 && data[1] === 255 && data[2] === 0 && data[3] === 255;
+    };
+    testForeignObject = function(document2) {
+      var canvas = document2.createElement("canvas");
+      var size = 100;
+      canvas.width = size;
+      canvas.height = size;
+      var ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return Promise.reject(false);
+      }
+      ctx.fillStyle = "rgb(0, 255, 0)";
+      ctx.fillRect(0, 0, size, size);
+      var img = new Image();
+      var greenImageSrc = canvas.toDataURL();
+      img.src = greenImageSrc;
+      var svg = createForeignObjectSVG(size, size, 0, 0, img);
+      ctx.fillStyle = "red";
+      ctx.fillRect(0, 0, size, size);
+      return loadSerializedSVG$1(svg).then(function(img2) {
+        ctx.drawImage(img2, 0, 0);
+        var data = ctx.getImageData(0, 0, size, size).data;
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, size, size);
+        var node = document2.createElement("div");
+        node.style.backgroundImage = "url(" + greenImageSrc + ")";
+        node.style.height = size + "px";
+        return isGreenPixel(data) ? loadSerializedSVG$1(createForeignObjectSVG(size, size, 0, 0, node)) : Promise.reject(false);
+      }).then(function(img2) {
+        ctx.drawImage(img2, 0, 0);
+        return isGreenPixel(ctx.getImageData(0, 0, size, size).data);
+      }).catch(function() {
+        return false;
+      });
+    };
+    createForeignObjectSVG = function(width, height, x, y, node) {
+      var xmlns = "http://www.w3.org/2000/svg";
+      var svg = document.createElementNS(xmlns, "svg");
+      var foreignObject = document.createElementNS(xmlns, "foreignObject");
+      svg.setAttributeNS(null, "width", width.toString());
+      svg.setAttributeNS(null, "height", height.toString());
+      foreignObject.setAttributeNS(null, "width", "100%");
+      foreignObject.setAttributeNS(null, "height", "100%");
+      foreignObject.setAttributeNS(null, "x", x.toString());
+      foreignObject.setAttributeNS(null, "y", y.toString());
+      foreignObject.setAttributeNS(null, "externalResourcesRequired", "true");
+      svg.appendChild(foreignObject);
+      foreignObject.appendChild(node);
+      return svg;
+    };
+    loadSerializedSVG$1 = function(svg) {
+      return new Promise(function(resolve, reject) {
+        var img = new Image();
+        img.onload = function() {
+          return resolve(img);
+        };
+        img.onerror = reject;
+        img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+      });
+    };
+    FEATURES = {
+      get SUPPORT_RANGE_BOUNDS() {
+        var value = testRangeBounds(document);
+        Object.defineProperty(FEATURES, "SUPPORT_RANGE_BOUNDS", { value });
+        return value;
+      },
+      get SUPPORT_WORD_BREAKING() {
+        var value = FEATURES.SUPPORT_RANGE_BOUNDS && testIOSLineBreak(document);
+        Object.defineProperty(FEATURES, "SUPPORT_WORD_BREAKING", { value });
+        return value;
+      },
+      get SUPPORT_SVG_DRAWING() {
+        var value = testSVG(document);
+        Object.defineProperty(FEATURES, "SUPPORT_SVG_DRAWING", { value });
+        return value;
+      },
+      get SUPPORT_FOREIGNOBJECT_DRAWING() {
+        var value = typeof Array.from === "function" && typeof window.fetch === "function" ? testForeignObject(document) : Promise.resolve(false);
+        Object.defineProperty(FEATURES, "SUPPORT_FOREIGNOBJECT_DRAWING", { value });
+        return value;
+      },
+      get SUPPORT_CORS_IMAGES() {
+        var value = testCORS();
+        Object.defineProperty(FEATURES, "SUPPORT_CORS_IMAGES", { value });
+        return value;
+      },
+      get SUPPORT_RESPONSE_TYPE() {
+        var value = testResponseType();
+        Object.defineProperty(FEATURES, "SUPPORT_RESPONSE_TYPE", { value });
+        return value;
+      },
+      get SUPPORT_CORS_XHR() {
+        var value = "withCredentials" in new XMLHttpRequest();
+        Object.defineProperty(FEATURES, "SUPPORT_CORS_XHR", { value });
+        return value;
+      },
+      get SUPPORT_NATIVE_TEXT_SEGMENTATION() {
+        var value = !!(typeof Intl !== "undefined" && Intl.Segmenter);
+        Object.defineProperty(FEATURES, "SUPPORT_NATIVE_TEXT_SEGMENTATION", { value });
+        return value;
+      }
+    };
+    TextBounds = /** @class */
+    function() {
+      function TextBounds2(text, bounds) {
+        this.text = text;
+        this.bounds = bounds;
+      }
+      return TextBounds2;
+    }();
+    parseTextBounds = function(context, value, styles, node) {
+      var textList = breakText(value, styles);
+      var textBounds = [];
+      var offset = 0;
+      textList.forEach(function(text) {
+        if (styles.textDecorationLine.length || text.trim().length > 0) {
+          if (FEATURES.SUPPORT_RANGE_BOUNDS) {
+            var clientRects = createRange(node, offset, text.length).getClientRects();
+            if (clientRects.length > 1) {
+              var subSegments = segmentGraphemes(text);
+              var subOffset_1 = 0;
+              subSegments.forEach(function(subSegment) {
+                textBounds.push(new TextBounds(subSegment, Bounds.fromDOMRectList(context, createRange(node, subOffset_1 + offset, subSegment.length).getClientRects())));
+                subOffset_1 += subSegment.length;
+              });
+            } else {
+              textBounds.push(new TextBounds(text, Bounds.fromDOMRectList(context, clientRects)));
+            }
+          } else {
+            var replacementNode = node.splitText(text.length);
+            textBounds.push(new TextBounds(text, getWrapperBounds(context, node)));
+            node = replacementNode;
+          }
+        } else if (!FEATURES.SUPPORT_RANGE_BOUNDS) {
+          node = node.splitText(text.length);
+        }
+        offset += text.length;
+      });
+      return textBounds;
+    };
+    getWrapperBounds = function(context, node) {
+      var ownerDocument = node.ownerDocument;
+      if (ownerDocument) {
+        var wrapper = ownerDocument.createElement("html2canvaswrapper");
+        wrapper.appendChild(node.cloneNode(true));
+        var parentNode = node.parentNode;
+        if (parentNode) {
+          parentNode.replaceChild(wrapper, node);
+          var bounds = parseBounds(context, wrapper);
+          if (wrapper.firstChild) {
+            parentNode.replaceChild(wrapper.firstChild, wrapper);
+          }
+          return bounds;
+        }
+      }
+      return Bounds.EMPTY;
+    };
+    createRange = function(node, offset, length) {
+      var ownerDocument = node.ownerDocument;
+      if (!ownerDocument) {
+        throw new Error("Node has no owner document");
+      }
+      var range = ownerDocument.createRange();
+      range.setStart(node, offset);
+      range.setEnd(node, offset + length);
+      return range;
+    };
+    segmentGraphemes = function(value) {
+      if (FEATURES.SUPPORT_NATIVE_TEXT_SEGMENTATION) {
+        var segmenter = new Intl.Segmenter(void 0, { granularity: "grapheme" });
+        return Array.from(segmenter.segment(value)).map(function(segment) {
+          return segment.segment;
+        });
+      }
+      return splitGraphemes(value);
+    };
+    segmentWords = function(value, styles) {
+      if (FEATURES.SUPPORT_NATIVE_TEXT_SEGMENTATION) {
+        var segmenter = new Intl.Segmenter(void 0, {
+          granularity: "word"
+        });
+        return Array.from(segmenter.segment(value)).map(function(segment) {
+          return segment.segment;
+        });
+      }
+      return breakWords(value, styles);
+    };
+    breakText = function(value, styles) {
+      return styles.letterSpacing !== 0 ? segmentGraphemes(value) : segmentWords(value, styles);
+    };
+    wordSeparators = [32, 160, 4961, 65792, 65793, 4153, 4241];
+    breakWords = function(str, styles) {
+      var breaker = LineBreaker(str, {
+        lineBreak: styles.lineBreak,
+        wordBreak: styles.overflowWrap === "break-word" ? "break-word" : styles.wordBreak
+      });
+      var words = [];
+      var bk;
+      var _loop_1 = function() {
+        if (bk.value) {
+          var value = bk.value.slice();
+          var codePoints = toCodePoints$1(value);
+          var word_1 = "";
+          codePoints.forEach(function(codePoint) {
+            if (wordSeparators.indexOf(codePoint) === -1) {
+              word_1 += fromCodePoint$1(codePoint);
+            } else {
+              if (word_1.length) {
+                words.push(word_1);
+              }
+              words.push(fromCodePoint$1(codePoint));
+              word_1 = "";
+            }
+          });
+          if (word_1.length) {
+            words.push(word_1);
+          }
+        }
+      };
+      while (!(bk = breaker.next()).done) {
+        _loop_1();
+      }
+      return words;
+    };
+    TextContainer = /** @class */
+    function() {
+      function TextContainer2(context, node, styles) {
+        this.text = transform(node.data, styles.textTransform);
+        this.textBounds = parseTextBounds(context, this.text, styles, node);
+      }
+      return TextContainer2;
+    }();
+    transform = function(text, transform2) {
+      switch (transform2) {
+        case 1:
+          return text.toLowerCase();
+        case 3:
+          return text.replace(CAPITALIZE, capitalize);
+        case 2:
+          return text.toUpperCase();
+        default:
+          return text;
+      }
+    };
+    CAPITALIZE = /(^|\s|:|-|\(|\))([a-z])/g;
+    capitalize = function(m, p1, p2) {
+      if (m.length > 0) {
+        return p1 + p2.toUpperCase();
+      }
+      return m;
+    };
+    ImageElementContainer = /** @class */
+    function(_super) {
+      __extends(ImageElementContainer2, _super);
+      function ImageElementContainer2(context, img) {
+        var _this = _super.call(this, context, img) || this;
+        _this.src = img.currentSrc || img.src;
+        _this.intrinsicWidth = img.naturalWidth;
+        _this.intrinsicHeight = img.naturalHeight;
+        _this.context.cache.addImage(_this.src);
+        return _this;
+      }
+      return ImageElementContainer2;
+    }(ElementContainer);
+    CanvasElementContainer = /** @class */
+    function(_super) {
+      __extends(CanvasElementContainer2, _super);
+      function CanvasElementContainer2(context, canvas) {
+        var _this = _super.call(this, context, canvas) || this;
+        _this.canvas = canvas;
+        _this.intrinsicWidth = canvas.width;
+        _this.intrinsicHeight = canvas.height;
+        return _this;
+      }
+      return CanvasElementContainer2;
+    }(ElementContainer);
+    SVGElementContainer = /** @class */
+    function(_super) {
+      __extends(SVGElementContainer2, _super);
+      function SVGElementContainer2(context, img) {
+        var _this = _super.call(this, context, img) || this;
+        var s = new XMLSerializer();
+        var bounds = parseBounds(context, img);
+        img.setAttribute("width", bounds.width + "px");
+        img.setAttribute("height", bounds.height + "px");
+        _this.svg = "data:image/svg+xml," + encodeURIComponent(s.serializeToString(img));
+        _this.intrinsicWidth = img.width.baseVal.value;
+        _this.intrinsicHeight = img.height.baseVal.value;
+        _this.context.cache.addImage(_this.svg);
+        return _this;
+      }
+      return SVGElementContainer2;
+    }(ElementContainer);
+    LIElementContainer = /** @class */
+    function(_super) {
+      __extends(LIElementContainer2, _super);
+      function LIElementContainer2(context, element) {
+        var _this = _super.call(this, context, element) || this;
+        _this.value = element.value;
+        return _this;
+      }
+      return LIElementContainer2;
+    }(ElementContainer);
+    OLElementContainer = /** @class */
+    function(_super) {
+      __extends(OLElementContainer2, _super);
+      function OLElementContainer2(context, element) {
+        var _this = _super.call(this, context, element) || this;
+        _this.start = element.start;
+        _this.reversed = typeof element.reversed === "boolean" && element.reversed === true;
+        return _this;
+      }
+      return OLElementContainer2;
+    }(ElementContainer);
+    CHECKBOX_BORDER_RADIUS = [
+      {
+        type: 15,
+        flags: 0,
+        unit: "px",
+        number: 3
+      }
+    ];
+    RADIO_BORDER_RADIUS = [
+      {
+        type: 16,
+        flags: 0,
+        number: 50
+      }
+    ];
+    reformatInputBounds = function(bounds) {
+      if (bounds.width > bounds.height) {
+        return new Bounds(bounds.left + (bounds.width - bounds.height) / 2, bounds.top, bounds.height, bounds.height);
+      } else if (bounds.width < bounds.height) {
+        return new Bounds(bounds.left, bounds.top + (bounds.height - bounds.width) / 2, bounds.width, bounds.width);
+      }
+      return bounds;
+    };
+    getInputValue = function(node) {
+      var value = node.type === PASSWORD ? new Array(node.value.length + 1).join("•") : node.value;
+      return value.length === 0 ? node.placeholder || "" : value;
+    };
+    CHECKBOX = "checkbox";
+    RADIO = "radio";
+    PASSWORD = "password";
+    INPUT_COLOR = 707406591;
+    InputElementContainer = /** @class */
+    function(_super) {
+      __extends(InputElementContainer2, _super);
+      function InputElementContainer2(context, input) {
+        var _this = _super.call(this, context, input) || this;
+        _this.type = input.type.toLowerCase();
+        _this.checked = input.checked;
+        _this.value = getInputValue(input);
+        if (_this.type === CHECKBOX || _this.type === RADIO) {
+          _this.styles.backgroundColor = 3739148031;
+          _this.styles.borderTopColor = _this.styles.borderRightColor = _this.styles.borderBottomColor = _this.styles.borderLeftColor = 2779096575;
+          _this.styles.borderTopWidth = _this.styles.borderRightWidth = _this.styles.borderBottomWidth = _this.styles.borderLeftWidth = 1;
+          _this.styles.borderTopStyle = _this.styles.borderRightStyle = _this.styles.borderBottomStyle = _this.styles.borderLeftStyle = 1;
+          _this.styles.backgroundClip = [
+            0
+            /* BORDER_BOX */
+          ];
+          _this.styles.backgroundOrigin = [
+            0
+            /* BORDER_BOX */
+          ];
+          _this.bounds = reformatInputBounds(_this.bounds);
+        }
+        switch (_this.type) {
+          case CHECKBOX:
+            _this.styles.borderTopRightRadius = _this.styles.borderTopLeftRadius = _this.styles.borderBottomRightRadius = _this.styles.borderBottomLeftRadius = CHECKBOX_BORDER_RADIUS;
+            break;
+          case RADIO:
+            _this.styles.borderTopRightRadius = _this.styles.borderTopLeftRadius = _this.styles.borderBottomRightRadius = _this.styles.borderBottomLeftRadius = RADIO_BORDER_RADIUS;
+            break;
+        }
+        return _this;
+      }
+      return InputElementContainer2;
+    }(ElementContainer);
+    SelectElementContainer = /** @class */
+    function(_super) {
+      __extends(SelectElementContainer2, _super);
+      function SelectElementContainer2(context, element) {
+        var _this = _super.call(this, context, element) || this;
+        var option = element.options[element.selectedIndex || 0];
+        _this.value = option ? option.text || "" : "";
+        return _this;
+      }
+      return SelectElementContainer2;
+    }(ElementContainer);
+    TextareaElementContainer = /** @class */
+    function(_super) {
+      __extends(TextareaElementContainer2, _super);
+      function TextareaElementContainer2(context, element) {
+        var _this = _super.call(this, context, element) || this;
+        _this.value = element.value;
+        return _this;
+      }
+      return TextareaElementContainer2;
+    }(ElementContainer);
+    IFrameElementContainer = /** @class */
+    function(_super) {
+      __extends(IFrameElementContainer2, _super);
+      function IFrameElementContainer2(context, iframe) {
+        var _this = _super.call(this, context, iframe) || this;
+        _this.src = iframe.src;
+        _this.width = parseInt(iframe.width, 10) || 0;
+        _this.height = parseInt(iframe.height, 10) || 0;
+        _this.backgroundColor = _this.styles.backgroundColor;
+        try {
+          if (iframe.contentWindow && iframe.contentWindow.document && iframe.contentWindow.document.documentElement) {
+            _this.tree = parseTree(context, iframe.contentWindow.document.documentElement);
+            var documentBackgroundColor = iframe.contentWindow.document.documentElement ? parseColor(context, getComputedStyle(iframe.contentWindow.document.documentElement).backgroundColor) : COLORS.TRANSPARENT;
+            var bodyBackgroundColor = iframe.contentWindow.document.body ? parseColor(context, getComputedStyle(iframe.contentWindow.document.body).backgroundColor) : COLORS.TRANSPARENT;
+            _this.backgroundColor = isTransparent(documentBackgroundColor) ? isTransparent(bodyBackgroundColor) ? _this.styles.backgroundColor : bodyBackgroundColor : documentBackgroundColor;
+          }
+        } catch (e2) {
+        }
+        return _this;
+      }
+      return IFrameElementContainer2;
+    }(ElementContainer);
+    LIST_OWNERS = ["OL", "UL", "MENU"];
+    parseNodeTree = function(context, node, parent, root) {
+      for (var childNode = node.firstChild, nextNode = void 0; childNode; childNode = nextNode) {
+        nextNode = childNode.nextSibling;
+        if (isTextNode(childNode) && childNode.data.trim().length > 0) {
+          parent.textNodes.push(new TextContainer(context, childNode, parent.styles));
+        } else if (isElementNode(childNode)) {
+          if (isSlotElement(childNode) && childNode.assignedNodes) {
+            childNode.assignedNodes().forEach(function(childNode2) {
+              return parseNodeTree(context, childNode2, parent, root);
+            });
+          } else {
+            var container = createContainer(context, childNode);
+            if (container.styles.isVisible()) {
+              if (createsRealStackingContext(childNode, container, root)) {
+                container.flags |= 4;
+              } else if (createsStackingContext(container.styles)) {
+                container.flags |= 2;
+              }
+              if (LIST_OWNERS.indexOf(childNode.tagName) !== -1) {
+                container.flags |= 8;
+              }
+              parent.elements.push(container);
+              childNode.slot;
+              if (childNode.shadowRoot) {
+                parseNodeTree(context, childNode.shadowRoot, container, root);
+              } else if (!isTextareaElement(childNode) && !isSVGElement(childNode) && !isSelectElement(childNode)) {
+                parseNodeTree(context, childNode, container, root);
+              }
+            }
+          }
+        }
+      }
+    };
+    createContainer = function(context, element) {
+      if (isImageElement(element)) {
+        return new ImageElementContainer(context, element);
+      }
+      if (isCanvasElement(element)) {
+        return new CanvasElementContainer(context, element);
+      }
+      if (isSVGElement(element)) {
+        return new SVGElementContainer(context, element);
+      }
+      if (isLIElement(element)) {
+        return new LIElementContainer(context, element);
+      }
+      if (isOLElement(element)) {
+        return new OLElementContainer(context, element);
+      }
+      if (isInputElement(element)) {
+        return new InputElementContainer(context, element);
+      }
+      if (isSelectElement(element)) {
+        return new SelectElementContainer(context, element);
+      }
+      if (isTextareaElement(element)) {
+        return new TextareaElementContainer(context, element);
+      }
+      if (isIFrameElement(element)) {
+        return new IFrameElementContainer(context, element);
+      }
+      return new ElementContainer(context, element);
+    };
+    parseTree = function(context, element) {
+      var container = createContainer(context, element);
+      container.flags |= 4;
+      parseNodeTree(context, element, container, container);
+      return container;
+    };
+    createsRealStackingContext = function(node, container, root) {
+      return container.styles.isPositionedWithZIndex() || container.styles.opacity < 1 || container.styles.isTransformed() || isBodyElement(node) && root.styles.isTransparent();
+    };
+    createsStackingContext = function(styles) {
+      return styles.isPositioned() || styles.isFloating();
+    };
+    isTextNode = function(node) {
+      return node.nodeType === Node.TEXT_NODE;
+    };
+    isElementNode = function(node) {
+      return node.nodeType === Node.ELEMENT_NODE;
+    };
+    isHTMLElementNode = function(node) {
+      return isElementNode(node) && typeof node.style !== "undefined" && !isSVGElementNode(node);
+    };
+    isSVGElementNode = function(element) {
+      return typeof element.className === "object";
+    };
+    isLIElement = function(node) {
+      return node.tagName === "LI";
+    };
+    isOLElement = function(node) {
+      return node.tagName === "OL";
+    };
+    isInputElement = function(node) {
+      return node.tagName === "INPUT";
+    };
+    isHTMLElement = function(node) {
+      return node.tagName === "HTML";
+    };
+    isSVGElement = function(node) {
+      return node.tagName === "svg";
+    };
+    isBodyElement = function(node) {
+      return node.tagName === "BODY";
+    };
+    isCanvasElement = function(node) {
+      return node.tagName === "CANVAS";
+    };
+    isVideoElement = function(node) {
+      return node.tagName === "VIDEO";
+    };
+    isImageElement = function(node) {
+      return node.tagName === "IMG";
+    };
+    isIFrameElement = function(node) {
+      return node.tagName === "IFRAME";
+    };
+    isStyleElement = function(node) {
+      return node.tagName === "STYLE";
+    };
+    isScriptElement = function(node) {
+      return node.tagName === "SCRIPT";
+    };
+    isTextareaElement = function(node) {
+      return node.tagName === "TEXTAREA";
+    };
+    isSelectElement = function(node) {
+      return node.tagName === "SELECT";
+    };
+    isSlotElement = function(node) {
+      return node.tagName === "SLOT";
+    };
+    isCustomElement = function(node) {
+      return node.tagName.indexOf("-") > 0;
+    };
+    CounterState = /** @class */
+    function() {
+      function CounterState2() {
+        this.counters = {};
+      }
+      CounterState2.prototype.getCounterValue = function(name) {
+        var counter = this.counters[name];
+        if (counter && counter.length) {
+          return counter[counter.length - 1];
+        }
+        return 1;
+      };
+      CounterState2.prototype.getCounterValues = function(name) {
+        var counter = this.counters[name];
+        return counter ? counter : [];
+      };
+      CounterState2.prototype.pop = function(counters) {
+        var _this = this;
+        counters.forEach(function(counter) {
+          return _this.counters[counter].pop();
+        });
+      };
+      CounterState2.prototype.parse = function(style) {
+        var _this = this;
+        var counterIncrement2 = style.counterIncrement;
+        var counterReset2 = style.counterReset;
+        var canReset = true;
+        if (counterIncrement2 !== null) {
+          counterIncrement2.forEach(function(entry) {
+            var counter = _this.counters[entry.counter];
+            if (counter && entry.increment !== 0) {
+              canReset = false;
+              if (!counter.length) {
+                counter.push(1);
+              }
+              counter[Math.max(0, counter.length - 1)] += entry.increment;
+            }
+          });
+        }
+        var counterNames = [];
+        if (canReset) {
+          counterReset2.forEach(function(entry) {
+            var counter = _this.counters[entry.counter];
+            counterNames.push(entry.counter);
+            if (!counter) {
+              counter = _this.counters[entry.counter] = [];
+            }
+            counter.push(entry.reset);
+          });
+        }
+        return counterNames;
+      };
+      return CounterState2;
+    }();
+    ROMAN_UPPER = {
+      integers: [1e3, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+      values: ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+    };
+    ARMENIAN = {
+      integers: [
+        9e3,
+        8e3,
+        7e3,
+        6e3,
+        5e3,
+        4e3,
+        3e3,
+        2e3,
+        1e3,
+        900,
+        800,
+        700,
+        600,
+        500,
+        400,
+        300,
+        200,
+        100,
+        90,
+        80,
+        70,
+        60,
+        50,
+        40,
+        30,
+        20,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      values: [
+        "Ք",
+        "Փ",
+        "Ւ",
+        "Ց",
+        "Ր",
+        "Տ",
+        "Վ",
+        "Ս",
+        "Ռ",
+        "Ջ",
+        "Պ",
+        "Չ",
+        "Ո",
+        "Շ",
+        "Ն",
+        "Յ",
+        "Մ",
+        "Ճ",
+        "Ղ",
+        "Ձ",
+        "Հ",
+        "Կ",
+        "Ծ",
+        "Խ",
+        "Լ",
+        "Ի",
+        "Ժ",
+        "Թ",
+        "Ը",
+        "Է",
+        "Զ",
+        "Ե",
+        "Դ",
+        "Գ",
+        "Բ",
+        "Ա"
+      ]
+    };
+    HEBREW = {
+      integers: [
+        1e4,
+        9e3,
+        8e3,
+        7e3,
+        6e3,
+        5e3,
+        4e3,
+        3e3,
+        2e3,
+        1e3,
+        400,
+        300,
+        200,
+        100,
+        90,
+        80,
+        70,
+        60,
+        50,
+        40,
+        30,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      values: [
+        "י׳",
+        "ט׳",
+        "ח׳",
+        "ז׳",
+        "ו׳",
+        "ה׳",
+        "ד׳",
+        "ג׳",
+        "ב׳",
+        "א׳",
+        "ת",
+        "ש",
+        "ר",
+        "ק",
+        "צ",
+        "פ",
+        "ע",
+        "ס",
+        "נ",
+        "מ",
+        "ל",
+        "כ",
+        "יט",
+        "יח",
+        "יז",
+        "טז",
+        "טו",
+        "י",
+        "ט",
+        "ח",
+        "ז",
+        "ו",
+        "ה",
+        "ד",
+        "ג",
+        "ב",
+        "א"
+      ]
+    };
+    GEORGIAN = {
+      integers: [
+        1e4,
+        9e3,
+        8e3,
+        7e3,
+        6e3,
+        5e3,
+        4e3,
+        3e3,
+        2e3,
+        1e3,
+        900,
+        800,
+        700,
+        600,
+        500,
+        400,
+        300,
+        200,
+        100,
+        90,
+        80,
+        70,
+        60,
+        50,
+        40,
+        30,
+        20,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      values: [
+        "ჵ",
+        "ჰ",
+        "ჯ",
+        "ჴ",
+        "ხ",
+        "ჭ",
+        "წ",
+        "ძ",
+        "ც",
+        "ჩ",
+        "შ",
+        "ყ",
+        "ღ",
+        "ქ",
+        "ფ",
+        "ჳ",
+        "ტ",
+        "ს",
+        "რ",
+        "ჟ",
+        "პ",
+        "ო",
+        "ჲ",
+        "ნ",
+        "მ",
+        "ლ",
+        "კ",
+        "ი",
+        "თ",
+        "ჱ",
+        "ზ",
+        "ვ",
+        "ე",
+        "დ",
+        "გ",
+        "ბ",
+        "ა"
+      ]
+    };
+    createAdditiveCounter = function(value, min, max, symbols, fallback, suffix) {
+      if (value < min || value > max) {
+        return createCounterText(value, fallback, suffix.length > 0);
+      }
+      return symbols.integers.reduce(function(string, integer, index) {
+        while (value >= integer) {
+          value -= integer;
+          string += symbols.values[index];
+        }
+        return string;
+      }, "") + suffix;
+    };
+    createCounterStyleWithSymbolResolver = function(value, codePointRangeLength, isNumeric, resolver) {
+      var string = "";
+      do {
+        if (!isNumeric) {
+          value--;
+        }
+        string = resolver(value) + string;
+        value /= codePointRangeLength;
+      } while (value * codePointRangeLength >= codePointRangeLength);
+      return string;
+    };
+    createCounterStyleFromRange = function(value, codePointRangeStart, codePointRangeEnd, isNumeric, suffix) {
+      var codePointRangeLength = codePointRangeEnd - codePointRangeStart + 1;
+      return (value < 0 ? "-" : "") + (createCounterStyleWithSymbolResolver(Math.abs(value), codePointRangeLength, isNumeric, function(codePoint) {
+        return fromCodePoint$1(Math.floor(codePoint % codePointRangeLength) + codePointRangeStart);
+      }) + suffix);
+    };
+    createCounterStyleFromSymbols = function(value, symbols, suffix) {
+      if (suffix === void 0) {
+        suffix = ". ";
+      }
+      var codePointRangeLength = symbols.length;
+      return createCounterStyleWithSymbolResolver(Math.abs(value), codePointRangeLength, false, function(codePoint) {
+        return symbols[Math.floor(codePoint % codePointRangeLength)];
+      }) + suffix;
+    };
+    CJK_ZEROS = 1 << 0;
+    CJK_TEN_COEFFICIENTS = 1 << 1;
+    CJK_TEN_HIGH_COEFFICIENTS = 1 << 2;
+    CJK_HUNDRED_COEFFICIENTS = 1 << 3;
+    createCJKCounter = function(value, numbers, multipliers, negativeSign, suffix, flags) {
+      if (value < -9999 || value > 9999) {
+        return createCounterText(value, 4, suffix.length > 0);
+      }
+      var tmp = Math.abs(value);
+      var string = suffix;
+      if (tmp === 0) {
+        return numbers[0] + string;
+      }
+      for (var digit = 0; tmp > 0 && digit <= 4; digit++) {
+        var coefficient = tmp % 10;
+        if (coefficient === 0 && contains(flags, CJK_ZEROS) && string !== "") {
+          string = numbers[coefficient] + string;
+        } else if (coefficient > 1 || coefficient === 1 && digit === 0 || coefficient === 1 && digit === 1 && contains(flags, CJK_TEN_COEFFICIENTS) || coefficient === 1 && digit === 1 && contains(flags, CJK_TEN_HIGH_COEFFICIENTS) && value > 100 || coefficient === 1 && digit > 1 && contains(flags, CJK_HUNDRED_COEFFICIENTS)) {
+          string = numbers[coefficient] + (digit > 0 ? multipliers[digit - 1] : "") + string;
+        } else if (coefficient === 1 && digit > 0) {
+          string = multipliers[digit - 1] + string;
+        }
+        tmp = Math.floor(tmp / 10);
+      }
+      return (value < 0 ? negativeSign : "") + string;
+    };
+    CHINESE_INFORMAL_MULTIPLIERS = "十百千萬";
+    CHINESE_FORMAL_MULTIPLIERS = "拾佰仟萬";
+    JAPANESE_NEGATIVE = "マイナス";
+    KOREAN_NEGATIVE = "마이너스";
+    createCounterText = function(value, type, appendSuffix) {
+      var defaultSuffix = appendSuffix ? ". " : "";
+      var cjkSuffix = appendSuffix ? "、" : "";
+      var koreanSuffix = appendSuffix ? ", " : "";
+      var spaceSuffix = appendSuffix ? " " : "";
+      switch (type) {
+        case 0:
+          return "•" + spaceSuffix;
+        case 1:
+          return "◦" + spaceSuffix;
+        case 2:
+          return "◾" + spaceSuffix;
+        case 5:
+          var string = createCounterStyleFromRange(value, 48, 57, true, defaultSuffix);
+          return string.length < 4 ? "0" + string : string;
+        case 4:
+          return createCounterStyleFromSymbols(value, "〇一二三四五六七八九", cjkSuffix);
+        case 6:
+          return createAdditiveCounter(value, 1, 3999, ROMAN_UPPER, 3, defaultSuffix).toLowerCase();
+        case 7:
+          return createAdditiveCounter(value, 1, 3999, ROMAN_UPPER, 3, defaultSuffix);
+        case 8:
+          return createCounterStyleFromRange(value, 945, 969, false, defaultSuffix);
+        case 9:
+          return createCounterStyleFromRange(value, 97, 122, false, defaultSuffix);
+        case 10:
+          return createCounterStyleFromRange(value, 65, 90, false, defaultSuffix);
+        case 11:
+          return createCounterStyleFromRange(value, 1632, 1641, true, defaultSuffix);
+        case 12:
+        case 49:
+          return createAdditiveCounter(value, 1, 9999, ARMENIAN, 3, defaultSuffix);
+        case 35:
+          return createAdditiveCounter(value, 1, 9999, ARMENIAN, 3, defaultSuffix).toLowerCase();
+        case 13:
+          return createCounterStyleFromRange(value, 2534, 2543, true, defaultSuffix);
+        case 14:
+        case 30:
+          return createCounterStyleFromRange(value, 6112, 6121, true, defaultSuffix);
+        case 15:
+          return createCounterStyleFromSymbols(value, "子丑寅卯辰巳午未申酉戌亥", cjkSuffix);
+        case 16:
+          return createCounterStyleFromSymbols(value, "甲乙丙丁戊己庚辛壬癸", cjkSuffix);
+        case 17:
+        case 48:
+          return createCJKCounter(value, "零一二三四五六七八九", CHINESE_INFORMAL_MULTIPLIERS, "負", cjkSuffix, CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS | CJK_HUNDRED_COEFFICIENTS);
+        case 47:
+          return createCJKCounter(value, "零壹貳參肆伍陸柒捌玖", CHINESE_FORMAL_MULTIPLIERS, "負", cjkSuffix, CJK_ZEROS | CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS | CJK_HUNDRED_COEFFICIENTS);
+        case 42:
+          return createCJKCounter(value, "零一二三四五六七八九", CHINESE_INFORMAL_MULTIPLIERS, "负", cjkSuffix, CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS | CJK_HUNDRED_COEFFICIENTS);
+        case 41:
+          return createCJKCounter(value, "零壹贰叁肆伍陆柒捌玖", CHINESE_FORMAL_MULTIPLIERS, "负", cjkSuffix, CJK_ZEROS | CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS | CJK_HUNDRED_COEFFICIENTS);
+        case 26:
+          return createCJKCounter(value, "〇一二三四五六七八九", "十百千万", JAPANESE_NEGATIVE, cjkSuffix, 0);
+        case 25:
+          return createCJKCounter(value, "零壱弐参四伍六七八九", "拾百千万", JAPANESE_NEGATIVE, cjkSuffix, CJK_ZEROS | CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS);
+        case 31:
+          return createCJKCounter(value, "영일이삼사오육칠팔구", "십백천만", KOREAN_NEGATIVE, koreanSuffix, CJK_ZEROS | CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS);
+        case 33:
+          return createCJKCounter(value, "零一二三四五六七八九", "十百千萬", KOREAN_NEGATIVE, koreanSuffix, 0);
+        case 32:
+          return createCJKCounter(value, "零壹貳參四五六七八九", "拾百千", KOREAN_NEGATIVE, koreanSuffix, CJK_ZEROS | CJK_TEN_COEFFICIENTS | CJK_TEN_HIGH_COEFFICIENTS);
+        case 18:
+          return createCounterStyleFromRange(value, 2406, 2415, true, defaultSuffix);
+        case 20:
+          return createAdditiveCounter(value, 1, 19999, GEORGIAN, 3, defaultSuffix);
+        case 21:
+          return createCounterStyleFromRange(value, 2790, 2799, true, defaultSuffix);
+        case 22:
+          return createCounterStyleFromRange(value, 2662, 2671, true, defaultSuffix);
+        case 22:
+          return createAdditiveCounter(value, 1, 10999, HEBREW, 3, defaultSuffix);
+        case 23:
+          return createCounterStyleFromSymbols(value, "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん");
+        case 24:
+          return createCounterStyleFromSymbols(value, "いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす");
+        case 27:
+          return createCounterStyleFromRange(value, 3302, 3311, true, defaultSuffix);
+        case 28:
+          return createCounterStyleFromSymbols(value, "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン", cjkSuffix);
+        case 29:
+          return createCounterStyleFromSymbols(value, "イロハニホヘトチリヌルヲワカヨタレソツネナラムウヰノオクヤマケフコエテアサキユメミシヱヒモセス", cjkSuffix);
+        case 34:
+          return createCounterStyleFromRange(value, 3792, 3801, true, defaultSuffix);
+        case 37:
+          return createCounterStyleFromRange(value, 6160, 6169, true, defaultSuffix);
+        case 38:
+          return createCounterStyleFromRange(value, 4160, 4169, true, defaultSuffix);
+        case 39:
+          return createCounterStyleFromRange(value, 2918, 2927, true, defaultSuffix);
+        case 40:
+          return createCounterStyleFromRange(value, 1776, 1785, true, defaultSuffix);
+        case 43:
+          return createCounterStyleFromRange(value, 3046, 3055, true, defaultSuffix);
+        case 44:
+          return createCounterStyleFromRange(value, 3174, 3183, true, defaultSuffix);
+        case 45:
+          return createCounterStyleFromRange(value, 3664, 3673, true, defaultSuffix);
+        case 46:
+          return createCounterStyleFromRange(value, 3872, 3881, true, defaultSuffix);
+        case 3:
+        default:
+          return createCounterStyleFromRange(value, 48, 57, true, defaultSuffix);
+      }
+    };
+    IGNORE_ATTRIBUTE = "data-html2canvas-ignore";
+    DocumentCloner = /** @class */
+    function() {
+      function DocumentCloner2(context, element, options) {
+        this.context = context;
+        this.options = options;
+        this.scrolledElements = [];
+        this.referenceElement = element;
+        this.counters = new CounterState();
+        this.quoteDepth = 0;
+        if (!element.ownerDocument) {
+          throw new Error("Cloned element does not have an owner document");
+        }
+        this.documentElement = this.cloneNode(element.ownerDocument.documentElement, false);
+      }
+      DocumentCloner2.prototype.toIFrame = function(ownerDocument, windowSize) {
+        var _this = this;
+        var iframe = createIFrameContainer(ownerDocument, windowSize);
+        if (!iframe.contentWindow) {
+          return Promise.reject("Unable to find iframe window");
+        }
+        var scrollX = ownerDocument.defaultView.pageXOffset;
+        var scrollY = ownerDocument.defaultView.pageYOffset;
+        var cloneWindow = iframe.contentWindow;
+        var documentClone = cloneWindow.document;
+        var iframeLoad = iframeLoader(iframe).then(function() {
+          return __awaiter(_this, void 0, void 0, function() {
+            var onclone, referenceElement;
+            return __generator(this, function(_a) {
+              switch (_a.label) {
+                case 0:
+                  this.scrolledElements.forEach(restoreNodeScroll);
+                  if (cloneWindow) {
+                    cloneWindow.scrollTo(windowSize.left, windowSize.top);
+                    if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && (cloneWindow.scrollY !== windowSize.top || cloneWindow.scrollX !== windowSize.left)) {
+                      this.context.logger.warn("Unable to restore scroll position for cloned document");
+                      this.context.windowBounds = this.context.windowBounds.add(cloneWindow.scrollX - windowSize.left, cloneWindow.scrollY - windowSize.top, 0, 0);
+                    }
+                  }
+                  onclone = this.options.onclone;
+                  referenceElement = this.clonedReferenceElement;
+                  if (typeof referenceElement === "undefined") {
+                    return [2, Promise.reject("Error finding the " + this.referenceElement.nodeName + " in the cloned document")];
+                  }
+                  if (!(documentClone.fonts && documentClone.fonts.ready))
+                    return [3, 2];
+                  return [4, documentClone.fonts.ready];
+                case 1:
+                  _a.sent();
+                  _a.label = 2;
+                case 2:
+                  if (!/(AppleWebKit)/g.test(navigator.userAgent))
+                    return [3, 4];
+                  return [4, imagesReady(documentClone)];
+                case 3:
+                  _a.sent();
+                  _a.label = 4;
+                case 4:
+                  if (typeof onclone === "function") {
+                    return [2, Promise.resolve().then(function() {
+                      return onclone(documentClone, referenceElement);
+                    }).then(function() {
+                      return iframe;
+                    })];
+                  }
+                  return [2, iframe];
+              }
+            });
+          });
+        });
+        documentClone.open();
+        documentClone.write(serializeDoctype(document.doctype) + "<html></html>");
+        restoreOwnerScroll(this.referenceElement.ownerDocument, scrollX, scrollY);
+        documentClone.replaceChild(documentClone.adoptNode(this.documentElement), documentClone.documentElement);
+        documentClone.close();
+        return iframeLoad;
+      };
+      DocumentCloner2.prototype.createElementClone = function(node) {
+        if (isDebugging(
+          node,
+          2
+          /* CLONE */
+        )) {
+          debugger;
+        }
+        if (isCanvasElement(node)) {
+          return this.createCanvasClone(node);
+        }
+        if (isVideoElement(node)) {
+          return this.createVideoClone(node);
+        }
+        if (isStyleElement(node)) {
+          return this.createStyleClone(node);
+        }
+        var clone = node.cloneNode(false);
+        if (isImageElement(clone)) {
+          if (isImageElement(node) && node.currentSrc && node.currentSrc !== node.src) {
+            clone.src = node.currentSrc;
+            clone.srcset = "";
+          }
+          if (clone.loading === "lazy") {
+            clone.loading = "eager";
+          }
+        }
+        if (isCustomElement(clone)) {
+          return this.createCustomElementClone(clone);
+        }
+        return clone;
+      };
+      DocumentCloner2.prototype.createCustomElementClone = function(node) {
+        var clone = document.createElement("html2canvascustomelement");
+        copyCSSStyles(node.style, clone);
+        return clone;
+      };
+      DocumentCloner2.prototype.createStyleClone = function(node) {
+        try {
+          var sheet = node.sheet;
+          if (sheet && sheet.cssRules) {
+            var css = [].slice.call(sheet.cssRules, 0).reduce(function(css2, rule) {
+              if (rule && typeof rule.cssText === "string") {
+                return css2 + rule.cssText;
+              }
+              return css2;
+            }, "");
+            var style = node.cloneNode(false);
+            style.textContent = css;
+            return style;
+          }
+        } catch (e2) {
+          this.context.logger.error("Unable to access cssRules property", e2);
+          if (e2.name !== "SecurityError") {
+            throw e2;
+          }
+        }
+        return node.cloneNode(false);
+      };
+      DocumentCloner2.prototype.createCanvasClone = function(canvas) {
+        var _a;
+        if (this.options.inlineImages && canvas.ownerDocument) {
+          var img = canvas.ownerDocument.createElement("img");
+          try {
+            img.src = canvas.toDataURL();
+            return img;
+          } catch (e2) {
+            this.context.logger.info("Unable to inline canvas contents, canvas is tainted", canvas);
+          }
+        }
+        var clonedCanvas = canvas.cloneNode(false);
+        try {
+          clonedCanvas.width = canvas.width;
+          clonedCanvas.height = canvas.height;
+          var ctx = canvas.getContext("2d");
+          var clonedCtx = clonedCanvas.getContext("2d");
+          if (clonedCtx) {
+            if (!this.options.allowTaint && ctx) {
+              clonedCtx.putImageData(ctx.getImageData(0, 0, canvas.width, canvas.height), 0, 0);
+            } else {
+              var gl = (_a = canvas.getContext("webgl2")) !== null && _a !== void 0 ? _a : canvas.getContext("webgl");
+              if (gl) {
+                var attribs = gl.getContextAttributes();
+                if ((attribs === null || attribs === void 0 ? void 0 : attribs.preserveDrawingBuffer) === false) {
+                  this.context.logger.warn("Unable to clone WebGL context as it has preserveDrawingBuffer=false", canvas);
+                }
+              }
+              clonedCtx.drawImage(canvas, 0, 0);
+            }
+          }
+          return clonedCanvas;
+        } catch (e2) {
+          this.context.logger.info("Unable to clone canvas as it is tainted", canvas);
+        }
+        return clonedCanvas;
+      };
+      DocumentCloner2.prototype.createVideoClone = function(video) {
+        var canvas = video.ownerDocument.createElement("canvas");
+        canvas.width = video.offsetWidth;
+        canvas.height = video.offsetHeight;
+        var ctx = canvas.getContext("2d");
+        try {
+          if (ctx) {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            if (!this.options.allowTaint) {
+              ctx.getImageData(0, 0, canvas.width, canvas.height);
+            }
+          }
+          return canvas;
+        } catch (e2) {
+          this.context.logger.info("Unable to clone video as it is tainted", video);
+        }
+        var blankCanvas = video.ownerDocument.createElement("canvas");
+        blankCanvas.width = video.offsetWidth;
+        blankCanvas.height = video.offsetHeight;
+        return blankCanvas;
+      };
+      DocumentCloner2.prototype.appendChildNode = function(clone, child, copyStyles) {
+        if (!isElementNode(child) || !isScriptElement(child) && !child.hasAttribute(IGNORE_ATTRIBUTE) && (typeof this.options.ignoreElements !== "function" || !this.options.ignoreElements(child))) {
+          if (!this.options.copyStyles || !isElementNode(child) || !isStyleElement(child)) {
+            clone.appendChild(this.cloneNode(child, copyStyles));
+          }
+        }
+      };
+      DocumentCloner2.prototype.cloneChildNodes = function(node, clone, copyStyles) {
+        var _this = this;
+        for (var child = node.shadowRoot ? node.shadowRoot.firstChild : node.firstChild; child; child = child.nextSibling) {
+          if (isElementNode(child) && isSlotElement(child) && typeof child.assignedNodes === "function") {
+            var assignedNodes = child.assignedNodes();
+            if (assignedNodes.length) {
+              assignedNodes.forEach(function(assignedNode) {
+                return _this.appendChildNode(clone, assignedNode, copyStyles);
+              });
+            }
+          } else {
+            this.appendChildNode(clone, child, copyStyles);
+          }
+        }
+      };
+      DocumentCloner2.prototype.cloneNode = function(node, copyStyles) {
+        if (isTextNode(node)) {
+          return document.createTextNode(node.data);
+        }
+        if (!node.ownerDocument) {
+          return node.cloneNode(false);
+        }
+        var window2 = node.ownerDocument.defaultView;
+        if (window2 && isElementNode(node) && (isHTMLElementNode(node) || isSVGElementNode(node))) {
+          var clone = this.createElementClone(node);
+          clone.style.transitionProperty = "none";
+          var style = window2.getComputedStyle(node);
+          var styleBefore = window2.getComputedStyle(node, ":before");
+          var styleAfter = window2.getComputedStyle(node, ":after");
+          if (this.referenceElement === node && isHTMLElementNode(clone)) {
+            this.clonedReferenceElement = clone;
+          }
+          if (isBodyElement(clone)) {
+            createPseudoHideStyles(clone);
+          }
+          var counters = this.counters.parse(new CSSParsedCounterDeclaration(this.context, style));
+          var before = this.resolvePseudoContent(node, clone, styleBefore, PseudoElementType.BEFORE);
+          if (isCustomElement(node)) {
+            copyStyles = true;
+          }
+          if (!isVideoElement(node)) {
+            this.cloneChildNodes(node, clone, copyStyles);
+          }
+          if (before) {
+            clone.insertBefore(before, clone.firstChild);
+          }
+          var after = this.resolvePseudoContent(node, clone, styleAfter, PseudoElementType.AFTER);
+          if (after) {
+            clone.appendChild(after);
+          }
+          this.counters.pop(counters);
+          if (style && (this.options.copyStyles || isSVGElementNode(node)) && !isIFrameElement(node) || copyStyles) {
+            copyCSSStyles(style, clone);
+          }
+          if (node.scrollTop !== 0 || node.scrollLeft !== 0) {
+            this.scrolledElements.push([clone, node.scrollLeft, node.scrollTop]);
+          }
+          if ((isTextareaElement(node) || isSelectElement(node)) && (isTextareaElement(clone) || isSelectElement(clone))) {
+            clone.value = node.value;
+          }
+          return clone;
+        }
+        return node.cloneNode(false);
+      };
+      DocumentCloner2.prototype.resolvePseudoContent = function(node, clone, style, pseudoElt) {
+        var _this = this;
+        if (!style) {
+          return;
+        }
+        var value = style.content;
+        var document2 = clone.ownerDocument;
+        if (!document2 || !value || value === "none" || value === "-moz-alt-content" || style.display === "none") {
+          return;
+        }
+        this.counters.parse(new CSSParsedCounterDeclaration(this.context, style));
+        var declaration = new CSSParsedPseudoDeclaration(this.context, style);
+        var anonymousReplacedElement = document2.createElement("html2canvaspseudoelement");
+        copyCSSStyles(style, anonymousReplacedElement);
+        declaration.content.forEach(function(token) {
+          if (token.type === 0) {
+            anonymousReplacedElement.appendChild(document2.createTextNode(token.value));
+          } else if (token.type === 22) {
+            var img = document2.createElement("img");
+            img.src = token.value;
+            img.style.opacity = "1";
+            anonymousReplacedElement.appendChild(img);
+          } else if (token.type === 18) {
+            if (token.name === "attr") {
+              var attr = token.values.filter(isIdentToken);
+              if (attr.length) {
+                anonymousReplacedElement.appendChild(document2.createTextNode(node.getAttribute(attr[0].value) || ""));
+              }
+            } else if (token.name === "counter") {
+              var _a = token.values.filter(nonFunctionArgSeparator), counter = _a[0], counterStyle = _a[1];
+              if (counter && isIdentToken(counter)) {
+                var counterState = _this.counters.getCounterValue(counter.value);
+                var counterType = counterStyle && isIdentToken(counterStyle) ? listStyleType.parse(_this.context, counterStyle.value) : 3;
+                anonymousReplacedElement.appendChild(document2.createTextNode(createCounterText(counterState, counterType, false)));
+              }
+            } else if (token.name === "counters") {
+              var _b = token.values.filter(nonFunctionArgSeparator), counter = _b[0], delim = _b[1], counterStyle = _b[2];
+              if (counter && isIdentToken(counter)) {
+                var counterStates = _this.counters.getCounterValues(counter.value);
+                var counterType_1 = counterStyle && isIdentToken(counterStyle) ? listStyleType.parse(_this.context, counterStyle.value) : 3;
+                var separator = delim && delim.type === 0 ? delim.value : "";
+                var text = counterStates.map(function(value2) {
+                  return createCounterText(value2, counterType_1, false);
+                }).join(separator);
+                anonymousReplacedElement.appendChild(document2.createTextNode(text));
+              }
+            } else
+              ;
+          } else if (token.type === 20) {
+            switch (token.value) {
+              case "open-quote":
+                anonymousReplacedElement.appendChild(document2.createTextNode(getQuote(declaration.quotes, _this.quoteDepth++, true)));
+                break;
+              case "close-quote":
+                anonymousReplacedElement.appendChild(document2.createTextNode(getQuote(declaration.quotes, --_this.quoteDepth, false)));
+                break;
+              default:
+                anonymousReplacedElement.appendChild(document2.createTextNode(token.value));
+            }
+          }
+        });
+        anonymousReplacedElement.className = PSEUDO_HIDE_ELEMENT_CLASS_BEFORE + " " + PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
+        var newClassName = pseudoElt === PseudoElementType.BEFORE ? " " + PSEUDO_HIDE_ELEMENT_CLASS_BEFORE : " " + PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
+        if (isSVGElementNode(clone)) {
+          clone.className.baseValue += newClassName;
+        } else {
+          clone.className += newClassName;
+        }
+        return anonymousReplacedElement;
+      };
+      DocumentCloner2.destroy = function(container) {
+        if (container.parentNode) {
+          container.parentNode.removeChild(container);
+          return true;
+        }
+        return false;
+      };
+      return DocumentCloner2;
+    }();
+    (function(PseudoElementType2) {
+      PseudoElementType2[PseudoElementType2["BEFORE"] = 0] = "BEFORE";
+      PseudoElementType2[PseudoElementType2["AFTER"] = 1] = "AFTER";
+    })(PseudoElementType || (PseudoElementType = {}));
+    createIFrameContainer = function(ownerDocument, bounds) {
+      var cloneIframeContainer = ownerDocument.createElement("iframe");
+      cloneIframeContainer.className = "html2canvas-container";
+      cloneIframeContainer.style.visibility = "hidden";
+      cloneIframeContainer.style.position = "fixed";
+      cloneIframeContainer.style.left = "-10000px";
+      cloneIframeContainer.style.top = "0px";
+      cloneIframeContainer.style.border = "0";
+      cloneIframeContainer.width = bounds.width.toString();
+      cloneIframeContainer.height = bounds.height.toString();
+      cloneIframeContainer.scrolling = "no";
+      cloneIframeContainer.setAttribute(IGNORE_ATTRIBUTE, "true");
+      ownerDocument.body.appendChild(cloneIframeContainer);
+      return cloneIframeContainer;
+    };
+    imageReady = function(img) {
+      return new Promise(function(resolve) {
+        if (img.complete) {
+          resolve();
+          return;
+        }
+        if (!img.src) {
+          resolve();
+          return;
+        }
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    };
+    imagesReady = function(document2) {
+      return Promise.all([].slice.call(document2.images, 0).map(imageReady));
+    };
+    iframeLoader = function(iframe) {
+      return new Promise(function(resolve, reject) {
+        var cloneWindow = iframe.contentWindow;
+        if (!cloneWindow) {
+          return reject("No window assigned for iframe");
+        }
+        var documentClone = cloneWindow.document;
+        cloneWindow.onload = iframe.onload = function() {
+          cloneWindow.onload = iframe.onload = null;
+          var interval = setInterval(function() {
+            if (documentClone.body.childNodes.length > 0 && documentClone.readyState === "complete") {
+              clearInterval(interval);
+              resolve(iframe);
+            }
+          }, 50);
+        };
+      });
+    };
+    ignoredStyleProperties = [
+      "all",
+      "d",
+      "content"
+      // Safari shows pseudoelements if content is set
+    ];
+    copyCSSStyles = function(style, target) {
+      for (var i = style.length - 1; i >= 0; i--) {
+        var property = style.item(i);
+        if (ignoredStyleProperties.indexOf(property) === -1) {
+          target.style.setProperty(property, style.getPropertyValue(property));
+        }
+      }
+      return target;
+    };
+    serializeDoctype = function(doctype) {
+      var str = "";
+      if (doctype) {
+        str += "<!DOCTYPE ";
+        if (doctype.name) {
+          str += doctype.name;
+        }
+        if (doctype.internalSubset) {
+          str += doctype.internalSubset;
+        }
+        if (doctype.publicId) {
+          str += '"' + doctype.publicId + '"';
+        }
+        if (doctype.systemId) {
+          str += '"' + doctype.systemId + '"';
+        }
+        str += ">";
+      }
+      return str;
+    };
+    restoreOwnerScroll = function(ownerDocument, x, y) {
+      if (ownerDocument && ownerDocument.defaultView && (x !== ownerDocument.defaultView.pageXOffset || y !== ownerDocument.defaultView.pageYOffset)) {
+        ownerDocument.defaultView.scrollTo(x, y);
+      }
+    };
+    restoreNodeScroll = function(_a) {
+      var element = _a[0], x = _a[1], y = _a[2];
+      element.scrollLeft = x;
+      element.scrollTop = y;
+    };
+    PSEUDO_BEFORE = ":before";
+    PSEUDO_AFTER = ":after";
+    PSEUDO_HIDE_ELEMENT_CLASS_BEFORE = "___html2canvas___pseudoelement_before";
+    PSEUDO_HIDE_ELEMENT_CLASS_AFTER = "___html2canvas___pseudoelement_after";
+    PSEUDO_HIDE_ELEMENT_STYLE = '{\n    content: "" !important;\n    display: none !important;\n}';
+    createPseudoHideStyles = function(body) {
+      createStyles(body, "." + PSEUDO_HIDE_ELEMENT_CLASS_BEFORE + PSEUDO_BEFORE + PSEUDO_HIDE_ELEMENT_STYLE + "\n         ." + PSEUDO_HIDE_ELEMENT_CLASS_AFTER + PSEUDO_AFTER + PSEUDO_HIDE_ELEMENT_STYLE);
+    };
+    createStyles = function(body, styles) {
+      var document2 = body.ownerDocument;
+      if (document2) {
+        var style = document2.createElement("style");
+        style.textContent = styles;
+        body.appendChild(style);
+      }
+    };
+    CacheStorage = /** @class */
+    function() {
+      function CacheStorage2() {
+      }
+      CacheStorage2.getOrigin = function(url) {
+        var link = CacheStorage2._link;
+        if (!link) {
+          return "about:blank";
+        }
+        link.href = url;
+        link.href = link.href;
+        return link.protocol + link.hostname + link.port;
+      };
+      CacheStorage2.isSameOrigin = function(src) {
+        return CacheStorage2.getOrigin(src) === CacheStorage2._origin;
+      };
+      CacheStorage2.setContext = function(window2) {
+        CacheStorage2._link = window2.document.createElement("a");
+        CacheStorage2._origin = CacheStorage2.getOrigin(window2.location.href);
+      };
+      CacheStorage2._origin = "about:blank";
+      return CacheStorage2;
+    }();
+    Cache = /** @class */
+    function() {
+      function Cache2(context, _options) {
+        this.context = context;
+        this._options = _options;
+        this._cache = {};
+      }
+      Cache2.prototype.addImage = function(src) {
+        var result = Promise.resolve();
+        if (this.has(src)) {
+          return result;
+        }
+        if (isBlobImage(src) || isRenderable(src)) {
+          (this._cache[src] = this.loadImage(src)).catch(function() {
+          });
+          return result;
+        }
+        return result;
+      };
+      Cache2.prototype.match = function(src) {
+        return this._cache[src];
+      };
+      Cache2.prototype.loadImage = function(key) {
+        return __awaiter(this, void 0, void 0, function() {
+          var isSameOrigin, useCORS, useProxy, src;
+          var _this = this;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                isSameOrigin = CacheStorage.isSameOrigin(key);
+                useCORS = !isInlineImage(key) && this._options.useCORS === true && FEATURES.SUPPORT_CORS_IMAGES && !isSameOrigin;
+                useProxy = !isInlineImage(key) && !isSameOrigin && !isBlobImage(key) && typeof this._options.proxy === "string" && FEATURES.SUPPORT_CORS_XHR && !useCORS;
+                if (!isSameOrigin && this._options.allowTaint === false && !isInlineImage(key) && !isBlobImage(key) && !useProxy && !useCORS) {
+                  return [
+                    2
+                    /*return*/
+                  ];
+                }
+                src = key;
+                if (!useProxy)
+                  return [3, 2];
+                return [4, this.proxy(src)];
+              case 1:
+                src = _a.sent();
+                _a.label = 2;
+              case 2:
+                this.context.logger.debug("Added image " + key.substring(0, 256));
+                return [4, new Promise(function(resolve, reject) {
+                  var img = new Image();
+                  img.onload = function() {
+                    return resolve(img);
+                  };
+                  img.onerror = reject;
+                  if (isInlineBase64Image(src) || useCORS) {
+                    img.crossOrigin = "anonymous";
+                  }
+                  img.src = src;
+                  if (img.complete === true) {
+                    setTimeout(function() {
+                      return resolve(img);
+                    }, 500);
+                  }
+                  if (_this._options.imageTimeout > 0) {
+                    setTimeout(function() {
+                      return reject("Timed out (" + _this._options.imageTimeout + "ms) loading image");
+                    }, _this._options.imageTimeout);
+                  }
+                })];
+              case 3:
+                return [2, _a.sent()];
+            }
+          });
+        });
+      };
+      Cache2.prototype.has = function(key) {
+        return typeof this._cache[key] !== "undefined";
+      };
+      Cache2.prototype.keys = function() {
+        return Promise.resolve(Object.keys(this._cache));
+      };
+      Cache2.prototype.proxy = function(src) {
+        var _this = this;
+        var proxy = this._options.proxy;
+        if (!proxy) {
+          throw new Error("No proxy defined");
+        }
+        var key = src.substring(0, 256);
+        return new Promise(function(resolve, reject) {
+          var responseType = FEATURES.SUPPORT_RESPONSE_TYPE ? "blob" : "text";
+          var xhr = new XMLHttpRequest();
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              if (responseType === "text") {
+                resolve(xhr.response);
+              } else {
+                var reader_1 = new FileReader();
+                reader_1.addEventListener("load", function() {
+                  return resolve(reader_1.result);
+                }, false);
+                reader_1.addEventListener("error", function(e2) {
+                  return reject(e2);
+                }, false);
+                reader_1.readAsDataURL(xhr.response);
+              }
+            } else {
+              reject("Failed to proxy resource " + key + " with status code " + xhr.status);
+            }
+          };
+          xhr.onerror = reject;
+          var queryString = proxy.indexOf("?") > -1 ? "&" : "?";
+          xhr.open("GET", "" + proxy + queryString + "url=" + encodeURIComponent(src) + "&responseType=" + responseType);
+          if (responseType !== "text" && xhr instanceof XMLHttpRequest) {
+            xhr.responseType = responseType;
+          }
+          if (_this._options.imageTimeout) {
+            var timeout_1 = _this._options.imageTimeout;
+            xhr.timeout = timeout_1;
+            xhr.ontimeout = function() {
+              return reject("Timed out (" + timeout_1 + "ms) proxying " + key);
+            };
+          }
+          xhr.send();
+        });
+      };
+      return Cache2;
+    }();
+    INLINE_SVG = /^data:image\/svg\+xml/i;
+    INLINE_BASE64 = /^data:image\/.*;base64,/i;
+    INLINE_IMG = /^data:image\/.*/i;
+    isRenderable = function(src) {
+      return FEATURES.SUPPORT_SVG_DRAWING || !isSVG(src);
+    };
+    isInlineImage = function(src) {
+      return INLINE_IMG.test(src);
+    };
+    isInlineBase64Image = function(src) {
+      return INLINE_BASE64.test(src);
+    };
+    isBlobImage = function(src) {
+      return src.substr(0, 4) === "blob";
+    };
+    isSVG = function(src) {
+      return src.substr(-3).toLowerCase() === "svg" || INLINE_SVG.test(src);
+    };
+    Vector = /** @class */
+    function() {
+      function Vector2(x, y) {
+        this.type = 0;
+        this.x = x;
+        this.y = y;
+      }
+      Vector2.prototype.add = function(deltaX, deltaY) {
+        return new Vector2(this.x + deltaX, this.y + deltaY);
+      };
+      return Vector2;
+    }();
+    lerp = function(a2, b, t) {
+      return new Vector(a2.x + (b.x - a2.x) * t, a2.y + (b.y - a2.y) * t);
+    };
+    BezierCurve = /** @class */
+    function() {
+      function BezierCurve2(start, startControl, endControl, end) {
+        this.type = 1;
+        this.start = start;
+        this.startControl = startControl;
+        this.endControl = endControl;
+        this.end = end;
+      }
+      BezierCurve2.prototype.subdivide = function(t, firstHalf) {
+        var ab = lerp(this.start, this.startControl, t);
+        var bc = lerp(this.startControl, this.endControl, t);
+        var cd = lerp(this.endControl, this.end, t);
+        var abbc = lerp(ab, bc, t);
+        var bccd = lerp(bc, cd, t);
+        var dest = lerp(abbc, bccd, t);
+        return firstHalf ? new BezierCurve2(this.start, ab, abbc, dest) : new BezierCurve2(dest, bccd, cd, this.end);
+      };
+      BezierCurve2.prototype.add = function(deltaX, deltaY) {
+        return new BezierCurve2(this.start.add(deltaX, deltaY), this.startControl.add(deltaX, deltaY), this.endControl.add(deltaX, deltaY), this.end.add(deltaX, deltaY));
+      };
+      BezierCurve2.prototype.reverse = function() {
+        return new BezierCurve2(this.end, this.endControl, this.startControl, this.start);
+      };
+      return BezierCurve2;
+    }();
+    isBezierCurve = function(path) {
+      return path.type === 1;
+    };
+    BoundCurves = /** @class */
+    function() {
+      function BoundCurves2(element) {
+        var styles = element.styles;
+        var bounds = element.bounds;
+        var _a = getAbsoluteValueForTuple(styles.borderTopLeftRadius, bounds.width, bounds.height), tlh = _a[0], tlv = _a[1];
+        var _b = getAbsoluteValueForTuple(styles.borderTopRightRadius, bounds.width, bounds.height), trh = _b[0], trv = _b[1];
+        var _c = getAbsoluteValueForTuple(styles.borderBottomRightRadius, bounds.width, bounds.height), brh = _c[0], brv = _c[1];
+        var _d = getAbsoluteValueForTuple(styles.borderBottomLeftRadius, bounds.width, bounds.height), blh = _d[0], blv = _d[1];
+        var factors = [];
+        factors.push((tlh + trh) / bounds.width);
+        factors.push((blh + brh) / bounds.width);
+        factors.push((tlv + blv) / bounds.height);
+        factors.push((trv + brv) / bounds.height);
+        var maxFactor = Math.max.apply(Math, factors);
+        if (maxFactor > 1) {
+          tlh /= maxFactor;
+          tlv /= maxFactor;
+          trh /= maxFactor;
+          trv /= maxFactor;
+          brh /= maxFactor;
+          brv /= maxFactor;
+          blh /= maxFactor;
+          blv /= maxFactor;
+        }
+        var topWidth = bounds.width - trh;
+        var rightHeight = bounds.height - brv;
+        var bottomWidth = bounds.width - brh;
+        var leftHeight = bounds.height - blv;
+        var borderTopWidth2 = styles.borderTopWidth;
+        var borderRightWidth2 = styles.borderRightWidth;
+        var borderBottomWidth2 = styles.borderBottomWidth;
+        var borderLeftWidth2 = styles.borderLeftWidth;
+        var paddingTop2 = getAbsoluteValue(styles.paddingTop, element.bounds.width);
+        var paddingRight2 = getAbsoluteValue(styles.paddingRight, element.bounds.width);
+        var paddingBottom2 = getAbsoluteValue(styles.paddingBottom, element.bounds.width);
+        var paddingLeft2 = getAbsoluteValue(styles.paddingLeft, element.bounds.width);
+        this.topLeftBorderDoubleOuterBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 / 3, bounds.top + borderTopWidth2 / 3, tlh - borderLeftWidth2 / 3, tlv - borderTopWidth2 / 3, CORNER.TOP_LEFT) : new Vector(bounds.left + borderLeftWidth2 / 3, bounds.top + borderTopWidth2 / 3);
+        this.topRightBorderDoubleOuterBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + topWidth, bounds.top + borderTopWidth2 / 3, trh - borderRightWidth2 / 3, trv - borderTopWidth2 / 3, CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 / 3, bounds.top + borderTopWidth2 / 3);
+        this.bottomRightBorderDoubleOuterBox = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + bottomWidth, bounds.top + rightHeight, brh - borderRightWidth2 / 3, brv - borderBottomWidth2 / 3, CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 / 3, bounds.top + bounds.height - borderBottomWidth2 / 3);
+        this.bottomLeftBorderDoubleOuterBox = blh > 0 || blv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 / 3, bounds.top + leftHeight, blh - borderLeftWidth2 / 3, blv - borderBottomWidth2 / 3, CORNER.BOTTOM_LEFT) : new Vector(bounds.left + borderLeftWidth2 / 3, bounds.top + bounds.height - borderBottomWidth2 / 3);
+        this.topLeftBorderDoubleInnerBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 * 2 / 3, bounds.top + borderTopWidth2 * 2 / 3, tlh - borderLeftWidth2 * 2 / 3, tlv - borderTopWidth2 * 2 / 3, CORNER.TOP_LEFT) : new Vector(bounds.left + borderLeftWidth2 * 2 / 3, bounds.top + borderTopWidth2 * 2 / 3);
+        this.topRightBorderDoubleInnerBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + topWidth, bounds.top + borderTopWidth2 * 2 / 3, trh - borderRightWidth2 * 2 / 3, trv - borderTopWidth2 * 2 / 3, CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 * 2 / 3, bounds.top + borderTopWidth2 * 2 / 3);
+        this.bottomRightBorderDoubleInnerBox = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + bottomWidth, bounds.top + rightHeight, brh - borderRightWidth2 * 2 / 3, brv - borderBottomWidth2 * 2 / 3, CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 * 2 / 3, bounds.top + bounds.height - borderBottomWidth2 * 2 / 3);
+        this.bottomLeftBorderDoubleInnerBox = blh > 0 || blv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 * 2 / 3, bounds.top + leftHeight, blh - borderLeftWidth2 * 2 / 3, blv - borderBottomWidth2 * 2 / 3, CORNER.BOTTOM_LEFT) : new Vector(bounds.left + borderLeftWidth2 * 2 / 3, bounds.top + bounds.height - borderBottomWidth2 * 2 / 3);
+        this.topLeftBorderStroke = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 / 2, bounds.top + borderTopWidth2 / 2, tlh - borderLeftWidth2 / 2, tlv - borderTopWidth2 / 2, CORNER.TOP_LEFT) : new Vector(bounds.left + borderLeftWidth2 / 2, bounds.top + borderTopWidth2 / 2);
+        this.topRightBorderStroke = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + topWidth, bounds.top + borderTopWidth2 / 2, trh - borderRightWidth2 / 2, trv - borderTopWidth2 / 2, CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 / 2, bounds.top + borderTopWidth2 / 2);
+        this.bottomRightBorderStroke = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + bottomWidth, bounds.top + rightHeight, brh - borderRightWidth2 / 2, brv - borderBottomWidth2 / 2, CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2 / 2, bounds.top + bounds.height - borderBottomWidth2 / 2);
+        this.bottomLeftBorderStroke = blh > 0 || blv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 / 2, bounds.top + leftHeight, blh - borderLeftWidth2 / 2, blv - borderBottomWidth2 / 2, CORNER.BOTTOM_LEFT) : new Vector(bounds.left + borderLeftWidth2 / 2, bounds.top + bounds.height - borderBottomWidth2 / 2);
+        this.topLeftBorderBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left, bounds.top, tlh, tlv, CORNER.TOP_LEFT) : new Vector(bounds.left, bounds.top);
+        this.topRightBorderBox = trh > 0 || trv > 0 ? getCurvePoints(bounds.left + topWidth, bounds.top, trh, trv, CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width, bounds.top);
+        this.bottomRightBorderBox = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + bottomWidth, bounds.top + rightHeight, brh, brv, CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width, bounds.top + bounds.height);
+        this.bottomLeftBorderBox = blh > 0 || blv > 0 ? getCurvePoints(bounds.left, bounds.top + leftHeight, blh, blv, CORNER.BOTTOM_LEFT) : new Vector(bounds.left, bounds.top + bounds.height);
+        this.topLeftPaddingBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2, bounds.top + borderTopWidth2, Math.max(0, tlh - borderLeftWidth2), Math.max(0, tlv - borderTopWidth2), CORNER.TOP_LEFT) : new Vector(bounds.left + borderLeftWidth2, bounds.top + borderTopWidth2);
+        this.topRightPaddingBox = trh > 0 || trv > 0 ? getCurvePoints(bounds.left + Math.min(topWidth, bounds.width - borderRightWidth2), bounds.top + borderTopWidth2, topWidth > bounds.width + borderRightWidth2 ? 0 : Math.max(0, trh - borderRightWidth2), Math.max(0, trv - borderTopWidth2), CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2, bounds.top + borderTopWidth2);
+        this.bottomRightPaddingBox = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + Math.min(bottomWidth, bounds.width - borderLeftWidth2), bounds.top + Math.min(rightHeight, bounds.height - borderBottomWidth2), Math.max(0, brh - borderRightWidth2), Math.max(0, brv - borderBottomWidth2), CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width - borderRightWidth2, bounds.top + bounds.height - borderBottomWidth2);
+        this.bottomLeftPaddingBox = blh > 0 || blv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2, bounds.top + Math.min(leftHeight, bounds.height - borderBottomWidth2), Math.max(0, blh - borderLeftWidth2), Math.max(0, blv - borderBottomWidth2), CORNER.BOTTOM_LEFT) : new Vector(bounds.left + borderLeftWidth2, bounds.top + bounds.height - borderBottomWidth2);
+        this.topLeftContentBox = tlh > 0 || tlv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 + paddingLeft2, bounds.top + borderTopWidth2 + paddingTop2, Math.max(0, tlh - (borderLeftWidth2 + paddingLeft2)), Math.max(0, tlv - (borderTopWidth2 + paddingTop2)), CORNER.TOP_LEFT) : new Vector(bounds.left + borderLeftWidth2 + paddingLeft2, bounds.top + borderTopWidth2 + paddingTop2);
+        this.topRightContentBox = trh > 0 || trv > 0 ? getCurvePoints(bounds.left + Math.min(topWidth, bounds.width + borderLeftWidth2 + paddingLeft2), bounds.top + borderTopWidth2 + paddingTop2, topWidth > bounds.width + borderLeftWidth2 + paddingLeft2 ? 0 : trh - borderLeftWidth2 + paddingLeft2, trv - (borderTopWidth2 + paddingTop2), CORNER.TOP_RIGHT) : new Vector(bounds.left + bounds.width - (borderRightWidth2 + paddingRight2), bounds.top + borderTopWidth2 + paddingTop2);
+        this.bottomRightContentBox = brh > 0 || brv > 0 ? getCurvePoints(bounds.left + Math.min(bottomWidth, bounds.width - (borderLeftWidth2 + paddingLeft2)), bounds.top + Math.min(rightHeight, bounds.height + borderTopWidth2 + paddingTop2), Math.max(0, brh - (borderRightWidth2 + paddingRight2)), brv - (borderBottomWidth2 + paddingBottom2), CORNER.BOTTOM_RIGHT) : new Vector(bounds.left + bounds.width - (borderRightWidth2 + paddingRight2), bounds.top + bounds.height - (borderBottomWidth2 + paddingBottom2));
+        this.bottomLeftContentBox = blh > 0 || blv > 0 ? getCurvePoints(bounds.left + borderLeftWidth2 + paddingLeft2, bounds.top + leftHeight, Math.max(0, blh - (borderLeftWidth2 + paddingLeft2)), blv - (borderBottomWidth2 + paddingBottom2), CORNER.BOTTOM_LEFT) : new Vector(bounds.left + borderLeftWidth2 + paddingLeft2, bounds.top + bounds.height - (borderBottomWidth2 + paddingBottom2));
+      }
+      return BoundCurves2;
+    }();
+    (function(CORNER2) {
+      CORNER2[CORNER2["TOP_LEFT"] = 0] = "TOP_LEFT";
+      CORNER2[CORNER2["TOP_RIGHT"] = 1] = "TOP_RIGHT";
+      CORNER2[CORNER2["BOTTOM_RIGHT"] = 2] = "BOTTOM_RIGHT";
+      CORNER2[CORNER2["BOTTOM_LEFT"] = 3] = "BOTTOM_LEFT";
+    })(CORNER || (CORNER = {}));
+    getCurvePoints = function(x, y, r1, r2, position2) {
+      var kappa = 4 * ((Math.sqrt(2) - 1) / 3);
+      var ox = r1 * kappa;
+      var oy = r2 * kappa;
+      var xm = x + r1;
+      var ym = y + r2;
+      switch (position2) {
+        case CORNER.TOP_LEFT:
+          return new BezierCurve(new Vector(x, ym), new Vector(x, ym - oy), new Vector(xm - ox, y), new Vector(xm, y));
+        case CORNER.TOP_RIGHT:
+          return new BezierCurve(new Vector(x, y), new Vector(x + ox, y), new Vector(xm, ym - oy), new Vector(xm, ym));
+        case CORNER.BOTTOM_RIGHT:
+          return new BezierCurve(new Vector(xm, y), new Vector(xm, y + oy), new Vector(x + ox, ym), new Vector(x, ym));
+        case CORNER.BOTTOM_LEFT:
+        default:
+          return new BezierCurve(new Vector(xm, ym), new Vector(xm - ox, ym), new Vector(x, y + oy), new Vector(x, y));
+      }
+    };
+    calculateBorderBoxPath = function(curves) {
+      return [curves.topLeftBorderBox, curves.topRightBorderBox, curves.bottomRightBorderBox, curves.bottomLeftBorderBox];
+    };
+    calculateContentBoxPath = function(curves) {
+      return [
+        curves.topLeftContentBox,
+        curves.topRightContentBox,
+        curves.bottomRightContentBox,
+        curves.bottomLeftContentBox
+      ];
+    };
+    calculatePaddingBoxPath = function(curves) {
+      return [
+        curves.topLeftPaddingBox,
+        curves.topRightPaddingBox,
+        curves.bottomRightPaddingBox,
+        curves.bottomLeftPaddingBox
+      ];
+    };
+    TransformEffect = /** @class */
+    function() {
+      function TransformEffect2(offsetX, offsetY, matrix2) {
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.matrix = matrix2;
+        this.type = 0;
+        this.target = 2 | 4;
+      }
+      return TransformEffect2;
+    }();
+    ClipEffect = /** @class */
+    function() {
+      function ClipEffect2(path, target) {
+        this.path = path;
+        this.target = target;
+        this.type = 1;
+      }
+      return ClipEffect2;
+    }();
+    OpacityEffect = /** @class */
+    function() {
+      function OpacityEffect2(opacity2) {
+        this.opacity = opacity2;
+        this.type = 2;
+        this.target = 2 | 4;
+      }
+      return OpacityEffect2;
+    }();
+    isTransformEffect = function(effect) {
+      return effect.type === 0;
+    };
+    isClipEffect = function(effect) {
+      return effect.type === 1;
+    };
+    isOpacityEffect = function(effect) {
+      return effect.type === 2;
+    };
+    equalPath = function(a2, b) {
+      if (a2.length === b.length) {
+        return a2.some(function(v, i) {
+          return v === b[i];
+        });
+      }
+      return false;
+    };
+    transformPath = function(path, deltaX, deltaY, deltaW, deltaH) {
+      return path.map(function(point, index) {
+        switch (index) {
+          case 0:
+            return point.add(deltaX, deltaY);
+          case 1:
+            return point.add(deltaX + deltaW, deltaY);
+          case 2:
+            return point.add(deltaX + deltaW, deltaY + deltaH);
+          case 3:
+            return point.add(deltaX, deltaY + deltaH);
+        }
+        return point;
+      });
+    };
+    StackingContext = /** @class */
+    function() {
+      function StackingContext2(container) {
+        this.element = container;
+        this.inlineLevel = [];
+        this.nonInlineLevel = [];
+        this.negativeZIndex = [];
+        this.zeroOrAutoZIndexOrTransformedOrOpacity = [];
+        this.positiveZIndex = [];
+        this.nonPositionedFloats = [];
+        this.nonPositionedInlineLevel = [];
+      }
+      return StackingContext2;
+    }();
+    ElementPaint = /** @class */
+    function() {
+      function ElementPaint2(container, parent) {
+        this.container = container;
+        this.parent = parent;
+        this.effects = [];
+        this.curves = new BoundCurves(this.container);
+        if (this.container.styles.opacity < 1) {
+          this.effects.push(new OpacityEffect(this.container.styles.opacity));
+        }
+        if (this.container.styles.transform !== null) {
+          var offsetX = this.container.bounds.left + this.container.styles.transformOrigin[0].number;
+          var offsetY = this.container.bounds.top + this.container.styles.transformOrigin[1].number;
+          var matrix2 = this.container.styles.transform;
+          this.effects.push(new TransformEffect(offsetX, offsetY, matrix2));
+        }
+        if (this.container.styles.overflowX !== 0) {
+          var borderBox = calculateBorderBoxPath(this.curves);
+          var paddingBox2 = calculatePaddingBoxPath(this.curves);
+          if (equalPath(borderBox, paddingBox2)) {
+            this.effects.push(new ClipEffect(
+              borderBox,
+              2 | 4
+              /* CONTENT */
+            ));
+          } else {
+            this.effects.push(new ClipEffect(
+              borderBox,
+              2
+              /* BACKGROUND_BORDERS */
+            ));
+            this.effects.push(new ClipEffect(
+              paddingBox2,
+              4
+              /* CONTENT */
+            ));
+          }
+        }
+      }
+      ElementPaint2.prototype.getEffects = function(target) {
+        var inFlow = [
+          2,
+          3
+          /* FIXED */
+        ].indexOf(this.container.styles.position) === -1;
+        var parent = this.parent;
+        var effects = this.effects.slice(0);
+        while (parent) {
+          var croplessEffects = parent.effects.filter(function(effect) {
+            return !isClipEffect(effect);
+          });
+          if (inFlow || parent.container.styles.position !== 0 || !parent.parent) {
+            effects.unshift.apply(effects, croplessEffects);
+            inFlow = [
+              2,
+              3
+              /* FIXED */
+            ].indexOf(parent.container.styles.position) === -1;
+            if (parent.container.styles.overflowX !== 0) {
+              var borderBox = calculateBorderBoxPath(parent.curves);
+              var paddingBox2 = calculatePaddingBoxPath(parent.curves);
+              if (!equalPath(borderBox, paddingBox2)) {
+                effects.unshift(new ClipEffect(
+                  paddingBox2,
+                  2 | 4
+                  /* CONTENT */
+                ));
+              }
+            }
+          } else {
+            effects.unshift.apply(effects, croplessEffects);
+          }
+          parent = parent.parent;
+        }
+        return effects.filter(function(effect) {
+          return contains(effect.target, target);
+        });
+      };
+      return ElementPaint2;
+    }();
+    parseStackTree = function(parent, stackingContext, realStackingContext, listItems) {
+      parent.container.elements.forEach(function(child) {
+        var treatAsRealStackingContext = contains(
+          child.flags,
+          4
+          /* CREATES_REAL_STACKING_CONTEXT */
+        );
+        var createsStackingContext2 = contains(
+          child.flags,
+          2
+          /* CREATES_STACKING_CONTEXT */
+        );
+        var paintContainer = new ElementPaint(child, parent);
+        if (contains(
+          child.styles.display,
+          2048
+          /* LIST_ITEM */
+        )) {
+          listItems.push(paintContainer);
+        }
+        var listOwnerItems = contains(
+          child.flags,
+          8
+          /* IS_LIST_OWNER */
+        ) ? [] : listItems;
+        if (treatAsRealStackingContext || createsStackingContext2) {
+          var parentStack = treatAsRealStackingContext || child.styles.isPositioned() ? realStackingContext : stackingContext;
+          var stack = new StackingContext(paintContainer);
+          if (child.styles.isPositioned() || child.styles.opacity < 1 || child.styles.isTransformed()) {
+            var order_1 = child.styles.zIndex.order;
+            if (order_1 < 0) {
+              var index_1 = 0;
+              parentStack.negativeZIndex.some(function(current, i) {
+                if (order_1 > current.element.container.styles.zIndex.order) {
+                  index_1 = i;
+                  return false;
+                } else if (index_1 > 0) {
+                  return true;
+                }
+                return false;
+              });
+              parentStack.negativeZIndex.splice(index_1, 0, stack);
+            } else if (order_1 > 0) {
+              var index_2 = 0;
+              parentStack.positiveZIndex.some(function(current, i) {
+                if (order_1 >= current.element.container.styles.zIndex.order) {
+                  index_2 = i + 1;
+                  return false;
+                } else if (index_2 > 0) {
+                  return true;
+                }
+                return false;
+              });
+              parentStack.positiveZIndex.splice(index_2, 0, stack);
+            } else {
+              parentStack.zeroOrAutoZIndexOrTransformedOrOpacity.push(stack);
+            }
+          } else {
+            if (child.styles.isFloating()) {
+              parentStack.nonPositionedFloats.push(stack);
+            } else {
+              parentStack.nonPositionedInlineLevel.push(stack);
+            }
+          }
+          parseStackTree(paintContainer, stack, treatAsRealStackingContext ? stack : realStackingContext, listOwnerItems);
+        } else {
+          if (child.styles.isInlineLevel()) {
+            stackingContext.inlineLevel.push(paintContainer);
+          } else {
+            stackingContext.nonInlineLevel.push(paintContainer);
+          }
+          parseStackTree(paintContainer, stackingContext, realStackingContext, listOwnerItems);
+        }
+        if (contains(
+          child.flags,
+          8
+          /* IS_LIST_OWNER */
+        )) {
+          processListItems(child, listOwnerItems);
+        }
+      });
+    };
+    processListItems = function(owner, elements) {
+      var numbering = owner instanceof OLElementContainer ? owner.start : 1;
+      var reversed = owner instanceof OLElementContainer ? owner.reversed : false;
+      for (var i = 0; i < elements.length; i++) {
+        var item = elements[i];
+        if (item.container instanceof LIElementContainer && typeof item.container.value === "number" && item.container.value !== 0) {
+          numbering = item.container.value;
+        }
+        item.listValue = createCounterText(numbering, item.container.styles.listStyleType, true);
+        numbering += reversed ? -1 : 1;
+      }
+    };
+    parseStackingContexts = function(container) {
+      var paintContainer = new ElementPaint(container, null);
+      var root = new StackingContext(paintContainer);
+      var listItems = [];
+      parseStackTree(paintContainer, root, root, listItems);
+      processListItems(paintContainer.container, listItems);
+      return root;
+    };
+    parsePathForBorder = function(curves, borderSide) {
+      switch (borderSide) {
+        case 0:
+          return createPathFromCurves(curves.topLeftBorderBox, curves.topLeftPaddingBox, curves.topRightBorderBox, curves.topRightPaddingBox);
+        case 1:
+          return createPathFromCurves(curves.topRightBorderBox, curves.topRightPaddingBox, curves.bottomRightBorderBox, curves.bottomRightPaddingBox);
+        case 2:
+          return createPathFromCurves(curves.bottomRightBorderBox, curves.bottomRightPaddingBox, curves.bottomLeftBorderBox, curves.bottomLeftPaddingBox);
+        case 3:
+        default:
+          return createPathFromCurves(curves.bottomLeftBorderBox, curves.bottomLeftPaddingBox, curves.topLeftBorderBox, curves.topLeftPaddingBox);
+      }
+    };
+    parsePathForBorderDoubleOuter = function(curves, borderSide) {
+      switch (borderSide) {
+        case 0:
+          return createPathFromCurves(curves.topLeftBorderBox, curves.topLeftBorderDoubleOuterBox, curves.topRightBorderBox, curves.topRightBorderDoubleOuterBox);
+        case 1:
+          return createPathFromCurves(curves.topRightBorderBox, curves.topRightBorderDoubleOuterBox, curves.bottomRightBorderBox, curves.bottomRightBorderDoubleOuterBox);
+        case 2:
+          return createPathFromCurves(curves.bottomRightBorderBox, curves.bottomRightBorderDoubleOuterBox, curves.bottomLeftBorderBox, curves.bottomLeftBorderDoubleOuterBox);
+        case 3:
+        default:
+          return createPathFromCurves(curves.bottomLeftBorderBox, curves.bottomLeftBorderDoubleOuterBox, curves.topLeftBorderBox, curves.topLeftBorderDoubleOuterBox);
+      }
+    };
+    parsePathForBorderDoubleInner = function(curves, borderSide) {
+      switch (borderSide) {
+        case 0:
+          return createPathFromCurves(curves.topLeftBorderDoubleInnerBox, curves.topLeftPaddingBox, curves.topRightBorderDoubleInnerBox, curves.topRightPaddingBox);
+        case 1:
+          return createPathFromCurves(curves.topRightBorderDoubleInnerBox, curves.topRightPaddingBox, curves.bottomRightBorderDoubleInnerBox, curves.bottomRightPaddingBox);
+        case 2:
+          return createPathFromCurves(curves.bottomRightBorderDoubleInnerBox, curves.bottomRightPaddingBox, curves.bottomLeftBorderDoubleInnerBox, curves.bottomLeftPaddingBox);
+        case 3:
+        default:
+          return createPathFromCurves(curves.bottomLeftBorderDoubleInnerBox, curves.bottomLeftPaddingBox, curves.topLeftBorderDoubleInnerBox, curves.topLeftPaddingBox);
+      }
+    };
+    parsePathForBorderStroke = function(curves, borderSide) {
+      switch (borderSide) {
+        case 0:
+          return createStrokePathFromCurves(curves.topLeftBorderStroke, curves.topRightBorderStroke);
+        case 1:
+          return createStrokePathFromCurves(curves.topRightBorderStroke, curves.bottomRightBorderStroke);
+        case 2:
+          return createStrokePathFromCurves(curves.bottomRightBorderStroke, curves.bottomLeftBorderStroke);
+        case 3:
+        default:
+          return createStrokePathFromCurves(curves.bottomLeftBorderStroke, curves.topLeftBorderStroke);
+      }
+    };
+    createStrokePathFromCurves = function(outer1, outer2) {
+      var path = [];
+      if (isBezierCurve(outer1)) {
+        path.push(outer1.subdivide(0.5, false));
+      } else {
+        path.push(outer1);
+      }
+      if (isBezierCurve(outer2)) {
+        path.push(outer2.subdivide(0.5, true));
+      } else {
+        path.push(outer2);
+      }
+      return path;
+    };
+    createPathFromCurves = function(outer1, inner1, outer2, inner2) {
+      var path = [];
+      if (isBezierCurve(outer1)) {
+        path.push(outer1.subdivide(0.5, false));
+      } else {
+        path.push(outer1);
+      }
+      if (isBezierCurve(outer2)) {
+        path.push(outer2.subdivide(0.5, true));
+      } else {
+        path.push(outer2);
+      }
+      if (isBezierCurve(inner2)) {
+        path.push(inner2.subdivide(0.5, true).reverse());
+      } else {
+        path.push(inner2);
+      }
+      if (isBezierCurve(inner1)) {
+        path.push(inner1.subdivide(0.5, false).reverse());
+      } else {
+        path.push(inner1);
+      }
+      return path;
+    };
+    paddingBox = function(element) {
+      var bounds = element.bounds;
+      var styles = element.styles;
+      return bounds.add(styles.borderLeftWidth, styles.borderTopWidth, -(styles.borderRightWidth + styles.borderLeftWidth), -(styles.borderTopWidth + styles.borderBottomWidth));
+    };
+    contentBox = function(element) {
+      var styles = element.styles;
+      var bounds = element.bounds;
+      var paddingLeft2 = getAbsoluteValue(styles.paddingLeft, bounds.width);
+      var paddingRight2 = getAbsoluteValue(styles.paddingRight, bounds.width);
+      var paddingTop2 = getAbsoluteValue(styles.paddingTop, bounds.width);
+      var paddingBottom2 = getAbsoluteValue(styles.paddingBottom, bounds.width);
+      return bounds.add(paddingLeft2 + styles.borderLeftWidth, paddingTop2 + styles.borderTopWidth, -(styles.borderRightWidth + styles.borderLeftWidth + paddingLeft2 + paddingRight2), -(styles.borderTopWidth + styles.borderBottomWidth + paddingTop2 + paddingBottom2));
+    };
+    calculateBackgroundPositioningArea = function(backgroundOrigin2, element) {
+      if (backgroundOrigin2 === 0) {
+        return element.bounds;
+      }
+      if (backgroundOrigin2 === 2) {
+        return contentBox(element);
+      }
+      return paddingBox(element);
+    };
+    calculateBackgroundPaintingArea = function(backgroundClip2, element) {
+      if (backgroundClip2 === 0) {
+        return element.bounds;
+      }
+      if (backgroundClip2 === 2) {
+        return contentBox(element);
+      }
+      return paddingBox(element);
+    };
+    calculateBackgroundRendering = function(container, index, intrinsicSize) {
+      var backgroundPositioningArea = calculateBackgroundPositioningArea(getBackgroundValueForIndex(container.styles.backgroundOrigin, index), container);
+      var backgroundPaintingArea = calculateBackgroundPaintingArea(getBackgroundValueForIndex(container.styles.backgroundClip, index), container);
+      var backgroundImageSize = calculateBackgroundSize(getBackgroundValueForIndex(container.styles.backgroundSize, index), intrinsicSize, backgroundPositioningArea);
+      var sizeWidth = backgroundImageSize[0], sizeHeight = backgroundImageSize[1];
+      var position2 = getAbsoluteValueForTuple(getBackgroundValueForIndex(container.styles.backgroundPosition, index), backgroundPositioningArea.width - sizeWidth, backgroundPositioningArea.height - sizeHeight);
+      var path = calculateBackgroundRepeatPath(getBackgroundValueForIndex(container.styles.backgroundRepeat, index), position2, backgroundImageSize, backgroundPositioningArea, backgroundPaintingArea);
+      var offsetX = Math.round(backgroundPositioningArea.left + position2[0]);
+      var offsetY = Math.round(backgroundPositioningArea.top + position2[1]);
+      return [path, offsetX, offsetY, sizeWidth, sizeHeight];
+    };
+    isAuto = function(token) {
+      return isIdentToken(token) && token.value === BACKGROUND_SIZE.AUTO;
+    };
+    hasIntrinsicValue = function(value) {
+      return typeof value === "number";
+    };
+    calculateBackgroundSize = function(size, _a, bounds) {
+      var intrinsicWidth = _a[0], intrinsicHeight = _a[1], intrinsicProportion = _a[2];
+      var first = size[0], second = size[1];
+      if (!first) {
+        return [0, 0];
+      }
+      if (isLengthPercentage(first) && second && isLengthPercentage(second)) {
+        return [getAbsoluteValue(first, bounds.width), getAbsoluteValue(second, bounds.height)];
+      }
+      var hasIntrinsicProportion = hasIntrinsicValue(intrinsicProportion);
+      if (isIdentToken(first) && (first.value === BACKGROUND_SIZE.CONTAIN || first.value === BACKGROUND_SIZE.COVER)) {
+        if (hasIntrinsicValue(intrinsicProportion)) {
+          var targetRatio = bounds.width / bounds.height;
+          return targetRatio < intrinsicProportion !== (first.value === BACKGROUND_SIZE.COVER) ? [bounds.width, bounds.width / intrinsicProportion] : [bounds.height * intrinsicProportion, bounds.height];
+        }
+        return [bounds.width, bounds.height];
+      }
+      var hasIntrinsicWidth = hasIntrinsicValue(intrinsicWidth);
+      var hasIntrinsicHeight = hasIntrinsicValue(intrinsicHeight);
+      var hasIntrinsicDimensions = hasIntrinsicWidth || hasIntrinsicHeight;
+      if (isAuto(first) && (!second || isAuto(second))) {
+        if (hasIntrinsicWidth && hasIntrinsicHeight) {
+          return [intrinsicWidth, intrinsicHeight];
+        }
+        if (!hasIntrinsicProportion && !hasIntrinsicDimensions) {
+          return [bounds.width, bounds.height];
+        }
+        if (hasIntrinsicDimensions && hasIntrinsicProportion) {
+          var width_1 = hasIntrinsicWidth ? intrinsicWidth : intrinsicHeight * intrinsicProportion;
+          var height_1 = hasIntrinsicHeight ? intrinsicHeight : intrinsicWidth / intrinsicProportion;
+          return [width_1, height_1];
+        }
+        var width_2 = hasIntrinsicWidth ? intrinsicWidth : bounds.width;
+        var height_2 = hasIntrinsicHeight ? intrinsicHeight : bounds.height;
+        return [width_2, height_2];
+      }
+      if (hasIntrinsicProportion) {
+        var width_3 = 0;
+        var height_3 = 0;
+        if (isLengthPercentage(first)) {
+          width_3 = getAbsoluteValue(first, bounds.width);
+        } else if (isLengthPercentage(second)) {
+          height_3 = getAbsoluteValue(second, bounds.height);
+        }
+        if (isAuto(first)) {
+          width_3 = height_3 * intrinsicProportion;
+        } else if (!second || isAuto(second)) {
+          height_3 = width_3 / intrinsicProportion;
+        }
+        return [width_3, height_3];
+      }
+      var width = null;
+      var height = null;
+      if (isLengthPercentage(first)) {
+        width = getAbsoluteValue(first, bounds.width);
+      } else if (second && isLengthPercentage(second)) {
+        height = getAbsoluteValue(second, bounds.height);
+      }
+      if (width !== null && (!second || isAuto(second))) {
+        height = hasIntrinsicWidth && hasIntrinsicHeight ? width / intrinsicWidth * intrinsicHeight : bounds.height;
+      }
+      if (height !== null && isAuto(first)) {
+        width = hasIntrinsicWidth && hasIntrinsicHeight ? height / intrinsicHeight * intrinsicWidth : bounds.width;
+      }
+      if (width !== null && height !== null) {
+        return [width, height];
+      }
+      throw new Error("Unable to calculate background-size for element");
+    };
+    getBackgroundValueForIndex = function(values, index) {
+      var value = values[index];
+      if (typeof value === "undefined") {
+        return values[0];
+      }
+      return value;
+    };
+    calculateBackgroundRepeatPath = function(repeat, _a, _b, backgroundPositioningArea, backgroundPaintingArea) {
+      var x = _a[0], y = _a[1];
+      var width = _b[0], height = _b[1];
+      switch (repeat) {
+        case 2:
+          return [
+            new Vector(Math.round(backgroundPositioningArea.left), Math.round(backgroundPositioningArea.top + y)),
+            new Vector(Math.round(backgroundPositioningArea.left + backgroundPositioningArea.width), Math.round(backgroundPositioningArea.top + y)),
+            new Vector(Math.round(backgroundPositioningArea.left + backgroundPositioningArea.width), Math.round(height + backgroundPositioningArea.top + y)),
+            new Vector(Math.round(backgroundPositioningArea.left), Math.round(height + backgroundPositioningArea.top + y))
+          ];
+        case 3:
+          return [
+            new Vector(Math.round(backgroundPositioningArea.left + x), Math.round(backgroundPositioningArea.top)),
+            new Vector(Math.round(backgroundPositioningArea.left + x + width), Math.round(backgroundPositioningArea.top)),
+            new Vector(Math.round(backgroundPositioningArea.left + x + width), Math.round(backgroundPositioningArea.height + backgroundPositioningArea.top)),
+            new Vector(Math.round(backgroundPositioningArea.left + x), Math.round(backgroundPositioningArea.height + backgroundPositioningArea.top))
+          ];
+        case 1:
+          return [
+            new Vector(Math.round(backgroundPositioningArea.left + x), Math.round(backgroundPositioningArea.top + y)),
+            new Vector(Math.round(backgroundPositioningArea.left + x + width), Math.round(backgroundPositioningArea.top + y)),
+            new Vector(Math.round(backgroundPositioningArea.left + x + width), Math.round(backgroundPositioningArea.top + y + height)),
+            new Vector(Math.round(backgroundPositioningArea.left + x), Math.round(backgroundPositioningArea.top + y + height))
+          ];
+        default:
+          return [
+            new Vector(Math.round(backgroundPaintingArea.left), Math.round(backgroundPaintingArea.top)),
+            new Vector(Math.round(backgroundPaintingArea.left + backgroundPaintingArea.width), Math.round(backgroundPaintingArea.top)),
+            new Vector(Math.round(backgroundPaintingArea.left + backgroundPaintingArea.width), Math.round(backgroundPaintingArea.height + backgroundPaintingArea.top)),
+            new Vector(Math.round(backgroundPaintingArea.left), Math.round(backgroundPaintingArea.height + backgroundPaintingArea.top))
+          ];
+      }
+    };
+    SMALL_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+    SAMPLE_TEXT = "Hidden Text";
+    FontMetrics = /** @class */
+    function() {
+      function FontMetrics2(document2) {
+        this._data = {};
+        this._document = document2;
+      }
+      FontMetrics2.prototype.parseMetrics = function(fontFamily2, fontSize2) {
+        var container = this._document.createElement("div");
+        var img = this._document.createElement("img");
+        var span = this._document.createElement("span");
+        var body = this._document.body;
+        container.style.visibility = "hidden";
+        container.style.fontFamily = fontFamily2;
+        container.style.fontSize = fontSize2;
+        container.style.margin = "0";
+        container.style.padding = "0";
+        container.style.whiteSpace = "nowrap";
+        body.appendChild(container);
+        img.src = SMALL_IMAGE;
+        img.width = 1;
+        img.height = 1;
+        img.style.margin = "0";
+        img.style.padding = "0";
+        img.style.verticalAlign = "baseline";
+        span.style.fontFamily = fontFamily2;
+        span.style.fontSize = fontSize2;
+        span.style.margin = "0";
+        span.style.padding = "0";
+        span.appendChild(this._document.createTextNode(SAMPLE_TEXT));
+        container.appendChild(span);
+        container.appendChild(img);
+        var baseline = img.offsetTop - span.offsetTop + 2;
+        container.removeChild(span);
+        container.appendChild(this._document.createTextNode(SAMPLE_TEXT));
+        container.style.lineHeight = "normal";
+        img.style.verticalAlign = "super";
+        var middle = img.offsetTop - container.offsetTop + 2;
+        body.removeChild(container);
+        return { baseline, middle };
+      };
+      FontMetrics2.prototype.getMetrics = function(fontFamily2, fontSize2) {
+        var key = fontFamily2 + " " + fontSize2;
+        if (typeof this._data[key] === "undefined") {
+          this._data[key] = this.parseMetrics(fontFamily2, fontSize2);
+        }
+        return this._data[key];
+      };
+      return FontMetrics2;
+    }();
+    Renderer = /** @class */
+    function() {
+      function Renderer2(context, options) {
+        this.context = context;
+        this.options = options;
+      }
+      return Renderer2;
+    }();
+    MASK_OFFSET = 1e4;
+    CanvasRenderer = /** @class */
+    function(_super) {
+      __extends(CanvasRenderer2, _super);
+      function CanvasRenderer2(context, options) {
+        var _this = _super.call(this, context, options) || this;
+        _this._activeEffects = [];
+        _this.canvas = options.canvas ? options.canvas : document.createElement("canvas");
+        _this.ctx = _this.canvas.getContext("2d");
+        if (!options.canvas) {
+          _this.canvas.width = Math.floor(options.width * options.scale);
+          _this.canvas.height = Math.floor(options.height * options.scale);
+          _this.canvas.style.width = options.width + "px";
+          _this.canvas.style.height = options.height + "px";
+        }
+        _this.fontMetrics = new FontMetrics(document);
+        _this.ctx.scale(_this.options.scale, _this.options.scale);
+        _this.ctx.translate(-options.x, -options.y);
+        _this.ctx.textBaseline = "bottom";
+        _this._activeEffects = [];
+        _this.context.logger.debug("Canvas renderer initialized (" + options.width + "x" + options.height + ") with scale " + options.scale);
+        return _this;
+      }
+      CanvasRenderer2.prototype.applyEffects = function(effects) {
+        var _this = this;
+        while (this._activeEffects.length) {
+          this.popEffect();
+        }
+        effects.forEach(function(effect) {
+          return _this.applyEffect(effect);
+        });
+      };
+      CanvasRenderer2.prototype.applyEffect = function(effect) {
+        this.ctx.save();
+        if (isOpacityEffect(effect)) {
+          this.ctx.globalAlpha = effect.opacity;
+        }
+        if (isTransformEffect(effect)) {
+          this.ctx.translate(effect.offsetX, effect.offsetY);
+          this.ctx.transform(effect.matrix[0], effect.matrix[1], effect.matrix[2], effect.matrix[3], effect.matrix[4], effect.matrix[5]);
+          this.ctx.translate(-effect.offsetX, -effect.offsetY);
+        }
+        if (isClipEffect(effect)) {
+          this.path(effect.path);
+          this.ctx.clip();
+        }
+        this._activeEffects.push(effect);
+      };
+      CanvasRenderer2.prototype.popEffect = function() {
+        this._activeEffects.pop();
+        this.ctx.restore();
+      };
+      CanvasRenderer2.prototype.renderStack = function(stack) {
+        return __awaiter(this, void 0, void 0, function() {
+          var styles;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                styles = stack.element.container.styles;
+                if (!styles.isVisible())
+                  return [3, 2];
+                return [4, this.renderStackContent(stack)];
+              case 1:
+                _a.sent();
+                _a.label = 2;
+              case 2:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderNode = function(paint) {
+        return __awaiter(this, void 0, void 0, function() {
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                if (contains(
+                  paint.container.flags,
+                  16
+                  /* DEBUG_RENDER */
+                )) {
+                  debugger;
+                }
+                if (!paint.container.styles.isVisible())
+                  return [3, 3];
+                return [4, this.renderNodeBackgroundAndBorders(paint)];
+              case 1:
+                _a.sent();
+                return [4, this.renderNodeContent(paint)];
+              case 2:
+                _a.sent();
+                _a.label = 3;
+              case 3:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderTextWithLetterSpacing = function(text, letterSpacing2, baseline) {
+        var _this = this;
+        if (letterSpacing2 === 0) {
+          this.ctx.fillText(text.text, text.bounds.left, text.bounds.top + baseline);
+        } else {
+          var letters = segmentGraphemes(text.text);
+          letters.reduce(function(left, letter) {
+            _this.ctx.fillText(letter, left, text.bounds.top + baseline);
+            return left + _this.ctx.measureText(letter).width;
+          }, text.bounds.left);
+        }
+      };
+      CanvasRenderer2.prototype.createFontStyle = function(styles) {
+        var fontVariant2 = styles.fontVariant.filter(function(variant) {
+          return variant === "normal" || variant === "small-caps";
+        }).join("");
+        var fontFamily2 = fixIOSSystemFonts(styles.fontFamily).join(", ");
+        var fontSize2 = isDimensionToken(styles.fontSize) ? "" + styles.fontSize.number + styles.fontSize.unit : styles.fontSize.number + "px";
+        return [
+          [styles.fontStyle, fontVariant2, styles.fontWeight, fontSize2, fontFamily2].join(" "),
+          fontFamily2,
+          fontSize2
+        ];
+      };
+      CanvasRenderer2.prototype.renderTextNode = function(text, styles) {
+        return __awaiter(this, void 0, void 0, function() {
+          var _a, font, fontFamily2, fontSize2, _b, baseline, middle, paintOrder2;
+          var _this = this;
+          return __generator(this, function(_c) {
+            _a = this.createFontStyle(styles), font = _a[0], fontFamily2 = _a[1], fontSize2 = _a[2];
+            this.ctx.font = font;
+            this.ctx.direction = styles.direction === 1 ? "rtl" : "ltr";
+            this.ctx.textAlign = "left";
+            this.ctx.textBaseline = "alphabetic";
+            _b = this.fontMetrics.getMetrics(fontFamily2, fontSize2), baseline = _b.baseline, middle = _b.middle;
+            paintOrder2 = styles.paintOrder;
+            text.textBounds.forEach(function(text2) {
+              paintOrder2.forEach(function(paintOrderLayer) {
+                switch (paintOrderLayer) {
+                  case 0:
+                    _this.ctx.fillStyle = asString(styles.color);
+                    _this.renderTextWithLetterSpacing(text2, styles.letterSpacing, baseline);
+                    var textShadows = styles.textShadow;
+                    if (textShadows.length && text2.text.trim().length) {
+                      textShadows.slice(0).reverse().forEach(function(textShadow2) {
+                        _this.ctx.shadowColor = asString(textShadow2.color);
+                        _this.ctx.shadowOffsetX = textShadow2.offsetX.number * _this.options.scale;
+                        _this.ctx.shadowOffsetY = textShadow2.offsetY.number * _this.options.scale;
+                        _this.ctx.shadowBlur = textShadow2.blur.number;
+                        _this.renderTextWithLetterSpacing(text2, styles.letterSpacing, baseline);
+                      });
+                      _this.ctx.shadowColor = "";
+                      _this.ctx.shadowOffsetX = 0;
+                      _this.ctx.shadowOffsetY = 0;
+                      _this.ctx.shadowBlur = 0;
+                    }
+                    if (styles.textDecorationLine.length) {
+                      _this.ctx.fillStyle = asString(styles.textDecorationColor || styles.color);
+                      styles.textDecorationLine.forEach(function(textDecorationLine2) {
+                        switch (textDecorationLine2) {
+                          case 1:
+                            _this.ctx.fillRect(text2.bounds.left, Math.round(text2.bounds.top + baseline), text2.bounds.width, 1);
+                            break;
+                          case 2:
+                            _this.ctx.fillRect(text2.bounds.left, Math.round(text2.bounds.top), text2.bounds.width, 1);
+                            break;
+                          case 3:
+                            _this.ctx.fillRect(text2.bounds.left, Math.ceil(text2.bounds.top + middle), text2.bounds.width, 1);
+                            break;
+                        }
+                      });
+                    }
+                    break;
+                  case 1:
+                    if (styles.webkitTextStrokeWidth && text2.text.trim().length) {
+                      _this.ctx.strokeStyle = asString(styles.webkitTextStrokeColor);
+                      _this.ctx.lineWidth = styles.webkitTextStrokeWidth;
+                      _this.ctx.lineJoin = !!window.chrome ? "miter" : "round";
+                      _this.ctx.strokeText(text2.text, text2.bounds.left, text2.bounds.top + baseline);
+                    }
+                    _this.ctx.strokeStyle = "";
+                    _this.ctx.lineWidth = 0;
+                    _this.ctx.lineJoin = "miter";
+                    break;
+                }
+              });
+            });
+            return [
+              2
+              /*return*/
+            ];
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderReplacedElement = function(container, curves, image2) {
+        if (image2 && container.intrinsicWidth > 0 && container.intrinsicHeight > 0) {
+          var box = contentBox(container);
+          var path = calculatePaddingBoxPath(curves);
+          this.path(path);
+          this.ctx.save();
+          this.ctx.clip();
+          this.ctx.drawImage(image2, 0, 0, container.intrinsicWidth, container.intrinsicHeight, box.left, box.top, box.width, box.height);
+          this.ctx.restore();
+        }
+      };
+      CanvasRenderer2.prototype.renderNodeContent = function(paint) {
+        return __awaiter(this, void 0, void 0, function() {
+          var container, curves, styles, _i, _a, child, image2, image2, iframeRenderer, canvas, size, _b, fontFamily2, fontSize2, baseline, bounds, x, textBounds, img, image2, url, fontFamily2, bounds;
+          return __generator(this, function(_c) {
+            switch (_c.label) {
+              case 0:
+                this.applyEffects(paint.getEffects(
+                  4
+                  /* CONTENT */
+                ));
+                container = paint.container;
+                curves = paint.curves;
+                styles = container.styles;
+                _i = 0, _a = container.textNodes;
+                _c.label = 1;
+              case 1:
+                if (!(_i < _a.length))
+                  return [3, 4];
+                child = _a[_i];
+                return [4, this.renderTextNode(child, styles)];
+              case 2:
+                _c.sent();
+                _c.label = 3;
+              case 3:
+                _i++;
+                return [3, 1];
+              case 4:
+                if (!(container instanceof ImageElementContainer))
+                  return [3, 8];
+                _c.label = 5;
+              case 5:
+                _c.trys.push([5, 7, , 8]);
+                return [4, this.context.cache.match(container.src)];
+              case 6:
+                image2 = _c.sent();
+                this.renderReplacedElement(container, curves, image2);
+                return [3, 8];
+              case 7:
+                _c.sent();
+                this.context.logger.error("Error loading image " + container.src);
+                return [3, 8];
+              case 8:
+                if (container instanceof CanvasElementContainer) {
+                  this.renderReplacedElement(container, curves, container.canvas);
+                }
+                if (!(container instanceof SVGElementContainer))
+                  return [3, 12];
+                _c.label = 9;
+              case 9:
+                _c.trys.push([9, 11, , 12]);
+                return [4, this.context.cache.match(container.svg)];
+              case 10:
+                image2 = _c.sent();
+                this.renderReplacedElement(container, curves, image2);
+                return [3, 12];
+              case 11:
+                _c.sent();
+                this.context.logger.error("Error loading svg " + container.svg.substring(0, 255));
+                return [3, 12];
+              case 12:
+                if (!(container instanceof IFrameElementContainer && container.tree))
+                  return [3, 14];
+                iframeRenderer = new CanvasRenderer2(this.context, {
+                  scale: this.options.scale,
+                  backgroundColor: container.backgroundColor,
+                  x: 0,
+                  y: 0,
+                  width: container.width,
+                  height: container.height
+                });
+                return [4, iframeRenderer.render(container.tree)];
+              case 13:
+                canvas = _c.sent();
+                if (container.width && container.height) {
+                  this.ctx.drawImage(canvas, 0, 0, container.width, container.height, container.bounds.left, container.bounds.top, container.bounds.width, container.bounds.height);
+                }
+                _c.label = 14;
+              case 14:
+                if (container instanceof InputElementContainer) {
+                  size = Math.min(container.bounds.width, container.bounds.height);
+                  if (container.type === CHECKBOX) {
+                    if (container.checked) {
+                      this.ctx.save();
+                      this.path([
+                        new Vector(container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79),
+                        new Vector(container.bounds.left + size * 0.16, container.bounds.top + size * 0.5549),
+                        new Vector(container.bounds.left + size * 0.27347, container.bounds.top + size * 0.44071),
+                        new Vector(container.bounds.left + size * 0.39694, container.bounds.top + size * 0.5649),
+                        new Vector(container.bounds.left + size * 0.72983, container.bounds.top + size * 0.23),
+                        new Vector(container.bounds.left + size * 0.84, container.bounds.top + size * 0.34085),
+                        new Vector(container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79)
+                      ]);
+                      this.ctx.fillStyle = asString(INPUT_COLOR);
+                      this.ctx.fill();
+                      this.ctx.restore();
+                    }
+                  } else if (container.type === RADIO) {
+                    if (container.checked) {
+                      this.ctx.save();
+                      this.ctx.beginPath();
+                      this.ctx.arc(container.bounds.left + size / 2, container.bounds.top + size / 2, size / 4, 0, Math.PI * 2, true);
+                      this.ctx.fillStyle = asString(INPUT_COLOR);
+                      this.ctx.fill();
+                      this.ctx.restore();
+                    }
+                  }
+                }
+                if (isTextInputElement(container) && container.value.length) {
+                  _b = this.createFontStyle(styles), fontFamily2 = _b[0], fontSize2 = _b[1];
+                  baseline = this.fontMetrics.getMetrics(fontFamily2, fontSize2).baseline;
+                  this.ctx.font = fontFamily2;
+                  this.ctx.fillStyle = asString(styles.color);
+                  this.ctx.textBaseline = "alphabetic";
+                  this.ctx.textAlign = canvasTextAlign(container.styles.textAlign);
+                  bounds = contentBox(container);
+                  x = 0;
+                  switch (container.styles.textAlign) {
+                    case 1:
+                      x += bounds.width / 2;
+                      break;
+                    case 2:
+                      x += bounds.width;
+                      break;
+                  }
+                  textBounds = bounds.add(x, 0, 0, -bounds.height / 2 + 1);
+                  this.ctx.save();
+                  this.path([
+                    new Vector(bounds.left, bounds.top),
+                    new Vector(bounds.left + bounds.width, bounds.top),
+                    new Vector(bounds.left + bounds.width, bounds.top + bounds.height),
+                    new Vector(bounds.left, bounds.top + bounds.height)
+                  ]);
+                  this.ctx.clip();
+                  this.renderTextWithLetterSpacing(new TextBounds(container.value, textBounds), styles.letterSpacing, baseline);
+                  this.ctx.restore();
+                  this.ctx.textBaseline = "alphabetic";
+                  this.ctx.textAlign = "left";
+                }
+                if (!contains(
+                  container.styles.display,
+                  2048
+                  /* LIST_ITEM */
+                ))
+                  return [3, 20];
+                if (!(container.styles.listStyleImage !== null))
+                  return [3, 19];
+                img = container.styles.listStyleImage;
+                if (!(img.type === 0))
+                  return [3, 18];
+                image2 = void 0;
+                url = img.url;
+                _c.label = 15;
+              case 15:
+                _c.trys.push([15, 17, , 18]);
+                return [4, this.context.cache.match(url)];
+              case 16:
+                image2 = _c.sent();
+                this.ctx.drawImage(image2, container.bounds.left - (image2.width + 10), container.bounds.top);
+                return [3, 18];
+              case 17:
+                _c.sent();
+                this.context.logger.error("Error loading list-style-image " + url);
+                return [3, 18];
+              case 18:
+                return [3, 20];
+              case 19:
+                if (paint.listValue && container.styles.listStyleType !== -1) {
+                  fontFamily2 = this.createFontStyle(styles)[0];
+                  this.ctx.font = fontFamily2;
+                  this.ctx.fillStyle = asString(styles.color);
+                  this.ctx.textBaseline = "middle";
+                  this.ctx.textAlign = "right";
+                  bounds = new Bounds(container.bounds.left, container.bounds.top + getAbsoluteValue(container.styles.paddingTop, container.bounds.width), container.bounds.width, computeLineHeight(styles.lineHeight, styles.fontSize.number) / 2 + 1);
+                  this.renderTextWithLetterSpacing(new TextBounds(paint.listValue, bounds), styles.letterSpacing, computeLineHeight(styles.lineHeight, styles.fontSize.number) / 2 + 2);
+                  this.ctx.textBaseline = "bottom";
+                  this.ctx.textAlign = "left";
+                }
+                _c.label = 20;
+              case 20:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderStackContent = function(stack) {
+        return __awaiter(this, void 0, void 0, function() {
+          var _i, _a, child, _b, _c, child, _d, _e, child, _f, _g, child, _h, _j, child, _k, _l, child, _m, _o, child;
+          return __generator(this, function(_p) {
+            switch (_p.label) {
+              case 0:
+                if (contains(
+                  stack.element.container.flags,
+                  16
+                  /* DEBUG_RENDER */
+                )) {
+                  debugger;
+                }
+                return [4, this.renderNodeBackgroundAndBorders(stack.element)];
+              case 1:
+                _p.sent();
+                _i = 0, _a = stack.negativeZIndex;
+                _p.label = 2;
+              case 2:
+                if (!(_i < _a.length))
+                  return [3, 5];
+                child = _a[_i];
+                return [4, this.renderStack(child)];
+              case 3:
+                _p.sent();
+                _p.label = 4;
+              case 4:
+                _i++;
+                return [3, 2];
+              case 5:
+                return [4, this.renderNodeContent(stack.element)];
+              case 6:
+                _p.sent();
+                _b = 0, _c = stack.nonInlineLevel;
+                _p.label = 7;
+              case 7:
+                if (!(_b < _c.length))
+                  return [3, 10];
+                child = _c[_b];
+                return [4, this.renderNode(child)];
+              case 8:
+                _p.sent();
+                _p.label = 9;
+              case 9:
+                _b++;
+                return [3, 7];
+              case 10:
+                _d = 0, _e = stack.nonPositionedFloats;
+                _p.label = 11;
+              case 11:
+                if (!(_d < _e.length))
+                  return [3, 14];
+                child = _e[_d];
+                return [4, this.renderStack(child)];
+              case 12:
+                _p.sent();
+                _p.label = 13;
+              case 13:
+                _d++;
+                return [3, 11];
+              case 14:
+                _f = 0, _g = stack.nonPositionedInlineLevel;
+                _p.label = 15;
+              case 15:
+                if (!(_f < _g.length))
+                  return [3, 18];
+                child = _g[_f];
+                return [4, this.renderStack(child)];
+              case 16:
+                _p.sent();
+                _p.label = 17;
+              case 17:
+                _f++;
+                return [3, 15];
+              case 18:
+                _h = 0, _j = stack.inlineLevel;
+                _p.label = 19;
+              case 19:
+                if (!(_h < _j.length))
+                  return [3, 22];
+                child = _j[_h];
+                return [4, this.renderNode(child)];
+              case 20:
+                _p.sent();
+                _p.label = 21;
+              case 21:
+                _h++;
+                return [3, 19];
+              case 22:
+                _k = 0, _l = stack.zeroOrAutoZIndexOrTransformedOrOpacity;
+                _p.label = 23;
+              case 23:
+                if (!(_k < _l.length))
+                  return [3, 26];
+                child = _l[_k];
+                return [4, this.renderStack(child)];
+              case 24:
+                _p.sent();
+                _p.label = 25;
+              case 25:
+                _k++;
+                return [3, 23];
+              case 26:
+                _m = 0, _o = stack.positiveZIndex;
+                _p.label = 27;
+              case 27:
+                if (!(_m < _o.length))
+                  return [3, 30];
+                child = _o[_m];
+                return [4, this.renderStack(child)];
+              case 28:
+                _p.sent();
+                _p.label = 29;
+              case 29:
+                _m++;
+                return [3, 27];
+              case 30:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.mask = function(paths) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, 0);
+        this.ctx.lineTo(this.canvas.width, 0);
+        this.ctx.lineTo(this.canvas.width, this.canvas.height);
+        this.ctx.lineTo(0, this.canvas.height);
+        this.ctx.lineTo(0, 0);
+        this.formatPath(paths.slice(0).reverse());
+        this.ctx.closePath();
+      };
+      CanvasRenderer2.prototype.path = function(paths) {
+        this.ctx.beginPath();
+        this.formatPath(paths);
+        this.ctx.closePath();
+      };
+      CanvasRenderer2.prototype.formatPath = function(paths) {
+        var _this = this;
+        paths.forEach(function(point, index) {
+          var start = isBezierCurve(point) ? point.start : point;
+          if (index === 0) {
+            _this.ctx.moveTo(start.x, start.y);
+          } else {
+            _this.ctx.lineTo(start.x, start.y);
+          }
+          if (isBezierCurve(point)) {
+            _this.ctx.bezierCurveTo(point.startControl.x, point.startControl.y, point.endControl.x, point.endControl.y, point.end.x, point.end.y);
+          }
+        });
+      };
+      CanvasRenderer2.prototype.renderRepeat = function(path, pattern, offsetX, offsetY) {
+        this.path(path);
+        this.ctx.fillStyle = pattern;
+        this.ctx.translate(offsetX, offsetY);
+        this.ctx.fill();
+        this.ctx.translate(-offsetX, -offsetY);
+      };
+      CanvasRenderer2.prototype.resizeImage = function(image2, width, height) {
+        var _a;
+        if (image2.width === width && image2.height === height) {
+          return image2;
+        }
+        var ownerDocument = (_a = this.canvas.ownerDocument) !== null && _a !== void 0 ? _a : document;
+        var canvas = ownerDocument.createElement("canvas");
+        canvas.width = Math.max(1, width);
+        canvas.height = Math.max(1, height);
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(image2, 0, 0, image2.width, image2.height, 0, 0, width, height);
+        return canvas;
+      };
+      CanvasRenderer2.prototype.renderBackgroundImage = function(container) {
+        return __awaiter(this, void 0, void 0, function() {
+          var index, _loop_1, this_1, _i, _a, backgroundImage2;
+          return __generator(this, function(_b) {
+            switch (_b.label) {
+              case 0:
+                index = container.styles.backgroundImage.length - 1;
+                _loop_1 = function(backgroundImage3) {
+                  var image2, url, _c, path, x, y, width, height, pattern, _d, path, x, y, width, height, _e, lineLength, x0, x1, y0, y1, canvas, ctx, gradient_1, pattern, _f, path, left, top_1, width, height, position2, x, y, _g, rx, ry, radialGradient_1, midX, midY, f2, invF;
+                  return __generator(this, function(_h) {
+                    switch (_h.label) {
+                      case 0:
+                        if (!(backgroundImage3.type === 0))
+                          return [3, 5];
+                        image2 = void 0;
+                        url = backgroundImage3.url;
+                        _h.label = 1;
+                      case 1:
+                        _h.trys.push([1, 3, , 4]);
+                        return [4, this_1.context.cache.match(url)];
+                      case 2:
+                        image2 = _h.sent();
+                        return [3, 4];
+                      case 3:
+                        _h.sent();
+                        this_1.context.logger.error("Error loading background-image " + url);
+                        return [3, 4];
+                      case 4:
+                        if (image2) {
+                          _c = calculateBackgroundRendering(container, index, [
+                            image2.width,
+                            image2.height,
+                            image2.width / image2.height
+                          ]), path = _c[0], x = _c[1], y = _c[2], width = _c[3], height = _c[4];
+                          pattern = this_1.ctx.createPattern(this_1.resizeImage(image2, width, height), "repeat");
+                          this_1.renderRepeat(path, pattern, x, y);
+                        }
+                        return [3, 6];
+                      case 5:
+                        if (isLinearGradient(backgroundImage3)) {
+                          _d = calculateBackgroundRendering(container, index, [null, null, null]), path = _d[0], x = _d[1], y = _d[2], width = _d[3], height = _d[4];
+                          _e = calculateGradientDirection(backgroundImage3.angle, width, height), lineLength = _e[0], x0 = _e[1], x1 = _e[2], y0 = _e[3], y1 = _e[4];
+                          canvas = document.createElement("canvas");
+                          canvas.width = width;
+                          canvas.height = height;
+                          ctx = canvas.getContext("2d");
+                          gradient_1 = ctx.createLinearGradient(x0, y0, x1, y1);
+                          processColorStops(backgroundImage3.stops, lineLength).forEach(function(colorStop) {
+                            return gradient_1.addColorStop(colorStop.stop, asString(colorStop.color));
+                          });
+                          ctx.fillStyle = gradient_1;
+                          ctx.fillRect(0, 0, width, height);
+                          if (width > 0 && height > 0) {
+                            pattern = this_1.ctx.createPattern(canvas, "repeat");
+                            this_1.renderRepeat(path, pattern, x, y);
+                          }
+                        } else if (isRadialGradient(backgroundImage3)) {
+                          _f = calculateBackgroundRendering(container, index, [
+                            null,
+                            null,
+                            null
+                          ]), path = _f[0], left = _f[1], top_1 = _f[2], width = _f[3], height = _f[4];
+                          position2 = backgroundImage3.position.length === 0 ? [FIFTY_PERCENT] : backgroundImage3.position;
+                          x = getAbsoluteValue(position2[0], width);
+                          y = getAbsoluteValue(position2[position2.length - 1], height);
+                          _g = calculateRadius(backgroundImage3, x, y, width, height), rx = _g[0], ry = _g[1];
+                          if (rx > 0 && ry > 0) {
+                            radialGradient_1 = this_1.ctx.createRadialGradient(left + x, top_1 + y, 0, left + x, top_1 + y, rx);
+                            processColorStops(backgroundImage3.stops, rx * 2).forEach(function(colorStop) {
+                              return radialGradient_1.addColorStop(colorStop.stop, asString(colorStop.color));
+                            });
+                            this_1.path(path);
+                            this_1.ctx.fillStyle = radialGradient_1;
+                            if (rx !== ry) {
+                              midX = container.bounds.left + 0.5 * container.bounds.width;
+                              midY = container.bounds.top + 0.5 * container.bounds.height;
+                              f2 = ry / rx;
+                              invF = 1 / f2;
+                              this_1.ctx.save();
+                              this_1.ctx.translate(midX, midY);
+                              this_1.ctx.transform(1, 0, 0, f2, 0, 0);
+                              this_1.ctx.translate(-midX, -midY);
+                              this_1.ctx.fillRect(left, invF * (top_1 - midY) + midY, width, height * invF);
+                              this_1.ctx.restore();
+                            } else {
+                              this_1.ctx.fill();
+                            }
+                          }
+                        }
+                        _h.label = 6;
+                      case 6:
+                        index--;
+                        return [
+                          2
+                          /*return*/
+                        ];
+                    }
+                  });
+                };
+                this_1 = this;
+                _i = 0, _a = container.styles.backgroundImage.slice(0).reverse();
+                _b.label = 1;
+              case 1:
+                if (!(_i < _a.length))
+                  return [3, 4];
+                backgroundImage2 = _a[_i];
+                return [5, _loop_1(backgroundImage2)];
+              case 2:
+                _b.sent();
+                _b.label = 3;
+              case 3:
+                _i++;
+                return [3, 1];
+              case 4:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderSolidBorder = function(color2, side, curvePoints) {
+        return __awaiter(this, void 0, void 0, function() {
+          return __generator(this, function(_a) {
+            this.path(parsePathForBorder(curvePoints, side));
+            this.ctx.fillStyle = asString(color2);
+            this.ctx.fill();
+            return [
+              2
+              /*return*/
+            ];
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderDoubleBorder = function(color2, width, side, curvePoints) {
+        return __awaiter(this, void 0, void 0, function() {
+          var outerPaths, innerPaths;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                if (!(width < 3))
+                  return [3, 2];
+                return [4, this.renderSolidBorder(color2, side, curvePoints)];
+              case 1:
+                _a.sent();
+                return [
+                  2
+                  /*return*/
+                ];
+              case 2:
+                outerPaths = parsePathForBorderDoubleOuter(curvePoints, side);
+                this.path(outerPaths);
+                this.ctx.fillStyle = asString(color2);
+                this.ctx.fill();
+                innerPaths = parsePathForBorderDoubleInner(curvePoints, side);
+                this.path(innerPaths);
+                this.ctx.fill();
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderNodeBackgroundAndBorders = function(paint) {
+        return __awaiter(this, void 0, void 0, function() {
+          var styles, hasBackground, borders, backgroundPaintingArea, side, _i, borders_1, border;
+          var _this = this;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                this.applyEffects(paint.getEffects(
+                  2
+                  /* BACKGROUND_BORDERS */
+                ));
+                styles = paint.container.styles;
+                hasBackground = !isTransparent(styles.backgroundColor) || styles.backgroundImage.length;
+                borders = [
+                  { style: styles.borderTopStyle, color: styles.borderTopColor, width: styles.borderTopWidth },
+                  { style: styles.borderRightStyle, color: styles.borderRightColor, width: styles.borderRightWidth },
+                  { style: styles.borderBottomStyle, color: styles.borderBottomColor, width: styles.borderBottomWidth },
+                  { style: styles.borderLeftStyle, color: styles.borderLeftColor, width: styles.borderLeftWidth }
+                ];
+                backgroundPaintingArea = calculateBackgroundCurvedPaintingArea(getBackgroundValueForIndex(styles.backgroundClip, 0), paint.curves);
+                if (!(hasBackground || styles.boxShadow.length))
+                  return [3, 2];
+                this.ctx.save();
+                this.path(backgroundPaintingArea);
+                this.ctx.clip();
+                if (!isTransparent(styles.backgroundColor)) {
+                  this.ctx.fillStyle = asString(styles.backgroundColor);
+                  this.ctx.fill();
+                }
+                return [4, this.renderBackgroundImage(paint.container)];
+              case 1:
+                _a.sent();
+                this.ctx.restore();
+                styles.boxShadow.slice(0).reverse().forEach(function(shadow) {
+                  _this.ctx.save();
+                  var borderBoxArea = calculateBorderBoxPath(paint.curves);
+                  var maskOffset = shadow.inset ? 0 : MASK_OFFSET;
+                  var shadowPaintingArea = transformPath(borderBoxArea, -maskOffset + (shadow.inset ? 1 : -1) * shadow.spread.number, (shadow.inset ? 1 : -1) * shadow.spread.number, shadow.spread.number * (shadow.inset ? -2 : 2), shadow.spread.number * (shadow.inset ? -2 : 2));
+                  if (shadow.inset) {
+                    _this.path(borderBoxArea);
+                    _this.ctx.clip();
+                    _this.mask(shadowPaintingArea);
+                  } else {
+                    _this.mask(borderBoxArea);
+                    _this.ctx.clip();
+                    _this.path(shadowPaintingArea);
+                  }
+                  _this.ctx.shadowOffsetX = shadow.offsetX.number + maskOffset;
+                  _this.ctx.shadowOffsetY = shadow.offsetY.number;
+                  _this.ctx.shadowColor = asString(shadow.color);
+                  _this.ctx.shadowBlur = shadow.blur.number;
+                  _this.ctx.fillStyle = shadow.inset ? asString(shadow.color) : "rgba(0,0,0,1)";
+                  _this.ctx.fill();
+                  _this.ctx.restore();
+                });
+                _a.label = 2;
+              case 2:
+                side = 0;
+                _i = 0, borders_1 = borders;
+                _a.label = 3;
+              case 3:
+                if (!(_i < borders_1.length))
+                  return [3, 13];
+                border = borders_1[_i];
+                if (!(border.style !== 0 && !isTransparent(border.color) && border.width > 0))
+                  return [3, 11];
+                if (!(border.style === 2))
+                  return [3, 5];
+                return [4, this.renderDashedDottedBorder(
+                  border.color,
+                  border.width,
+                  side,
+                  paint.curves,
+                  2
+                  /* DASHED */
+                )];
+              case 4:
+                _a.sent();
+                return [3, 11];
+              case 5:
+                if (!(border.style === 3))
+                  return [3, 7];
+                return [4, this.renderDashedDottedBorder(
+                  border.color,
+                  border.width,
+                  side,
+                  paint.curves,
+                  3
+                  /* DOTTED */
+                )];
+              case 6:
+                _a.sent();
+                return [3, 11];
+              case 7:
+                if (!(border.style === 4))
+                  return [3, 9];
+                return [4, this.renderDoubleBorder(border.color, border.width, side, paint.curves)];
+              case 8:
+                _a.sent();
+                return [3, 11];
+              case 9:
+                return [4, this.renderSolidBorder(border.color, side, paint.curves)];
+              case 10:
+                _a.sent();
+                _a.label = 11;
+              case 11:
+                side++;
+                _a.label = 12;
+              case 12:
+                _i++;
+                return [3, 3];
+              case 13:
+                return [
+                  2
+                  /*return*/
+                ];
+            }
+          });
+        });
+      };
+      CanvasRenderer2.prototype.renderDashedDottedBorder = function(color2, width, side, curvePoints, style) {
+        return __awaiter(this, void 0, void 0, function() {
+          var strokePaths, boxPaths, startX, startY, endX, endY, length, dashLength, spaceLength, useLineDash, multiplier, numberOfDashes, minSpace, maxSpace, path1, path2, path1, path2;
+          return __generator(this, function(_a) {
+            this.ctx.save();
+            strokePaths = parsePathForBorderStroke(curvePoints, side);
+            boxPaths = parsePathForBorder(curvePoints, side);
+            if (style === 2) {
+              this.path(boxPaths);
+              this.ctx.clip();
+            }
+            if (isBezierCurve(boxPaths[0])) {
+              startX = boxPaths[0].start.x;
+              startY = boxPaths[0].start.y;
+            } else {
+              startX = boxPaths[0].x;
+              startY = boxPaths[0].y;
+            }
+            if (isBezierCurve(boxPaths[1])) {
+              endX = boxPaths[1].end.x;
+              endY = boxPaths[1].end.y;
+            } else {
+              endX = boxPaths[1].x;
+              endY = boxPaths[1].y;
+            }
+            if (side === 0 || side === 2) {
+              length = Math.abs(startX - endX);
+            } else {
+              length = Math.abs(startY - endY);
+            }
+            this.ctx.beginPath();
+            if (style === 3) {
+              this.formatPath(strokePaths);
+            } else {
+              this.formatPath(boxPaths.slice(0, 2));
+            }
+            dashLength = width < 3 ? width * 3 : width * 2;
+            spaceLength = width < 3 ? width * 2 : width;
+            if (style === 3) {
+              dashLength = width;
+              spaceLength = width;
+            }
+            useLineDash = true;
+            if (length <= dashLength * 2) {
+              useLineDash = false;
+            } else if (length <= dashLength * 2 + spaceLength) {
+              multiplier = length / (2 * dashLength + spaceLength);
+              dashLength *= multiplier;
+              spaceLength *= multiplier;
+            } else {
+              numberOfDashes = Math.floor((length + spaceLength) / (dashLength + spaceLength));
+              minSpace = (length - numberOfDashes * dashLength) / (numberOfDashes - 1);
+              maxSpace = (length - (numberOfDashes + 1) * dashLength) / numberOfDashes;
+              spaceLength = maxSpace <= 0 || Math.abs(spaceLength - minSpace) < Math.abs(spaceLength - maxSpace) ? minSpace : maxSpace;
+            }
+            if (useLineDash) {
+              if (style === 3) {
+                this.ctx.setLineDash([0, dashLength + spaceLength]);
+              } else {
+                this.ctx.setLineDash([dashLength, spaceLength]);
+              }
+            }
+            if (style === 3) {
+              this.ctx.lineCap = "round";
+              this.ctx.lineWidth = width;
+            } else {
+              this.ctx.lineWidth = width * 2 + 1.1;
+            }
+            this.ctx.strokeStyle = asString(color2);
+            this.ctx.stroke();
+            this.ctx.setLineDash([]);
+            if (style === 2) {
+              if (isBezierCurve(boxPaths[0])) {
+                path1 = boxPaths[3];
+                path2 = boxPaths[0];
+                this.ctx.beginPath();
+                this.formatPath([new Vector(path1.end.x, path1.end.y), new Vector(path2.start.x, path2.start.y)]);
+                this.ctx.stroke();
+              }
+              if (isBezierCurve(boxPaths[1])) {
+                path1 = boxPaths[1];
+                path2 = boxPaths[2];
+                this.ctx.beginPath();
+                this.formatPath([new Vector(path1.end.x, path1.end.y), new Vector(path2.start.x, path2.start.y)]);
+                this.ctx.stroke();
+              }
+            }
+            this.ctx.restore();
+            return [
+              2
+              /*return*/
+            ];
+          });
+        });
+      };
+      CanvasRenderer2.prototype.render = function(element) {
+        return __awaiter(this, void 0, void 0, function() {
+          var stack;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                if (this.options.backgroundColor) {
+                  this.ctx.fillStyle = asString(this.options.backgroundColor);
+                  this.ctx.fillRect(this.options.x, this.options.y, this.options.width, this.options.height);
+                }
+                stack = parseStackingContexts(element);
+                return [4, this.renderStack(stack)];
+              case 1:
+                _a.sent();
+                this.applyEffects([]);
+                return [2, this.canvas];
+            }
+          });
+        });
+      };
+      return CanvasRenderer2;
+    }(Renderer);
+    isTextInputElement = function(container) {
+      if (container instanceof TextareaElementContainer) {
+        return true;
+      } else if (container instanceof SelectElementContainer) {
+        return true;
+      } else if (container instanceof InputElementContainer && container.type !== RADIO && container.type !== CHECKBOX) {
+        return true;
+      }
+      return false;
+    };
+    calculateBackgroundCurvedPaintingArea = function(clip, curves) {
+      switch (clip) {
+        case 0:
+          return calculateBorderBoxPath(curves);
+        case 2:
+          return calculateContentBoxPath(curves);
+        case 1:
+        default:
+          return calculatePaddingBoxPath(curves);
+      }
+    };
+    canvasTextAlign = function(textAlign2) {
+      switch (textAlign2) {
+        case 1:
+          return "center";
+        case 2:
+          return "right";
+        case 0:
+        default:
+          return "left";
+      }
+    };
+    iOSBrokenFonts = ["-apple-system", "system-ui"];
+    fixIOSSystemFonts = function(fontFamilies) {
+      return /iPhone OS 15_(0|1)/.test(window.navigator.userAgent) ? fontFamilies.filter(function(fontFamily2) {
+        return iOSBrokenFonts.indexOf(fontFamily2) === -1;
+      }) : fontFamilies;
+    };
+    ForeignObjectRenderer = /** @class */
+    function(_super) {
+      __extends(ForeignObjectRenderer2, _super);
+      function ForeignObjectRenderer2(context, options) {
+        var _this = _super.call(this, context, options) || this;
+        _this.canvas = options.canvas ? options.canvas : document.createElement("canvas");
+        _this.ctx = _this.canvas.getContext("2d");
+        _this.options = options;
+        _this.canvas.width = Math.floor(options.width * options.scale);
+        _this.canvas.height = Math.floor(options.height * options.scale);
+        _this.canvas.style.width = options.width + "px";
+        _this.canvas.style.height = options.height + "px";
+        _this.ctx.scale(_this.options.scale, _this.options.scale);
+        _this.ctx.translate(-options.x, -options.y);
+        _this.context.logger.debug("EXPERIMENTAL ForeignObject renderer initialized (" + options.width + "x" + options.height + " at " + options.x + "," + options.y + ") with scale " + options.scale);
+        return _this;
+      }
+      ForeignObjectRenderer2.prototype.render = function(element) {
+        return __awaiter(this, void 0, void 0, function() {
+          var svg, img;
+          return __generator(this, function(_a) {
+            switch (_a.label) {
+              case 0:
+                svg = createForeignObjectSVG(this.options.width * this.options.scale, this.options.height * this.options.scale, this.options.scale, this.options.scale, element);
+                return [4, loadSerializedSVG(svg)];
+              case 1:
+                img = _a.sent();
+                if (this.options.backgroundColor) {
+                  this.ctx.fillStyle = asString(this.options.backgroundColor);
+                  this.ctx.fillRect(0, 0, this.options.width * this.options.scale, this.options.height * this.options.scale);
+                }
+                this.ctx.drawImage(img, -this.options.x * this.options.scale, -this.options.y * this.options.scale);
+                return [2, this.canvas];
+            }
+          });
+        });
+      };
+      return ForeignObjectRenderer2;
+    }(Renderer);
+    loadSerializedSVG = function(svg) {
+      return new Promise(function(resolve, reject) {
+        var img = new Image();
+        img.onload = function() {
+          resolve(img);
+        };
+        img.onerror = reject;
+        img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+      });
+    };
+    Logger = /** @class */
+    function() {
+      function Logger2(_a) {
+        var id = _a.id, enabled = _a.enabled;
+        this.id = id;
+        this.enabled = enabled;
+        this.start = Date.now();
+      }
+      Logger2.prototype.debug = function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        if (this.enabled) {
+          if (typeof window !== "undefined" && window.console && typeof console.debug === "function") {
+            console.debug.apply(console, __spreadArray([this.id, this.getTime() + "ms"], args));
+          } else {
+            this.info.apply(this, args);
+          }
+        }
+      };
+      Logger2.prototype.getTime = function() {
+        return Date.now() - this.start;
+      };
+      Logger2.prototype.info = function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        if (this.enabled) {
+          if (typeof window !== "undefined" && window.console && typeof console.info === "function") {
+            console.info.apply(console, __spreadArray([this.id, this.getTime() + "ms"], args));
+          }
+        }
+      };
+      Logger2.prototype.warn = function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        if (this.enabled) {
+          if (typeof window !== "undefined" && window.console && typeof console.warn === "function") {
+            console.warn.apply(console, __spreadArray([this.id, this.getTime() + "ms"], args));
+          } else {
+            this.info.apply(this, args);
+          }
+        }
+      };
+      Logger2.prototype.error = function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        if (this.enabled) {
+          if (typeof window !== "undefined" && window.console && typeof console.error === "function") {
+            console.error.apply(console, __spreadArray([this.id, this.getTime() + "ms"], args));
+          } else {
+            this.info.apply(this, args);
+          }
+        }
+      };
+      Logger2.instances = {};
+      return Logger2;
+    }();
+    Context = /** @class */
+    function() {
+      function Context2(options, windowBounds) {
+        var _a;
+        this.windowBounds = windowBounds;
+        this.instanceName = "#" + Context2.instanceCount++;
+        this.logger = new Logger({ id: this.instanceName, enabled: options.logging });
+        this.cache = (_a = options.cache) !== null && _a !== void 0 ? _a : new Cache(this, options);
+      }
+      Context2.instanceCount = 1;
+      return Context2;
+    }();
+    html2canvas = function(element, options) {
+      if (options === void 0) {
+        options = {};
+      }
+      return renderElement(element, options);
+    };
+    if (typeof window !== "undefined") {
+      CacheStorage.setContext(window);
     }
-    const scrollableAncestorX = findScrollableAncestor(currentGroupElement, "x");
-    if (scrollableAncestorX && scrollableAncestorX !== scrollableAncestor) {
-      activeScrollEdge.delete(scrollableAncestorX);
-      initialScrollLimits.delete(scrollableAncestorX);
-    }
-    currentGroupElement = null;
+    renderElement = function(element, opts) {
+      return __awaiter(void 0, void 0, void 0, function() {
+        var ownerDocument, defaultView, resourceOptions, contextOptions, windowOptions, windowBounds, context, foreignObjectRendering, cloneOptions, documentCloner, clonedElement, container, _a, width, height, left, top, backgroundColor2, renderOptions, canvas, renderer, root, renderer;
+        var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
+        return __generator(this, function(_u) {
+          switch (_u.label) {
+            case 0:
+              if (!element || typeof element !== "object") {
+                return [2, Promise.reject("Invalid element provided as first argument")];
+              }
+              ownerDocument = element.ownerDocument;
+              if (!ownerDocument) {
+                throw new Error("Element is not attached to a Document");
+              }
+              defaultView = ownerDocument.defaultView;
+              if (!defaultView) {
+                throw new Error("Document is not attached to a Window");
+              }
+              resourceOptions = {
+                allowTaint: (_b = opts.allowTaint) !== null && _b !== void 0 ? _b : false,
+                imageTimeout: (_c = opts.imageTimeout) !== null && _c !== void 0 ? _c : 15e3,
+                proxy: opts.proxy,
+                useCORS: (_d = opts.useCORS) !== null && _d !== void 0 ? _d : false
+              };
+              contextOptions = __assign({ logging: (_e = opts.logging) !== null && _e !== void 0 ? _e : true, cache: opts.cache }, resourceOptions);
+              windowOptions = {
+                windowWidth: (_f = opts.windowWidth) !== null && _f !== void 0 ? _f : defaultView.innerWidth,
+                windowHeight: (_g = opts.windowHeight) !== null && _g !== void 0 ? _g : defaultView.innerHeight,
+                scrollX: (_h = opts.scrollX) !== null && _h !== void 0 ? _h : defaultView.pageXOffset,
+                scrollY: (_j = opts.scrollY) !== null && _j !== void 0 ? _j : defaultView.pageYOffset
+              };
+              windowBounds = new Bounds(windowOptions.scrollX, windowOptions.scrollY, windowOptions.windowWidth, windowOptions.windowHeight);
+              context = new Context(contextOptions, windowBounds);
+              foreignObjectRendering = (_k = opts.foreignObjectRendering) !== null && _k !== void 0 ? _k : false;
+              cloneOptions = {
+                allowTaint: (_l = opts.allowTaint) !== null && _l !== void 0 ? _l : false,
+                onclone: opts.onclone,
+                ignoreElements: opts.ignoreElements,
+                inlineImages: foreignObjectRendering,
+                copyStyles: foreignObjectRendering
+              };
+              context.logger.debug("Starting document clone with size " + windowBounds.width + "x" + windowBounds.height + " scrolled to " + -windowBounds.left + "," + -windowBounds.top);
+              documentCloner = new DocumentCloner(context, element, cloneOptions);
+              clonedElement = documentCloner.clonedReferenceElement;
+              if (!clonedElement) {
+                return [2, Promise.reject("Unable to find element in cloned iframe")];
+              }
+              return [4, documentCloner.toIFrame(ownerDocument, windowBounds)];
+            case 1:
+              container = _u.sent();
+              _a = isBodyElement(clonedElement) || isHTMLElement(clonedElement) ? parseDocumentSize(clonedElement.ownerDocument) : parseBounds(context, clonedElement), width = _a.width, height = _a.height, left = _a.left, top = _a.top;
+              backgroundColor2 = parseBackgroundColor(context, clonedElement, opts.backgroundColor);
+              renderOptions = {
+                canvas: opts.canvas,
+                backgroundColor: backgroundColor2,
+                scale: (_o = (_m = opts.scale) !== null && _m !== void 0 ? _m : defaultView.devicePixelRatio) !== null && _o !== void 0 ? _o : 1,
+                x: ((_p = opts.x) !== null && _p !== void 0 ? _p : 0) + left,
+                y: ((_q = opts.y) !== null && _q !== void 0 ? _q : 0) + top,
+                width: (_r = opts.width) !== null && _r !== void 0 ? _r : Math.ceil(width),
+                height: (_s = opts.height) !== null && _s !== void 0 ? _s : Math.ceil(height)
+              };
+              if (!foreignObjectRendering)
+                return [3, 3];
+              context.logger.debug("Document cloned, using foreign object rendering");
+              renderer = new ForeignObjectRenderer(context, renderOptions);
+              return [4, renderer.render(clonedElement)];
+            case 2:
+              canvas = _u.sent();
+              return [3, 5];
+            case 3:
+              context.logger.debug("Document cloned, element located at " + left + "," + top + " with size " + width + "x" + height + " using computed rendering");
+              context.logger.debug("Starting DOM parsing");
+              root = parseTree(context, clonedElement);
+              if (backgroundColor2 === root.styles.backgroundColor) {
+                root.styles.backgroundColor = COLORS.TRANSPARENT;
+              }
+              context.logger.debug("Starting renderer for element at " + renderOptions.x + "," + renderOptions.y + " with size " + renderOptions.width + "x" + renderOptions.height);
+              renderer = new CanvasRenderer(context, renderOptions);
+              return [4, renderer.render(root)];
+            case 4:
+              canvas = _u.sent();
+              _u.label = 5;
+            case 5:
+              if ((_t = opts.removeContainer) !== null && _t !== void 0 ? _t : true) {
+                if (!DocumentCloner.destroy(container)) {
+                  context.logger.error("Cannot detach cloned iframe as it is not in the DOM anymore");
+                }
+              }
+              context.logger.debug("Finished rendering");
+              return [2, canvas];
+          }
+        });
+      });
+    };
+    parseBackgroundColor = function(context, element, backgroundColorOverride) {
+      var ownerDocument = element.ownerDocument;
+      var documentBackgroundColor = ownerDocument.documentElement ? parseColor(context, getComputedStyle(ownerDocument.documentElement).backgroundColor) : COLORS.TRANSPARENT;
+      var bodyBackgroundColor = ownerDocument.body ? parseColor(context, getComputedStyle(ownerDocument.body).backgroundColor) : COLORS.TRANSPARENT;
+      var defaultBackgroundColor = typeof backgroundColorOverride === "string" ? parseColor(context, backgroundColorOverride) : backgroundColorOverride === null ? COLORS.TRANSPARENT : 4294967295;
+      return element === ownerDocument.documentElement ? isTransparent(documentBackgroundColor) ? isTransparent(bodyBackgroundColor) ? defaultBackgroundColor : bodyBackgroundColor : documentBackgroundColor : defaultBackgroundColor;
+    };
+    html2canvas_esm_default = html2canvas;
   }
-}
-function isScrollableElement(element, axis) {
-  const style2 = getComputedStyle(element);
-  const overflow = axis === "x" ? style2.overflowX : style2.overflowY;
-  const isDocumentScroll = element === document.body || element === document.documentElement;
-  return overflowStyles2.has(overflow) || isDocumentScroll;
-}
-function findScrollableAncestor(element, axis) {
-  let current2 = element == null ? void 0 : element.parentElement;
-  while (current2) {
-    if (isScrollableElement(current2, axis)) {
-      return current2;
-    }
-    current2 = current2.parentElement;
-  }
-  return null;
-}
-function getScrollAmount(pointerPosition, scrollElement, axis) {
-  const rect = scrollElement.getBoundingClientRect();
-  const start2 = axis === "x" ? Math.max(0, rect.left) : Math.max(0, rect.top);
-  const end = axis === "x" ? Math.min(window.innerWidth, rect.right) : Math.min(window.innerHeight, rect.bottom);
-  const distanceFromStart = pointerPosition - start2;
-  const distanceFromEnd = end - pointerPosition;
-  if (distanceFromStart < threshold) {
-    const intensity = 1 - distanceFromStart / threshold;
-    return { amount: -maxSpeed * intensity * intensity, edge: "start" };
-  } else if (distanceFromEnd < threshold) {
-    const intensity = 1 - distanceFromEnd / threshold;
-    return { amount: maxSpeed * intensity * intensity, edge: "end" };
-  }
-  return { amount: 0, edge: null };
-}
-function autoScrollIfNeeded(groupElement, pointerPosition, axis, velocity) {
-  if (!groupElement)
-    return;
-  currentGroupElement = groupElement;
-  const scrollableAncestor = findScrollableAncestor(groupElement, axis);
-  if (!scrollableAncestor)
-    return;
-  const viewportPointerPosition = pointerPosition - (axis === "x" ? window.scrollX : window.scrollY);
-  const { amount: scrollAmount, edge } = getScrollAmount(viewportPointerPosition, scrollableAncestor, axis);
-  if (edge === null) {
-    activeScrollEdge.delete(scrollableAncestor);
-    initialScrollLimits.delete(scrollableAncestor);
-    return;
-  }
-  const currentActiveEdge = activeScrollEdge.get(scrollableAncestor);
-  const isDocumentScroll = scrollableAncestor === document.body || scrollableAncestor === document.documentElement;
-  if (currentActiveEdge !== edge) {
-    const shouldStart = edge === "start" && velocity < 0 || edge === "end" && velocity > 0;
-    if (!shouldStart)
-      return;
-    activeScrollEdge.set(scrollableAncestor, edge);
-    const maxScroll = axis === "x" ? scrollableAncestor.scrollWidth - (isDocumentScroll ? window.innerWidth : scrollableAncestor.clientWidth) : scrollableAncestor.scrollHeight - (isDocumentScroll ? window.innerHeight : scrollableAncestor.clientHeight);
-    initialScrollLimits.set(scrollableAncestor, maxScroll);
-  }
-  if (scrollAmount > 0) {
-    const initialLimit = initialScrollLimits.get(scrollableAncestor);
-    const currentScroll = axis === "x" ? isDocumentScroll ? window.scrollX : scrollableAncestor.scrollLeft : isDocumentScroll ? window.scrollY : scrollableAncestor.scrollTop;
-    if (currentScroll >= initialLimit)
-      return;
-  }
-  if (axis === "x") {
-    if (isDocumentScroll) {
-      window.scrollBy({ left: scrollAmount });
-    } else {
-      scrollableAncestor.scrollLeft += scrollAmount;
-    }
-  } else {
-    if (isDocumentScroll) {
-      window.scrollBy({ top: scrollAmount });
-    } else {
-      scrollableAncestor.scrollTop += scrollAmount;
-    }
-  }
-}
-
-// node_modules/framer-motion/dist/es/components/Reorder/Item.mjs
-function useDefaultMotionValue(value, defaultValue = 0) {
-  return isMotionValue(value) ? value : useMotionValue(defaultValue);
-}
-function ReorderItemComponent({ children, style: style2 = {}, value, as = "li", onDrag, onDragEnd, layout: layout2 = true, ...props }, externalRef) {
-  const Component3 = useConstant(() => motion[as]);
-  const context = (0, import_react50.useContext)(ReorderContext);
-  const point2 = {
-    x: useDefaultMotionValue(style2.x),
-    y: useDefaultMotionValue(style2.y)
-  };
-  const zIndex = useTransform([point2.x, point2.y], ([latestX, latestY]) => latestX || latestY ? 1 : "unset");
-  invariant(Boolean(context), "Reorder.Item must be a child of Reorder.Group", "reorder-item-child");
-  const { axis, registerItem, updateOrder, groupRef } = context;
-  return (0, import_jsx_runtime11.jsx)(Component3, { drag: axis, ...props, dragSnapToOrigin: true, style: { ...style2, x: point2.x, y: point2.y, zIndex }, layout: layout2, onDrag: (event, gesturePoint) => {
-    const { velocity, point: pointerPoint } = gesturePoint;
-    const offset = point2[axis].get();
-    updateOrder(value, offset, velocity[axis]);
-    autoScrollIfNeeded(groupRef.current, pointerPoint[axis], axis, velocity[axis]);
-    onDrag && onDrag(event, gesturePoint);
-  }, onDragEnd: (event, gesturePoint) => {
-    resetAutoScrollState();
-    onDragEnd && onDragEnd(event, gesturePoint);
-  }, onLayoutMeasure: (measured) => {
-    registerItem(value, measured);
-  }, ref: externalRef, ignoreStrict: true, children });
-}
-var ReorderItem = (0, import_react50.forwardRef)(ReorderItemComponent);
+});
+init_html2canvas_esm();
 export {
-  AnimatePresence,
-  AnimateSharedLayout,
-  AsyncMotionValueAnimation,
-  DOMKeyframesResolver,
-  DOMVisualElement,
-  DeprecatedLayoutGroupContext,
-  DocumentProjectionNode,
-  DragControls,
-  Feature,
-  FlatTree,
-  GroupAnimation,
-  GroupAnimationWithThen,
-  HTMLProjectionNode,
-  HTMLVisualElement,
-  JSAnimation,
-  KeyframeResolver,
-  LayoutAnimationBuilder,
-  LayoutGroup,
-  LayoutGroupContext,
-  LazyMotion,
-  MotionConfig,
-  MotionConfigContext,
-  MotionContext,
-  MotionGlobalConfig,
-  MotionValue,
-  NativeAnimation,
-  NativeAnimationExtended,
-  NativeAnimationWrapper,
-  NodeStack,
-  ObjectVisualElement,
-  PopChild,
-  PresenceChild,
-  PresenceContext,
-  namespace_exports as Reorder,
-  SVGVisualElement,
-  SubscriptionManager,
-  SwitchLayoutGroupContext,
-  ViewTransitionBuilder,
-  VisualElement,
-  WillChangeMotionValue,
-  acceleratedValues,
-  activeAnimations,
-  addAttrValue,
-  addDomEvent,
-  addPointerEvent,
-  addPointerInfo,
-  addScaleCorrector,
-  addStyleValue,
-  addUniqueItem,
-  addValueToWillChange,
-  alpha,
-  analyseComplexValue,
-  animate,
-  animateMini,
-  animateMotionValue,
-  animateSingleValue,
-  animateTarget,
-  animateValue,
-  animateVariant,
-  animateView,
-  animateVisualElement,
-  animationControls,
-  animationMapKey,
-  animations,
-  anticipate,
-  applyAxisDelta,
-  applyBoxDelta,
-  applyGeneratorOptions,
-  applyPointDelta,
-  applyPxDefaults,
-  applyTreeDeltas,
-  aspectRatio,
-  attachFollow,
-  attachSpring,
-  attrEffect,
-  axisDeltaEquals,
-  axisEquals,
-  axisEqualsRounded,
-  backIn,
-  backInOut,
-  backOut,
-  boxEquals,
-  boxEqualsRounded,
-  buildHTMLStyles,
-  buildProjectionTransform,
-  buildSVGAttrs,
-  buildSVGPath,
-  buildTransform2 as buildTransform,
-  calcAxisDelta,
-  calcBoxDelta,
-  calcChildStagger,
-  calcGeneratorDuration,
-  calcLength,
-  calcRelativeAxis,
-  calcRelativeAxisPosition,
-  calcRelativeBox,
-  calcRelativePosition,
-  camelCaseAttributes,
-  camelToDash,
-  cancelFrame,
-  cancelMicrotask,
-  cancelSync,
-  checkVariantsDidChange,
-  circIn,
-  circInOut,
-  circOut,
-  clamp,
-  cleanDirtyNodes,
-  collectMotionValues,
-  color,
-  compareByDepth,
-  complex,
-  containsCSSVariable,
-  convertBoundingBoxToBox,
-  convertBoxToBoundingBox,
-  convertOffsetToTimes,
-  copyAxisDeltaInto,
-  copyAxisInto,
-  copyBoxInto,
-  correctBorderRadius,
-  correctBoxShadow,
-  correctParentTransform,
-  createAnimationState,
-  createAxis,
-  createAxisDelta,
-  createBox,
-  createDelta,
-  createGeneratorEasing,
-  createProjectionNode,
-  createRenderBatcher,
-  createScopedAnimate,
-  cubicBezier,
-  cubicBezierAsString,
-  defaultEasing,
-  defaultOffset,
-  defaultTransformValue,
-  defaultValueTypes,
-  degrees,
-  delay,
-  delayInSeconds,
-  dimensionValueTypes,
-  disableInstantTransitions,
-  distance,
-  distance2D,
-  domAnimation,
-  domMax,
-  domMin,
-  eachAxis,
-  easeIn,
-  easeInOut,
-  easeOut,
-  easingDefinitionToFunction,
-  fillOffset,
-  fillWildcards,
-  filterProps,
-  findDimensionValueType,
-  findValueType,
-  flushKeyframeResolvers,
-  followValue,
-  frame,
-  frameData,
-  frameSteps,
-  generateLinearEasing,
-  getAnimatableNone2 as getAnimatableNone,
-  getAnimationMap,
-  getComputedStyle2 as getComputedStyle,
-  getDefaultTransition,
-  getDefaultValueType,
-  getEasingForSegment,
-  getFeatureDefinitions,
-  getFinalKeyframe,
-  getMixer,
-  getOptimisedAppearId,
-  getOriginIndex,
-  getValueAsType,
-  getValueTransition,
-  getVariableValue,
-  getVariantContext,
-  getViewAnimationLayerInfo,
-  getViewAnimations,
-  globalProjectionState,
-  has2DTranslate,
-  hasReducedMotionListener,
-  hasScale,
-  hasTransform,
-  hasWarned,
-  hex,
-  hover,
-  hsla,
-  hslaToRgba,
-  inView,
-  inertia,
-  initPrefersReducedMotion,
-  interpolate,
-  invariant,
-  invisibleValues,
-  isAnimationControls,
-  isBezierDefinition,
-  isBrowser,
-  isCSSVariableName,
-  isCSSVariableToken,
-  isControllingVariants,
-  isDeltaZero,
-  isDragActive,
-  isDragging,
-  isEasingArray,
-  isElementKeyboardAccessible,
-  isElementTextInput,
-  isForcedMotionValue,
-  isGenerator,
-  isHTMLElement,
-  isKeyframesTarget,
-  isMotionComponent,
-  isMotionValue,
-  isNear,
-  isNodeOrChild,
-  isNumericalString,
-  isObject,
-  isPrimaryPointer,
-  isSVGElement,
-  isSVGSVGElement,
-  isSVGTag,
-  isTransitionDefined,
-  isValidMotionProp,
-  isVariantLabel,
-  isVariantNode,
-  isWaapiSupportedEasing,
-  isWillChangeMotionValue,
-  isZeroValueString,
-  keyframes,
-  m,
-  makeAnimationInstant,
-  makeUseVisualState,
-  mapEasingToNativeEasing,
-  mapValue,
-  maxGeneratorDuration,
-  measurePageBox,
-  measureViewportBox,
-  memo,
-  microtask,
-  millisecondsToSeconds,
-  mirrorEasing,
-  mix,
-  mixArray,
-  mixColor,
-  mixComplex,
-  mixImmediate,
-  mixLinearColor,
-  mixNumber,
-  mixObject,
-  mixValues,
-  mixVisibility,
-  motion,
-  motionValue,
-  moveItem,
-  nodeGroup,
-  noop,
-  number,
-  numberValueTypes,
-  observeTimeline,
-  optimizedAppearDataAttribute,
-  optimizedAppearDataId,
-  parseAnimateLayoutArgs,
-  parseCSSVariable,
-  parseValueFromTransform,
-  percent,
-  pipe,
-  pixelsToPercent,
-  positionalKeys,
-  prefersReducedMotion,
-  press,
-  progress,
-  progressPercentage,
-  propEffect,
-  propagateDirtyNodes,
-  px,
-  readTransformValue,
-  recordStats,
-  removeAxisDelta,
-  removeAxisTransforms,
-  removeBoxTransforms,
-  removeItem,
-  removePointDelta,
-  renderHTML,
-  renderSVG,
-  resize,
-  resolveElements,
-  resolveMotionValue,
-  resolveTransition,
-  resolveVariant,
-  resolveVariantFromProps,
-  reverseEasing,
-  rgbUnit,
-  rgba,
-  rootProjectionNode,
-  scale,
-  scaleCorrectors,
-  scalePoint,
-  scrapeMotionValuesFromProps as scrapeHTMLMotionValuesFromProps,
-  scrapeMotionValuesFromProps2 as scrapeSVGMotionValuesFromProps,
-  scroll,
-  scrollInfo,
-  secondsToMilliseconds,
-  setDragLock,
-  setFeatureDefinitions,
-  setStyle,
-  setTarget,
-  spring,
-  springValue,
-  stagger,
-  startOptimizedAppearAnimation,
-  startWaapiAnimation,
-  statsBuffer,
-  steps,
-  styleEffect,
-  supportedWaapiEasing,
-  supportsBrowserAnimation,
-  supportsFlags,
-  supportsLinearEasing,
-  supportsPartialKeyframes,
-  supportsScrollTimeline,
-  supportsViewTimeline,
-  svgEffect,
-  sync,
-  testValueType,
-  time,
-  transform,
-  transformAxis,
-  transformBox,
-  transformBoxPoints,
-  transformPropOrder,
-  transformProps,
-  transformValue,
-  transformValueTypes,
-  transformViewBoxPoint,
-  translateAxis,
-  unwrapMotionComponent,
-  updateMotionValuesFromProps,
-  useAnimate,
-  useAnimateMini,
-  useAnimation,
-  useAnimationControls,
-  useAnimationFrame,
-  useComposedRefs,
-  useCycle,
-  useAnimatedState as useDeprecatedAnimatedState,
-  useInvertedScale as useDeprecatedInvertedScale,
-  useDomEvent,
-  useDragControls,
-  useElementScroll,
-  useFollowValue,
-  useForceUpdate,
-  useInView,
-  useInstantLayoutTransition,
-  useInstantTransition,
-  useIsPresent,
-  useIsomorphicLayoutEffect,
-  useMotionTemplate,
-  useMotionValue,
-  useMotionValueEvent,
-  usePageInView,
-  usePresence,
-  usePresenceData,
-  useReducedMotion,
-  useReducedMotionConfig,
-  useResetProjection,
-  useScroll,
-  useSpring,
-  useTime,
-  useTransform,
-  useUnmountEffect,
-  useVelocity,
-  useViewportScroll,
-  useWillChange,
-  variantPriorityOrder,
-  variantProps,
-  velocityPerSecond,
-  vh,
-  visualElementStore,
-  vw,
-  warnOnce,
-  warning,
-  wrap
+  html2canvas_esm_default as default
 };
-//# sourceMappingURL=framer-motion.js.map
+/*! Bundled license information:
+
+html2canvas/dist/html2canvas.esm.js:
+  (*!
+   * html2canvas 1.4.1 <https://html2canvas.hertzen.com>
+   * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
+   * Released under MIT License
+   *)
+  (*! *****************************************************************************
+  Copyright (c) Microsoft Corporation.
+  
+  Permission to use, copy, modify, and/or distribute this software for any
+  purpose with or without fee is hereby granted.
+  
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+  PERFORMANCE OF THIS SOFTWARE.
+  ***************************************************************************** *)
+*/
+//# sourceMappingURL=html2canvas.esm-MGZLFOEL.js.map
